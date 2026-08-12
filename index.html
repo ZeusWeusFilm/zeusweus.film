@@ -20,7 +20,20 @@
             max-width: 40%;
             height: auto;
             margin-top: 25px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+        }
+
+        .title {
+            font-family: Georgia, serif;
+            font-size: 42px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin: 10px 0 25px;
+            color: #e8e8e8;
+            text-shadow:
+                2px 2px 0 #222,
+                -1px -1px 0 #000,
+                0 0 12px rgba(255, 255, 255, 0.15);
         }
 
         .video-container {
@@ -36,14 +49,11 @@
             border: none;
         }
 
-        h3 {
-            font-size: 24px;
-            margin: 30px;
-        }
-
-        a {
-            color: white;
-            text-decoration: none;
+        @media (max-width: 600px) {
+            .title {
+                font-size: 30px;
+                letter-spacing: 4px;
+            }
         }
     </style>
 </head>
@@ -51,6 +61,8 @@
 <body>
 
     <img class="logo" src="zwflogo.webp" alt="ZeusWeusFilm logo">
+
+    <h1 class="title">Knock Knock</h1>
 
     <div class="video-container">
         <iframe
@@ -60,18 +72,6 @@
             allowfullscreen>
         </iframe>
     </div>
-
-    <h3>
-        <a href="https://youtube.com/playlist?list=PLZzMSMHIFMu3hogeyaLuaJYshy602Y7r3&si=O5An_cLrjKLpV8pS">
-            Fried Out Vol.1
-        </a>
-    </h3>
-
-    <h3>
-        <a href="https://youtube.com/playlist?list=PLZzMSMHIFMu0_RMwMzpiiQDStU5ozLkLk&si=DoK4qs3ZdtsKXpZs">
-            Haunt-A-Files
-        </a>
-    </h3>
 
 </body>
 </html>
