@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* Blurred background image */
+        /* Background image */
         body::before {
             content: "";
             position: fixed;
@@ -53,7 +53,7 @@
             pointer-events: none;
         }
 
-        /* Keep website content above background */
+        /* Keep content above background */
         body > * {
             position: relative;
             z-index: 2;
@@ -112,7 +112,7 @@
             }
         }
 
-        /* YouTube video */
+        /* Main video */
         .video-container {
             width: 90%;
             max-width: 1000px;
@@ -178,7 +178,7 @@
             transform: translate(-50%, -50%) scale(1.08);
         }
 
-        /* Film description */
+        /* Description */
         .description {
             width: 90%;
             max-width: 1000px;
@@ -192,7 +192,7 @@
                 0 0 8px rgba(255, 255, 255, 0.08);
         }
 
-        /* Underscore separator */
+        /* Separator */
         .separator {
             font-family: Georgia, serif;
             font-size: 16px;
@@ -215,7 +215,7 @@
                 0 0 12px rgba(255, 255, 255, 0.15);
         }
 
-        /* Patreon section */
+        /* Behind The Scenes section */
         .patreon-section {
             width: 90%;
             max-width: 600px;
@@ -226,20 +226,31 @@
             gap: 35px;
         }
 
+        /* Entire BTS block is clickable */
         .patreon-preview {
-            width: 22.5%;
-            flex-shrink: 0;
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 35px;
+            width: 100%;
+            text-decoration: none;
+            color: inherit;
         }
 
         .patreon-preview img {
-            width: 100%;
+            width: 22.5%;
             height: auto;
             display: block;
-            border: none;
+            flex-shrink: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        /* Behind The Scenes title */
+        .patreon-preview:hover img {
+            opacity: 0.85;
+            transform: scale(1.03);
+        }
+
+        /* Behind The Scenes text */
         .documentary-title {
             font-family: Georgia, serif;
             color: #e8e8e8;
@@ -249,6 +260,14 @@
                 0 0 12px rgba(255, 255, 255, 0.15);
             line-height: 1.1;
             letter-spacing: 3px;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .patreon-preview:hover .documentary-title {
+            text-shadow:
+                2px 2px 0 #222,
+                -1px -1px 0 #000,
+                0 0 16px rgba(255, 255, 255, 0.3);
         }
 
         .behind {
@@ -315,6 +334,30 @@
             object-fit: contain;
         }
 
+        /* Social links */
+        .social-links {
+            margin: 0 auto 35px;
+            text-align: center;
+            font-family: Georgia, serif;
+            font-size: 15px;
+            letter-spacing: 2px;
+        }
+
+        .social-links a {
+            color: #bdbdbd;
+            text-decoration: none;
+            margin: 0 12px;
+            transition:
+                color 0.3s ease,
+                text-shadow 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+            text-shadow:
+                0 0 10px rgba(255, 255, 255, 0.45);
+        }
+
         /* Mobile */
         @media (max-width: 600px) {
 
@@ -342,6 +385,10 @@
                 gap: 15px;
             }
 
+            .patreon-preview {
+                gap: 15px;
+            }
+
             .behind,
             .documentary {
                 font-size: 16px;
@@ -364,6 +411,15 @@
                 grid-template-columns: 1fr;
                 gap: 10px;
             }
+
+            .social-links {
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+
+            .social-links a {
+                margin: 0 6px;
+            }
         }
 
         @media (min-width: 601px) and (max-width: 900px) {
@@ -377,12 +433,16 @@
 
 <body>
 
+    <!-- Logo -->
     <img
         class="logo"
         src="zwflogo.webp"
         alt="ZeusWeusFilm logo">
 
-    <h1 class="title">Knock Knock</h1>
+    <!-- Title -->
+    <h1 class="title">
+        Knock Knock
+    </h1>
 
     <!-- Main YouTube video -->
     <div class="video-container">
@@ -410,7 +470,7 @@
 
     </div>
 
-    <!-- Film description -->
+    <!-- Description -->
     <div class="description">
         Bella has just moved into her first home, in the midst of unpacking she accidentally knocks on the wall prompting a response from her unfamiliar neighbour. Bella however, has no idea who, or what lives next door...
     </div>
@@ -425,12 +485,12 @@
         Physical DVD Coming Soon
     </h2>
 
-    <!-- Behind The Scenes / Patreon -->
+    <!-- Behind The Scenes / Patreon post -->
     <div class="patreon-section">
 
         <a
             class="patreon-preview"
-            href="https://www.patreon.com/zeusweusfilm/posts/knock-knock-149435570"
+            href="https://www.patreon.com/zeusweusfilm/posts/knock-knock-149435570?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
             target="_blank"
             rel="noopener noreferrer">
 
@@ -438,19 +498,19 @@
                 src="behind-scenes.webp"
                 alt="Behind The Scenes Documentary">
 
+            <div class="documentary-title">
+
+                <span class="behind">
+                    Behind The Scenes
+                </span>
+
+                <span class="documentary">
+                    Documentary
+                </span>
+
+            </div>
+
         </a>
-
-        <div class="documentary-title">
-
-            <span class="behind">
-                Behind The Scenes
-            </span>
-
-            <span class="documentary">
-                Documentary
-            </span>
-
-        </div>
 
     </div>
 
@@ -559,6 +619,39 @@
             id="lightbox-image"
             src=""
             alt="Expanded Behind The Scenes image">
+
+    </div>
+
+    <!-- Social links -->
+    <div class="social-links">
+
+        <a
+            href="https://www.patreon.com/c/zeusweusfilm"
+            target="_blank"
+            rel="noopener noreferrer">
+            Patreon
+        </a>
+
+        <a
+            href="https://www.youtube.com/@ZeusWeusFilm"
+            target="_blank"
+            rel="noopener noreferrer">
+            YouTube
+        </a>
+
+        <a
+            href="https://www.instagram.com/zeusweusfilm"
+            target="_blank"
+            rel="noopener noreferrer">
+            Instagram
+        </a>
+
+        <a
+            href="https://x.com/ZeusWeusFilm"
+            target="_blank"
+            rel="noopener noreferrer">
+            X
+        </a>
 
     </div>
 
