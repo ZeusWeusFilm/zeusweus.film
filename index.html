@@ -11,35 +11,67 @@
             color: white;
             text-align: center;
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        img {
-            width: 200px;
-            max-width: 80%;
+        .logo {
+            width: 120px;
+            max-width: 40%;
             height: auto;
-            margin-top: 40px;
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+
+        .video-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         h3 {
             font-size: 24px;
-            margin: 20px;
+            margin: 30px;
         }
 
         a {
             color: white;
+            text-decoration: none;
         }
     </style>
 </head>
 
 <body>
 
-    <img src="zwflogo.webp">
+    <img class="logo" src="zwflogo.webp" alt="ZeusWeusFilm logo">
 
-    <h3><a href="https://youtu.be/WBCVE2-bUYA">Knock Knock</a></h3>
+    <div class="video-container">
+        <iframe
+            src="https://www.youtube.com/embed/WBCVE2-bUYA"
+            title="Knock Knock"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+    </div>
 
-    <h3><a href="https://youtube.com/playlist?list=PLZzMSMHIFMu3hogeyaLuaJYshy602Y7r3&si=O5An_cLrjKLpV8pS">Fried Out Vol.1</a></h3>
+    <h3>
+        <a href="https://youtube.com/playlist?list=PLZzMSMHIFMu3hogeyaLuaJYshy602Y7r3&si=O5An_cLrjKLpV8pS">
+            Fried Out Vol.1
+        </a>
+    </h3>
 
-    <h3><a href="https://youtube.com/playlist?list=PLZzMSMHIFMu0_RMwMzpiiQDStU5ozLkLk&si=DoK4qs3ZdtsKXpZs">Haunt-A-Files</a></h3>
+    <h3>
+        <a href="https://youtube.com/playlist?list=PLZzMSMHIFMu0_RMwMzpiiQDStU5ozLkLk&si=DoK4qs3ZdtsKXpZs">
+            Haunt-A-Files
+        </a>
+    </h3>
 
 </body>
 </html>
