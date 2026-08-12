@@ -309,6 +309,7 @@
         }
 
         .gallery-item {
+            position: relative;
             display: block;
             overflow: hidden;
             cursor: pointer;
@@ -325,7 +326,32 @@
 
         .gallery-item:hover img {
             transform: scale(1.03);
-            opacity: 0.85;
+        }
+
+        /* Gallery captions */
+        .caption {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 10px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #e8e8e8;
+            font-family: Georgia, serif;
+            font-size: 15px;
+            letter-spacing: 1px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(100%);
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Fullscreen image viewer */
@@ -343,12 +369,22 @@
             cursor: pointer;
             padding: 20px;
             box-sizing: border-box;
+            flex-direction: column;
         }
 
         .lightbox img {
             max-width: 95%;
-            max-height: 90%;
+            max-height: 80%;
             object-fit: contain;
+        }
+
+        .lightbox-caption {
+            margin-top: 18px;
+            color: #e8e8e8;
+            font-family: Georgia, serif;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-align: center;
         }
 
         /* Social links */
@@ -433,6 +469,25 @@
             .gallery {
                 grid-template-columns: 1fr;
                 gap: 10px;
+            }
+
+            /*
+                On mobile there is no hover,
+                so captions remain visible.
+            */
+            .caption {
+                opacity: 1;
+                transform: translateY(0);
+                font-size: 14px;
+                padding: 10px 8px;
+            }
+
+            .lightbox img {
+                max-height: 75%;
+            }
+
+            .lightbox-caption {
+                font-size: 16px;
             }
 
             .social-links {
@@ -551,91 +606,127 @@
 
         <a
             class="gallery-item"
-            onclick="openLightbox('bts1.webp')">
+            onclick="openLightbox('bts1.webp', 'Moving in.')">
 
             <img
                 src="bts1.webp"
-                alt="Behind The Scenes 1">
+                alt="Moving in.">
+
+            <div class="caption">
+                Moving in.
+            </div>
 
         </a>
 
         <a
             class="gallery-item"
-            onclick="openLightbox('bts2.webp')">
+            onclick="openLightbox('bts2.webp', 'Ready to go.')">
 
             <img
                 src="bts2.webp"
-                alt="Behind The Scenes 2">
+                alt="Ready to go.">
+
+            <div class="caption">
+                Ready to go.
+            </div>
 
         </a>
 
         <a
             class="gallery-item"
-            onclick="openLightbox('bts3.webp')">
+            onclick="openLightbox('bts3.webp', 'Script changes.')">
 
             <img
                 src="bts3.webp"
-                alt="Behind The Scenes 3">
+                alt="Script changes.">
+
+            <div class="caption">
+                Script changes.
+            </div>
 
         </a>
 
         <a
             class="gallery-item"
-            onclick="openLightbox('bts4.webp')">
+            onclick="openLightbox('bts4.webp', 'Better see a doctor.')">
 
             <img
                 src="bts4.webp"
-                alt="Behind The Scenes 4">
+                alt="Better see a doctor.">
+
+            <div class="caption">
+                Better see a doctor.
+            </div>
 
         </a>
 
         <a
             class="gallery-item"
-            onclick="openLightbox('bts5.webp')">
+            onclick="openLightbox('bts5.webp', 'The lure.')">
 
             <img
                 src="bts5.webp"
-                alt="Behind The Scenes 5">
+                alt="The lure.">
+
+            <div class="caption">
+                The lure.
+            </div>
 
         </a>
 
         <a
             class="gallery-item"
-            onclick="openLightbox('bts6.webp')">
+            onclick="openLightbox('bts6.webp', 'Blank canvas.')">
 
             <img
                 src="bts6.webp"
-                alt="Behind The Scenes 6">
+                alt="Blank canvas.">
+
+            <div class="caption">
+                Blank canvas.
+            </div>
 
         </a>
 
         <a
             class="gallery-item"
-            onclick="openLightbox('bts7.webp')">
+            onclick="openLightbox('bts7.webp', 'Creating the wall effect.')">
 
             <img
                 src="bts7.webp"
-                alt="Behind The Scenes 7">
+                alt="Creating the wall effect.">
+
+            <div class="caption">
+                Creating the wall effect.
+            </div>
 
         </a>
 
         <a
             class="gallery-item"
-            onclick="openLightbox('bts8.webp')">
+            onclick="openLightbox('bts8.webp', 'Special fx shots.')">
 
             <img
                 src="bts8.webp"
-                alt="Behind The Scenes 8">
+                alt="Special fx shots.">
+
+            <div class="caption">
+                Special fx shots.
+            </div>
 
         </a>
 
         <a
             class="gallery-item"
-            onclick="openLightbox('bts9.webp')">
+            onclick="openLightbox('bts9.webp', 'Practical Poster.')">
 
             <img
                 src="bts9.webp"
-                alt="Behind The Scenes 9">
+                alt="Practical Poster.">
+
+            <div class="caption">
+                Practical Poster.
+            </div>
 
         </a>
 
@@ -651,6 +742,11 @@
             id="lightbox-image"
             src=""
             alt="Expanded Behind The Scenes image">
+
+        <div
+            class="lightbox-caption"
+            id="lightbox-caption">
+        </div>
 
     </div>
 
@@ -708,7 +804,7 @@
 
 
         /* Open gallery image */
-        function openLightbox(image) {
+        function openLightbox(image, caption) {
 
             const lightbox =
                 document.getElementById("lightbox");
@@ -716,7 +812,12 @@
             const lightboxImage =
                 document.getElementById("lightbox-image");
 
+            const lightboxCaption =
+                document.getElementById("lightbox-caption");
+
             lightboxImage.src = image;
+
+            lightboxCaption.textContent = caption;
 
             lightbox.style.display = "flex";
         }
