@@ -22,7 +22,7 @@
             overflow-x: hidden;
         }
 
-        /* Faint blurred background image */
+        /* Blurred background image */
         body::before {
             content: "";
             position: fixed;
@@ -35,7 +35,7 @@
             background-position: center;
             background-repeat: no-repeat;
             filter: blur(5px);
-            opacity: 0.20;
+            opacity: 0.30;
             z-index: 0;
             pointer-events: none;
         }
@@ -94,8 +94,8 @@
 
         /* Film description */
         .description {
-            width: 85%;
-            max-width: 800px;
+            width: 90%;
+            max-width: 1000px;
             margin: 25px auto 20px;
             font-family: Georgia, serif;
             font-size: 17px;
