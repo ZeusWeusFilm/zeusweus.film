@@ -49,10 +49,85 @@
             border: none;
         }
 
+        .coming-soon {
+            font-family: Georgia, serif;
+            font-size: 32px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin: 35px 20px 40px;
+            color: #e8e8e8;
+            text-shadow:
+                2px 2px 0 #222,
+                -1px -1px 0 #000,
+                0 0 12px rgba(255, 255, 255, 0.15);
+        }
+
+        .patreon-section {
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 35px;
+        }
+
+        .patreon-video {
+            width: 22.5%;
+            aspect-ratio: 16 / 9;
+            flex-shrink: 0;
+        }
+
+        .patreon-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .documentary-title {
+            font-family: Georgia, serif;
+            text-transform: uppercase;
+            color: #e8e8e8;
+            text-shadow:
+                2px 2px 0 #222,
+                -1px -1px 0 #000,
+                0 0 12px rgba(255, 255, 255, 0.15);
+            line-height: 1.1;
+            letter-spacing: 3px;
+        }
+
+        .behind {
+            display: block;
+            font-size: 24px;
+            white-space: nowrap;
+        }
+
+        .documentary {
+            display: block;
+            font-size: 24px;
+            letter-spacing: 3px;
+            margin-top: 5px;
+        }
+
         @media (max-width: 600px) {
             .title {
                 font-size: 30px;
                 letter-spacing: 4px;
+            }
+
+            .coming-soon {
+                font-size: 24px;
+                letter-spacing: 3px;
+            }
+
+            .patreon-section {
+                gap: 15px;
+            }
+
+            .behind,
+            .documentary {
+                font-size: 16px;
+                letter-spacing: 2px;
             }
         }
     </style>
@@ -71,6 +146,25 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen>
         </iframe>
+    </div>
+
+    <h2 class="coming-soon">Physical DVD Coming Soon</h2>
+
+    <div class="patreon-section">
+
+        <div class="patreon-video">
+            <iframe
+                src="https://www.patreon.com/zeusweusfilm/posts/knock-knock-149435570"
+                title="Knock Knock Behind The Scenes Documentary"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="documentary-title">
+            <span class="behind">Behind The Scenes</span>
+            <span class="documentary">Documentary</span>
+        </div>
+
     </div>
 
 </body>
