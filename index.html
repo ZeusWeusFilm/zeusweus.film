@@ -181,6 +181,7 @@
                 0 0 12px rgba(255, 255, 255, 0.15);
         }
 
+        /* Patreon section */
         .patreon-section {
             width: 90%;
             max-width: 600px;
@@ -228,6 +229,58 @@
             margin-top: 5px;
         }
 
+        /* Behind The Scenes Gallery */
+        .gallery {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto 80px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .gallery-item {
+            display: block;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+            opacity: 0.85;
+        }
+
+        /* Fullscreen image viewer */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        /* Mobile */
         @media (max-width: 600px) {
 
             .title {
@@ -270,6 +323,17 @@
                 border-top-width: 9px;
                 border-bottom-width: 9px;
                 border-left-width: 15px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
     </style>
@@ -334,7 +398,54 @@
 
     </div>
 
+    <!-- Behind The Scenes Gallery -->
+    <div class="gallery">
+
+        <a class="gallery-item" onclick="openLightbox('bts1.webp')">
+            <img src="bts1.webp" alt="Behind The Scenes 1">
+        </a>
+
+        <a class="gallery-item" onclick="openLightbox('bts2.webp')">
+            <img src="bts2.webp" alt="Behind The Scenes 2">
+        </a>
+
+        <a class="gallery-item" onclick="openLightbox('bts3.webp')">
+            <img src="bts3.webp" alt="Behind The Scenes 3">
+        </a>
+
+        <a class="gallery-item" onclick="openLightbox('bts4.webp')">
+            <img src="bts4.webp" alt="Behind The Scenes 4">
+        </a>
+
+        <a class="gallery-item" onclick="openLightbox('bts5.webp')">
+            <img src="bts5.webp" alt="Behind The Scenes 5">
+        </a>
+
+        <a class="gallery-item" onclick="openLightbox('bts6.webp')">
+            <img src="bts6.webp" alt="Behind The Scenes 6">
+        </a>
+
+        <a class="gallery-item" onclick="openLightbox('bts7.webp')">
+            <img src="bts7.webp" alt="Behind The Scenes 7">
+        </a>
+
+        <a class="gallery-item" onclick="openLightbox('bts8.webp')">
+            <img src="bts8.webp" alt="Behind The Scenes 8">
+        </a>
+
+        <a class="gallery-item" onclick="openLightbox('bts9.webp')">
+            <img src="bts9.webp" alt="Behind The Scenes 9">
+        </a>
+
+    </div>
+
+    <!-- Fullscreen viewer -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-image" src="" alt="Expanded Behind The Scenes image">
+    </div>
+
     <script>
+
         function playVideo() {
             const thumbnail = document.querySelector(".video-thumbnail");
             const iframe = document.getElementById("youtube-video");
@@ -346,6 +457,19 @@
                 "*"
             );
         }
+
+        function openLightbox(image) {
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImage = document.getElementById("lightbox-image");
+
+            lightboxImage.src = image;
+            lightbox.style.display = "flex";
+        }
+
+        function closeLightbox() {
+            document.getElementById("lightbox").style.display = "none";
+        }
+
     </script>
 
 </body>
