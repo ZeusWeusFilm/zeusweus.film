@@ -70,15 +70,16 @@
             gap: 35px;
         }
 
-        .patreon-video {
+        .patreon-preview {
             width: 22.5%;
-            aspect-ratio: 16 / 9;
             flex-shrink: 0;
+            display: block;
         }
 
-        .patreon-video iframe {
+        .patreon-preview img {
             width: 100%;
-            height: 100%;
+            height: auto;
+            display: block;
             border: none;
         }
 
@@ -149,13 +150,17 @@
 
     <div class="patreon-section">
 
-        <div class="patreon-video">
-            <iframe
-                src="https://www.patreon.com/zeusweusfilm/posts/knock-knock-149435570"
-                title="Knock Knock Behind The Scenes Documentary"
-                allowfullscreen>
-            </iframe>
-        </div>
+        <a
+            class="patreon-preview"
+            href="https://www.patreon.com/zeusweusfilm/posts/knock-knock-149435570"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <img
+                src="behind-scenes.webp"
+                alt="Behind The Scenes Documentary">
+
+        </a>
 
         <div class="documentary-title">
             <span class="behind">Behind The Scenes</span>
