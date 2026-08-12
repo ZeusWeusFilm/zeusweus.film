@@ -40,7 +40,7 @@
             pointer-events: none;
         }
 
-        /* Dark overlay to keep the background subtle */
+        /* Dark overlay */
         body::after {
             content: "";
             position: fixed;
@@ -53,7 +53,7 @@
             pointer-events: none;
         }
 
-        /* Keep website content above the background */
+        /* Keep website content above background */
         body > * {
             position: relative;
             z-index: 2;
@@ -92,11 +92,35 @@
             border: none;
         }
 
+        /* Film description */
+        .description {
+            width: 85%;
+            max-width: 800px;
+            margin: 25px auto 20px;
+            font-family: Georgia, serif;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #d6d6d6;
+            text-shadow:
+                1px 1px 0 #222,
+                0 0 8px rgba(255, 255, 255, 0.08);
+        }
+
+        /* Underscore separator */
+        .separator {
+            font-family: Georgia, serif;
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: #e8e8e8;
+            opacity: 0.5;
+            margin: 20px auto;
+        }
+
         .coming-soon {
             font-family: Georgia, serif;
             font-size: 16px;
             letter-spacing: 2px;
-            margin: 35px 20px 40px;
+            margin: 20px 20px 40px;
             color: #e8e8e8;
             text-shadow:
                 2px 2px 0 #222,
@@ -152,9 +176,20 @@
         }
 
         @media (max-width: 600px) {
+
             .title {
                 font-size: 30px;
                 letter-spacing: 4px;
+            }
+
+            .description {
+                width: 85%;
+                font-size: 15px;
+                line-height: 1.5;
+            }
+
+            .separator {
+                font-size: 14px;
             }
 
             .coming-soon {
@@ -188,6 +223,14 @@
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen>
         </iframe>
+    </div>
+
+    <div class="description">
+        Bella has just moved into her first home, in the midst of unpacking she accidentally knocks on the wall prompting a response from her unfamiliar neighbour. Bella however, has no idea who, or what lives next door...
+    </div>
+
+    <div class="separator">
+        ____________________________
     </div>
 
     <h2 class="coming-soon">Physical DVD Coming Soon</h2>
