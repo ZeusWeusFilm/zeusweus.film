@@ -59,6 +59,7 @@
             z-index: 2;
         }
 
+        /* Logo */
         .logo {
             width: 120px;
             max-width: 40%;
@@ -67,6 +68,7 @@
             margin-bottom: 15px;
         }
 
+        /* Knock Knock title */
         .title {
             font-family: Georgia, serif;
             font-size: 42px;
@@ -77,6 +79,37 @@
                 2px 2px 0 #222,
                 -1px -1px 0 #000,
                 0 0 12px rgba(255, 255, 255, 0.15);
+
+            animation: creepyFlicker 7s infinite;
+        }
+
+        /* Subtle creepy flicker */
+        @keyframes creepyFlicker {
+
+            0%, 88%, 100% {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+
+            89% {
+                opacity: 0.75;
+                transform: translate(-1px, 0);
+            }
+
+            90% {
+                opacity: 1;
+                transform: translate(1px, 0);
+            }
+
+            91% {
+                opacity: 0.85;
+                transform: translate(0, 1px);
+            }
+
+            92% {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
         }
 
         /* YouTube video */
@@ -169,6 +202,7 @@
             margin: 20px auto;
         }
 
+        /* DVD announcement */
         .coming-soon {
             font-family: Georgia, serif;
             font-size: 16px;
@@ -205,6 +239,7 @@
             border: none;
         }
 
+        /* Behind The Scenes title */
         .documentary-title {
             font-family: Georgia, serif;
             color: #e8e8e8;
@@ -332,6 +367,7 @@
         }
 
         @media (min-width: 601px) and (max-width: 900px) {
+
             .gallery {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -341,10 +377,14 @@
 
 <body>
 
-    <img class="logo" src="zwflogo.webp" alt="ZeusWeusFilm logo">
+    <img
+        class="logo"
+        src="zwflogo.webp"
+        alt="ZeusWeusFilm logo">
 
     <h1 class="title">Knock Knock</h1>
 
+    <!-- Main YouTube video -->
     <div class="video-container">
 
         <iframe
@@ -355,7 +395,10 @@
             allowfullscreen>
         </iframe>
 
-        <div class="video-thumbnail" onclick="playVideo()">
+        <!-- Custom thumbnail -->
+        <div
+            class="video-thumbnail"
+            onclick="playVideo()">
 
             <img
                 src="Thumbnail.webp"
@@ -367,16 +410,22 @@
 
     </div>
 
+    <!-- Film description -->
     <div class="description">
         Bella has just moved into her first home, in the midst of unpacking she accidentally knocks on the wall prompting a response from her unfamiliar neighbour. Bella however, has no idea who, or what lives next door...
     </div>
 
+    <!-- Separator -->
     <div class="separator">
         ____________________________
     </div>
 
-    <h2 class="coming-soon">Physical DVD Coming Soon</h2>
+    <!-- DVD announcement -->
+    <h2 class="coming-soon">
+        Physical DVD Coming Soon
+    </h2>
 
+    <!-- Behind The Scenes / Patreon -->
     <div class="patreon-section">
 
         <a
@@ -392,8 +441,15 @@
         </a>
 
         <div class="documentary-title">
-            <span class="behind">Behind The Scenes</span>
-            <span class="documentary">Documentary</span>
+
+            <span class="behind">
+                Behind The Scenes
+            </span>
+
+            <span class="documentary">
+                Documentary
+            </span>
+
         </div>
 
     </div>
@@ -401,54 +457,121 @@
     <!-- Behind The Scenes Gallery -->
     <div class="gallery">
 
-        <a class="gallery-item" onclick="openLightbox('bts1.webp')">
-            <img src="bts1.webp" alt="Behind The Scenes 1">
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts1.webp')">
+
+            <img
+                src="bts1.webp"
+                alt="Behind The Scenes 1">
+
         </a>
 
-        <a class="gallery-item" onclick="openLightbox('bts2.webp')">
-            <img src="bts2.webp" alt="Behind The Scenes 2">
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts2.webp')">
+
+            <img
+                src="bts2.webp"
+                alt="Behind The Scenes 2">
+
         </a>
 
-        <a class="gallery-item" onclick="openLightbox('bts3.webp')">
-            <img src="bts3.webp" alt="Behind The Scenes 3">
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts3.webp')">
+
+            <img
+                src="bts3.webp"
+                alt="Behind The Scenes 3">
+
         </a>
 
-        <a class="gallery-item" onclick="openLightbox('bts4.webp')">
-            <img src="bts4.webp" alt="Behind The Scenes 4">
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts4.webp')">
+
+            <img
+                src="bts4.webp"
+                alt="Behind The Scenes 4">
+
         </a>
 
-        <a class="gallery-item" onclick="openLightbox('bts5.webp')">
-            <img src="bts5.webp" alt="Behind The Scenes 5">
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts5.webp')">
+
+            <img
+                src="bts5.webp"
+                alt="Behind The Scenes 5">
+
         </a>
 
-        <a class="gallery-item" onclick="openLightbox('bts6.webp')">
-            <img src="bts6.webp" alt="Behind The Scenes 6">
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts6.webp')">
+
+            <img
+                src="bts6.webp"
+                alt="Behind The Scenes 6">
+
         </a>
 
-        <a class="gallery-item" onclick="openLightbox('bts7.webp')">
-            <img src="bts7.webp" alt="Behind The Scenes 7">
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts7.webp')">
+
+            <img
+                src="bts7.webp"
+                alt="Behind The Scenes 7">
+
         </a>
 
-        <a class="gallery-item" onclick="openLightbox('bts8.webp')">
-            <img src="bts8.webp" alt="Behind The Scenes 8">
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts8.webp')">
+
+            <img
+                src="bts8.webp"
+                alt="Behind The Scenes 8">
+
         </a>
 
-        <a class="gallery-item" onclick="openLightbox('bts9.webp')">
-            <img src="bts9.webp" alt="Behind The Scenes 9">
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts9.webp')">
+
+            <img
+                src="bts9.webp"
+                alt="Behind The Scenes 9">
+
         </a>
 
     </div>
 
-    <!-- Fullscreen viewer -->
-    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-image" src="" alt="Expanded Behind The Scenes image">
+    <!-- Fullscreen image viewer -->
+    <div
+        class="lightbox"
+        id="lightbox"
+        onclick="closeLightbox()">
+
+        <img
+            id="lightbox-image"
+            src=""
+            alt="Expanded Behind The Scenes image">
+
     </div>
 
     <script>
 
+        /* Start YouTube video */
         function playVideo() {
-            const thumbnail = document.querySelector(".video-thumbnail");
-            const iframe = document.getElementById("youtube-video");
+
+            const thumbnail =
+                document.querySelector(".video-thumbnail");
+
+            const iframe =
+                document.getElementById("youtube-video");
 
             thumbnail.style.display = "none";
 
@@ -458,15 +581,25 @@
             );
         }
 
+
+        /* Open gallery image */
         function openLightbox(image) {
-            const lightbox = document.getElementById("lightbox");
-            const lightboxImage = document.getElementById("lightbox-image");
+
+            const lightbox =
+                document.getElementById("lightbox");
+
+            const lightboxImage =
+                document.getElementById("lightbox-image");
 
             lightboxImage.src = image;
+
             lightbox.style.display = "flex";
         }
 
+
+        /* Close gallery image */
         function closeLightbox() {
+
             document.getElementById("lightbox").style.display = "none";
         }
 
