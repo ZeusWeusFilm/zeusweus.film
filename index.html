@@ -1,310 +1,314 @@
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>ZeusWeusFilm</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        html {
-            background-color: #080a0b;
-        }
+<style>
+    html {
+        background-color: #080a0b;
+    }
 
-        body {
-            background-color: #080a0b;
-            color: white;
-            text-align: center;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
+    body {
+        background-color: #080a0b;
+        color: white;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+        position: relative;
+    }
 
-        /* Background image */
-        body::before {
-            content: "";
-            position: fixed;
-            top: -20px;
-            left: -20px;
-            width: calc(100% + 40px);
-            height: calc(100% + 40px);
-            background-image: url("background.webp");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            filter: blur(5px);
-            opacity: 0.30;
-            z-index: 0;
-            pointer-events: none;
-        }
+    /* Background image */
+    body::before {
+        content: "";
+        position: fixed;
+        top: -20px;
+        left: -20px;
+        width: calc(100% + 40px);
+        height: calc(100% + 40px);
+        background-image: url("background.webp");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: blur(5px);
+        opacity: 0.30;
+        z-index: 0;
+        pointer-events: none;
+    }
 
-        /* Dark overlay */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(8, 10, 11, 0.55);
-            z-index: 1;
-            pointer-events: none;
-        }
+    /* Dark overlay */
+    body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(8, 10, 11, 0.55);
+        z-index: 1;
+        pointer-events: none;
+    }
 
-        /* Keep content above background */
-        body > * {
-            position: relative;
-            z-index: 2;
-        }
+    /* Keep content above background */
+    body > * {
+        position: relative;
+        z-index: 2;
+    }
 
-        /* Logo */
+    /* Logo */
+    .logo {
+        display: block;
+        width: 120px;
+        max-width: 40%;
+        height: auto;
+        margin: 25px auto 35px;
+    }
+
+    /* Project gallery */
+    .projects {
+        width: 90%;
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    /* Project link */
+    .project {
+        display: block;
+        position: relative;
+        overflow: hidden;
+        text-decoration: none;
+        cursor: pointer;
+        color: inherit;
+    }
+
+    /* Project image */
+    .project img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition:
+            transform 0.3s ease,
+            opacity 0.3s ease;
+    }
+
+    /* Hover effect */
+    .project:hover img {
+        transform: scale(1.03);
+        opacity: 0.85;
+    }
+
+    /* Project name */
+    .project-title {
+        margin-top: 12px;
+        margin-bottom: 5px;
+        font-family: Georgia, serif;
+        font-size: 18px;
+        letter-spacing: 2px;
+        color: #e8e8e8;
+        text-shadow:
+            2px 2px 0 #222,
+            -1px -1px 0 #000,
+            0 0 12px rgba(255, 255, 255, 0.15);
+    }
+
+    /* ZeusWeusFilm description */
+    .description {
+        width: 85%;
+        max-width: 850px;
+        margin: 55px auto 60px;
+        font-family: Georgia, serif;
+        font-size: 17px;
+        line-height: 1.6;
+        color: #d6d6d6;
+        text-shadow:
+            1px 1px 0 #222,
+            0 0 8px rgba(255, 255, 255, 0.08);
+    }
+
+    /* Social links */
+    .social-links {
+        margin: 0 auto 35px;
+        text-align: center;
+        font-family: Georgia, serif;
+        font-size: 15px;
+        letter-spacing: 2px;
+    }
+
+    .social-links a {
+        color: #bdbdbd;
+        text-decoration: none;
+        margin: 0 12px;
+        transition:
+            color 0.3s ease,
+            text-shadow 0.3s ease;
+    }
+
+    .social-links a:hover {
+        color: #ffffff;
+        text-shadow:
+            0 0 10px rgba(255, 255, 255, 0.45);
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+
         .logo {
-            display: block;
-            width: 120px;
-            max-width: 40%;
-            height: auto;
-            margin: 25px auto 35px;
+            margin: 25px auto 25px;
         }
 
-        /* Project gallery */
         .projects {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            width: 85%;
+            grid-template-columns: 1fr;
+            gap: 35px;
         }
 
-        /* Project link */
-        .project {
-            display: block;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            cursor: pointer;
-            color: inherit;
-        }
-
-        /* Project image */
-        .project img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition:
-                transform 0.3s ease,
-                opacity 0.3s ease;
-        }
-
-        /* Hover effect */
-        .project:hover img {
-            transform: scale(1.03);
-            opacity: 0.85;
-        }
-
-        /* Project name */
         .project-title {
-            margin-top: 12px;
-            margin-bottom: 5px;
-            font-family: Georgia, serif;
-            font-size: 18px;
-            letter-spacing: 2px;
-            color: #e8e8e8;
-            text-shadow:
-                2px 2px 0 #222,
-                -1px -1px 0 #000,
-                0 0 12px rgba(255, 255, 255, 0.15);
+            font-size: 16px;
         }
 
-        /* ZeusWeusFilm description */
         .description {
             width: 85%;
-            max-width: 850px;
-            margin: 55px auto 60px;
-            font-family: Georgia, serif;
-            font-size: 17px;
-            line-height: 1.6;
-            color: #d6d6d6;
-            text-shadow:
-                1px 1px 0 #222,
-                0 0 8px rgba(255, 255, 255, 0.08);
+            font-size: 15px;
+            line-height: 1.5;
+            margin-top: 45px;
         }
 
-        /* Social links */
         .social-links {
-            margin: 0 auto 35px;
-            text-align: center;
-            font-family: Georgia, serif;
-            font-size: 15px;
-            letter-spacing: 2px;
+            font-size: 13px;
+            letter-spacing: 1px;
         }
 
         .social-links a {
-            color: #bdbdbd;
-            text-decoration: none;
-            margin: 0 12px;
-            transition:
-                color 0.3s ease,
-                text-shadow 0.3s ease;
+            margin: 0 6px;
         }
+    }
 
-        .social-links a:hover {
-            color: #ffffff;
-            text-shadow:
-                0 0 10px rgba(255, 255, 255, 0.45);
+    /* Tablet */
+    @media (min-width: 601px) and (max-width: 900px) {
+
+        .projects {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
         }
+    }
+</style>
+```
 
-        /* Mobile */
-        @media (max-width: 600px) {
-
-            .logo {
-                margin: 25px auto 25px;
-            }
-
-            .projects {
-                width: 85%;
-                grid-template-columns: 1fr;
-                gap: 35px;
-            }
-
-            .project-title {
-                font-size: 16px;
-            }
-
-            .description {
-                width: 85%;
-                font-size: 15px;
-                line-height: 1.5;
-                margin-top: 45px;
-            }
-
-            .social-links {
-                font-size: 13px;
-                letter-spacing: 1px;
-            }
-
-            .social-links a {
-                margin: 0 6px;
-            }
-        }
-
-        /* Tablet */
-        @media (min-width: 601px) and (max-width: 900px) {
-
-            .projects {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-        }
-    </style>
 </head>
 
 <body>
 
-    <!-- ZeusWeusFilm logo -->
-    <img
-        class="logo"
-        src="zwflogo.webp"
-        alt="ZeusWeusFilm logo">
+```
+<!-- ZeusWeusFilm logo -->
+<img
+    class="logo"
+    src="zwflogo.webp"
+    alt="ZeusWeusFilm logo">
 
-    <!-- Projects -->
-    <div class="projects">
+<!-- Projects -->
+<div class="projects">
 
-        <!-- Knock Knock -->
-        <a
-            class="project"
-            href="knock-knock/index.html">
+    <!-- Knock Knock -->
+    <a
+        class="project"
+        href="knock-knock/index.html">
 
-            <img
-                src="knockknocklogo.webp"
-                alt="Knock Knock">
+        <img
+            src="knockknocklogo.webp"
+            alt="Knock Knock">
 
-            <div class="project-title">
-                Knock Knock
-            </div>
+        <div class="project-title">
+            Knock Knock
+        </div>
 
-        </a>
+    </a>
 
-        <!-- Fried Out -->
-        <a
-            class="project"
-            href="comingsoon.html">
+    <!-- Fried Out -->
+    <a
+        class="project"
+        href="comingsoon.html">
 
-            <img
-                src="friedoutvol1logo.webp"
-                alt="Fried Out">
+        <img
+            src="friedoutvol1logo.webp"
+            alt="Fried Out">
 
-            <div class="project-title">
-                Fried Out
-            </div>
+        <div class="project-title">
+            Fried Out
+        </div>
 
-        </a>
+    </a>
 
-        <!-- Haunt-A-Files -->
-        <a
-            class="project"
-            href="comingsoon.html">
+    <!-- Haunt-A-Files -->
+    <a
+        class="project"
+        href="comingsoon.html">
 
-            <img
-                src="hauntafileslogo.webp"
-                alt="Haunt-A-Files">
+        <img
+            src="hauntafileslogo.webp"
+            alt="Haunt-A-Files">
 
-            <div class="project-title">
-                Haunt-A-Files
-            </div>
+        <div class="project-title">
+            Haunt-A-Files
+        </div>
 
-        </a>
+    </a>
 
-    </div>
+</div>
 
-    <!-- ZeusWeusFilm description -->
-    <div class="description">
-        Independent films, strange stories and everything in between.
-        Welcome to ZeusWeusFilm.
-    </div>
+<!-- ZeusWeusFilm description -->
+<div class="description">
+    You're going to know, how intent I was, on teaching you people that what you're doing is wrong, and maybe that's all that needs to be done to stop you from the greed you have, the hate you have, anger, malice
+</div>
 
-    <!-- Social links -->
-    <div class="social-links">
+<!-- Social links -->
+<div class="social-links">
 
-        <a
-            href="https://www.patreon.com/c/zeusweusfilm"
-            target="_blank"
-            rel="noopener noreferrer">
-            Patreon
-        </a>
+    <a
+        href="https://www.patreon.com/c/zeusweusfilm"
+        target="_blank"
+        rel="noopener noreferrer">
+        Patreon
+    </a>
 
-        <a
-            href="https://www.youtube.com/@ZeusWeusFilm"
-            target="_blank"
-            rel="noopener noreferrer">
-            YouTube
-        </a>
+    <a
+        href="https://www.youtube.com/@ZeusWeusFilm"
+        target="_blank"
+        rel="noopener noreferrer">
+        YouTube
+    </a>
 
-        <a
-            href="https://www.instagram.com/zeusweusfilm"
-            target="_blank"
-            rel="noopener noreferrer">
-            Instagram
-        </a>
+    <a
+        href="https://www.instagram.com/zeusweusfilm"
+        target="_blank"
+        rel="noopener noreferrer">
+        Instagram
+    </a>
 
-        <a
-            href="https://x.com/ZeusWeusFilm"
-            target="_blank"
-            rel="noopener noreferrer">
-            X
-        </a>
+    <a
+        href="https://x.com/ZeusWeusFilm"
+        target="_blank"
+        rel="noopener noreferrer">
+        X
+    </a>
 
-        <a
-            href="https://paypal.me/ASmyth115"
-            target="_blank"
-            rel="noopener noreferrer">
-            PayPal
-        </a>
+    <a
+        href="https://paypal.me/ASmyth115"
+        target="_blank"
+        rel="noopener noreferrer">
+        PayPal
+    </a>
 
-    </div>
+</div>
+```
 
 </body>
 </html>
-```
