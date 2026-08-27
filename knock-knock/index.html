@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ZeusWeusFilm</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        html {
+            background-color: #080a0b;
+        }
+
+        body {
+            background-color: #080a0b;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Background image */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            background-image: url("background.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(5px);
+            opacity: 0.30;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Dark overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 10, 11, 0.55);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Keep content above background */
+        body > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Logo */
+        .logo {
+            width: 120px;
+            max-width: 40%;
+            height: auto;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        /* Knock Knock title */
+        .title {
+            font-family: Georgia, serif;
+            font-size: 42px;
+            letter-spacing: 6px;
+            margin: 10px 0 25px;
+            color: #e8e8e8;
+            text-shadow:
+                2px 2px 0 #222,
+                -1px -1px 0 #000,
+                0 0 12px rgba(255, 255, 255, 0.15);
+            animation: creepyFlicker 7s infinite;
+        }
+
+        /* Subtle creepy flicker */
+        @keyframes creepyFlicker {
+
+            0%, 88%, 100% {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+
+            89% {
+                opacity: 0.75;
+                transform: translate(-1px, 0);
+            }
+
+            90% {
+                opacity: 1;
+                transform: translate(1px, 0);
+            }
+
+            91% {
+                opacity: 0.85;
+                transform: translate(0, 1px);
+            }
+
+            92% {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+        }
+
+        /* Main video */
+        .video-container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Custom YouTube thumbnail */
+        .video-thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 5;
+            background-color: #000;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Play button */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 56px;
+            background: rgba(0, 0, 0, 0.75);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .play-button::after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 20px solid white;
+            margin-left: 5px;
+        }
+
+        .video-thumbnail:hover .play-button {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        /* Description */
+        .description {
+            width: 90%;
+            max-width: 1000px;
+            margin: 25px auto 20px;
+            font-family: Georgia, serif;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #d6d6d6;
+            text-shadow:
+                1px 1px 0 #222,
+                0 0 8px rgba(255, 255, 255, 0.08);
+        }
+
+        /* Clean divider */
+        .separator {
+            width: 35%;
+            max-width: 400px;
+            height: 1px;
+            background: rgba(232, 232, 232, 0.35);
+            margin: 35px auto;
+            box-shadow:
+                0 0 8px rgba(255, 255, 255, 0.08);
+        }
+
+        /* DVD announcement */
+        .coming-soon {
+            font-family: Georgia, serif;
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin: 20px 20px 40px;
+            color: #e8e8e8;
+            text-shadow:
+                2px 2px 0 #222,
+                -1px -1px 0 #000,
+                0 0 12px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Behind The Scenes section */
+        .patreon-section {
+            width: 90%;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Entire BTS documentary block is clickable */
+        .patreon-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 35px;
+            width: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .patreon-preview img {
+            width: 22.5%;
+            height: auto;
+            display: block;
+            flex-shrink: 0;
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .patreon-preview:hover img {
+            opacity: 0.85;
+            transform: scale(1.03);
+        }
+
+        /* Behind The Scenes text */
+        .documentary-title {
+            font-family: Georgia, serif;
+            color: #e8e8e8;
+            text-shadow:
+                2px 2px 0 #222,
+                -1px -1px 0 #000,
+                0 0 12px rgba(255, 255, 255, 0.15);
+            line-height: 1.1;
+            letter-spacing: 3px;
+            transition: text-shadow 0.3s ease;
+        }
+
+        .patreon-preview:hover .documentary-title {
+            text-shadow:
+                2px 2px 0 #222,
+                -1px -1px 0 #000,
+                0 0 16px rgba(255, 255, 255, 0.3);
+        }
+
+        .behind {
+            display: block;
+            font-size: 24px;
+            white-space: nowrap;
+        }
+
+        .documentary {
+            display: block;
+            font-size: 24px;
+            letter-spacing: 3px;
+            margin-top: 5px;
+        }
+
+        /* Gallery heading */
+        .gallery-heading {
+            font-family: Georgia, serif;
+            font-size: 20px;
+            letter-spacing: 3px;
+            color: #e8e8e8;
+            margin: 25px auto 25px;
+            text-shadow:
+                2px 2px 0 #222,
+                -1px -1px 0 #000,
+                0 0 12px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Image Gallery */
+        .gallery {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto 80px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .gallery-item {
+            position: relative;
+            display: block;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Gallery captions */
+        .caption {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 10px;
+            background: rgba(0, 0, 0, 0.75);
+            color: #e8e8e8;
+            font-family: Georgia, serif;
+            font-size: 15px;
+            letter-spacing: 1px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(100%);
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Fullscreen image viewer */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.92);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 20px;
+            box-sizing: border-box;
+            flex-direction: column;
+        }
+
+        .lightbox img {
+            max-width: 95%;
+            max-height: 80%;
+            object-fit: contain;
+        }
+
+        .lightbox-caption {
+            margin-top: 18px;
+            color: #e8e8e8;
+            font-family: Georgia, serif;
+            font-size: 18px;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        /* Social links */
+        .social-links {
+            margin: 0 auto 35px;
+            text-align: center;
+            font-family: Georgia, serif;
+            font-size: 15px;
+            letter-spacing: 2px;
+        }
+
+        .social-links a {
+            color: #bdbdbd;
+            text-decoration: none;
+            margin: 0 12px;
+            transition:
+                color 0.3s ease,
+                text-shadow 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+            text-shadow:
+                0 0 10px rgba(255, 255, 255, 0.45);
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            .title {
+                font-size: 30px;
+                letter-spacing: 4px;
+            }
+
+            .description {
+                width: 85%;
+                font-size: 15px;
+                line-height: 1.5;
+            }
+
+            .coming-soon {
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+
+            .separator {
+                width: 45%;
+                margin: 30px auto;
+            }
+
+            .patreon-section {
+                gap: 15px;
+            }
+
+            .patreon-preview {
+                gap: 15px;
+            }
+
+            .behind,
+            .documentary {
+                font-size: 16px;
+                letter-spacing: 2px;
+            }
+
+            .gallery-heading {
+                font-size: 16px;
+                letter-spacing: 2px;
+            }
+
+            .play-button {
+                width: 64px;
+                height: 46px;
+                border-radius: 12px;
+            }
+
+            .play-button::after {
+                border-top-width: 9px;
+                border-bottom-width: 9px;
+                border-left-width: 15px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            /* On mobile there is no hover, so captions remain visible */
+            .caption {
+                opacity: 1;
+                transform: translateY(0);
+                font-size: 14px;
+                padding: 10px 8px;
+            }
+
+            .lightbox img {
+                max-height: 75%;
+            }
+
+            .lightbox-caption {
+                font-size: 16px;
+            }
+
+            .social-links {
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+
+            .social-links a {
+                margin: 0 6px;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 900px) {
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Logo -->
+    <img
+        class="logo"
+        src="zwflogo.webp"
+        alt="ZeusWeusFilm logo">
+
+    <!-- Title -->
+    <h1 class="title">
+        Knock Knock
+    </h1>
+
+    <!-- Main YouTube video -->
+    <div class="video-container">
+
+        <iframe
+            id="youtube-video"
+            src="https://www.youtube.com/embed/WBCVE2-bUYA?enablejsapi=1"
+            title="Knock Knock"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+
+        <!-- Custom thumbnail -->
+        <div
+            class="video-thumbnail"
+            onclick="playVideo()">
+
+            <img
+                src="Thumbnail.webp"
+                alt="Knock Knock">
+
+            <div class="play-button"></div>
+
+        </div>
+
+    </div>
+
+    <!-- Description -->
+    <div class="description">
+        Bella has just moved into her first home, in the midst of unpacking she accidentally knocks on the wall prompting a response from her unfamiliar neighbour. Bella however, has no idea who, or what lives next door...
+    </div>
+
+    <!-- Divider -->
+    <div class="separator"></div>
+
+    <!-- DVD announcement -->
+    <h2 class="coming-soon">
+        Physical DVD Coming Soon
+    </h2>
+
+    <!-- Divider -->
+    <div class="separator"></div>
+
+    <!-- Behind The Scenes Documentary -->
+    <div class="patreon-section">
+
+        <a
+            class="patreon-preview"
+            href="https://www.patreon.com/zeusweusfilm/posts/knock-knock-149435570?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            <img
+                src="behind-scenes.webp"
+                alt="Behind The Scenes Documentary">
+
+            <div class="documentary-title">
+
+                <span class="behind">
+                    Behind The Scenes
+                </span>
+
+                <span class="documentary">
+                    Documentary
+                </span>
+
+            </div>
+
+        </a>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="separator"></div>
+
+    <!-- Images From The Shoot heading -->
+    <div class="gallery-heading">
+        Images From The Shoot
+    </div>
+
+    <!-- Image Gallery -->
+    <div class="gallery">
+
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts1.webp', 'Moving in.')">
+
+            <img
+                src="bts1.webp"
+                alt="Moving in.">
+
+            <div class="caption">
+                Moving in.
+            </div>
+
+        </a>
+
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts2.webp', 'Ready to go.')">
+
+            <img
+                src="bts2.webp"
+                alt="Ready to go.">
+
+            <div class="caption">
+                Ready to go.
+            </div>
+
+        </a>
+
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts3.webp', 'Script changes.')">
+
+            <img
+                src="bts3.webp"
+                alt="Script changes.">
+
+            <div class="caption">
+                Script changes.
+            </div>
+
+        </a>
+
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts4.webp', 'Better see a doctor.')">
+
+            <img
+                src="bts4.webp"
+                alt="Better see a doctor.">
+
+            <div class="caption">
+                Better see a doctor.
+            </div>
+
+        </a>
+
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts5.webp', 'The lure.')">
+
+            <img
+                src="bts5.webp"
+                alt="The lure.">
+
+            <div class="caption">
+                The lure.
+            </div>
+
+        </a>
+
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts6.webp', 'Blank canvas.')">
+
+            <img
+                src="bts6.webp"
+                alt="Blank canvas.">
+
+            <div class="caption">
+                Blank canvas.
+            </div>
+
+        </a>
+
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts7.webp', 'Creating the wall effect.')">
+
+            <img
+                src="bts7.webp"
+                alt="Creating the wall effect.">
+
+            <div class="caption">
+                Creating the wall effect.
+            </div>
+
+        </a>
+
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts8.webp', 'Special fx shots.')">
+
+            <img
+                src="bts8.webp"
+                alt="Special fx shots.">
+
+            <div class="caption">
+                Special fx shots.
+            </div>
+
+        </a>
+
+        <a
+            class="gallery-item"
+            onclick="openLightbox('bts9.webp', 'Practical Poster.')">
+
+            <img
+                src="bts9.webp"
+                alt="Practical Poster.">
+
+            <div class="caption">
+                Practical Poster.
+            </div>
+
+        </a>
+
+    </div>
+
+    <!-- Fullscreen image viewer -->
+    <div
+        class="lightbox"
+        id="lightbox"
+        onclick="closeLightbox()">
+
+        <img
+            id="lightbox-image"
+            src=""
+            alt="Expanded image">
+
+        <div
+            class="lightbox-caption"
+            id="lightbox-caption">
+        </div>
+
+    </div>
+
+    <!-- Social links -->
+    <div class="social-links">
+
+        <a
+            href="https://www.patreon.com/c/zeusweusfilm"
+            target="_blank"
+            rel="noopener noreferrer">
+            Patreon
+        </a>
+
+        <a
+            href="https://www.youtube.com/@ZeusWeusFilm"
+            target="_blank"
+            rel="noopener noreferrer">
+            YouTube
+        </a>
+
+        <a
+            href="https://www.instagram.com/zeusweusfilm"
+            target="_blank"
+            rel="noopener noreferrer">
+            Instagram
+        </a>
+
+        <a
+            href="https://x.com/ZeusWeusFilm"
+            target="_blank"
+            rel="noopener noreferrer">
+            X
+        </a>
+
+        <a
+            href="https://paypal.me/ASmyth115"
+            target="_blank"
+            rel="noopener noreferrer">
+            PayPal
+        </a>
+
+    </div>
+
+    <script>
+
+        /* Start YouTube video */
+        function playVideo() {
+
+            const thumbnail =
+                document.querySelector(".video-thumbnail");
+
+            const iframe =
+                document.getElementById("youtube-video");
+
+            thumbnail.style.display = "none";
+
+            iframe.contentWindow.postMessage(
+                '{"event":"command","func":"playVideo","args":""}',
+                "*"
+            );
+        }
+
+
+        /* Open gallery image */
+        function openLightbox(image, caption) {
+
+            const lightbox =
+                document.getElementById("lightbox");
+
+            const lightboxImage =
+                document.getElementById("lightbox-image");
+
+            const lightboxCaption =
+                document.getElementById("lightbox-caption");
+
+            lightboxImage.src = image;
+
+            lightboxCaption.textContent = caption;
+
+            lightbox.style.display = "flex";
+        }
+
+
+        /* Close gallery image */
+        function closeLightbox() {
+
+            document.getElementById("lightbox").style.display = "none";
+        }
+
+    </script>
+
+</body>
+</html>
