@@ -301,7 +301,7 @@
         .gallery {
             width: 90%;
             max-width: 1100px;
-            margin: 0 auto 80px;
+            margin: 0 auto 55px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 12px;
@@ -386,9 +386,178 @@
             text-align: center;
         }
 
+        /* ==========================================
+           PRE-PRODUCTION DOCUMENT
+           ========================================== */
+
+        .preproduction-section {
+            width: 90%;
+            max-width: 700px;
+            margin: 0 auto 55px;
+            text-align: center;
+        }
+
+        .preproduction-heading {
+            font-family: Georgia, serif;
+            font-size: 20px;
+            letter-spacing: 3px;
+            color: #e8e8e8;
+            margin-bottom: 25px;
+            text-shadow:
+                2px 2px 0 #222,
+                -1px -1px 0 #000,
+                0 0 12px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Clickable document cover */
+        .preproduction-preview {
+            display: inline-block;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+
+        .preproduction-preview:hover {
+            transform: scale(1.025);
+            opacity: 0.9;
+        }
+
+        /* Book/document cover */
+        .document-cover {
+            width: 230px;
+            max-width: 65vw;
+            min-height: 300px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #252525 0%,
+                    #111111 55%,
+                    #080808 100%
+                );
+            border: 1px solid rgba(232, 232, 232, 0.25);
+            box-shadow:
+                0 12px 35px rgba(0, 0, 0, 0.65),
+                0 0 18px rgba(255, 255, 255, 0.06);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 28px 22px;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* Fake spine */
+        .document-cover::before {
+            content: "";
+            position: absolute;
+            left: 12px;
+            top: 0;
+            width: 1px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .document-top {
+            font-family: Georgia, serif;
+            font-size: 12px;
+            letter-spacing: 3px;
+            color: #999;
+            text-transform: uppercase;
+        }
+
+        .document-title-main {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            line-height: 1.25;
+            letter-spacing: 2px;
+            color: #e8e8e8;
+            text-shadow:
+                1px 1px 0 #000,
+                0 0 10px rgba(255, 255, 255, 0.12);
+        }
+
+        .document-film-title {
+            font-family: Georgia, serif;
+            font-size: 17px;
+            letter-spacing: 4px;
+            color: #aaa;
+            margin-top: 12px;
+        }
+
+        .document-bottom {
+            font-family: Georgia, serif;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: #777;
+            text-transform: uppercase;
+        }
+
+        .document-click {
+            margin-top: 15px;
+            font-family: Georgia, serif;
+            font-size: 13px;
+            letter-spacing: 1px;
+            color: #aaa;
+        }
+
+        /* Fullscreen PDF viewer */
+        .pdf-lightbox {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.96);
+            align-items: center;
+            justify-content: center;
+            padding: 55px 20px 20px;
+            box-sizing: border-box;
+        }
+
+        .pdf-lightbox iframe {
+            width: 100%;
+            height: 100%;
+            max-width: 1200px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #222;
+        }
+
+        /* Close button */
+        .pdf-close {
+            position: absolute;
+            top: 14px;
+            right: 20px;
+            width: 42px;
+            height: 42px;
+            border: none;
+            background: rgba(0, 0, 0, 0.65);
+            color: #e8e8e8;
+            font-family: Arial, sans-serif;
+            font-size: 28px;
+            line-height: 42px;
+            text-align: center;
+            cursor: pointer;
+            z-index: 205;
+            border-radius: 50%;
+            transition:
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .pdf-close:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: scale(1.05);
+        }
+
         /* Social links */
         .social-links {
             margin: 0 auto 35px;
+            padding-bottom: 35px;
             text-align: center;
             font-family: Georgia, serif;
             font-size: 15px;
@@ -468,6 +637,7 @@
             .gallery {
                 grid-template-columns: 1fr;
                 gap: 10px;
+                margin-bottom: 45px;
             }
 
             /* On mobile there is no hover, so captions remain visible */
@@ -484,6 +654,45 @@
 
             .lightbox-caption {
                 font-size: 16px;
+            }
+
+            /* Mobile document */
+            .preproduction-section {
+                width: 90%;
+                margin-bottom: 45px;
+            }
+
+            .preproduction-heading {
+                font-size: 16px;
+                letter-spacing: 2px;
+            }
+
+            .document-cover {
+                width: 190px;
+                min-height: 255px;
+                padding: 23px 18px;
+            }
+
+            .document-title-main {
+                font-size: 21px;
+            }
+
+            .document-film-title {
+                font-size: 14px;
+                letter-spacing: 3px;
+            }
+
+            .pdf-lightbox {
+                padding: 55px 5px 5px;
+            }
+
+            .pdf-lightbox iframe {
+                border: none;
+            }
+
+            .pdf-close {
+                top: 8px;
+                right: 10px;
             }
 
             .social-links {
@@ -728,6 +937,52 @@
 
     </div>
 
+    <!-- ==========================================
+         KNOCK KNOCK PRE-PRODUCTION DOCUMENT
+         ========================================== -->
+
+    <div class="preproduction-section">
+
+        <div class="preproduction-heading">
+            Knock Knock Pre-Production Document
+        </div>
+
+        <div
+            class="preproduction-preview"
+            onclick="openPDF()">
+
+            <div class="document-cover">
+
+                <div class="document-top">
+                    ZeusWeusFilm
+                </div>
+
+                <div>
+
+                    <div class="document-title-main">
+                        Knock Knock
+                    </div>
+
+                    <div class="document-film-title">
+                        PRE-PRODUCTION
+                    </div>
+
+                </div>
+
+                <div class="document-bottom">
+                    Film Archive
+                </div>
+
+            </div>
+
+            <div class="document-click">
+                Click to open
+            </div>
+
+        </div>
+
+    </div>
+
     <!-- Fullscreen image viewer -->
     <div
         class="lightbox"
@@ -743,6 +998,26 @@
             class="lightbox-caption"
             id="lightbox-caption">
         </div>
+
+    </div>
+
+    <!-- Fullscreen PDF viewer -->
+    <div
+        class="pdf-lightbox"
+        id="pdf-lightbox">
+
+        <button
+            class="pdf-close"
+            onclick="closePDF()"
+            aria-label="Close document">
+            ×
+        </button>
+
+        <iframe
+            id="pdf-viewer"
+            src=""
+            title="Knock Knock Pre-Production Document">
+        </iframe>
 
     </div>
 
@@ -831,6 +1106,66 @@
 
             document.getElementById("lightbox").style.display = "none";
         }
+
+
+        /* Open Pre-Production PDF */
+        function openPDF() {
+
+            const pdfLightbox =
+                document.getElementById("pdf-lightbox");
+
+            const pdfViewer =
+                document.getElementById("pdf-viewer");
+
+            pdfViewer.src =
+                "Knock%20Knock%20Pre-Production%20Document.pdf";
+
+            pdfLightbox.style.display = "flex";
+
+            document.body.style.overflow = "hidden";
+        }
+
+
+        /* Close Pre-Production PDF */
+        function closePDF() {
+
+            const pdfLightbox =
+                document.getElementById("pdf-lightbox");
+
+            const pdfViewer =
+                document.getElementById("pdf-viewer");
+
+            pdfLightbox.style.display = "none";
+
+            pdfViewer.src = "";
+
+            document.body.style.overflow = "";
+        }
+
+
+        /* Close PDF when clicking outside the document */
+        document
+            .getElementById("pdf-lightbox")
+            .addEventListener("click", function(event) {
+
+                if (event.target === this) {
+                    closePDF();
+                }
+
+            });
+
+
+        /* Escape key closes either viewer */
+        document.addEventListener("keydown", function(event) {
+
+            if (event.key === "Escape") {
+
+                closeLightbox();
+                closePDF();
+
+            }
+
+        });
 
     </script>
 
