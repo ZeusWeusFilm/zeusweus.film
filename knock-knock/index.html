@@ -27,48 +27,51 @@
             overflow-x: hidden;
         }
 
+
         /* ==========================================
            BACKGROUND
            ========================================== */
 
         body::before {
             content: "";
+
             position: fixed;
             top: 0;
             left: 0;
+
             width: 100%;
             height: 100%;
 
-            background-image:
-                linear-gradient(
-                    rgba(0, 0, 0, 0.72),
-                    rgba(0, 0, 0, 0.72)
-                ),
-                url("images/background.webp");
+            background-image: url("images/background.webp");
 
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
 
-            filter: blur(2px);
-
-            opacity: 0.3;
+            opacity: 0.30;
 
             z-index: -2;
+
+            filter: blur(2px);
+
+            transform: scale(1.02);
         }
 
         body::after {
             content: "";
+
             position: fixed;
             top: 0;
             left: 0;
+
             width: 100%;
             height: 100%;
 
-            background: rgba(0, 0, 0, 0.45);
+            background: rgba(0, 0, 0, 0.72);
 
             z-index: -1;
         }
+
 
         /* ==========================================
            LOGO
@@ -83,8 +86,9 @@
             margin: 25px auto 35px;
         }
 
+
         /* ==========================================
-           MAIN CONTENT
+           MAIN CONTAINER
            ========================================== */
 
         .container {
@@ -95,6 +99,7 @@
 
             text-align: center;
         }
+
 
         /* ==========================================
            TITLE
@@ -117,6 +122,7 @@
                 -1px -1px 0 #000,
                 0 0 12px rgba(255, 255, 255, 0.15);
         }
+
 
         /* ==========================================
            VIDEO
@@ -153,6 +159,7 @@
             border: none;
         }
 
+
         /* ==========================================
            DESCRIPTION
            ========================================== */
@@ -172,6 +179,7 @@
             color: #cfcfcf;
         }
 
+
         /* ==========================================
            DVD
            ========================================== */
@@ -188,8 +196,9 @@
             margin-bottom: 35px;
         }
 
+
         /* ==========================================
-           SEPARATOR
+           DIVIDERS
            ========================================== */
 
         .separator {
@@ -210,8 +219,9 @@
                 );
         }
 
+
         /* ==========================================
-           PATREON BTS
+           BEHIND THE SCENES
            ========================================== */
 
         .bts-section {
@@ -272,8 +282,9 @@
             color: #999;
         }
 
+
         /* ==========================================
-           GALLERY
+           BTS GALLERY
            ========================================== */
 
         .gallery {
@@ -315,6 +326,7 @@
 
             opacity: 0.78;
         }
+
 
         /* ==========================================
            GALLERY CAPTIONS
@@ -359,6 +371,7 @@
 
             transform: translateY(0);
         }
+
 
         /* ==========================================
            PRE-PRODUCTION
@@ -411,6 +424,7 @@
             opacity: 0.9;
         }
 
+
         /* ==========================================
            DOCUMENT COVER
            ========================================== */
@@ -459,11 +473,9 @@
             position: absolute;
 
             left: 12px;
-
             top: 0;
 
             width: 1px;
-
             height: 100%;
 
             background:
@@ -509,6 +521,7 @@
 
             color: #aaa;
         }
+
 
         /* ==========================================
            PDF VIEWER
@@ -595,6 +608,7 @@
             transform: scale(1.05);
         }
 
+
         /* ==========================================
            IMAGE LIGHTBOX
            ========================================== */
@@ -655,6 +669,7 @@
             text-align: center;
         }
 
+
         /* ==========================================
            SOCIAL LINKS
            ========================================== */
@@ -695,8 +710,9 @@
             opacity: 0.9;
         }
 
+
         /* ==========================================
-           MOBILE
+           TABLET
            ========================================== */
 
         @media (max-width: 800px) {
@@ -709,6 +725,11 @@
             }
 
         }
+
+
+        /* ==========================================
+           MOBILE
+           ========================================== */
 
         @media (max-width: 550px) {
 
@@ -752,7 +773,9 @@
 
 </head>
 
+
 <body>
+
 
     <!-- ==========================================
          LOGO
@@ -765,6 +788,7 @@
 
 
     <div class="container">
+
 
         <!-- ==========================================
              TITLE
@@ -820,7 +844,7 @@
 
 
         <!-- ==========================================
-             BEHIND THE SCENES DOCUMENTARY
+             BEHIND THE SCENES
              ========================================== -->
 
         <div class="bts-section">
@@ -1002,14 +1026,14 @@
 
 
         <!-- ==========================================
-             DIVIDER
+             DIVIDER BETWEEN GALLERY & PRE-PRODUCTION
              ========================================== -->
 
         <div class="separator"></div>
 
 
         <!-- ==========================================
-             KNOCK KNOCK PRE-PRODUCTION DOCUMENT
+             PRE-PRODUCTION DOCUMENT
              ========================================== -->
 
         <div class="preproduction-section">
@@ -1024,6 +1048,7 @@
             <div
                 class="preproduction-preview"
                 onclick="openPDF()">
+
 
                 <div class="document-cover">
 
@@ -1053,6 +1078,7 @@
 
                 </div>
 
+
             </div>
 
         </div>
@@ -1063,6 +1089,7 @@
              ========================================== -->
 
         <div class="social-links">
+
 
             <a
                 href="https://www.patreon.com/c/zeusweusfilm"
@@ -1113,7 +1140,9 @@
 
             </a>
 
+
         </div>
+
 
     </div>
 
@@ -1126,15 +1155,18 @@
         class="lightbox"
         id="lightbox">
 
+
         <img
             id="lightbox-image"
             src=""
             alt="">
 
+
         <div
             class="lightbox-caption"
             id="lightbox-caption">
         </div>
+
 
     </div>
 
@@ -1146,6 +1178,7 @@
     <div
         class="pdf-lightbox"
         id="pdf-lightbox">
+
 
         <button
             class="pdf-close"
@@ -1163,6 +1196,7 @@
             title="Knock Knock Pre-Production Document">
         </iframe>
 
+
     </div>
 
 
@@ -1171,6 +1205,7 @@
          ========================================== -->
 
     <script>
+
 
         /* ==========================================
            IMAGE LIGHTBOX
@@ -1203,6 +1238,7 @@
 
             const lightbox =
                 document.getElementById("lightbox");
+
 
             lightbox.style.display = "none";
 
@@ -1304,7 +1340,9 @@
             }
         );
 
+
     </script>
+
 
 </body>
 </html>
