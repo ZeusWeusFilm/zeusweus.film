@@ -26,8 +26,12 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Georgia, serif;
         }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
 
         .background {
             position: fixed;
@@ -36,11 +40,16 @@
             width: 100%;
             height: 100%;
 
-            background:
+            background-image:
                 linear-gradient(
                     rgba(0, 0, 0, 0.72),
                     rgba(0, 0, 0, 0.72)
-                );
+                ),
+                url("images/background.webp");
+
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
 
             filter: blur(2px);
             opacity: 0.30;
@@ -50,6 +59,10 @@
             pointer-events: none;
         }
 
+        /* =========================
+           PAGE CONTENT
+        ========================= */
+
         .page-content {
             position: relative;
             z-index: 1;
@@ -57,12 +70,18 @@
             width: 100%;
             min-height: 100vh;
 
-            padding: 25px 20px 35px;
+            padding: 25px 20px 0;
+
             text-align: center;
         }
 
+        /* =========================
+           ZEUSWEUSFILM LOGO
+        ========================= */
+
         .logo {
             display: block;
+
             width: 120px;
             max-width: 45vw;
             height: auto;
@@ -70,40 +89,55 @@
             margin: 0 auto 35px;
         }
 
+        /* =========================
+           FILM TITLE
+        ========================= */
+
         .film-title {
             margin: 0 0 40px;
 
             font-family: Georgia, serif;
             font-size: 38px;
             font-weight: normal;
+
             letter-spacing: 2px;
+
             color: #e8e8e8;
         }
 
-        .coming-soon {
-            width: 90%;
-            max-width: 900px;
+        /* =========================
+           TEMPORARY CONTENT
+        ========================= */
 
-            margin: 0 auto;
+        .coming-soon {
+            width: 95%;
+            max-width: 950px;
+
+            margin: 0 auto 30px;
 
             font-family: Georgia, serif;
-            font-size: 18px;
+            font-size: 17px;
             line-height: 1.6;
 
             color: #cfcfcf;
         }
 
+        /* =========================
+           BACK TO HOMEPAGE
+        ========================= */
+
         .back-link {
             display: inline-block;
 
-            margin-top: 50px;
+            margin-top: 25px;
 
             color: #cfcfcf;
-            text-decoration: none;
 
             font-family: Georgia, serif;
             font-size: 16px;
             letter-spacing: 1px;
+
+            text-decoration: none;
 
             transition:
                 color 0.25s ease,
@@ -115,8 +149,13 @@
             opacity: 0.8;
         }
 
+        /* =========================
+           SOCIAL LINKS
+        ========================= */
+
         .social-links {
             margin: 60px auto 0;
+
             padding-bottom: 35px;
 
             display: flex;
@@ -130,10 +169,12 @@
 
         .social-links a {
             color: #bdbdbd;
-            text-decoration: none;
 
-            font-family: Arial, sans-serif;
-            font-size: 14px;
+            font-family: Georgia, serif;
+            font-size: 15px;
+            letter-spacing: 1px;
+
+            text-decoration: none;
 
             transition:
                 color 0.2s ease,
@@ -144,6 +185,10 @@
             color: #ffffff;
             opacity: 0.8;
         }
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 600px) {
 
@@ -160,8 +205,16 @@
                 font-size: 16px;
             }
 
+            .back-link {
+                font-size: 15px;
+            }
+
             .social-links {
                 gap: 16px;
+            }
+
+            .social-links a {
+                font-size: 14px;
             }
 
         }
