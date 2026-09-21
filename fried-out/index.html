@@ -1,204 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>ZeusWeusFilm - Fried Out</title>
 
     <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
         html,
         body {
             margin: 0;
             padding: 0;
+            min-height: 100%;
             background: #080a0b;
             color: #e8e8e8;
-            min-height: 100%;
         }
 
         body {
             font-family: Georgia, serif;
+            overflow-x: hidden;
         }
-
-        /* =========================
-           BACKGROUND
-        ========================= */
 
         .background {
             position: fixed;
             top: 0;
             left: 0;
-
             width: 100%;
             height: 100%;
-
             background-image:
                 linear-gradient(
                     rgba(0, 0, 0, 0.72),
                     rgba(0, 0, 0, 0.72)
                 ),
                 url("images/background.webp");
-
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-
             filter: blur(2px);
-
             opacity: 0.30;
-
             transform: scale(1.02);
-
             z-index: 0;
-
             pointer-events: none;
         }
 
-        /* =========================
-           PAGE CONTENT
-        ========================= */
-
         .page-content {
             position: relative;
-
             z-index: 1;
-
             width: 100%;
-
             min-height: 100vh;
-
-            padding:
-                25px
-                20px
-                0;
-
+            padding: 25px 20px 0;
+            box-sizing: border-box;
             display: flex;
-
             flex-direction: column;
-
             text-align: center;
         }
 
-        /* =========================
-           ZEUSWEUSFILM LOGO
-        ========================= */
-
         .logo {
             display: block;
-
             width: 120px;
-
-            max-width: 45vw;
-
+            max-width: 40vw;
             height: auto;
-
-            margin:
-                0 auto
-                35px;
+            margin: 0 auto 35px;
         }
 
-        /* =========================
-           FILM TITLE
-        ========================= */
-
-        .film-title {
-            margin:
-                0 0 40px;
-
-            font-family:
-                Georgia,
-                serif;
-
-            font-size: 38px;
-
+        h1 {
+            margin: 0 0 35px;
+            font-family: Georgia, serif;
+            font-size: 36px;
             font-weight: normal;
-
             letter-spacing: 2px;
-
             color: #e8e8e8;
         }
 
-        /* =========================
-           SYNOPSIS
-        ========================= */
+        /* CUSTOM VIDEO PLAYER */
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 950px;
+            margin: 0 auto 30px;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+        }
+
+        .video-thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition:
+                transform 0.4s ease,
+                opacity 0.4s ease;
+        }
+
+        .video-container:hover .video-thumbnail {
+            transform: scale(1.02);
+            opacity: 0.85;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+            z-index: 2;
+        }
+
+        .play-button::after {
+            content: "";
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 18px solid #e8e8e8;
+            margin-left: 5px;
+        }
+
+        .video-container:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.08);
+            background: rgba(0, 0, 0, 0.85);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+        }
+
+        /* SYNOPSIS */
 
         .description {
             width: 95%;
-
             max-width: 950px;
-
-            margin:
-                0 auto 30px;
-
-            font-family:
-                Georgia,
-                serif;
-
+            margin: 0 auto 30px;
+            font-family: Georgia, serif;
             font-size: 17px;
-
             line-height: 1.6;
-
             color: #cfcfcf;
         }
 
-        /* =========================
-           SOCIAL LINKS
-        ========================= */
+        /* SOCIAL LINKS */
 
         .social-links {
             margin-top: auto;
-
             padding-top: 60px;
-
             padding-bottom: 35px;
-
             display: flex;
-
             justify-content: center;
-
             align-items: center;
-
             gap: 22px;
-
             flex-wrap: wrap;
         }
 
         .social-links a {
-            color: #bdbdbd;
-
-            font-family:
-                Georgia,
-                serif;
-
-            font-size: 15px;
-
-            letter-spacing: 1px;
-
+            color: #cfcfcf;
             text-decoration: none;
-
-            transition:
-                color 0.2s ease,
-                opacity 0.2s ease;
+            font-family: Georgia, serif;
+            font-size: 15px;
+            transition: opacity 0.25s ease;
         }
 
         .social-links a:hover {
-            color: #ffffff;
-
-            opacity: 0.8;
+            opacity: 0.65;
         }
-
-        /* =========================
-           MOBILE
-        ========================= */
 
         @media (max-width: 600px) {
 
@@ -207,11 +193,18 @@
                 padding-right: 15px;
             }
 
-            .film-title {
+            .logo {
+                width: 110px;
+                margin-bottom: 30px;
+            }
+
+            h1 {
                 font-size: 30px;
+                margin-bottom: 30px;
             }
 
             .description {
+                width: 95%;
                 font-size: 16px;
             }
 
@@ -219,14 +212,8 @@
                 gap: 16px;
             }
 
-            .social-links a {
-                font-size: 14px;
-            }
-
         }
-
     </style>
-
 </head>
 
 <body>
@@ -237,16 +224,46 @@
 
         <img
             class="logo"
-            src="../zwflogo.webp"
+            src="../zwlogo.webp"
             alt="ZeusWeusFilm">
 
-        <h1 class="film-title">
-            Fried Out
-        </h1>
+        <h1>Fried Out</h1>
+
+        <!-- CUSTOM VIDEO PLAYER -->
+
+        <div
+            class="video-container"
+            id="video-container"
+            onclick="playVideo()">
+
+            <img
+                class="video-thumbnail"
+                id="video-thumbnail"
+                src="images/Thumbnail.webp"
+                alt="Fried Out">
+
+            <div
+                class="play-button"
+                id="play-button">
+            </div>
+
+            <iframe
+                id="youtube-video"
+                src="https://www.youtube.com/embed/vC3Nsw942i0?enablejsapi=1"
+                title="Fried Out"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+        <!-- SYNOPSIS -->
 
         <div class="description">
             It's just a fantasy, even if these sketches leave your brain all fried out.
         </div>
+
+        <!-- SOCIAL LINKS -->
 
         <div class="social-links">
 
@@ -288,6 +305,32 @@
         </div>
 
     </div>
+
+    <script>
+
+        function playVideo() {
+
+            const thumbnail =
+                document.getElementById("video-thumbnail");
+
+            const playButton =
+                document.getElementById("play-button");
+
+            const video =
+                document.getElementById("youtube-video");
+
+            thumbnail.style.display = "none";
+
+            playButton.style.display = "none";
+
+            video.style.display = "block";
+
+            video.src =
+                "https://www.youtube.com/embed/vC3Nsw942i0?autoplay=1&enablejsapi=1";
+
+        }
+
+    </script>
 
 </body>
 </html>
