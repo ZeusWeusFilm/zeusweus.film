@@ -840,7 +840,7 @@
             </a>
 
             <a
-                href="../comingsoon.html">
+                href="../physical/">
                 Physical
             </a>
 
@@ -940,41 +940,3 @@
                 document.getElementById("pdf-lightbox");
 
             const pdfViewer =
-                document.getElementById("pdf-viewer");
-
-            pdfLightbox.style.display = "none";
-
-            pdfViewer.src = "";
-
-            document.body.style.overflow = "";
-
-        }
-
-
-        document
-            .getElementById("pdf-lightbox")
-            .addEventListener("click", function(event) {
-
-                if (event.target === this) {
-                    closePDF();
-                }
-
-            });
-
-
-        document.addEventListener("keydown", function(event) {
-
-            if (event.key === "Escape") {
-
-                closeLightbox();
-
-                closePDF();
-
-            }
-
-        });
-
-    </script>
-
-</body>
-</html>
