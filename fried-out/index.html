@@ -72,81 +72,6 @@
             color: #e8e8e8;
         }
 
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 950px;
-            margin: 0 auto 30px;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            background: #000;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-            cursor: pointer;
-        }
-
-        .video-thumbnail {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition:
-                transform 0.4s ease,
-                opacity 0.4s ease;
-        }
-
-        .video-container:hover .video-thumbnail {
-            transform: scale(1.02);
-            opacity: 0.85;
-        }
-
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, 0.72);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition:
-                transform 0.25s ease,
-                background 0.25s ease;
-            z-index: 2;
-        }
-
-        .play-button::after {
-            content: "";
-            width: 0;
-            height: 0;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            border-left: 18px solid #e8e8e8;
-            margin-left: 5px;
-        }
-
-        .video-container:hover .play-button {
-            transform: translate(-50%, -50%) scale(1.08);
-            background: rgba(0, 0, 0, 0.85);
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: none;
-        }
-
         .description {
             width: 95%;
             max-width: 950px;
@@ -233,32 +158,6 @@
 
         <h1>Fried Out</h1>
 
-        <div
-            class="video-container"
-            id="video-container"
-            onclick="playVideo()">
-
-            <img
-                class="video-thumbnail"
-                id="video-thumbnail"
-                src="images/Thumbnail.webp"
-                alt="Fried Out">
-
-            <div
-                class="play-button"
-                id="play-button">
-            </div>
-
-            <iframe
-                id="youtube-video"
-                src="https://www.youtube.com/embed/vC3Nsw942i0?enablejsapi=1"
-                title="Fried Out"
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-
-        </div>
-
         <div class="description">
             It's just a fantasy, even if these sketches leave your brain all fried out.
         </div>
@@ -285,32 +184,6 @@
         </div>
 
     </div>
-
-    <script>
-
-        function playVideo() {
-
-            const thumbnail =
-                document.getElementById("video-thumbnail");
-
-            const playButton =
-                document.getElementById("play-button");
-
-            const video =
-                document.getElementById("youtube-video");
-
-            thumbnail.style.display = "none";
-
-            playButton.style.display = "none";
-
-            video.style.display = "block";
-
-            video.src =
-                "https://www.youtube.com/embed/vC3Nsw942i0?autoplay=1&enablejsapi=1";
-
-        }
-
-    </script>
 
 </body>
 </html>
