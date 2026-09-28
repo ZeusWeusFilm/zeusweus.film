@@ -168,6 +168,8 @@
             color: #cfcfcf;
         }
 
+        /* BTS GALLERY */
+
         .gallery {
             width: 95%;
             max-width: 950px;
@@ -189,36 +191,45 @@
             width: 100%;
             aspect-ratio: 1 / 1;
             object-fit: cover;
-            transition:
-                transform 0.25s ease,
-                opacity 0.25s ease;
+            transition: transform 0.25s ease;
         }
 
         .gallery-item figcaption {
             position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.65);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 11px 10px;
+
+            background: rgba(0, 0, 0, 0.68);
+
             color: #e8e8e8;
             font-family: Georgia, serif;
-            font-size: 16px;
+            font-size: 14px;
             line-height: 1.4;
             letter-spacing: 0.5px;
+            text-align: center;
+
             opacity: 0;
-            transition: opacity 0.25s ease;
+            transform: translateY(100%);
+
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease;
+
             pointer-events: none;
         }
 
         .gallery-item:hover figcaption {
             opacity: 1;
+            transform: translateY(0);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.03);
+            transform: scale(1.02);
         }
+
+        /* DOCUMENT */
 
         .document-section {
             width: 95%;
@@ -280,6 +291,8 @@
             color: #888888;
         }
 
+        /* FOOTER */
+
         .social-links {
             margin: 60px auto 0;
             padding-bottom: 35px;
@@ -302,6 +315,8 @@
         .social-links a:hover {
             opacity: 0.65;
         }
+
+        /* IMAGE LIGHTBOX */
 
         .lightbox {
             display: none;
@@ -333,6 +348,8 @@
             cursor: pointer;
             user-select: none;
         }
+
+        /* PDF LIGHTBOX */
 
         .pdf-lightbox {
             display: none;
@@ -366,7 +383,10 @@
             user-select: none;
         }
 
+        /* MOBILE */
+
         @media (max-width: 700px) {
+
             .page-content {
                 padding: 20px 12px 0;
             }
@@ -408,8 +428,26 @@
                 gap: 25px;
             }
 
+            /*
+                Mobile has no reliable hover.
+
+                Keep the same translucent caption bar,
+                but show it permanently on thumbnails.
+            */
+
             .gallery-item figcaption {
-                font-size: 15px;
+                opacity: 1;
+                transform: translateY(0);
+                font-size: 13px;
+                padding: 11px 8px;
+            }
+
+            /*
+                Disable the desktop zoom effect on touch/mobile.
+            */
+
+            .gallery-item:hover img {
+                transform: none;
             }
 
             .document-section h2 {
@@ -626,6 +664,7 @@
         </div>
 
         <div class="social-links">
+
             <a href="../comingsoon.html">
                 Contact
             </a>
@@ -641,6 +680,7 @@
             >
                 PayPal
             </a>
+
         </div>
 
     </div>
@@ -650,6 +690,7 @@
         class="lightbox"
         onclick="closeLightbox()"
     >
+
         <div
             class="lightbox-close"
             onclick="closeLightbox()"
@@ -663,12 +704,14 @@
             alt=""
             onclick="event.stopPropagation()"
         >
+
     </div>
 
     <div
         id="pdf-lightbox"
         class="pdf-lightbox"
     >
+
         <div
             class="pdf-close"
             onclick="closePDF()"
@@ -680,10 +723,13 @@
             id="pdf-viewer"
             title="Knock Knock Pre-Production Document"
         ></iframe>
+
     </div>
 
     <script>
+
         function playVideo() {
+
             const thumbnail =
                 document.querySelector(".video-thumbnail");
 
@@ -703,6 +749,7 @@
         }
 
         function openLightbox(src) {
+
             const lightbox =
                 document.getElementById("lightbox");
 
@@ -717,6 +764,7 @@
         }
 
         function closeLightbox() {
+
             const lightbox =
                 document.getElementById("lightbox");
 
@@ -726,6 +774,7 @@
         }
 
         function openPDF() {
+
             const pdfLightbox =
                 document.getElementById("pdf-lightbox");
 
@@ -741,6 +790,7 @@
         }
 
         function closePDF() {
+
             const pdfLightbox =
                 document.getElementById("pdf-lightbox");
 
@@ -757,12 +807,15 @@
         document.addEventListener(
             "keydown",
             function(event) {
+
                 if (event.key === "Escape") {
                     closeLightbox();
                     closePDF();
                 }
+
             }
         );
+
     </script>
 
 </body>
