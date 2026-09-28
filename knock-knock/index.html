@@ -178,7 +178,10 @@
         }
 
         .gallery-item {
+            position: relative;
             margin: 0;
+            overflow: hidden;
+            cursor: pointer;
         }
 
         .gallery-item img {
@@ -186,23 +189,35 @@
             width: 100%;
             aspect-ratio: 1 / 1;
             object-fit: cover;
-            cursor: pointer;
             transition:
-                opacity 0.2s ease,
-                transform 0.2s ease;
-        }
-
-        .gallery-item img:hover {
-            opacity: 0.8;
-            transform: scale(1.01);
+                transform 0.25s ease,
+                opacity 0.25s ease;
         }
 
         .gallery-item figcaption {
-            margin-top: 9px;
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.65);
+            color: #e8e8e8;
             font-family: Georgia, serif;
-            font-size: 14px;
+            font-size: 16px;
             line-height: 1.4;
-            color: #bdbdbd;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover figcaption {
+            opacity: 1;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
         }
 
         .document-section {
@@ -394,7 +409,7 @@
             }
 
             .gallery-item figcaption {
-                font-size: 13px;
+                font-size: 15px;
             }
 
             .document-section h2 {
