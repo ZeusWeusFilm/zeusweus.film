@@ -1,948 +1,754 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeusWeusFilm - Knock Knock</title>
 
-<title>ZeusWeusFilm - Knock Knock</title>
-
-<style>
-    html,
-    body {
-        margin: 0;
-        padding: 0;
-        min-height: 100%;
-        background: #080a0b;
-        color: #e8e8e8;
-    }
-
-    body {
-        font-family: Georgia, serif;
-        overflow-x: hidden;
-    }
-
-    .background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image:
-            linear-gradient(
-                rgba(0, 0, 0, 0.72),
-                rgba(0, 0, 0, 0.72)
-            ),
-            url("images/background.webp");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        filter: blur(2px);
-        opacity: 0.30;
-        transform: scale(1.02);
-        z-index: 0;
-        pointer-events: none;
-    }
-
-    .page-content {
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        min-height: 100vh;
-        padding: 25px 20px 0;
-        box-sizing: border-box;
-        text-align: center;
-    }
-
-    .logo {
-        display: block;
-        width: 120px;
-        max-width: 40vw;
-        height: auto;
-        margin: 0 auto 35px;
-    }
-
-    h1 {
-        margin: 0 0 35px;
-        font-family: Georgia, serif;
-        font-size: 36px;
-        font-weight: normal;
-        letter-spacing: 2px;
-        color: #e8e8e8;
-    }
-
-    .video-container {
-        position: relative;
-        width: 100%;
-        max-width: 950px;
-        margin: 0 auto 30px;
-        padding-bottom: 56.25%;
-        height: 0;
-        overflow: hidden;
-        background: #000;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-        cursor: pointer;
-    }
-
-    .video-thumbnail {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition:
-            transform 0.4s ease,
-            opacity 0.4s ease;
-    }
-
-    .video-container:hover .video-thumbnail {
-        transform: scale(1.02);
-        opacity: 0.85;
-    }
-
-    .play-button {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 72px;
-        height: 72px;
-        border-radius: 50%;
-        background: rgba(0, 0, 0, 0.72);
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition:
-            transform 0.25s ease,
-            background 0.25s ease;
-        z-index: 2;
-    }
-
-    .play-button::after {
-        content: "";
-        width: 0;
-        height: 0;
-        border-top: 12px solid transparent;
-        border-bottom: 12px solid transparent;
-        border-left: 18px solid #e8e8e8;
-        margin-left: 5px;
-    }
-
-    .video-container:hover .play-button {
-        transform: translate(-50%, -50%) scale(1.08);
-        background: rgba(0, 0, 0, 0.85);
-    }
-
-    .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-        display: none;
-    }
-
-    .description {
-        width: 95%;
-        max-width: 950px;
-        margin: 0 auto 30px;
-        font-family: Georgia, serif;
-        font-size: 17px;
-        line-height: 1.6;
-        color: #cfcfcf;
-    }
-
-    .separator {
-        width: 70%;
-        max-width: 700px;
-        height: 1px;
-        margin: 35px auto;
-        background:
-            linear-gradient(
-                to right,
-                transparent,
-                rgba(255, 255, 255, 0.25),
-                transparent
-            );
-    }
-
-    .dvd-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 25px;
-        width: fit-content;
-        max-width: 90%;
-        margin: 0 auto;
-        text-decoration: none;
-        color: #e8e8e8;
-        transition: opacity 0.25s ease;
-    }
-
-    .dvd-link:hover {
-        opacity: 0.75;
-    }
-
-    .dvd-image {
-        display: block;
-        width: 150px;
-        height: 150px;
-        object-fit: contain;
-    }
-
-    .dvd-text {
-        font-family: Georgia, serif;
-        font-size: 17px;
-        letter-spacing: 1px;
-        color: #cfcfcf;
-    }
-
-    .gallery {
-        width: 95%;
-        max-width: 1100px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
-    }
-
-    .gallery-item {
-        position: relative;
-        overflow: hidden;
-        cursor: pointer;
-        background: #111;
-    }
-
-    .gallery-item img {
-        display: block;
-        width: 100%;
-        height: auto;
-        transition:
-            transform 0.35s ease,
-            opacity 0.35s ease;
-    }
-
-    .gallery-item:hover img {
-        transform: scale(1.03);
-        opacity: 0.85;
-    }
-
-    .caption {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        box-sizing: border-box;
-        padding: 12px 10px;
-        background: rgba(0, 0, 0, 0.75);
-        color: #e8e8e8;
-        font-family: Georgia, serif;
-        font-size: 15px;
-        letter-spacing: 1px;
-        text-align: center;
-        opacity: 0;
-        transform: translateY(100%);
-        transition:
-            opacity 0.3s ease,
-            transform 0.3s ease;
-    }
-
-    .gallery-item:hover .caption {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .lightbox {
-        display: none;
-        position: fixed;
-        z-index: 100;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.92);
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        padding: 20px;
-        box-sizing: border-box;
-        flex-direction: column;
-    }
-
-    .lightbox img {
-        max-width: 95%;
-        max-height: 82%;
-        object-fit: contain;
-    }
-
-    .lightbox-caption {
-        margin-top: 15px;
-        max-width: 90%;
-        color: #e8e8e8;
-        font-family: Georgia, serif;
-        font-size: 16px;
-        letter-spacing: 1px;
-        text-align: center;
-    }
-
-    .preproduction-section {
-        width: 95%;
-        max-width: 950px;
-        margin: 0 auto;
-    }
-
-    .preproduction-heading {
-        margin-bottom: 25px;
-        font-size: 20px;
-        letter-spacing: 1px;
-        color: #e8e8e8;
-    }
-
-    .preproduction-preview {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: opacity 0.25s ease;
-    }
-
-    .preproduction-preview:hover {
-        opacity: 0.82;
-    }
-
-    .document-cover {
-        width: 230px;
-        max-width: 65vw;
-        min-height: 300px;
-        background:
-            linear-gradient(
-                145deg,
-                #252525 0%,
-                #111111 55%,
-                #080808 100%
-            );
-        border:
-            1px solid
-            rgba(232, 232, 232, 0.25);
-        box-shadow:
-            0 12px 35px rgba(0, 0, 0, 0.65),
-            0 0 18px rgba(255, 255, 255, 0.06);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 28px 22px;
-        box-sizing: border-box;
-        position: relative;
-    }
-
-    .document-cover::before {
-        content: "";
-        position: absolute;
-        left: 12px;
-        top: 0;
-        width: 1px;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.12);
-    }
-
-    .document-title-main {
-        font-family: Georgia, serif;
-        font-size: 27px;
-        letter-spacing: 2px;
-        color: #e8e8e8;
-        margin-bottom: 18px;
-    }
-
-    .document-film-title {
-        font-family: Georgia, serif;
-        font-size: 13px;
-        letter-spacing: 4px;
-        color: #a9a9a9;
-    }
-
-    .document-click {
-        margin-top: 18px;
-        font-family: Georgia, serif;
-        font-size: 14px;
-        letter-spacing: 1px;
-        color: #bdbdbd;
-    }
-
-    .pdf-lightbox {
-        display: none;
-        position: fixed;
-        z-index: 200;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.96);
-        align-items: center;
-        justify-content: center;
-        padding: 55px 20px 20px;
-        box-sizing: border-box;
-    }
-
-    .pdf-lightbox iframe {
-        width: 100%;
-        height: 100%;
-        max-width: 1200px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        background: #222;
-    }
-
-    .pdf-close {
-        position: absolute;
-        top: 14px;
-        right: 20px;
-        width: 42px;
-        height: 42px;
-        border: none;
-        background: rgba(0, 0, 0, 0.65);
-        color: #e8e8e8;
-        font-family: Arial, sans-serif;
-        font-size: 28px;
-        line-height: 42px;
-        text-align: center;
-        cursor: pointer;
-        z-index: 205;
-        border-radius: 50%;
-        transition:
-            background 0.2s ease,
-            transform 0.2s ease;
-    }
-
-    .pdf-close:hover {
-        background: rgba(255, 255, 255, 0.12);
-        transform: scale(1.05);
-    }
-
-    /* Master footer links */
-    .social-links {
-        margin-top: 55px;
-        padding-bottom: 35px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 22px;
-        flex-wrap: wrap;
-    }
-
-    .social-links a {
-        color: #e8e8e8;
-        text-decoration: none;
-        font-family: Georgia, serif;
-        font-size: 15px;
-        letter-spacing: 1px;
-        transition: opacity 0.2s ease;
-    }
-
-    .social-links a:hover {
-        opacity: 0.65;
-    }
-
-    @media (max-width: 800px) {
-        .gallery {
-            grid-template-columns: repeat(2, 1fr);
+    <style>
+        * {
+            box-sizing: border-box;
         }
-    }
 
-    @media (max-width: 600px) {
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        body {
+            background: #050505;
+            color: #e8e8e8;
+        }
+
+        .background {
+            position: fixed;
+            inset: -10px;
+            background:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.65),
+                    rgba(0, 0, 0, 0.65)
+                ),
+                url("images/background.webp") center center / cover no-repeat;
+            filter: blur(2px);
+            opacity: 0.30;
+            z-index: 0;
+        }
+
         .page-content {
-            padding-left: 15px;
-            padding-right: 15px;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            padding: 25px 20px 0;
+            text-align: center;
         }
 
         .logo {
-            width: 110px;
-            margin-bottom: 30px;
+            display: block;
+            width: 120px;
+            max-width: 40vw;
+            height: auto;
+            margin: 0 auto 35px;
         }
 
         h1 {
-            font-size: 30px;
-            margin-bottom: 30px;
+            margin: 0 0 30px;
+            font-family: Georgia, serif;
+            font-size: 36px;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+
+        .video-container {
+            width: 95%;
+            max-width: 950px;
+            aspect-ratio: 16 / 9;
+            margin: 0 auto 30px;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-thumbnail {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.85);
+            background: rgba(0, 0, 0, 0.55);
+            cursor: pointer;
+            pointer-events: none;
+        }
+
+        .play-button::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 53%;
+            transform: translate(-50%, -50%);
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 20px solid #ffffff;
+        }
+
+        #youtube-player {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: none;
         }
 
         .description {
             width: 95%;
-            font-size: 16px;
+            max-width: 950px;
+            margin: 0 auto 30px;
+            font-family: Georgia, serif;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #cfcfcf;
         }
 
         .separator {
-            width: 80%;
-            margin: 30px auto;
+            width: 70%;
+            max-width: 700px;
+            height: 1px;
+            margin: 35px auto;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255, 255, 255, 0.45),
+                transparent
+            );
         }
 
         .dvd-link {
-            gap: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            width: fit-content;
+            max-width: 90%;
+            margin: 0 auto;
+            text-decoration: none;
+            color: #e8e8e8;
+            transition: opacity 0.25s ease;
+        }
+
+        .dvd-link:hover {
+            opacity: 0.75;
         }
 
         .dvd-image {
-            width: 110px;
-            height: 110px;
+            display: block;
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            filter: drop-shadow(
+                0 0 5px rgba(255, 255, 255, 0.25)
+            );
         }
 
         .dvd-text {
-            font-size: 15px;
+            font-family: Georgia, serif;
+            font-size: 19px;
+            letter-spacing: 1px;
+            color: #cfcfcf;
         }
 
         .gallery {
-            grid-template-columns: 1fr;
-            gap: 15px;
+            width: 95%;
+            max-width: 950px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
         }
 
-        .caption {
-            opacity: 1;
-            transform: translateY(0);
+        .gallery-item {
+            margin: 0;
+        }
+
+        .gallery-item img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            cursor: pointer;
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .gallery-item img:hover {
+            opacity: 0.8;
+            transform: scale(1.01);
+        }
+
+        .gallery-item figcaption {
+            margin-top: 9px;
+            font-family: Georgia, serif;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #bdbdbd;
+        }
+
+        .document-section {
+            width: 95%;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .document-section h2 {
+            margin: 0 0 25px;
+            font-family: Georgia, serif;
+            font-size: 24px;
+            font-weight: normal;
+            letter-spacing: 1px;
         }
 
         .document-cover {
-            min-height: 280px;
+            width: 230px;
+            height: 320px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(0, 0, 0, 0.45);
+            cursor: pointer;
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .document-cover:hover {
+            border-color: rgba(255, 255, 255, 0.65);
+            background: rgba(0, 0, 0, 0.65);
+            transform: translateY(-2px);
+        }
+
+        .document-title {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            letter-spacing: 1px;
+        }
+
+        .document-subtitle {
+            margin-top: 18px;
+            font-family: Georgia, serif;
+            font-size: 13px;
+            letter-spacing: 3px;
+            color: #aaaaaa;
+        }
+
+        .document-open {
+            margin-top: 50px;
+            font-family: Georgia, serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #888888;
         }
 
         .social-links {
-            margin-top: 55px;
-            gap: 14px;
+            margin: 60px auto 0;
             padding-bottom: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
         }
 
         .social-links a {
-            font-size: 13px;
+            color: #e8e8e8;
+            text-decoration: none;
+            font-family: Georgia, serif;
+            font-size: 15px;
             letter-spacing: 1px;
+            transition: opacity 0.2s ease;
         }
-    }
-</style>
-```
 
+        .social-links a:hover {
+            opacity: 0.65;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
+            display: block;
+            max-width: 95%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 18px;
+            right: 25px;
+            z-index: 1001;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-size: 38px;
+            line-height: 1;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .pdf-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1100;
+            padding: 55px 25px 25px;
+            background: rgba(0, 0, 0, 0.96);
+        }
+
+        .pdf-lightbox iframe {
+            display: block;
+            width: 100%;
+            max-width: 1100px;
+            height: calc(100vh - 80px);
+            margin: 0 auto;
+            border: 0;
+            background: #ffffff;
+        }
+
+        .pdf-close {
+            position: fixed;
+            top: 12px;
+            right: 25px;
+            z-index: 1101;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-size: 38px;
+            line-height: 1;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        @media (max-width: 700px) {
+            .page-content {
+                padding: 20px 12px 0;
+            }
+
+            .logo {
+                width: 100px;
+                margin-bottom: 28px;
+            }
+
+            h1 {
+                font-size: 28px;
+                margin-bottom: 25px;
+            }
+
+            .description {
+                font-size: 15px;
+            }
+
+            .separator {
+                width: 80%;
+                margin: 30px auto;
+            }
+
+            .dvd-link {
+                gap: 15px;
+            }
+
+            .dvd-image {
+                width: 110px;
+                height: 110px;
+            }
+
+            .dvd-text {
+                font-size: 17px;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .gallery-item figcaption {
+                font-size: 13px;
+            }
+
+            .document-section h2 {
+                font-size: 20px;
+            }
+
+            .document-cover {
+                width: 200px;
+                height: 280px;
+            }
+
+            .social-links {
+                padding-bottom: 35px;
+                gap: 14px;
+            }
+
+            .social-links a {
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+
+            .play-button {
+                width: 60px;
+                height: 60px;
+            }
+
+            .play-button::after {
+                border-top-width: 9px;
+                border-bottom-width: 9px;
+                border-left-width: 15px;
+            }
+
+            .pdf-lightbox {
+                padding: 50px 10px 10px;
+            }
+
+            .pdf-lightbox iframe {
+                height: calc(100vh - 60px);
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-```
-<div class="background"></div>
+    <div class="background"></div>
 
-<div class="page-content">
+    <div class="page-content">
 
-    <img
-        class="logo"
-        src="../zwflogo.webp"
-        alt="ZeusWeusFilm">
+        <a href="../index.html">
+            <img
+                src="../zwflogo.webp"
+                alt="ZeusWeusFilm"
+                class="logo"
+            >
+        </a>
 
-    <h1>Knock Knock</h1>
+        <h1>Knock Knock</h1>
 
-    <!-- VIDEO -->
+        <div class="video-container">
+            <img
+                src="images/Thumbnail.webp"
+                alt="Knock Knock"
+                class="video-thumbnail"
+                onclick="playVideo()"
+            >
+
+            <div class="play-button"></div>
+
+            <iframe
+                id="youtube-player"
+                title="Knock Knock"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="description">
+            Bella has just moved into her first home, in the midst of
+            unpacking she accidentally knocks on the wall prompting a
+            response from her unfamiliar neighbour. Bella however, has
+            no idea who, or what lives next door...
+        </div>
+
+        <div class="separator"></div>
+
+        <a
+            href="../physical/knock-knock/"
+            class="dvd-link"
+        >
+            <img
+                src="images/disc.webp"
+                alt="Knock Knock physical release"
+                class="dvd-image"
+            >
+
+            <span class="dvd-text">
+                Buy a Physical Body
+            </span>
+        </a>
+
+        <div class="separator"></div>
+
+        <div class="gallery">
+
+            <figure class="gallery-item">
+                <img
+                    src="images/1.webp"
+                    alt="Moving in."
+                    onclick="openLightbox(this.src)"
+                >
+                <figcaption>Moving in.</figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img
+                    src="images/2.webp"
+                    alt="Ready to go."
+                    onclick="openLightbox(this.src)"
+                >
+                <figcaption>Ready to go.</figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img
+                    src="images/3.webp"
+                    alt="Script changes."
+                    onclick="openLightbox(this.src)"
+                >
+                <figcaption>Script changes.</figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img
+                    src="images/4.webp"
+                    alt="Better see a doctor."
+                    onclick="openLightbox(this.src)"
+                >
+                <figcaption>Better see a doctor.</figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img
+                    src="images/5.webp"
+                    alt="The lure."
+                    onclick="openLightbox(this.src)"
+                >
+                <figcaption>The lure.</figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img
+                    src="images/6.webp"
+                    alt="Blank canvas."
+                    onclick="openLightbox(this.src)"
+                >
+                <figcaption>Blank canvas.</figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img
+                    src="images/7.webp"
+                    alt="Creating the wall effect."
+                    onclick="openLightbox(this.src)"
+                >
+                <figcaption>Creating the wall effect.</figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img
+                    src="images/8.webp"
+                    alt="Special fx shots."
+                    onclick="openLightbox(this.src)"
+                >
+                <figcaption>Special fx shots.</figcaption>
+            </figure>
+
+            <figure class="gallery-item">
+                <img
+                    src="images/9.webp"
+                    alt="Practical Poster."
+                    onclick="openLightbox(this.src)"
+                >
+                <figcaption>Practical Poster.</figcaption>
+            </figure>
+
+        </div>
+
+        <div class="separator"></div>
+
+        <div class="document-section">
+
+            <h2>
+                Knock Knock Pre-Production Document
+            </h2>
+
+            <div
+                class="document-cover"
+                onclick="openPDF()"
+            >
+                <div class="document-title">
+                    Knock Knock
+                </div>
+
+                <div class="document-subtitle">
+                    PRE-PRODUCTION
+                </div>
+
+                <div class="document-open">
+                    Click to open
+                </div>
+            </div>
+
+        </div>
+
+        <div class="social-links">
+            <a href="../comingsoon.html">
+                Contact
+            </a>
+
+            <a href="../physical/">
+                Physical
+            </a>
+
+            <a
+                href="https://paypal.me/ASmyth115"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                PayPal
+            </a>
+        </div>
+
+    </div>
 
     <div
-        class="video-container"
-        id="video-container"
-        onclick="playVideo()">
-
-        <img
-            class="video-thumbnail"
-            id="video-thumbnail"
-            src="images/Thumbnail.webp"
-            alt="Knock Knock">
-
-        <div
-            class="play-button"
-            id="play-button">
-        </div>
-
-        <iframe
-            id="youtube-video"
-            src="https://www.youtube.com/embed/WBCVE2-bUYA?enablejsapi=1"
-            title="Knock Knock"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-
-    </div>
-
-    <!-- SYNOPSIS -->
-
-    <div class="description">
-        Bella has just moved into her first home, in the midst of unpacking she accidentally knocks on the wall prompting a response from her unfamiliar neighbour. Bella however, has no idea who, or what lives next door...
-    </div>
-
-    <!-- DIVIDER -->
-
-    <div class="separator"></div>
-
-    <!-- PHYSICAL DVD -->
-
-    <a
-        class="dvd-link"
-        href="../physical/knock-knock/">
-
-        <img
-            class="dvd-image"
-            src="images/disc.webp"
-            alt="Knock Knock physical DVD">
-
-        <div class="dvd-text">
-            Buy a physical body
-        </div>
-
-    </a>
-
-    <!-- DIVIDER -->
-
-    <div class="separator"></div>
-
-    <!-- BTS GALLERY -->
-
-    <div class="gallery">
-
-        <div
-            class="gallery-item"
-            onclick="openLightbox('images/bts1.webp', 'Moving in.')">
-
-            <img
-                src="images/bts1.webp"
-                alt="Moving in.">
-
-            <div class="caption">
-                Moving in.
-            </div>
-
-        </div>
-
-        <div
-            class="gallery-item"
-            onclick="openLightbox('images/bts2.webp', 'Ready to go.')">
-
-            <img
-                src="images/bts2.webp"
-                alt="Ready to go.">
-
-            <div class="caption">
-                Ready to go.
-            </div>
-
-        </div>
-
-        <div
-            class="gallery-item"
-            onclick="openLightbox('images/bts3.webp', 'Script changes.')">
-
-            <img
-                src="images/bts3.webp"
-                alt="Script changes.">
-
-            <div class="caption">
-                Script changes.
-            </div>
-
-        </div>
-
-        <div
-            class="gallery-item"
-            onclick="openLightbox('images/bts4.webp', 'Better see a doctor.')">
-
-            <img
-                src="images/bts4.webp"
-                alt="Better see a doctor.">
-
-            <div class="caption">
-                Better see a doctor.
-            </div>
-
-        </div>
-
-        <div
-            class="gallery-item"
-            onclick="openLightbox('images/bts5.webp', 'The lure.')">
-
-            <img
-                src="images/bts5.webp"
-                alt="The lure.">
-
-            <div class="caption">
-                The lure.
-            </div>
-
-        </div>
-
-        <div
-            class="gallery-item"
-            onclick="openLightbox('images/bts6.webp', 'Blank canvas.')">
-
-            <img
-                src="images/bts6.webp"
-                alt="Blank canvas.">
-
-            <div class="caption">
-                Blank canvas.
-            </div>
-
-        </div>
-
-        <div
-            class="gallery-item"
-            onclick="openLightbox('images/bts7.webp', 'Creating the wall effect.')">
-
-            <img
-                src="images/bts7.webp"
-                alt="Creating the wall effect.">
-
-            <div class="caption">
-                Creating the wall effect.
-            </div>
-
-        </div>
-
-        <div
-            class="gallery-item"
-            onclick="openLightbox('images/bts8.webp', 'Special fx shots.')">
-
-            <img
-                src="images/bts8.webp"
-                alt="Special fx shots.">
-
-            <div class="caption">
-                Special fx shots.
-            </div>
-
-        </div>
-
-        <div
-            class="gallery-item"
-            onclick="openLightbox('images/bts9.webp', 'Practical Poster.')">
-
-            <img
-                src="images/bts9.webp"
-                alt="Practical Poster.">
-
-            <div class="caption">
-                Practical Poster.
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- IMAGE LIGHTBOX -->
-
-    <div
-        class="lightbox"
         id="lightbox"
-        onclick="closeLightbox()">
+        class="lightbox"
+        onclick="closeLightbox()"
+    >
+        <div
+            class="lightbox-close"
+            onclick="closeLightbox()"
+        >
+            &times;
+        </div>
 
         <img
             id="lightbox-image"
             src=""
-            alt="">
-
-        <div
-            class="lightbox-caption"
-            id="lightbox-caption">
-        </div>
-
+            alt=""
+            onclick="event.stopPropagation()"
+        >
     </div>
-
-    <!-- DIVIDER -->
-
-    <div class="separator"></div>
-
-    <!-- PRE-PRODUCTION DOCUMENT -->
-
-    <div class="preproduction-section">
-
-        <div class="preproduction-heading">
-            Knock Knock Pre-Production Document
-        </div>
-
-        <div
-            class="preproduction-preview"
-            onclick="openPDF()">
-
-            <div class="document-cover">
-
-                <div>
-
-                    <div class="document-title-main">
-                        Knock Knock
-                    </div>
-
-                    <div class="document-film-title">
-                        PRE-PRODUCTION
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="document-click">
-                Click to open
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- PDF VIEWER -->
 
     <div
+        id="pdf-lightbox"
         class="pdf-lightbox"
-        id="pdf-lightbox">
-
-        <button
+    >
+        <div
             class="pdf-close"
             onclick="closePDF()"
-            aria-label="Close document">
-
-            ×
-
-        </button>
+        >
+            &times;
+        </div>
 
         <iframe
             id="pdf-viewer"
-            src=""
-            title="Knock Knock Pre-Production Document">
-        </iframe>
-
+            title="Knock Knock Pre-Production Document"
+        ></iframe>
     </div>
 
-    <!-- FOOTER LINKS -->
+    <script>
+        function playVideo() {
+            const thumbnail =
+                document.querySelector(".video-thumbnail");
 
-    <div class="social-links">
+            const playButton =
+                document.querySelector(".play-button");
 
-        <a
-            href="../comingsoon.html">
-            Contact
-        </a>
+            const player =
+                document.getElementById("youtube-player");
 
-        <a
-            href="../physical/">
-            Physical
-        </a>
+            thumbnail.style.display = "none";
+            playButton.style.display = "none";
 
-        <a
-            href="https://paypal.me/ASmyth115"
-            target="_blank"
-            rel="noopener noreferrer">
-            PayPal
-        </a>
+            player.style.display = "block";
 
-    </div>
-
-</div>
-
-<script>
-
-    function playVideo() {
-
-        const thumbnail =
-            document.getElementById("video-thumbnail");
-
-        const playButton =
-            document.getElementById("play-button");
-
-        const video =
-            document.getElementById("youtube-video");
-
-        thumbnail.style.display = "none";
-
-        playButton.style.display = "none";
-
-        video.style.display = "block";
-
-        video.src =
-            "https://www.youtube.com/embed/WBCVE2-bUYA?autoplay=1&enablejsapi=1";
-
-    }
-
-
-    function openLightbox(image, caption) {
-
-        const lightbox =
-            document.getElementById("lightbox");
-
-        const lightboxImage =
-            document.getElementById("lightbox-image");
-
-        const lightboxCaption =
-            document.getElementById("lightbox-caption");
-
-        lightboxImage.src = image;
-
-        lightboxImage.alt = caption;
-
-        lightboxCaption.textContent = caption;
-
-        lightbox.style.display = "flex";
-
-        document.body.style.overflow = "hidden";
-
-    }
-
-
-    function closeLightbox() {
-
-        const lightbox =
-            document.getElementById("lightbox");
-
-        lightbox.style.display = "none";
-
-        document.body.style.overflow = "";
-
-    }
-
-
-    function openPDF() {
-
-        const pdfLightbox =
-            document.getElementById("pdf-lightbox");
-
-        const pdfViewer =
-            document.getElementById("pdf-viewer");
-
-        pdfViewer.src =
-            "Knock%20Knock%20Pre-Production%20Document.pdf";
-
-        pdfLightbox.style.display = "flex";
-
-        document.body.style.overflow = "hidden";
-
-    }
-
-
-    function closePDF() {
-
-        const pdfLightbox =
-            document.getElementById("pdf-lightbox");
-
-        const pdfViewer =
-            document.getElementById("pdf-viewer");
-
-        pdfLightbox.style.display = "none";
-
-        pdfViewer.src = "";
-
-        document.body.style.overflow = "";
-
-    }
-
-
-    document.addEventListener("keydown", function(event) {
-
-        if (event.key === "Escape") {
-
-            closeLightbox();
-
-            closePDF();
-
+            player.src =
+                "https://www.youtube.com/embed/WBCVE2-bUYA?autoplay=1";
         }
 
-    });
+        function openLightbox(src) {
+            const lightbox =
+                document.getElementById("lightbox");
 
-</script>
+            const image =
+                document.getElementById("lightbox-image");
+
+            image.src = src;
+
+            lightbox.style.display = "flex";
+
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeLightbox() {
+            const lightbox =
+                document.getElementById("lightbox");
+
+            lightbox.style.display = "none";
+
+            document.body.style.overflow = "";
+        }
+
+        function openPDF() {
+            const pdfLightbox =
+                document.getElementById("pdf-lightbox");
+
+            const pdfViewer =
+                document.getElementById("pdf-viewer");
+
+            pdfViewer.src =
+                "Knock%20Knock%20Pre-Production%20Document.pdf";
+
+            pdfLightbox.style.display = "block";
+
+            document.body.style.overflow = "hidden";
+        }
+
+        function closePDF() {
+            const pdfLightbox =
+                document.getElementById("pdf-lightbox");
+
+            const pdfViewer =
+                document.getElementById("pdf-viewer");
+
+            pdfLightbox.style.display = "none";
+
+            pdfViewer.src = "";
+
+            document.body.style.overflow = "";
+        }
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+                if (event.key === "Escape") {
+                    closeLightbox();
+                    closePDF();
+                }
+            }
+        );
+    </script>
 
 </body>
 </html>
