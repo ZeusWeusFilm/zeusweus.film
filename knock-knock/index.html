@@ -60,55 +60,74 @@
             letter-spacing: 2px;
         }
 
-        .video-container {
+        /* VIDEO PLAYER */
+
+        .video-section {
             width: 95%;
             max-width: 950px;
-            aspect-ratio: 16 / 9;
             margin: 0 auto 30px;
+        }
+
+        .video-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
             position: relative;
             overflow: hidden;
             background: #000;
         }
 
-        .video-thumbnail {
-            position: absolute;
-            inset: 0;
+        #video-player {
+            display: block;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            cursor: pointer;
+            object-fit: contain;
+            background: #000;
         }
 
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.85);
-            background: rgba(0, 0, 0, 0.55);
-            cursor: pointer;
-            pointer-events: none;
-        }
+        /* DVD MENU */
 
-        .play-button::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 53%;
-            transform: translate(-50%, -50%);
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            border-left: 20px solid #ffffff;
-        }
-
-        #youtube-player {
+        .video-menu {
             width: 100%;
-            height: 100%;
-            border: 0;
-            display: none;
+            margin: 20px auto 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .video-menu-button {
+            min-height: 68px;
+            padding: 14px 12px;
+
+            border: 1px solid rgba(255, 255, 255, 0.30);
+            background: rgba(0, 0, 0, 0.48);
+
+            color: #bdbdbd;
+
+            font-family: Georgia, serif;
+            font-size: 15px;
+            letter-spacing: 1.5px;
+            line-height: 1.3;
+
+            cursor: pointer;
+
+            transition:
+                color 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .video-menu-button:hover {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.70);
+            background: rgba(0, 0, 0, 0.70);
+            transform: translateY(-2px);
+        }
+
+        .video-menu-button.active {
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.10);
         }
 
         .description {
@@ -423,6 +442,25 @@
                 font-size: 17px;
             }
 
+            /* DVD MENU MOBILE */
+
+            .video-menu {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .video-menu-button {
+                min-height: 62px;
+                padding: 12px 8px;
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+
+            .video-menu-button:hover {
+                transform: none;
+            }
+
             .gallery {
                 grid-template-columns: 1fr;
                 gap: 25px;
@@ -469,17 +507,6 @@
                 letter-spacing: 1px;
             }
 
-            .play-button {
-                width: 60px;
-                height: 60px;
-            }
-
-            .play-button::after {
-                border-top-width: 9px;
-                border-bottom-width: 9px;
-                border-left-width: 15px;
-            }
-
             .pdf-lightbox {
                 padding: 50px 10px 10px;
             }
@@ -507,22 +534,81 @@
 
         <h1>Knock Knock</h1>
 
-        <div class="video-container">
-            <img
-                src="images/Thumbnail.webp"
-                alt="Knock Knock"
-                class="video-thumbnail"
-                onclick="playVideo()"
-            >
+        <!-- NATIVE VIDEO PLAYER -->
 
-            <div class="play-button"></div>
+        <div class="video-section">
 
-            <iframe
-                id="youtube-player"
-                title="Knock Knock"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
+            <div class="video-container">
+
+                <video
+                    id="video-player"
+                    controls
+                    preload="metadata"
+                    poster="images/knock-knock.webp"
+                >
+                    <source
+                        id="video-source"
+                        src="https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/knock-knock.mp4"
+                        type="video/mp4"
+                    >
+
+                    Your browser does not support HTML5 video.
+                </video>
+
+            </div>
+
+            <div class="video-menu">
+
+                <button
+                    class="video-menu-button active"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/knock-knock.mp4',
+                        'images/knock-knock.webp'
+                    )"
+                >
+                    FILM
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/trailer-1.mp4',
+                        'images/trailer-1.webp'
+                    )"
+                >
+                    TRAILER 1
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/trailer-2.mp4',
+                        'images/trailer-2.webp'
+                    )"
+                >
+                    TRAILER 2
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/behind-the-scenes.mp4',
+                        'images/behind-the-scenes.webp'
+                    )"
+                >
+                    BEHIND THE SCENES
+                </button>
+
+            </div>
+
         </div>
 
         <div class="description">
@@ -665,7 +751,7 @@
 
         <div class="social-links">
 
-            <a href="../comingsoon.html">
+            <a href="../contact">
                 Contact
             </a>
 
@@ -728,24 +814,48 @@
 
     <script>
 
-        function playVideo() {
-
-            const thumbnail =
-                document.querySelector(".video-thumbnail");
-
-            const playButton =
-                document.querySelector(".play-button");
+        function selectVideo(button, videoUrl, posterUrl) {
 
             const player =
-                document.getElementById("youtube-player");
+                document.getElementById("video-player");
 
-            thumbnail.style.display = "none";
-            playButton.style.display = "none";
+            const source =
+                document.getElementById("video-source");
 
-            player.style.display = "block";
+            const buttons =
+                document.querySelectorAll(".video-menu-button");
 
-            player.src =
-                "https://www.youtube.com/embed/WBCVE2-bUYA?autoplay=1";
+            /*
+                Stop the currently selected video before switching.
+            */
+
+            player.pause();
+
+            /*
+                Swap the video file and its matching thumbnail.
+            */
+
+            source.src = videoUrl;
+            player.poster = posterUrl;
+
+            /*
+                Reload the native player so the new source and
+                thumbnail are displayed.
+
+                It deliberately does NOT autoplay.
+            */
+
+            player.load();
+
+            /*
+                Update the DVD-menu selected state.
+            */
+
+            buttons.forEach(function(menuButton) {
+                menuButton.classList.remove("active");
+            });
+
+            button.classList.add("active");
         }
 
         function openLightbox(src) {
