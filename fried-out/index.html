@@ -78,12 +78,11 @@
         }
 
         h2 {
-            margin: 0 0 30px;
+            margin: 0 0 25px;
             font-family: Georgia, serif;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: normal;
-            letter-spacing: 2px;
-            color: #e8e8e8;
+            letter-spacing: 1px;
         }
 
         /* Video player */
@@ -158,13 +157,18 @@
             color: #cfcfcf;
         }
 
-        /* Divider */
-        .divider {
-            width: 95%;
-            max-width: 950px;
+        /* Exact Knock Knock separator */
+        .separator {
+            width: 70%;
+            max-width: 700px;
             height: 1px;
-            margin: 50px auto;
-            background: rgba(232, 232, 232, 0.28);
+            margin: 35px auto;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255, 255, 255, 0.45),
+                transparent
+            );
         }
 
         /* Xtra Fried */
@@ -341,8 +345,7 @@
             }
 
             h2 {
-                font-size: 24px;
-                margin-bottom: 25px;
+                font-size: 20px;
             }
 
             .video-section,
@@ -374,9 +377,9 @@
                 margin-top: 25px;
             }
 
-            .divider {
-                width: 95%;
-                margin: 40px auto;
+            .separator {
+                width: 80%;
+                margin: 30px auto;
             }
 
             .xtra-menu {
@@ -501,11 +504,11 @@
             It's just a fantasy, even if these sketches leave your brain all fried out.
         </div>
 
-        <div class="divider"></div>
+        <div class="separator"></div>
 
         <div class="xtra-fried">
 
-            <h2>Xtra Fried</h2>
+            <h2>Xtra Fried - Behind The Scenes</h2>
 
             <div class="xtra-menu">
 
@@ -585,11 +588,9 @@
 
         </div>
 
-        <div class="divider"></div>
+        <div class="separator"></div>
 
         <div class="gallery-section">
-
-            <h2>Behind the Scenes</h2>
 
             <div class="gallery">
 
@@ -693,6 +694,13 @@
             const description = document.getElementById("video-description");
             const buttons = document.querySelectorAll(".video-menu-button");
 
+            /*
+                Remember exactly where the visitor is on the page
+                before the native video player reloads.
+            */
+            const scrollX = window.scrollX;
+            const scrollY = window.scrollY;
+
             player.pause();
             source.src = videoUrl;
             player.poster = posterUrl;
@@ -704,6 +712,19 @@
             });
 
             button.classList.add("active");
+
+            /*
+                Some browsers reposition the page when a video source
+                is reloaded. Restore the visitor's exact position after
+                the browser has processed the change.
+            */
+            requestAnimationFrame(function() {
+                window.scrollTo(scrollX, scrollY);
+
+                requestAnimationFrame(function() {
+                    window.scrollTo(scrollX, scrollY);
+                });
+            });
         }
 
         function openLightbox(imageUrl) {
