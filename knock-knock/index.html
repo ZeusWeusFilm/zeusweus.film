@@ -565,7 +565,8 @@
                     onclick="selectVideo(
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/knock-knock.mp4',
-                        'images/knock-knock.webp'
+                        'images/knock-knock.webp',
+                        'Bella has just moved into her first home, in the midst of unpacking she accidentally knocks on the wall prompting a response from her unfamiliar neighbour. Bella however, has no idea who, or what lives next door...'
                     )"
                 >
                     FILM
@@ -577,7 +578,8 @@
                     onclick="selectVideo(
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/trailer-1.mp4',
-                        'images/trailer-1.webp'
+                        'images/trailer-1.webp',
+                        'Knock Knock coming December 15th 2024'
                     )"
                 >
                     TRAILER 1
@@ -589,7 +591,8 @@
                     onclick="selectVideo(
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/trailer-2.mp4',
-                        'images/trailer-2.webp'
+                        'images/trailer-2.webp',
+                        'It\'s here...'
                     )"
                 >
                     TRAILER 2
@@ -601,7 +604,8 @@
                     onclick="selectVideo(
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/behind-the-scenes.mp4',
-                        'images/behind-the-scenes.webp'
+                        'images/behind-the-scenes.webp',
+                        'The entire Knock Knock project was a very steep learning curve, here\'s a good look into how the actual shooting days went, it\'s like an odd time capsule to look back on now but I hope you enjoy.'
                     )"
                 >
                     BEHIND THE SCENES
@@ -611,7 +615,10 @@
 
         </div>
 
-        <div class="description">
+        <div
+            class="description"
+            id="video-description"
+        >
             Bella has just moved into her first home, in the midst of
             unpacking she accidentally knocks on the wall prompting a
             response from her unfamiliar neighbour. Bella however, has
@@ -814,13 +821,21 @@
 
     <script>
 
-        function selectVideo(button, videoUrl, posterUrl) {
+        function selectVideo(
+            button,
+            videoUrl,
+            posterUrl,
+            descriptionText
+        ) {
 
             const player =
                 document.getElementById("video-player");
 
             const source =
                 document.getElementById("video-source");
+
+            const description =
+                document.getElementById("video-description");
 
             const buttons =
                 document.querySelectorAll(".video-menu-button");
@@ -832,11 +847,13 @@
             player.pause();
 
             /*
-                Swap the video file and its matching thumbnail.
+                Swap the video file, its matching thumbnail,
+                and its matching description.
             */
 
             source.src = videoUrl;
             player.poster = posterUrl;
+            description.textContent = descriptionText;
 
             /*
                 Reload the native player so the new source and
@@ -930,3 +947,4 @@
 
 </body>
 </html>
+
