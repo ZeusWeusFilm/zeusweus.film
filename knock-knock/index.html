@@ -841,6 +841,14 @@
                 document.querySelectorAll(".video-menu-button");
 
             /*
+                Remember exactly where the visitor is on the page
+                before the native video player reloads.
+            */
+
+            const scrollX = window.scrollX;
+            const scrollY = window.scrollY;
+
+            /*
                 Stop the currently selected video before switching.
             */
 
@@ -873,6 +881,20 @@
             });
 
             button.classList.add("active");
+
+            /*
+                Some browsers reposition the page when a video source
+                is reloaded. Restore the visitor's exact position after
+                the browser has processed the change.
+            */
+
+            requestAnimationFrame(function() {
+                window.scrollTo(scrollX, scrollY);
+
+                requestAnimationFrame(function() {
+                    window.scrollTo(scrollX, scrollY);
+                });
+            });
         }
 
         function openLightbox(src) {
@@ -947,4 +969,3 @@
 
 </body>
 </html>
-
