@@ -65,15 +65,14 @@
 
         .logo-link {
             display: inline-block;
-            margin-bottom: 25px;
         }
 
         .logo {
             display: block;
-            width: 170px;
-            max-width: 45vw;
+            width: 120px;
+            max-width: 40vw;
             height: auto;
-            margin: 0 auto;
+            margin: 0 auto 35px;
         }
 
         h1 {
@@ -93,7 +92,9 @@
 
         .video-wrapper {
             width: 100%;
+            aspect-ratio: 16 / 9;
             margin: 0 auto;
+            overflow: hidden;
             background: #000;
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.55);
         }
@@ -101,7 +102,8 @@
         #video-player {
             display: block;
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: contain;
             background: #000;
         }
 
@@ -200,6 +202,16 @@
             font-size: 24px;
             font-weight: normal;
             letter-spacing: 1px;
+        }
+
+        .behind-a-haunt-section .video-menu {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .behind-a-haunt-section .video-menu-button {
+            width: 100%;
         }
 
         .gallery {
@@ -306,12 +318,9 @@
                 padding: 30px 15px 0;
             }
 
-            .logo-link {
-                margin-bottom: 20px;
-            }
-
             .logo {
-                width: 135px;
+                width: 100px;
+                margin-bottom: 28px;
             }
 
             h1 {
@@ -340,6 +349,8 @@
             }
 
             .series-description {
+                width: 100%;
+                max-width: none;
                 margin-top: 24px;
                 margin-bottom: 12px;
             }
@@ -351,6 +362,16 @@
 
             h2 {
                 font-size: 20px;
+            }
+
+            .behind-a-haunt-section .video-menu {
+                display: flex;
+                gap: 8px;
+                margin-top: 18px;
+            }
+
+            .behind-a-haunt-section .video-menu-button {
+                width: auto;
             }
 
             .gallery {
@@ -719,10 +740,7 @@
 
             <div class="gallery">
 
-                <div
-                    class="gallery-item"
-                    onclick="openLightbox('images/bts1.webp')"
-                >
+                <div class="gallery-item" onclick="openLightbox('images/bts1.webp')">
                     <img
                         src="images/bts1.webp"
                         alt="Haunt-A-Files behind the scenes"
@@ -731,10 +749,7 @@
                     <div class="gallery-caption">Nah</div>
                 </div>
 
-                <div
-                    class="gallery-item"
-                    onclick="openLightbox('images/bts2.webp')"
-                >
+                <div class="gallery-item" onclick="openLightbox('images/bts2.webp')">
                     <img
                         src="images/bts2.webp"
                         alt="Haunt-A-Files behind the scenes"
@@ -743,10 +758,7 @@
                     <div class="gallery-caption">I see you</div>
                 </div>
 
-                <div
-                    class="gallery-item"
-                    onclick="openLightbox('images/bts3.webp')"
-                >
+                <div class="gallery-item" onclick="openLightbox('images/bts3.webp')">
                     <img
                         src="images/bts3.webp"
                         alt="Haunt-A-Files behind the scenes"
@@ -755,10 +767,7 @@
                     <div class="gallery-caption">What you mean "alien"?</div>
                 </div>
 
-                <div
-                    class="gallery-item"
-                    onclick="openLightbox('images/bts4.webp')"
-                >
+                <div class="gallery-item" onclick="openLightbox('images/bts4.webp')">
                     <img
                         src="images/bts4.webp"
                         alt="Haunt-A-Files behind the scenes"
@@ -767,10 +776,7 @@
                     <div class="gallery-caption">Merry Christmas</div>
                 </div>
 
-                <div
-                    class="gallery-item"
-                    onclick="openLightbox('images/bts5.webp')"
-                >
+                <div class="gallery-item" onclick="openLightbox('images/bts5.webp')">
                     <img
                         src="images/bts5.webp"
                         alt="Haunt-A-Files behind the scenes"
@@ -779,10 +785,7 @@
                     <div class="gallery-caption">All tucked up</div>
                 </div>
 
-                <div
-                    class="gallery-item"
-                    onclick="openLightbox('images/bts6.webp')"
-                >
+                <div class="gallery-item" onclick="openLightbox('images/bts6.webp')">
                     <img
                         src="images/bts6.webp"
                         alt="Haunt-A-Files behind the scenes"
@@ -791,10 +794,7 @@
                     <div class="gallery-caption">The green boyos</div>
                 </div>
 
-                <div
-                    class="gallery-item"
-                    onclick="openLightbox('images/bts7.webp')"
-                >
+                <div class="gallery-item" onclick="openLightbox('images/bts7.webp')">
                     <img
                         src="images/bts7.webp"
                         alt="Haunt-A-Files behind the scenes"
@@ -803,10 +803,7 @@
                     <div class="gallery-caption">Budget of £0.67</div>
                 </div>
 
-                <div
-                    class="gallery-item"
-                    onclick="openLightbox('images/bts8.webp')"
-                >
+                <div class="gallery-item" onclick="openLightbox('images/bts8.webp')">
                     <img
                         src="images/bts8.webp"
                         alt="Haunt-A-Files behind the scenes"
@@ -815,10 +812,7 @@
                     <div class="gallery-caption">Detained</div>
                 </div>
 
-                <div
-                    class="gallery-item"
-                    onclick="openLightbox('images/bts9.webp')"
-                >
+                <div class="gallery-item" onclick="openLightbox('images/bts9.webp')">
                     <img
                         src="images/bts9.webp"
                         alt="Haunt-A-Files behind the scenes"
@@ -827,10 +821,7 @@
                     <div class="gallery-caption">Shooting the intro</div>
                 </div>
 
-                <div
-                    class="gallery-item"
-                    onclick="openLightbox('images/bts10.webp')"
-                >
+                <div class="gallery-item" onclick="openLightbox('images/bts10.webp')">
                     <img
                         src="images/bts10.webp"
                         alt="Haunt-A-Files behind the scenes"
@@ -839,10 +830,7 @@
                     <div class="gallery-caption">Big Z</div>
                 </div>
 
-                <div
-                    class="gallery-item"
-                    onclick="openLightbox('images/bts11.webp')"
-                >
+                <div class="gallery-item" onclick="openLightbox('images/bts11.webp')">
                     <img
                         src="images/bts11.webp"
                         alt="Haunt-A-Files behind the scenes"
@@ -851,10 +839,7 @@
                     <div class="gallery-caption">Spontaneous Mike</div>
                 </div>
 
-                <div
-                    class="gallery-item"
-                    onclick="openLightbox('images/bts12.webp')"
-                >
+                <div class="gallery-item" onclick="openLightbox('images/bts12.webp')">
                     <img
                         src="images/bts12.webp"
                         alt="Haunt-A-Files behind the scenes"
