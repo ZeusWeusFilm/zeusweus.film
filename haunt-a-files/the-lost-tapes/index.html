@@ -1,1 +1,446 @@
-ay yo
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeusWeusFilm - Haunt-A-Files Original</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #000;
+            color: #e8e8e8;
+            font-family: Georgia, serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -10px;
+            background-image: url("images/background.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(2px);
+            opacity: 0.30;
+            transform: scale(1.02);
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: -1;
+        }
+
+        .page {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 25px 25px 0;
+            flex: 1;
+        }
+
+        .logo {
+            display: block;
+            width: 120px;
+            max-width: 40vw;
+            height: auto;
+            margin: 0 auto 35px;
+        }
+
+        h1 {
+            margin: 0 0 30px;
+            font-family: Georgia, serif;
+            font-size: 36px;
+            font-weight: normal;
+            letter-spacing: 2px;
+            color: #e8e8e8;
+        }
+
+        .video-section {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            margin: 0 auto;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.55);
+        }
+
+        #video-player {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .video-menu {
+            width: 100%;
+            max-width: 760px;
+            margin: 22px auto 0;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .video-menu-button {
+            appearance: none;
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.30);
+            background: rgba(0, 0, 0, 0.55);
+            color: #e8e8e8;
+            padding: 11px 16px;
+            font-family: Georgia, serif;
+            font-size: 14px;
+            line-height: 1.3;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .video-menu-button:hover {
+            background: rgba(255, 255, 255, 0.10);
+            border-color: rgba(255, 255, 255, 0.55);
+        }
+
+        .video-menu-button.active {
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.70);
+        }
+
+        .trailer-button {
+            grid-column: 1 / 3;
+            width: calc(50% - 5px);
+            justify-self: center;
+        }
+
+        .video-description,
+        .series-description {
+            width: 85%;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+            font-family: Georgia, serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: #e8e8e8;
+        }
+
+        .video-description {
+            margin-top: 35px;
+            margin-bottom: 0;
+            color: rgba(232, 232, 232, 0.82);
+        }
+
+        .series-description {
+            margin-top: 28px;
+            margin-bottom: 0;
+        }
+
+        .social-links {
+            margin: 60px auto 0;
+            padding-bottom: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: #e8e8e8;
+            text-decoration: none;
+            font-family: Georgia, serif;
+            font-size: 15px;
+            letter-spacing: 1px;
+            transition: opacity 0.2s ease;
+        }
+
+        .social-links a:hover {
+            opacity: 0.65;
+        }
+
+        @media (max-width: 700px) {
+            .content {
+                padding: 20px 15px 0;
+            }
+
+            .logo {
+                width: 100px;
+                margin-bottom: 28px;
+            }
+
+            h1 {
+                font-size: 28px;
+                margin-bottom: 25px;
+            }
+
+            .video-menu {
+                gap: 8px;
+                margin-top: 18px;
+            }
+
+            .video-menu-button {
+                padding: 10px 12px;
+                font-size: 12px;
+                line-height: 1.25;
+            }
+
+            .trailer-button {
+                width: calc(50% - 4px);
+            }
+
+            .video-description,
+            .series-description {
+                width: 92%;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+
+            .series-description {
+                width: 100%;
+                max-width: none;
+                margin-top: 24px;
+            }
+
+            .social-links {
+                margin-top: 45px;
+                padding-bottom: 35px;
+                gap: 14px;
+            }
+
+            .social-links a {
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <main class="content">
+
+        <a href="../../index.html">
+            <img
+                class="logo"
+                src="../../zwflogo.webp"
+                alt="ZeusWeusFilm"
+            >
+        </a>
+
+        <h1>Haunt-A-Files Original</h1>
+
+        <section class="video-section">
+
+            <div class="video-wrapper">
+                <video
+                    id="video-player"
+                    controls
+                    preload="metadata"
+                    poster="images/original-1-the-bushmills-beast.webp"
+                >
+                    <source
+                        id="video-source"
+                        src="https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-1-the-bushmills-beast.mp4"
+                        type="video/mp4"
+                    >
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <div class="video-menu">
+
+                <button
+                    class="video-menu-button active"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-1-the-bushmills-beast.mp4',
+                        'images/original-1-the-bushmills-beast.webp',
+                        'In the terrifying debut episode of Haunt-A-Files our crew investigate the rumoured &quot;Beast of Ballybogey&quot;.'
+                    )"
+                >
+                    1. The Bushmills Beast
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-2-hunting-the-beast.mp4',
+                        'images/original-2-hunting-the-beast.webp',
+                        'When the crew return to the forest of the beast, an unlikely ally appears, together will they defeat the beast? Or are things about to get even worse...'
+                    )"
+                >
+                    2. Hunting The Beast
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-3-the-ghosts-of-the-driscoll-brothers.mp4',
+                        'images/original-3-the-ghosts-of-the-driscoll-brothers.webp',
+                        'What began as a look into the abandoned Driscoll manor, became too much for the crew to handle...'
+                    )"
+                >
+                    3. The Ghosts Of The Driscoll Brothers
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-4-the-possession-of-michael.mp4',
+                        'images/original-4-the-possession-of-michael.webp',
+                        'Will the crew make it through the Driscoll manor another time? Or will they succumb to the horrors from within...'
+                    )"
+                >
+                    4. The Possession Of Michael
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-5-the-driscoll-manor-massacre.mp4',
+                        'images/original-5-the-driscoll-manor-massacre.webp',
+                        'After exploring the Driscoll manor, the crew were left in disarray. Will Technical T be able to save his friends? Or is it too late.'
+                    )"
+                >
+                    5. The Driscoll Manor Massacre
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-6-a-threat-from-above.mp4',
+                        'images/original-6-a-threat-from-above.webp',
+                        'After being mysteriously summoned back to the site of the beast by a voice on the radio, the crew venture back to where it all began...'
+                    )"
+                >
+                    6. A Threat From Above
+                </button>
+
+                <button
+                    class="video-menu-button trailer-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-7-complete-series-trailer.mp4',
+                        'images/original-7-complete-series-trailer.webp',
+                        'A look at the horrors so far.'
+                    )"
+                >
+                    Complete Series Trailer
+                </button>
+
+            </div>
+
+            <p
+                class="video-description"
+                id="video-description"
+            >In the terrifying debut episode of Haunt-A-Files our crew investigate the rumoured "Beast of Ballybogey".</p>
+
+            <p class="series-description">
+                See Haunt-A-Files as it originally aired in 2022
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer class="social-links">
+        <a href="../../contact">Contact</a>
+
+        <a href="../../physical/">Physical</a>
+
+        <a
+            href="https://paypal.me/ASmyth115"
+            target="_blank"
+            rel="noopener noreferrer"
+        >PayPal</a>
+    </footer>
+
+</div>
+
+<script>
+    function selectVideo(
+        button,
+        videoUrl,
+        posterUrl,
+        descriptionText
+    ) {
+        const player = document.getElementById("video-player");
+        const source = document.getElementById("video-source");
+        const description = document.getElementById("video-description");
+        const buttons = document.querySelectorAll(".video-menu-button");
+
+        const scrollX = window.scrollX;
+        const scrollY = window.scrollY;
+
+        player.pause();
+        source.src = videoUrl;
+        player.poster = posterUrl;
+        description.textContent = descriptionText;
+        player.load();
+
+        buttons.forEach(function(menuButton) {
+            menuButton.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        requestAnimationFrame(function() {
+            window.scrollTo(scrollX, scrollY);
+
+            requestAnimationFrame(function() {
+                window.scrollTo(scrollX, scrollY);
+            });
+        });
+    }
+</script>
+
+</body>
+</html>
