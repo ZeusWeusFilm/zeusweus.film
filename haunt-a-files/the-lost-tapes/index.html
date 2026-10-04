@@ -103,6 +103,14 @@
             background: #000;
         }
 
+        .view-count {
+            margin: 10px 0 0;
+            font-family: Georgia, serif;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #888888;
+        }
+
         .video-menu {
             width: 100%;
             max-width: 760px;
@@ -283,6 +291,14 @@
                 </video>
             </div>
 
+            <div
+                class="view-count"
+                id="view-count"
+                aria-live="polite"
+            >
+                0 views
+            </div>
+
             <div class="video-menu">
 
                 <button
@@ -292,7 +308,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-1-the-bushmills-beast.mp4',
                         'images/original-1-the-bushmills-beast.webp',
-                        'In the terrifying debut episode of Haunt-A-Files our crew investigate the rumoured &quot;Beast of Ballybogey&quot;.'
+                        'In the terrifying debut episode of Haunt-A-Files our crew investigate the rumoured &quot;Beast of Ballybogey&quot;.',
+                        'haunt-original-1'
                     )"
                 >
                     1. The Bushmills Beast
@@ -305,7 +322,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-2-hunting-the-beast.mp4',
                         'images/original-2-hunting-the-beast.webp',
-                        'When the crew return to the forest of the beast, an unlikely ally appears, together will they defeat the beast? Or are things about to get even worse...'
+                        'When the crew return to the forest of the beast, an unlikely ally appears, together will they defeat the beast? Or are things about to get even worse...',
+                        'haunt-original-2'
                     )"
                 >
                     2. Hunting The Beast
@@ -318,7 +336,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-3-the-ghosts-of-the-driscoll-brothers.mp4',
                         'images/original-3-the-ghosts-of-the-driscoll-brothers.webp',
-                        'What began as a look into the abandoned Driscoll manor, became too much for the crew to handle...'
+                        'What began as a look into the abandoned Driscoll manor, became too much for the crew to handle...',
+                        'haunt-original-3'
                     )"
                 >
                     3. The Ghosts Of The Driscoll Brothers
@@ -331,7 +350,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-4-the-possession-of-michael.mp4',
                         'images/original-4-the-possession-of-michael.webp',
-                        'Will the crew make it through the Driscoll manor another time? Or will they succumb to the horrors from within...'
+                        'Will the crew make it through the Driscoll manor another time? Or will they succumb to the horrors from within...',
+                        'haunt-original-4'
                     )"
                 >
                     4. The Possession Of Michael
@@ -344,7 +364,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-5-the-driscoll-manor-massacre.mp4',
                         'images/original-5-the-driscoll-manor-massacre.webp',
-                        'After exploring the Driscoll manor, the crew were left in disarray. Will Technical T be able to save his friends? Or is it too late.'
+                        'After exploring the Driscoll manor, the crew were left in disarray. Will Technical T be able to save his friends? Or is it too late.',
+                        'haunt-original-5'
                     )"
                 >
                     5. The Driscoll Manor Massacre
@@ -357,7 +378,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-6-a-threat-from-above.mp4',
                         'images/original-6-a-threat-from-above.webp',
-                        'After being mysteriously summoned back to the site of the beast by a voice on the radio, the crew venture back to where it all began...'
+                        'After being mysteriously summoned back to the site of the beast by a voice on the radio, the crew venture back to where it all began...',
+                        'haunt-original-6'
                     )"
                 >
                     6. A Threat From Above
@@ -370,7 +392,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-7-complete-series-trailer.mp4',
                         'images/original-7-complete-series-trailer.webp',
-                        'A look at the horrors so far.'
+                        'A look at the horrors so far.',
+                        'haunt-original-trailer'
                     )"
                 >
                     Complete Series Trailer
@@ -406,11 +429,83 @@
 </div>
 
 <script>
+    const VIEW_API_BASE =
+        "https://zeusweusfilm-views.adamjordan11549.workers.dev/views";
+
+    const VIEW_COOLDOWN_MS = 30 * 60 * 1000;
+
+    let currentVideoId = "haunt-original-1";
+
+    function formatViewCount(views) {
+        return views + (views === 1 ? " view" : " views");
+    }
+
+    async function loadViewCount(videoId) {
+        const viewCount = document.getElementById("view-count");
+
+        try {
+            const response = await fetch(
+                VIEW_API_BASE + "/" + videoId,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Could not load view count.");
+            }
+
+            const data = await response.json();
+
+            if (videoId === currentVideoId) {
+                viewCount.textContent = formatViewCount(data.views);
+            }
+        } catch (error) {
+            console.error("Failed to load view count:", error);
+        }
+    }
+
+    async function countView(videoId) {
+        const storageKey = "zeusweusfilm-view-" + videoId;
+        const now = Date.now();
+        const lastView = Number(localStorage.getItem(storageKey)) || 0;
+
+        if (now - lastView < VIEW_COOLDOWN_MS) {
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                VIEW_API_BASE + "/" + videoId,
+                {
+                    method: "POST"
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Could not count view.");
+            }
+
+            const data = await response.json();
+
+            localStorage.setItem(storageKey, String(now));
+
+            if (videoId === currentVideoId) {
+                const viewCount = document.getElementById("view-count");
+                viewCount.textContent = formatViewCount(data.views);
+            }
+        } catch (error) {
+            console.error("Failed to count view:", error);
+        }
+    }
+
     function selectVideo(
         button,
         videoUrl,
         posterUrl,
-        descriptionText
+        descriptionText,
+        videoId
     ) {
         const player = document.getElementById("video-player");
         const source = document.getElementById("video-source");
@@ -424,6 +519,8 @@
         source.src = videoUrl;
         player.poster = posterUrl;
         description.textContent = descriptionText;
+        currentVideoId = videoId;
+        loadViewCount(currentVideoId);
         player.load();
 
         buttons.forEach(function(menuButton) {
@@ -440,6 +537,14 @@
             });
         });
     }
+
+    const videoPlayer = document.getElementById("video-player");
+
+    videoPlayer.addEventListener("play", function() {
+        countView(currentVideoId);
+    });
+
+    loadViewCount(currentVideoId);
 </script>
 
 </body>
