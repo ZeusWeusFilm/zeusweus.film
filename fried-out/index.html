@@ -107,6 +107,14 @@
             background: #000;
         }
 
+        .view-count {
+            margin: -15px 0 20px;
+            font-family: Georgia, serif;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #888888;
+        }
+
         /* Video menu */
         .video-menu {
             width: 100%;
@@ -467,6 +475,13 @@
 
             </div>
 
+            <div
+                class="view-count"
+                id="view-count"
+                aria-live="polite">
+                0 views
+            </div>
+
             <div class="video-menu">
 
                 <button
@@ -476,7 +491,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/fried-out/the-pilot.mp4',
                         'images/the-pilot.webp',
-                        'It\u0027s just a fantasy, even if these sketches leave your brain all fried out.'
+                        'It\u0027s just a fantasy, even if these sketches leave your brain all fried out.',
+                        'fried-out-pilot'
                     )">
                     THE PILOT
                 </button>
@@ -488,7 +504,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/fried-out/trailer.mp4',
                         'images/trailer.webp',
-                        'It\u0027s dirty, it\u0027s rough, but it\u0027s the pilot. Fried Out got some dark comedy sketches edited together for your leisurely existence.'
+                        'It\u0027s dirty, it\u0027s rough, but it\u0027s the pilot. Fried Out got some dark comedy sketches edited together for your leisurely existence.',
+                        'fried-out-trailer'
                     )">
                     TRAILER
                 </button>
@@ -518,7 +535,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/fried-out/1-the-prelude-episodes.mp4',
                         'images/1-the-prelude-episodes.webp',
-                        'Not every idea works, and &quot;fried out&quot; was born from a different series &quot;What If \u0027X\u0027 Was Set In Ireland&quot; which wasn\u0027t good, but when we started making &quot;Fried Out&quot; sketches it gave the chance for those two episodes to be part of that series instead.'
+                        'Not every idea works, and &quot;fried out&quot; was born from a different series &quot;What If \u0027X\u0027 Was Set In Ireland&quot; which wasn\u0027t good, but when we started making &quot;Fried Out&quot; sketches it gave the chance for those two episodes to be part of that series instead.',
+                        'fried-out-xtra-1'
                     )">
                     1. The Prelude Episodes
                 </button>
@@ -530,7 +548,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/fried-out/2-poetry-polo.mp4',
                         'images/2-poetry-polo.webp',
-                        'Time to record some poetry before the world ends, it\u0027s not good news, gonna miss you all, see you later mate.'
+                        'Time to record some poetry before the world ends, it\u0027s not good news, gonna miss you all, see you later mate.',
+                        'fried-out-xtra-2'
                     )">
                     2. Poetry Polo
                 </button>
@@ -542,7 +561,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/fried-out/3-popping-figs.mp4',
                         'images/3-popping-figs.webp',
-                        'Hear our thoughts on the: &quot;DCSUPERHEROES333LIMITEDEDITIONEXCLUSIVECAPTAINATOMVINYLFIGURE/FIGUREINEENVINYLEFIGURADEVINILPOP!HEROESPOP!FIGURE&quot; 😃😃😃'
+                        'Hear our thoughts on the: &quot;DCSUPERHEROES333LIMITEDEDITIONEXCLUSIVECAPTAINATOMVINYLFIGURE/FIGUREINEENVINYLEFIGURADEVINILPOP!HEROESPOP!FIGURE&quot; 😃😃😃',
+                        'fried-out-xtra-3'
                     )">
                     3. Popping Figs
                 </button>
@@ -554,7 +574,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/fried-out/4-metapolitical-movie-mukkbang.mp4',
                         'images/4-metapolitical-movie-mukkbang.webp',
-                        'Movies, murders and now mukkbangs? Is there anything ZeusWeusFilm wouldn\u0027t do? Tune into this decade\u0027s episode to hear all the hot takes on the hot topics while we chow down to sundown.'
+                        'Movies, murders and now mukkbangs? Is there anything ZeusWeusFilm wouldn\u0027t do? Tune into this decade\u0027s episode to hear all the hot takes on the hot topics while we chow down to sundown.',
+                        'fried-out-xtra-4'
                     )">
                     4. Metapolitical Movie Mukkbang
                 </button>
@@ -566,7 +587,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/fried-out/5-outakes-and-oddballs.mp4',
                         'images/5-outakes-and-oddballs.webp',
-                        'You can\u0027t nail a hammer without leading your pencil first.'
+                        'You can\u0027t nail a hammer without leading your pencil first.',
+                        'fried-out-xtra-5'
                     )">
                     5. Outakes and Oddballs
                 </button>
@@ -578,7 +600,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/fried-out/6-smörgåsbord-of-brainrot.mp4',
                         'images/6-smörgåsbord-of-brainrot.webp',
-                        'Time to tie up a few loose ends eh?'
+                        'Time to tie up a few loose ends eh?',
+                        'fried-out-xtra-6'
                     )">
                     6. Smörgåsbord of Brainrot
                 </button>
@@ -682,11 +705,83 @@
     </div>
 
     <script>
+        const VIEW_API_BASE =
+            "https://zeusweusfilm-views.adamjordan11549.workers.dev/views";
+
+        const VIEW_COOLDOWN_MS = 30 * 60 * 1000;
+
+        let currentVideoId = "fried-out-pilot";
+
+        function formatViewCount(views) {
+            return views + (views === 1 ? " view" : " views");
+        }
+
+        async function loadViewCount(videoId) {
+            const viewCount = document.getElementById("view-count");
+
+            try {
+                const response = await fetch(
+                    VIEW_API_BASE + "/" + videoId,
+                    {
+                        method: "GET",
+                        cache: "no-store"
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Could not load view count.");
+                }
+
+                const data = await response.json();
+
+                if (videoId === currentVideoId) {
+                    viewCount.textContent = formatViewCount(data.views);
+                }
+            } catch (error) {
+                console.error("Failed to load view count:", error);
+            }
+        }
+
+        async function countView(videoId) {
+            const storageKey = "zeusweusfilm-view-" + videoId;
+            const now = Date.now();
+            const lastView = Number(localStorage.getItem(storageKey)) || 0;
+
+            if (now - lastView < VIEW_COOLDOWN_MS) {
+                return;
+            }
+
+            try {
+                const response = await fetch(
+                    VIEW_API_BASE + "/" + videoId,
+                    {
+                        method: "POST"
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error("Could not count view.");
+                }
+
+                const data = await response.json();
+
+                localStorage.setItem(storageKey, String(now));
+
+                if (videoId === currentVideoId) {
+                    const viewCount = document.getElementById("view-count");
+                    viewCount.textContent = formatViewCount(data.views);
+                }
+            } catch (error) {
+                console.error("Failed to count view:", error);
+            }
+        }
+
         function selectVideo(
             button,
             videoUrl,
             posterUrl,
-            descriptionText
+            descriptionText,
+            videoId
         ) {
             const player = document.getElementById("video-player");
             const source = document.getElementById("video-source");
@@ -704,6 +799,8 @@
             source.src = videoUrl;
             player.poster = posterUrl;
             description.textContent = descriptionText;
+            currentVideoId = videoId;
+            loadViewCount(currentVideoId);
             player.load();
 
             buttons.forEach(function(menuButton) {
@@ -756,6 +853,14 @@
 
             document.body.style.overflow = "";
         }
+
+        const videoPlayer = document.getElementById("video-player");
+
+        videoPlayer.addEventListener("play", function() {
+            countView(currentVideoId);
+        });
+
+        loadViewCount(currentVideoId);
 
         document.addEventListener("keydown", function(event) {
             if (event.key === "Escape") {
