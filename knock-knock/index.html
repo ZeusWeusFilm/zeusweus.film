@@ -84,6 +84,14 @@
             background: #000;
         }
 
+        .view-count {
+            margin: 10px 0 0;
+            font-family: Georgia, serif;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #888888;
+        }
+
         /* DVD MENU */
 
         .video-menu {
@@ -557,6 +565,14 @@
 
             </div>
 
+            <div
+                class="view-count"
+                id="view-count"
+                aria-live="polite"
+            >
+                0 views
+            </div>
+
             <div class="video-menu">
 
                 <button
@@ -566,7 +582,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/knock-knock.mp4',
                         'images/knock-knock.webp',
-                        'Bella has just moved into her first home, in the midst of unpacking she accidentally knocks on the wall prompting a response from her unfamiliar neighbour. Bella however, has no idea who, or what lives next door...'
+                        'Bella has just moved into her first home, in the midst of unpacking she accidentally knocks on the wall prompting a response from her unfamiliar neighbour. Bella however, has no idea who, or what lives next door...',
+                        'knock-knock-film'
                     )"
                 >
                     FILM
@@ -579,7 +596,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/trailer-1.mp4',
                         'images/trailer-1.webp',
-                        'Knock Knock coming December 15th 2024'
+                        'Knock Knock coming December 15th 2024',
+                        'knock-knock-trailer-1'
                     )"
                 >
                     TRAILER 1
@@ -592,7 +610,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/trailer-2.mp4',
                         'images/trailer-2.webp',
-                        'It\'s here...'
+                        'It\'s here...',
+                        'knock-knock-trailer-2'
                     )"
                 >
                     TRAILER 2
@@ -605,7 +624,8 @@
                         this,
                         'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/behind-the-scenes.mp4',
                         'images/behind-the-scenes.webp',
-                        'The entire Knock Knock project was a very steep learning curve, here\'s a good look into how the actual shooting days went, it\'s like an odd time capsule to look back on now but I hope you enjoy.'
+                        'The entire Knock Knock project was a very steep learning curve, here\'s a good look into how the actual shooting days went, it\'s like an odd time capsule to look back on now but I hope you enjoy.',
+                        'knock-knock-behind-the-scenes'
                     )"
                 >
                     BEHIND THE SCENES
@@ -821,11 +841,112 @@
 
     <script>
 
+        const VIEW_API_BASE =
+            "https://zeusweusfilm-views.adamjordan11549.workers.dev/views";
+
+        const VIEW_COOLDOWN_MS = 30 * 60 * 1000;
+
+        let currentVideoId = "knock-knock-film";
+
+        function formatViewCount(views) {
+            return views + (views === 1 ? " view" : " views");
+        }
+
+        async function loadViewCount(videoId) {
+
+            const viewCount =
+                document.getElementById("view-count");
+
+            try {
+
+                const response =
+                    await fetch(
+                        VIEW_API_BASE + "/" + videoId,
+                        {
+                            method: "GET",
+                            cache: "no-store"
+                        }
+                    );
+
+                if (!response.ok) {
+                    throw new Error("Could not load view count.");
+                }
+
+                const data = await response.json();
+
+                if (videoId === currentVideoId) {
+                    viewCount.textContent =
+                        formatViewCount(data.views);
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Failed to load view count:",
+                    error
+                );
+            }
+        }
+
+        async function countView(videoId) {
+
+            const storageKey =
+                "zeusweusfilm-view-" + videoId;
+
+            const now = Date.now();
+
+            const lastView =
+                Number(localStorage.getItem(storageKey)) || 0;
+
+            if (now - lastView < VIEW_COOLDOWN_MS) {
+                return;
+            }
+
+            try {
+
+                const response =
+                    await fetch(
+                        VIEW_API_BASE + "/" + videoId,
+                        {
+                            method: "POST"
+                        }
+                    );
+
+                if (!response.ok) {
+                    throw new Error("Could not count view.");
+                }
+
+                const data = await response.json();
+
+                localStorage.setItem(
+                    storageKey,
+                    String(now)
+                );
+
+                if (videoId === currentVideoId) {
+
+                    const viewCount =
+                        document.getElementById("view-count");
+
+                    viewCount.textContent =
+                        formatViewCount(data.views);
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Failed to count view:",
+                    error
+                );
+            }
+        }
+
         function selectVideo(
             button,
             videoUrl,
             posterUrl,
-            descriptionText
+            descriptionText,
+            videoId
         ) {
 
             const player =
@@ -862,6 +983,8 @@
             source.src = videoUrl;
             player.poster = posterUrl;
             description.textContent = descriptionText;
+            currentVideoId = videoId;
+            loadViewCount(currentVideoId);
 
             /*
                 Reload the native player so the new source and
@@ -952,6 +1075,18 @@
 
             document.body.style.overflow = "";
         }
+
+        const videoPlayer =
+            document.getElementById("video-player");
+
+        videoPlayer.addEventListener(
+            "play",
+            function() {
+                countView(currentVideoId);
+            }
+        );
+
+        loadViewCount(currentVideoId);
 
         document.addEventListener(
             "keydown",
