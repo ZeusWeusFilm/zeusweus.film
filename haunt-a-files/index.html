@@ -63,12 +63,18 @@
             flex: 1;
         }
 
+        .logo-link {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 35px;
+        }
+
         .logo {
             display: block;
             width: 120px;
             max-width: 40vw;
             height: auto;
-            margin: 0 auto 35px;
+            margin: 0;
         }
 
         h1 {
@@ -321,9 +327,12 @@
                 padding: 20px 15px 0;
             }
 
+            .logo-link {
+                margin-bottom: 28px;
+            }
+
             .logo {
                 width: 100px;
-                margin-bottom: 28px;
             }
 
             h1 {
@@ -415,7 +424,10 @@
 
     <main class="content">
 
-        <a href="../index.html">
+        <a
+            href="../"
+            class="logo-link"
+        >
             <img
                 class="logo"
                 src="../zwflogo.webp"
@@ -431,6 +443,8 @@
                 <video
                     id="video-player"
                     controls
+                    controlsList="nodownload"
+                    oncontextmenu="return false;"
                     preload="metadata"
                     poster="images/exhumed-1-the-bushmills-beast.webp"
                 >
@@ -545,7 +559,7 @@
             >In the terrifying debut episode of Haunt-A-Files our crew investigate the rumoured "Beast of Ballybogey".</p>
 
             <p class="series-description">
-                Join Big Zeus, Spontaneous Mike and Technical T in the terrifying paranormal investigation show "Haunt-A-Files" as they document the scariest phenomena unknown to man. See it as it originally aired <a href="the-lost-tapes/">HERE</a>
+                Join Big Zeus, Spontaneous Mike and Technical T in the terrifying paranormal investigation show "Haunt-A-Files" as they document the scariest phenomena unknown to man. See more terrifying footage with "Exhumed" the remaster so scary, it had to be buried first... Or see it as it originally aired <a href="the-lost-tapes/">HERE</a>
             </p>
 
         </section>
