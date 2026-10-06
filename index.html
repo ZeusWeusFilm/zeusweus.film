@@ -59,13 +59,20 @@
             z-index: 2;
         }
 
+        /* Logo link */
+        .logo-link {
+            display: block;
+            width: fit-content;
+            margin: 25px auto 35px;
+        }
+
         /* Logo */
         .logo {
             display: block;
             width: 120px;
-            max-width: 40%;
+            max-width: 40vw;
             height: auto;
-            margin: 25px auto 35px;
+            margin: 0;
         }
 
         /* ZeusWeusFilm title */
@@ -183,9 +190,12 @@
         /* Mobile */
         @media (max-width: 600px) {
 
+            .logo-link {
+                margin: 20px auto 25px;
+            }
+
             .logo {
                 width: 100px;
-                margin: 20px auto 25px;
             }
 
             h1 {
@@ -239,7 +249,9 @@
 <body>
 
     <!-- ZeusWeusFilm logo / secret IDIR entrance -->
-    <a href="idir/">
+    <a
+        class="logo-link"
+        href="idir/">
         <img
             class="logo"
             src="zwflogo.webp"
