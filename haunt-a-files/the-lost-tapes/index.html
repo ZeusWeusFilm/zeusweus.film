@@ -63,12 +63,18 @@
             flex: 1;
         }
 
+        .logo-link {
+            display: block;
+            width: fit-content;
+            margin: 0 auto 35px;
+        }
+
         .logo {
             display: block;
             width: 120px;
             max-width: 40vw;
             height: auto;
-            margin: 0 auto 35px;
+            margin: 0;
         }
 
         h1 {
@@ -205,9 +211,12 @@
                 padding: 20px 15px 0;
             }
 
+            .logo-link {
+                margin-bottom: 28px;
+            }
+
             .logo {
                 width: 100px;
-                margin-bottom: 28px;
             }
 
             h1 {
@@ -263,7 +272,10 @@
 
     <main class="content">
 
-        <a href="../../index.html">
+        <a
+            class="logo-link"
+            href="../../"
+        >
             <img
                 class="logo"
                 src="../../zwflogo.webp"
@@ -279,6 +291,8 @@
                 <video
                     id="video-player"
                     controls
+                    controlsList="nodownload"
+                    oncontextmenu="return false;"
                     preload="metadata"
                     poster="images/original-1-the-bushmills-beast.webp"
                 >
