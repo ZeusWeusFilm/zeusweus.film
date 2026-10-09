@@ -69,7 +69,7 @@
         }
 
         h1 {
-            margin: 0 0 35px;
+            margin: 0 0 30px;
             font-family: Georgia, serif;
             font-size: 36px;
             font-weight: normal;
@@ -89,11 +89,14 @@
         .video-section {
             width: 95%;
             max-width: 950px;
-            margin: 0 auto;
+            margin: 0 auto 30px;
         }
 
         .video-player-wrapper {
             width: 100%;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            overflow: hidden;
             margin: 0 auto 25px;
             background: #000;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.45);
@@ -102,8 +105,8 @@
         #video-player {
             display: block;
             width: 100%;
-            height: auto;
-            max-height: 80vh;
+            height: 100%;
+            object-fit: contain;
             background: #000;
         }
 
@@ -332,11 +335,13 @@
             opacity: 0.65;
         }
 
-        @media (max-width: 600px) {
-
+        @media (max-width: 700px) {
             .page-content {
-                padding: 20px 15px 0;
+                padding: 20px 12px 0;
             }
+        }
+
+        @media (max-width: 600px) {
 
             .logo-link {
                 margin-bottom: 30px;
@@ -347,15 +352,14 @@
             }
 
             h1 {
-                font-size: 30px;
-                margin-bottom: 30px;
+                font-size: 28px;
+                margin-bottom: 25px;
             }
 
             h2 {
                 font-size: 20px;
             }
 
-            .video-section,
             .xtra-fried {
                 width: 100%;
             }
