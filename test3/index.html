@@ -1,1 +1,2090 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Knock Knock // ZeusWeusFilm Broadcast Archive</title>
+
+    <style>
+        /* ============================================
+           ZEUSWEUSFILM // SERVER-14
+           KNOCK KNOCK // BLUE FREQUENCY
+           TEST 3 // BUILD 001
+
+           EXPERIMENTAL PAGE: /test3/
+
+           Original Knock Knock assets are loaded
+           from /knock-knock/ to avoid duplication.
+        ============================================ */
+
+        :root {
+            --void: #020407;
+            --panel: #050b12;
+            --panel-blue: #0a1929;
+            --blue: #6cb8ef;
+            --blue-bright: #b8e3ff;
+            --blue-muted: #779bb5;
+            --border: #477a9e;
+            --border-bright: #8dc7ee;
+            --text: #c5d9e8;
+            --red: #e34b56;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--void);
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+
+            background: var(--void);
+            color: var(--text);
+
+            font-family:
+                "Lucida Console",
+                "Consolas",
+                "Courier New",
+                monospace;
+
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        button:focus-visible,
+        a:focus-visible {
+            outline: 2px solid var(--blue-bright);
+            outline-offset: 3px;
+        }
+
+        /* ============================================
+           ORIGINAL KNOCK KNOCK BACKGROUND
+        ============================================ */
+
+        .background {
+            position: fixed;
+            inset: -20px;
+            z-index: 0;
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    rgba(0, 5, 12, 0.70),
+                    rgba(0, 2, 6, 0.84)
+                ),
+                url("/knock-knock/images/background.webp")
+                    center center / cover no-repeat;
+
+            filter: blur(3px);
+            opacity: 0.55;
+        }
+
+        .scanlines {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            pointer-events: none;
+
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0,
+                transparent 3px,
+                rgba(0, 0, 0, 0.12) 4px
+            );
+
+            opacity: 0.42;
+        }
+
+        /* ============================================
+           TOP BROADCAST STATUS
+        ============================================ */
+
+        .top-warning {
+            position: relative;
+            z-index: 1;
+
+            padding: 8px 12px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #02050a,
+                    #10283d,
+                    #02050a
+                );
+
+            border-bottom: 2px solid #346c94;
+
+            color: #b5e2ff;
+
+            text-align: center;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1.7px;
+
+            text-shadow: 0 0 8px rgba(81, 169, 235, 0.4);
+        }
+
+        /* ============================================
+           MAIN ARCHIVE CONTAINER
+        ============================================ */
+
+        .site-wrap {
+            position: relative;
+            z-index: 1;
+
+            width: min(1250px, calc(100% - 24px));
+            margin: 20px auto 50px;
+
+            background:
+                radial-gradient(
+                    ellipse at top,
+                    rgba(28, 81, 122, 0.14),
+                    transparent 65%
+                ),
+                #03060a;
+
+            border: 2px ridge #5987a9;
+
+            box-shadow:
+                0 0 0 5px rgba(0, 0, 0, 0.8),
+                0 0 45px rgba(47, 137, 210, 0.16),
+                inset 0 0 60px rgba(0, 0, 0, 0.7);
+        }
+
+        /* ============================================
+           SHARED BLUE DIGITAL MATRIX
+        ============================================ */
+
+        .matrix-panel {
+            background:
+                radial-gradient(
+                    ellipse at 50% 0%,
+                    rgba(44, 110, 167, 0.16),
+                    transparent 75%
+                ),
+                linear-gradient(
+                    rgba(76, 145, 195, 0.075) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(76, 145, 195, 0.075) 1px,
+                    transparent 1px
+                ),
+                #03070d;
+
+            background-size:
+                auto,
+                22px 22px,
+                22px 22px,
+                auto;
+
+            border: 1px solid var(--border);
+
+            box-shadow:
+                inset 0 0 30px rgba(0, 0, 0, 0.85),
+                0 0 12px rgba(49, 127, 189, 0.1);
+        }
+
+        .panel-heading {
+            padding: 8px 11px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #081522,
+                    #173651,
+                    #081522
+                );
+
+            border-bottom: 1px solid var(--border);
+
+            color: #d4efff;
+
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           HEADER
+        ============================================ */
+
+        .masthead {
+            padding: 22px 25px 18px;
+
+            background:
+                linear-gradient(
+                    rgba(72, 147, 200, 0.055) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(72, 147, 200, 0.055) 1px,
+                    transparent 1px
+                ),
+                radial-gradient(
+                    ellipse at 50% 0%,
+                    #15314b,
+                    #04080d 80%
+                );
+
+            background-size:
+                24px 24px,
+                24px 24px,
+                auto;
+
+            border-bottom: 3px double #5e9bc7;
+
+            box-shadow:
+                inset 0 -25px 40px rgba(0, 0, 0, 0.65);
+        }
+
+        .brand-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            min-width: 0;
+        }
+
+        .logo-link {
+            display: block;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            display: block;
+            width: 75px;
+            height: auto;
+
+            filter:
+                contrast(1.3)
+                saturate(0.65)
+                drop-shadow(0 0 9px rgba(77, 158, 222, 0.35));
+        }
+
+        .logo-link::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0,
+                transparent 3px,
+                rgba(95, 177, 235, 0.12) 4px
+            );
+        }
+
+        .brand-title {
+            margin: 0;
+
+            color: #d5efff;
+
+            font-size: clamp(23px, 3.6vw, 45px);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -2px;
+
+            text-shadow:
+                1px 0 #7db6df,
+                2px 2px #284f6d,
+                4px 4px #07111b,
+                0 0 15px rgba(88, 172, 237, 0.35);
+        }
+
+        .brand-subtitle {
+            margin-top: 8px;
+
+            color: #91bddc;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .connection {
+            flex-shrink: 0;
+
+            padding: 9px 12px;
+
+            background: #03080e;
+            border: 1px solid #4e86ae;
+
+            color: #a9d6f5;
+
+            font-size: 10px;
+            text-align: center;
+
+            box-shadow:
+                inset 0 0 12px rgba(0, 0, 0, 0.8);
+        }
+
+        .led {
+            display: inline-block;
+
+            width: 8px;
+            height: 8px;
+            margin-right: 7px;
+
+            border-radius: 50%;
+            background: var(--red);
+
+            box-shadow:
+                0 0 5px var(--red),
+                0 0 11px rgba(227, 75, 86, 0.55);
+
+            animation: blink 2.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 86%, 100% { opacity: 1; }
+            87%, 93% { opacity: 0.15; }
+        }
+
+        /* ============================================
+           BROADCAST TICKER
+        ============================================ */
+
+        .ticker {
+            padding: 6px 0;
+
+            background: #03070c;
+            border-bottom: 1px solid #3f759d;
+
+            color: #a9d9fa;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* ============================================
+           PAGE CONTENT
+        ============================================ */
+
+        .content {
+            padding: 20px;
+
+            background:
+                linear-gradient(
+                    rgba(72, 139, 190, 0.035) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(72, 139, 190, 0.035) 1px,
+                    transparent 1px
+                );
+
+            background-size: 32px 32px;
+        }
+
+        .archive-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+
+            padding: 8px 12px;
+            margin-bottom: 18px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #07111c,
+                    #183954,
+                    #07111c
+                );
+
+            border: 1px solid #649bc1;
+
+            color: #d6efff;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .archive-banner .archive-id {
+            color: #91b8d4;
+            font-size: 10px;
+            font-weight: normal;
+        }
+
+        /* ============================================
+           SIDEBAR + MAIN BROADCAST AREA
+        ============================================ */
+
+        .broadcast-layout {
+            display: grid;
+            grid-template-columns: 245px minmax(0, 1fr);
+            gap: 18px;
+            align-items: start;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .sidebar-body {
+            padding: 17px 13px;
+            text-align: center;
+        }
+
+        .sidebar-label {
+            margin: 0 0 12px;
+
+            color: #8cb6d4;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        .dvd-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .dvd-image {
+            display: block;
+
+            width: min(170px, 100%);
+            height: auto;
+            margin: 0 auto 15px;
+
+            object-fit: contain;
+
+            filter:
+                contrast(1.1)
+                drop-shadow(0 0 12px rgba(70, 145, 205, 0.25));
+
+            transition:
+                transform 0.2s ease,
+                filter 0.2s ease;
+        }
+
+        .dvd-link:hover .dvd-image {
+            transform: scale(1.04);
+
+            filter:
+                contrast(1.2)
+                drop-shadow(0 0 16px rgba(100, 185, 245, 0.4));
+        }
+
+        .terminal-button {
+            display: block;
+            width: 100%;
+
+            padding: 10px 9px;
+
+            background:
+                linear-gradient(
+                    #193a55,
+                    #081522
+                );
+
+            border: 2px outset #689dc1;
+
+            color: #e1f3ff;
+            text-decoration: none;
+            text-align: center;
+
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 0.8px;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .terminal-button:hover {
+            background:
+                linear-gradient(
+                    #285a7f,
+                    #10263a
+                );
+
+            color: #fff;
+            border-style: inset;
+        }
+
+        .document-cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            width: 135px;
+            height: 170px;
+            margin: 0 auto 16px;
+            padding: 15px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(28, 72, 105, 0.3),
+                    rgba(0, 0, 0, 0.8)
+                ),
+                #04080d;
+
+            border: 1px solid #6499be;
+
+            color: #c8e6fb;
+            text-align: center;
+
+            cursor: pointer;
+
+            box-shadow:
+                4px 4px 0 #020407,
+                0 0 12px rgba(68, 142, 197, 0.12);
+        }
+
+        .document-cover:hover {
+            border-color: #b4dfff;
+        }
+
+        .document-title {
+            font-size: 15px;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .document-subtitle {
+            margin-top: 15px;
+
+            color: #89b7d8;
+            font-size: 8px;
+            letter-spacing: 1px;
+        }
+
+        .document-open {
+            margin-top: 25px;
+
+            color: #7099b7;
+            font-size: 9px;
+        }
+
+        .sidebar-note {
+            margin-top: 12px;
+
+            color: #6f96b1;
+            font-size: 9px;
+            line-height: 1.6;
+        }
+
+        .sidebar-navigation {
+            padding: 12px;
+        }
+
+        .sidebar-navigation a + a {
+            margin-top: 9px;
+        }
+
+        /* ============================================
+           MAIN VIDEO ARCHIVE
+        ============================================ */
+
+        .main-broadcast {
+            min-width: 0;
+        }
+
+        .programme-title {
+            padding: 20px 20px 15px;
+            text-align: center;
+        }
+
+        .programme-title h1 {
+            margin: 0;
+
+            color: #d7efff;
+
+            font-size: clamp(27px, 4vw, 48px);
+            font-weight: 900;
+            letter-spacing: 3px;
+            line-height: 1.2;
+
+            text-shadow:
+                2px 2px #16334c,
+                0 0 16px rgba(77, 166, 233, 0.25);
+        }
+
+        .programme-title p {
+            margin: 9px 0 0;
+
+            color: #8eb7d3;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+        }
+
+        .video-section {
+            padding: 12px;
+        }
+
+        .video-frame {
+            padding: 8px;
+
+            background: #020407;
+
+            border: 2px inset #5687aa;
+
+            box-shadow:
+                inset 0 0 20px #000,
+                0 0 15px rgba(52, 129, 190, 0.13);
+        }
+
+        .video-container {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+
+            position: relative;
+            overflow: hidden;
+
+            background: #000;
+        }
+
+        #video-player {
+            display: block;
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+            background: #000;
+        }
+
+        /* Keep the actual film clear of CRT overlays. */
+
+        .player-status {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            padding: 12px 3px 3px;
+
+            color: #8dbbdc;
+            font-size: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .view-count {
+            color: #b8dcf5;
+        }
+
+        /* ============================================
+           ORIGINAL FOUR-VIDEO MENU
+        ============================================ */
+
+        .video-menu {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 9px;
+
+            margin-top: 14px;
+        }
+
+        .video-menu-button {
+            min-height: 62px;
+            padding: 11px 8px;
+
+            background:
+                linear-gradient(
+                    #11283b,
+                    #050b13
+                );
+
+            border: 2px outset #5c8aab;
+
+            color: #a9c9df;
+
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            line-height: 1.5;
+
+            cursor: pointer;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .video-menu-button:hover {
+            background:
+                linear-gradient(
+                    #1d4563,
+                    #091b2b
+                );
+
+            color: #fff;
+        }
+
+        .video-menu-button.active {
+            background:
+                linear-gradient(
+                    #245679,
+                    #0c263b
+                );
+
+            border-style: inset;
+            border-color: #b3dfff;
+
+            color: #fff;
+
+            box-shadow:
+                inset 0 0 14px rgba(0, 0, 0, 0.5),
+                0 0 10px rgba(91, 174, 237, 0.12);
+        }
+
+        /* ============================================
+           VIDEO DESCRIPTION
+        ============================================ */
+
+        .description-panel {
+            margin-top: 16px;
+        }
+
+        .description {
+            padding: 23px 24px;
+
+            color: #c5d9e8;
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+        /* ============================================
+           BEHIND-THE-SCENES ARCHIVE
+        ============================================ */
+
+        .archive-section {
+            margin-top: 24px;
+        }
+
+        .archive-intro {
+            padding: 17px 18px 4px;
+
+            color: #94b8d1;
+            font-size: 11px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+
+            padding: 17px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+
+            background: #000;
+            border: 1px solid #477a9e;
+
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+
+            object-fit: cover;
+
+            filter:
+                contrast(1.12)
+                saturate(0.82);
+
+            transition:
+                transform 0.25s ease,
+                filter 0.25s ease;
+        }
+
+        .gallery-item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            pointer-events: none;
+
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0,
+                transparent 3px,
+                rgba(0, 8, 20, 0.18) 4px
+            );
+        }
+
+        .gallery-item figcaption {
+            position: absolute;
+            z-index: 1;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            padding: 10px;
+
+            background: rgba(2, 11, 21, 0.88);
+            border-top: 1px solid #477a9e;
+
+            color: #d6ecfb;
+
+            font-size: 10px;
+            text-align: center;
+
+            opacity: 0;
+            transform: translateY(100%);
+
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease;
+
+            pointer-events: none;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+
+            filter:
+                contrast(1.2)
+                saturate(0.75)
+                brightness(1.08);
+        }
+
+        .gallery-item:hover figcaption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           FOOTER LINKS
+        ============================================ */
+
+        .social-panel {
+            margin-top: 24px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+
+            padding: 22px 15px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            min-width: 115px;
+
+            padding: 9px 15px;
+
+            background:
+                linear-gradient(
+                    #183a54,
+                    #07131f
+                );
+
+            border: 2px outset #6699bd;
+
+            color: #dcefff;
+            text-decoration: none;
+            text-align: center;
+
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .social-links a:hover {
+            border-style: inset;
+            background: #183e5b;
+        }
+
+        .site-footer {
+            padding: 16px 12px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #03070c,
+                    #10283d,
+                    #03070c
+                );
+
+            border-top: 3px double #568cb4;
+
+            color: #83a8c1;
+
+            text-align: center;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           IMAGE LIGHTBOX
+        ============================================ */
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+
+            padding: 30px;
+
+            background: rgba(0, 3, 8, 0.97);
+
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox img {
+            display: block;
+            max-width: 95%;
+            max-height: 90vh;
+
+            object-fit: contain;
+
+            border: 1px solid #477a9e;
+            box-shadow: 0 0 25px rgba(59, 138, 200, 0.2);
+        }
+
+        .lightbox-close,
+        .pdf-close {
+            position: fixed;
+            top: 12px;
+            right: 18px;
+
+            z-index: 1102;
+
+            padding: 4px 12px;
+
+            background: #071725;
+            border: 1px solid #6fa6cb;
+
+            color: #dcefff;
+
+            font-size: 28px;
+            line-height: 1;
+
+            cursor: pointer;
+        }
+
+        /* ============================================
+           PDF VIEWER
+        ============================================ */
+
+        .pdf-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1100;
+
+            padding: 55px 20px 20px;
+
+            background: rgba(0, 3, 8, 0.98);
+        }
+
+        .pdf-lightbox iframe {
+            display: block;
+
+            width: 100%;
+            max-width: 1100px;
+            height: calc(100vh - 75px);
+
+            margin: 0 auto;
+
+            background: #fff;
+            border: 2px solid #659bc1;
+        }
+
+        /* ============================================
+           TABLET
+        ============================================ */
+
+        @media (max-width: 950px) {
+            .broadcast-layout {
+                grid-template-columns: 205px minmax(0, 1fr);
+                gap: 12px;
+            }
+
+            .content {
+                padding: 14px;
+            }
+
+            .video-menu {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .video-menu-button {
+                min-height: 54px;
+            }
+        }
+
+        /* ============================================
+           MOBILE
+        ============================================ */
+
+        @media (max-width: 700px) {
+            .site-wrap {
+                width: calc(100% - 12px);
+                margin-top: 8px;
+            }
+
+            .masthead {
+                padding: 18px 12px;
+            }
+
+            .brand-row {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .brand {
+                gap: 10px;
+            }
+
+            .logo {
+                width: 55px;
+            }
+
+            .brand-title {
+                font-size: clamp(20px, 6vw, 34px);
+                letter-spacing: -1px;
+            }
+
+            .brand-subtitle {
+                font-size: 8px;
+                letter-spacing: 1px;
+            }
+
+            .connection {
+                font-size: 9px;
+            }
+
+            .content {
+                padding: 10px;
+            }
+
+            .archive-banner {
+                font-size: 10px;
+            }
+
+            .archive-banner .archive-id {
+                font-size: 9px;
+            }
+
+            .broadcast-layout {
+                grid-template-columns: 1fr;
+            }
+
+            /*
+               On mobile, the film comes first.
+               The sidebar follows beneath it.
+            */
+
+            .main-broadcast {
+                order: 1;
+            }
+
+            .sidebar {
+                order: 2;
+                margin-top: 16px;
+            }
+
+            .programme-title {
+                padding: 18px 10px 12px;
+            }
+
+            .programme-title h1 {
+                font-size: 30px;
+            }
+
+            .video-section {
+                padding: 8px;
+            }
+
+            .video-frame {
+                padding: 4px;
+            }
+
+            .player-status {
+                font-size: 9px;
+            }
+
+            .video-menu {
+                gap: 7px;
+            }
+
+            .video-menu-button {
+                padding: 9px 6px;
+                font-size: 10px;
+            }
+
+            .description {
+                padding: 18px 15px;
+                font-size: 11px;
+            }
+
+            .sidebar-body {
+                padding: 18px;
+            }
+
+            .dvd-image {
+                width: 150px;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 9px;
+                padding: 10px;
+            }
+
+            .gallery-item figcaption {
+                opacity: 1;
+                transform: translateY(0);
+                font-size: 9px;
+                padding: 7px 5px;
+            }
+
+            .gallery-item:hover img {
+                transform: none;
+            }
+
+            .pdf-lightbox {
+                padding: 55px 8px 8px;
+            }
+
+            .pdf-lightbox iframe {
+                height: calc(100vh - 63px);
+            }
+        }
+
+        @media (max-width: 370px) {
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .archive-banner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* ============================================
+           REDUCED MOTION
+        ============================================ */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background"></div>
+    <div class="scanlines"></div>
+
+    <!-- TOP BROADCAST STATUS -->
+
+    <div class="top-warning">
+        ZEUSWEUSFILM: SERVER-14 // KNOCK KNOCK ARCHIVE CONNECTED
+    </div>
+
+    <div class="site-wrap">
+
+        <!-- MASTHEAD -->
+
+        <header class="masthead">
+
+            <div class="brand-row">
+
+                <div class="brand">
+
+                    <a
+                        class="logo-link"
+                        href="/"
+                        aria-label="Return to ZeusWeusFilm homepage"
+                    >
+                        <img
+                            class="logo"
+                            src="../zwflogo.webp"
+                            alt="ZeusWeusFilm"
+                        >
+                    </a>
+
+                    <div>
+                        <h2 class="brand-title">
+                            ZEUSWEUSFILM
+                        </h2>
+
+                        <div class="brand-subtitle">
+                            BROADCAST ARCHIVE // BLUE FREQUENCY
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="connection">
+                    <span class="led"></span>
+                    EXTERNAL CONNECTION ESTABLISHED
+                    <br>
+                    SIGNAL <span id="signalValue">68</span>%
+                </div>
+
+            </div>
+
+        </header>
+
+        <!-- SCROLLING STATUS -->
+
+        <div class="ticker">
+            <marquee scrollamount="3">
+                *** ACCESSING ARCHIVED PROGRAMME... ***
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                *** KNOCK KNOCK // SIGNAL AVAILABLE ***
+            </marquee>
+        </div>
+
+        <main class="content">
+
+            <div class="archive-banner">
+                <span>
+                    :: PROGRAMME ARCHIVE // KNOCK KNOCK ::
+                </span>
+
+                <span class="archive-id">
+                    RECORD 001 / 001
+                </span>
+            </div>
+
+            <div class="broadcast-layout">
+
+                <!-- =====================================
+                     LEFT SIDEBAR
+                ====================================== -->
+
+                <aside class="sidebar">
+
+                    <!-- PHYSICAL DISC -->
+
+                    <section class="matrix-panel">
+
+                        <div class="panel-heading">
+                            :: PHYSICAL MEDIA ::
+                        </div>
+
+                        <div class="sidebar-body">
+
+                            <p class="sidebar-label">
+                                ARCHIVE ITEM // DISC 01
+                            </p>
+
+                            <a
+                                class="dvd-link"
+                                href="/physical/knock-knock/"
+                            >
+
+                                <img
+                                    class="dvd-image"
+                                    src="/knock-knock/images/disc.webp"
+                                    alt="Knock Knock physical release"
+                                >
+
+                                <span class="terminal-button">
+                                    [ BUY PHYSICAL COPY ]
+                                </span>
+
+                            </a>
+
+                            <div class="sidebar-note">
+                                PHYSICAL FORMAT AVAILABLE
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- PDF DOCUMENT -->
+
+                    <section class="matrix-panel">
+
+                        <div class="panel-heading">
+                            :: DOCUMENT ARCHIVE ::
+                        </div>
+
+                        <div class="sidebar-body">
+
+                            <p class="sidebar-label">
+                                FILE 01 // PRE-PRODUCTION
+                            </p>
+
+                            <button
+                                class="document-cover"
+                                type="button"
+                                onclick="openPDF()"
+                                aria-label="Open Knock Knock Pre-Production Document"
+                            >
+
+                                <span class="document-title">
+                                    Knock Knock
+                                </span>
+
+                                <span class="document-subtitle">
+                                    PRE-PRODUCTION
+                                </span>
+
+                                <span class="document-open">
+                                    PDF DOCUMENT
+                                </span>
+
+                            </button>
+
+                            <button
+                                class="terminal-button"
+                                type="button"
+                                onclick="openPDF()"
+                            >
+                                [ READ DOCUMENT ]
+                            </button>
+
+                            <div class="sidebar-note">
+                                ORIGINAL PRODUCTION FILE
+                                <br>
+                                CLICK TO VIEW
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- NAVIGATION -->
+
+                    <section class="matrix-panel">
+
+                        <div class="panel-heading">
+                            :: NAVIGATION ::
+                        </div>
+
+                        <nav class="sidebar-navigation">
+
+                            <a
+                                class="terminal-button"
+                                href="/"
+                            >
+                                [ RETURN TO SERVER-14 ]
+                            </a>
+
+                            <a
+                                class="terminal-button"
+                                href="#bts-archive"
+                            >
+                                [ BTS ARCHIVE ]
+                            </a>
+
+                        </nav>
+
+                    </section>
+
+                </aside>
+
+                <!-- =====================================
+                     MAIN VIDEO BROADCAST
+                ====================================== -->
+
+                <div class="main-broadcast">
+
+                    <section class="matrix-panel">
+
+                        <div class="programme-title">
+
+                            <h1>
+                                KNOCK KNOCK
+                            </h1>
+
+                            <p>
+                                :: ARCHIVED VIDEO TRANSMISSION ::
+                            </p>
+
+                        </div>
+
+                        <div class="video-section">
+
+                            <!-- ORIGINAL NATIVE VIDEO PLAYER -->
+
+                            <div class="video-frame">
+
+                                <div class="video-container">
+
+                                    <video
+                                        id="video-player"
+                                        controls
+                                        controlsList="nodownload"
+                                        oncontextmenu="return false;"
+                                        preload="metadata"
+                                        poster="/knock-knock/images/knock-knock.webp"
+                                    >
+
+                                        <source
+                                            id="video-source"
+                                            src="https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/knock-knock.mp4"
+                                            type="video/mp4"
+                                        >
+
+                                        Your browser does not support HTML5 video.
+
+                                    </video>
+
+                                </div>
+
+                            </div>
+
+                            <!-- STATUS + ORIGINAL VIEW COUNTER -->
+
+                            <div class="player-status">
+
+                                <span>
+                                    CH 01 // VIDEO SIGNAL AVAILABLE
+                                </span>
+
+                                <span
+                                    class="view-count"
+                                    id="view-count"
+                                    aria-live="polite"
+                                >
+                                    0 views
+                                </span>
+
+                            </div>
+
+                            <!-- ORIGINAL VIDEO SELECTION MENU -->
+
+                            <div class="video-menu">
+
+                                <button
+                                    class="video-menu-button active"
+                                    type="button"
+                                    onclick="selectVideo(
+                                        this,
+                                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/knock-knock.mp4',
+                                        '/knock-knock/images/knock-knock.webp',
+                                        'Bella has just moved into her first home, in the midst of unpacking she accidentally knocks on the wall prompting a response from her unfamiliar neighbour. Bella however, has no idea who, or what lives next door...',
+                                        'knock-knock-film'
+                                    )"
+                                >
+                                    FILM
+                                </button>
+
+                                <button
+                                    class="video-menu-button"
+                                    type="button"
+                                    onclick="selectVideo(
+                                        this,
+                                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/trailer-1.mp4',
+                                        '/knock-knock/images/trailer-1.webp',
+                                        'Knock Knock coming December 15th 2024',
+                                        'knock-knock-trailer-1'
+                                    )"
+                                >
+                                    TRAILER 1
+                                </button>
+
+                                <button
+                                    class="video-menu-button"
+                                    type="button"
+                                    onclick="selectVideo(
+                                        this,
+                                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/trailer-2.mp4',
+                                        '/knock-knock/images/trailer-2.webp',
+                                        'It\'s here...',
+                                        'knock-knock-trailer-2'
+                                    )"
+                                >
+                                    TRAILER 2
+                                </button>
+
+                                <button
+                                    class="video-menu-button"
+                                    type="button"
+                                    onclick="selectVideo(
+                                        this,
+                                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/behind-the-scenes.mp4',
+                                        '/knock-knock/images/behind-the-scenes.webp',
+                                        'The entire Knock Knock project was a very steep learning curve, here\'s a good look into how the actual shooting days went, it\'s like an odd time capsule to look back on now but I hope you enjoy.',
+                                        'knock-knock-behind-the-scenes'
+                                    )"
+                                >
+                                    BEHIND THE SCENES
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <!-- ORIGINAL DYNAMIC VIDEO DESCRIPTION -->
+
+                    <section class="matrix-panel description-panel">
+
+                        <div class="panel-heading">
+                            :: PROGRAMME INFORMATION ::
+                        </div>
+
+                        <div
+                            class="description"
+                            id="video-description"
+                        >
+                            Bella has just moved into her first home, in the midst of unpacking she accidentally knocks on the wall prompting a response from her unfamiliar neighbour. Bella however, has no idea who, or what lives next door...
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+            <!-- =====================================
+                 ORIGINAL NINE-PHOTO BTS ARCHIVE
+            ====================================== -->
+
+            <section
+                class="matrix-panel archive-section"
+                id="bts-archive"
+            >
+
+                <div class="panel-heading">
+                    :: BEHIND-THE-SCENES IMAGE ARCHIVE ::
+                </div>
+
+                <div class="archive-intro">
+                    09 IMAGE RECORDS FOUND // SELECT TO ENLARGE
+                </div>
+
+                <div class="gallery">
+
+                    <figure class="gallery-item">
+                        <img
+                            src="/knock-knock/images/bts1.webp"
+                            alt="Moving in."
+                            onclick="openLightbox(this.src)"
+                        >
+                        <figcaption>Moving in.</figcaption>
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            src="/knock-knock/images/bts2.webp"
+                            alt="Ready to go."
+                            onclick="openLightbox(this.src)"
+                        >
+                        <figcaption>Ready to go.</figcaption>
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            src="/knock-knock/images/bts3.webp"
+                            alt="Script changes."
+                            onclick="openLightbox(this.src)"
+                        >
+                        <figcaption>Script changes.</figcaption>
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            src="/knock-knock/images/bts4.webp"
+                            alt="Better see a doctor."
+                            onclick="openLightbox(this.src)"
+                        >
+                        <figcaption>Better see a doctor.</figcaption>
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            src="/knock-knock/images/bts5.webp"
+                            alt="The lure."
+                            onclick="openLightbox(this.src)"
+                        >
+                        <figcaption>The lure.</figcaption>
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            src="/knock-knock/images/bts6.webp"
+                            alt="Blank canvas."
+                            onclick="openLightbox(this.src)"
+                        >
+                        <figcaption>Blank canvas.</figcaption>
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            src="/knock-knock/images/bts7.webp"
+                            alt="Creating the wall effect."
+                            onclick="openLightbox(this.src)"
+                        >
+                        <figcaption>Creating the wall effect.</figcaption>
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            src="/knock-knock/images/bts8.webp"
+                            alt="Special fx shots."
+                            onclick="openLightbox(this.src)"
+                        >
+                        <figcaption>Special fx shots.</figcaption>
+                    </figure>
+
+                    <figure class="gallery-item">
+                        <img
+                            src="/knock-knock/images/bts9.webp"
+                            alt="Practical Poster."
+                            onclick="openLightbox(this.src)"
+                        >
+                        <figcaption>Practical Poster.</figcaption>
+                    </figure>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================
+                 ORIGINAL FOOTER LINKS
+            ====================================== -->
+
+            <section class="matrix-panel social-panel">
+
+                <div class="panel-heading">
+                    :: EXTERNAL LINKS ::
+                </div>
+
+                <div class="social-links">
+
+                    <a href="/contact">
+                        Contact
+                    </a>
+
+                    <a href="/physical/">
+                        Physical
+                    </a>
+
+                    <a
+                        href="https://paypal.me/ASmyth115"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        PayPal
+                    </a>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <footer class="site-footer">
+            ZEUSWEUSFILM // SERVER-14 // KNOCK KNOCK ARCHIVE
+        </footer>
+
+    </div>
+
+    <!-- =====================================
+         ORIGINAL IMAGE LIGHTBOX
+    ====================================== -->
+
+    <div
+        id="lightbox"
+        class="lightbox"
+        onclick="closeLightbox()"
+    >
+
+        <button
+            class="lightbox-close"
+            type="button"
+            onclick="closeLightbox()"
+            aria-label="Close image"
+        >
+            &times;
+        </button>
+
+        <img
+            id="lightbox-image"
+            src=""
+            alt=""
+            onclick="event.stopPropagation()"
+        >
+
+    </div>
+
+    <!-- =====================================
+         ORIGINAL PDF VIEWER
+    ====================================== -->
+
+    <div
+        id="pdf-lightbox"
+        class="pdf-lightbox"
+    >
+
+        <button
+            class="pdf-close"
+            type="button"
+            onclick="closePDF()"
+            aria-label="Close PDF"
+        >
+            &times;
+        </button>
+
+        <iframe
+            id="pdf-viewer"
+            title="Knock Knock Pre-Production Document"
+        ></iframe>
+
+    </div>
+
+    <script>
+
+        /* ============================================
+           ORIGINAL VIEW COUNTER SYSTEM
+
+           Worker URL, video IDs, cooldown,
+           and counting behaviour preserved.
+        ============================================ */
+
+        const VIEW_API_BASE =
+            "https://zeusweusfilm-views.adamjordan11549.workers.dev/views";
+
+        const VIEW_COOLDOWN_MS = 30 * 60 * 1000;
+
+        let currentVideoId = "knock-knock-film";
+
+        function formatViewCount(views) {
+            return views + (views === 1 ? " view" : " views");
+        }
+
+        async function loadViewCount(videoId) {
+
+            const viewCount =
+                document.getElementById("view-count");
+
+            try {
+
+                const response =
+                    await fetch(
+                        VIEW_API_BASE + "/" + videoId,
+                        {
+                            method: "GET",
+                            cache: "no-store"
+                        }
+                    );
+
+                if (!response.ok) {
+                    throw new Error("Could not load view count.");
+                }
+
+                const data = await response.json();
+
+                if (videoId === currentVideoId) {
+                    viewCount.textContent =
+                        formatViewCount(data.views);
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Failed to load view count:",
+                    error
+                );
+
+            }
+        }
+
+        async function countView(videoId) {
+
+            const storageKey =
+                "zeusweusfilm-view-" + videoId;
+
+            const now = Date.now();
+
+            const lastView =
+                Number(localStorage.getItem(storageKey)) || 0;
+
+            if (now - lastView < VIEW_COOLDOWN_MS) {
+                return;
+            }
+
+            try {
+
+                const response =
+                    await fetch(
+                        VIEW_API_BASE + "/" + videoId,
+                        {
+                            method: "POST"
+                        }
+                    );
+
+                if (!response.ok) {
+                    throw new Error("Could not count view.");
+                }
+
+                const data = await response.json();
+
+                localStorage.setItem(
+                    storageKey,
+                    String(now)
+                );
+
+                if (videoId === currentVideoId) {
+
+                    const viewCount =
+                        document.getElementById("view-count");
+
+                    viewCount.textContent =
+                        formatViewCount(data.views);
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Failed to count view:",
+                    error
+                );
+
+            }
+        }
+
+        /* ============================================
+           ORIGINAL VIDEO SWITCHING FUNCTION
+
+           Preserves:
+           - Four video sources
+           - Matching posters
+           - Matching descriptions
+           - Individual view counters
+           - No autoplay
+           - Scroll position
+        ============================================ */
+
+        function selectVideo(
+            button,
+            videoUrl,
+            posterUrl,
+            descriptionText,
+            videoId
+        ) {
+
+            const player =
+                document.getElementById("video-player");
+
+            const source =
+                document.getElementById("video-source");
+
+            const description =
+                document.getElementById("video-description");
+
+            const buttons =
+                document.querySelectorAll(".video-menu-button");
+
+            const scrollX = window.scrollX;
+            const scrollY = window.scrollY;
+
+            player.pause();
+
+            source.src = videoUrl;
+            player.poster = posterUrl;
+            description.textContent = descriptionText;
+
+            currentVideoId = videoId;
+
+            loadViewCount(currentVideoId);
+
+            player.load();
+
+            buttons.forEach(function(menuButton) {
+                menuButton.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            requestAnimationFrame(function() {
+
+                window.scrollTo(scrollX, scrollY);
+
+                requestAnimationFrame(function() {
+                    window.scrollTo(scrollX, scrollY);
+                });
+
+            });
+        }
+
+        /* ============================================
+           ORIGINAL IMAGE LIGHTBOX
+        ============================================ */
+
+        function openLightbox(src) {
+
+            const lightbox =
+                document.getElementById("lightbox");
+
+            const image =
+                document.getElementById("lightbox-image");
+
+            image.src = src;
+
+            lightbox.style.display = "flex";
+
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeLightbox() {
+
+            const lightbox =
+                document.getElementById("lightbox");
+
+            lightbox.style.display = "none";
+
+            document.body.style.overflow = "";
+        }
+
+        /* ============================================
+           ORIGINAL PDF VIEWER
+
+           PDF now loads from the live Knock Knock
+           directory because this page is /test3/.
+        ============================================ */
+
+        function openPDF() {
+
+            const pdfLightbox =
+                document.getElementById("pdf-lightbox");
+
+            const pdfViewer =
+                document.getElementById("pdf-viewer");
+
+            pdfViewer.src =
+                "/knock-knock/Knock%20Knock%20Pre-Production%20Document.pdf";
+
+            pdfLightbox.style.display = "block";
+
+            document.body.style.overflow = "hidden";
+        }
+
+        function closePDF() {
+
+            const pdfLightbox =
+                document.getElementById("pdf-lightbox");
+
+            const pdfViewer =
+                document.getElementById("pdf-viewer");
+
+            pdfLightbox.style.display = "none";
+
+            pdfViewer.src = "";
+
+            document.body.style.overflow = "";
+        }
+
+        /* ============================================
+           ORIGINAL VIDEO PLAY EVENT
+        ============================================ */
+
+        const videoPlayer =
+            document.getElementById("video-player");
+
+        videoPlayer.addEventListener(
+            "play",
+            function() {
+                countView(currentVideoId);
+            }
+        );
+
+        loadViewCount(currentVideoId);
+
+        /* ============================================
+           ESCAPE KEY CLOSES BOTH VIEWERS
+        ============================================ */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+                    closeLightbox();
+                    closePDF();
+                }
+
+            }
+        );
+
+        /* ============================================
+           SERVER-14 SIGNAL INDICATOR
+
+           Visual effect only.
+           No additional backend connection.
+        ============================================ */
+
+        (function() {
+
+            "use strict";
+
+            const signalValue =
+                document.getElementById("signalValue");
+
+            if (!signalValue) {
+                return;
+            }
+
+            setInterval(function() {
+
+                const signal =
+                    57 + Math.floor(Math.random() * 18);
+
+                signalValue.textContent = signal;
+
+            }, 9000);
+
+        })();
+
+    </script>
+
+</body>
+
+</html>
