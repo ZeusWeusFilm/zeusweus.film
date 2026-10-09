@@ -1,0 +1,2198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ZEUSWEUSFILM // EXTERNAL ACCESS</title>
+
+<style>
+
+/* =====================================================
+   ZEUSWEUSFILM
+   EXTERNAL ACCESS TERMINAL
+   EXPERIMENTAL BUILD 001
+
+   THIS PAGE IS A FICTIONAL TRANSMISSION.
+   NO ACTUAL SYSTEM ACCESS IS PERFORMED.
+===================================================== */
+
+:root {
+    --black: #050605;
+    --dark: #10140f;
+    --panel: #171b15;
+    --green: #a6b884;
+    --bright: #d4e6a5;
+    --dim: #69785a;
+    --red: #b34236;
+    --amber: #c7a56a;
+    --border: #48523e;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #080a07;
+    color: var(--green);
+    font-family: "Courier New", monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* OLD MONITOR TEXTURE */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0,0,0,0.12) 4px
+    );
+    opacity: 0.5;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 45%,
+        rgba(0,0,0,0.5) 100%
+    );
+}
+
+a {
+    color: #b8d2ff;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #fff;
+    background: #493e28;
+}
+
+button {
+    font-family: "Courier New", monospace;
+    cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+
+::selection {
+    background: var(--green);
+    color: black;
+}
+
+/* HEADER */
+
+.top-warning {
+    background: #26120f;
+    border-bottom: 2px solid #8b3028;
+    color: #df8b77;
+    padding: 7px 12px;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+
+.site-wrap {
+    width: min(1080px, calc(100% - 24px));
+    margin: 20px auto 60px;
+    border: 2px ridge #59644d;
+    background: #10140f;
+    box-shadow:
+        0 0 0 5px #080a07,
+        0 0 45px rgba(115,140,80,0.1);
+}
+
+.masthead {
+    padding: 25px 20px 20px;
+    text-align: center;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(255,255,255,0.015) 0px,
+            rgba(255,255,255,0.015) 1px,
+            transparent 1px,
+            transparent 8px
+        ),
+        linear-gradient(#20291b, #0c100b);
+    border-bottom: 3px double #718065;
+}
+
+.masthead .small {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #82916f;
+}
+
+.logo {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(34px, 7vw, 76px);
+    font-weight: 900;
+    letter-spacing: -4px;
+    line-height: 1.1;
+    margin: 15px 0 5px;
+    color: #c2cbb4;
+    text-shadow:
+        2px 2px 0 #405038,
+        4px 4px 0 #1d291a,
+        0 0 22px rgba(180,200,150,0.2);
+}
+
+.logo span {
+    color: #a94337;
+}
+
+.subtitle {
+    color: #9ca98d;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-top: 12px;
+}
+
+.connection {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 6px 12px;
+    border: 1px solid #647758;
+    background: #0b1109;
+    color: #c0df9a;
+    font-size: 11px;
+}
+
+.led {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: #a5dc74;
+    border-radius: 50%;
+    margin-right: 7px;
+    box-shadow: 0 0 9px #a5dc74;
+    animation: blink 2.7s infinite;
+}
+
+@keyframes blink {
+    0%, 86%, 100% { opacity: 1; }
+    87%, 93% { opacity: 0.15; }
+}
+
+/* NAVIGATION */
+
+.old-nav {
+    padding: 10px;
+    text-align: center;
+    background: #232a1f;
+    border-bottom: 2px solid #65705a;
+    font-size: 12px;
+}
+
+.old-nav a {
+    display: inline-block;
+    margin: 3px;
+    padding: 5px 9px;
+    color: #d1d7bd;
+    background: #313b2b;
+    border: 2px outset #718064;
+    text-decoration: none;
+}
+
+.old-nav a:hover {
+    border-style: inset;
+    color: #fff;
+    background: #45533c;
+}
+
+.ticker {
+    background: #080b07;
+    border-bottom: 1px solid #536047;
+    color: #c7b58b;
+    padding: 5px 0;
+    font-size: 11px;
+}
+
+/* MAIN LAYOUT */
+
+.layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px;
+}
+
+.sidebar,
+.main-column {
+    min-width: 0;
+}
+
+.box {
+    border: 1px solid #536048;
+    background: #151a13;
+    margin-bottom: 12px;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.35);
+}
+
+.box-title {
+    background: #36412f;
+    color: #d8e2c8;
+    border-bottom: 1px solid #66775b;
+    padding: 5px 8px;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.box-content {
+    padding: 12px;
+}
+
+.status-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    border-bottom: 1px dotted #3d4836;
+    padding: 6px 0;
+    font-size: 11px;
+}
+
+.status-line strong {
+    color: #c2d9a4;
+    text-align: right;
+}
+
+.red {
+    color: #d56c60 !important;
+}
+
+.amber {
+    color: var(--amber) !important;
+}
+
+.green {
+    color: #b4d892 !important;
+}
+
+.sidebar-link {
+    display: block;
+    padding: 7px 3px;
+    border-bottom: 1px dotted #45513c;
+    font-size: 12px;
+}
+
+.sidebar-link::before {
+    content: "> ";
+    color: #a3a98a;
+}
+
+.sidebar-note {
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: #929a83;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.visitor-counter {
+    text-align: center;
+    padding: 10px 0;
+    background: #080a08;
+    border: 1px inset #6d7763;
+    font-family: "Courier New", monospace;
+    font-size: 22px;
+    color: #e0a76a;
+    letter-spacing: 4px;
+    text-shadow: 0 0 8px #a76335;
+}
+
+.tiny {
+    font-size: 10px;
+    color: #87917a;
+}
+
+.center {
+    text-align: center;
+}
+
+/* INTRODUCTION */
+
+.welcome {
+    border: 1px solid #57644c;
+    background: #1b2118;
+    padding: 15px;
+    margin-bottom: 12px;
+}
+
+.welcome h2 {
+    margin: 0 0 10px;
+    color: #d2d8c1;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    font-weight: normal;
+}
+
+.welcome p {
+    margin: 8px 0;
+}
+
+.notice {
+    color: #c8ae84;
+    font-size: 11px;
+    border-left: 3px solid #9d7b4e;
+    padding-left: 10px;
+    margin-top: 15px;
+}
+
+/* BROADCAST MONITOR */
+
+.monitor-frame {
+    border: 8px ridge #4b5145;
+    background: #292c26;
+    padding: 12px;
+    box-shadow:
+        inset 0 0 20px black,
+        0 8px 20px rgba(0,0,0,0.5);
+}
+
+.monitor-label {
+    display: flex;
+    justify-content: space-between;
+    color: #a9aa99;
+    font-size: 10px;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+}
+
+.screen {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    max-height: 390px;
+    background: #060906;
+    border: 5px solid #090b09;
+    outline: 1px solid #65705e;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 8;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 0px,
+        rgba(0,0,0,0) 3px,
+        rgba(0,0,0,0.28) 4px
+    );
+}
+
+.screen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 9;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 35%,
+        rgba(0,0,0,0.65) 100%
+    );
+}
+
+.screen-noise {
+    position: absolute;
+    inset: -20%;
+    z-index: 7;
+    pointer-events: none;
+    opacity: 0.12;
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            #b5c5a1 3px,
+            transparent 4px
+        );
+    animation: noiseMove 0.19s steps(3) infinite;
+}
+
+@keyframes noiseMove {
+    0% { transform: translate(0,0); }
+    25% { transform: translate(2%, -2%); }
+    50% { transform: translate(-1%, 2%); }
+    75% { transform: translate(1%, 1%); }
+    100% { transform: translate(0,0); }
+}
+
+.channel {
+    position: absolute;
+    inset: 0;
+    display: none;
+}
+
+.channel.active {
+    display: flex;
+}
+
+/* CHANNEL 00: IDIR WOODLAND */
+
+.forest-channel {
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(
+            ellipse at 50% 38%,
+            #61715c 0%,
+            #293b31 26%,
+            #0d1915 65%,
+            #030705 100%
+        );
+}
+
+.forest-channel svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    filter: contrast(1.2) saturate(0.5);
+}
+
+.forest-message {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: #d5e5cc;
+    text-shadow: 0 2px 8px black;
+    letter-spacing: 2px;
+    padding: 15px;
+}
+
+.forest-message h3 {
+    font-family: Georgia, serif;
+    font-weight: normal;
+    font-size: clamp(20px, 4vw, 38px);
+    margin: 0 0 10px;
+    letter-spacing: 6px;
+}
+
+.forest-message p {
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+.mystery-mark {
+    position: absolute;
+    z-index: 5;
+    right: 17%;
+    bottom: 28%;
+    background: transparent;
+    color: rgba(204,230,186,0.2);
+    border: 0;
+    font-size: 24px;
+    text-shadow: 0 0 10px #d2f3b3;
+    transition: color 0.3s;
+}
+
+.mystery-mark:hover,
+.mystery-mark:focus-visible {
+    color: #d2f3b3;
+}
+
+/* CHANNEL 01-03 */
+
+.programme-channel {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    background:
+        repeating-linear-gradient(
+            125deg,
+            #111710 0px,
+            #111710 3px,
+            #1d291b 4px,
+            #0a1009 6px
+        );
+}
+
+.programme-channel h3 {
+    font-family: Georgia, serif;
+    color: #d4dac9;
+    font-size: clamp(25px, 5vw, 42px);
+    line-height: 1.1;
+    margin: 20px 0 10px;
+}
+
+.programme-channel p {
+    color: #b0bf9d;
+    max-width: 340px;
+}
+
+.programme-channel a {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #a3b68f;
+    background: #111c10;
+    color: #e3efcb;
+    margin-top: 12px;
+    text-decoration: none;
+}
+
+.programme-channel a:hover {
+    background: #42563a;
+}
+
+.no-signal {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background: #050505;
+    color: #bd5d52;
+    letter-spacing: 3px;
+}
+
+.no-signal h3 {
+    font-size: 24px;
+    animation: blinkText 3s infinite;
+}
+
+@keyframes blinkText {
+    0%, 92%, 100% { opacity: 1; }
+    93%, 97% { opacity: 0.1; }
+}
+
+.screen-overlay {
+    position: absolute;
+    z-index: 10;
+    left: 12px;
+    top: 10px;
+    font-size: 11px;
+    color: #d4e5bd;
+    text-shadow: 0 0 5px black;
+    pointer-events: none;
+}
+
+.screen-bottom {
+    position: absolute;
+    z-index: 10;
+    left: 12px;
+    bottom: 9px;
+    font-size: 9px;
+    color: #b3c4a3;
+    letter-spacing: 2px;
+    pointer-events: none;
+}
+
+.screen-glitch {
+    animation: screenGlitch 0.24s linear;
+}
+
+@keyframes screenGlitch {
+    0% { filter: brightness(2) contrast(2); transform: translateX(3px); }
+    35% { filter: invert(1); transform: translateX(-4px); }
+    70% { filter: brightness(0.1); transform: translateX(2px); }
+    100% { filter: none; transform: none; }
+}
+
+.controls {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 13px 0 5px;
+}
+
+.channel-button {
+    background: #333a30;
+    color: #d5ddc8;
+    border: 2px outset #7c8973;
+    padding: 8px 11px;
+    font-size: 11px;
+}
+
+.channel-button:hover {
+    background: #526047;
+}
+
+.channel-button.selected {
+    border-style: inset;
+    background: #1a2418;
+    color: #c9eaa7;
+}
+
+.monitor-footer {
+    text-align: center;
+    font-size: 10px;
+    color: #999f90;
+    margin-top: 10px;
+}
+
+/* TRANSMISSION LOG */
+
+.log {
+    height: 150px;
+    overflow-y: auto;
+    padding: 10px;
+    background: #070a06;
+    color: #9eb58c;
+    font-size: 11px;
+    border: 1px inset #4b5841;
+}
+
+.log-entry {
+    margin-bottom: 5px;
+}
+
+.log-time {
+    color: #6c8162;
+}
+
+.log-alert {
+    color: #d48170;
+}
+
+/* BOTTOM CONTENT */
+
+.lower-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.document {
+    background: #b8b49d;
+    color: #29291f;
+    padding: 16px;
+    font-family: "Times New Roman", serif;
+    font-size: 15px;
+    box-shadow: inset 0 0 18px rgba(54,48,28,0.25);
+    transform: rotate(-0.5deg);
+}
+
+.document h3 {
+    margin-top: 0;
+    font-size: 19px;
+    text-decoration: underline;
+}
+
+.document small {
+    font-family: "Courier New", monospace;
+    font-size: 10px;
+}
+
+.document button {
+    background: #d3ccb3;
+    border: 1px solid #4a493c;
+    padding: 5px 8px;
+    color: #29291f;
+}
+
+.archive-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.archive-list li {
+    padding: 7px 0;
+    border-bottom: 1px dotted #46523f;
+}
+
+.archive-list a {
+    font-size: 12px;
+}
+
+/* HIDDEN TERMINAL */
+
+.terminal-cover {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0,0,0,0.88);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.terminal-cover.open {
+    display: flex;
+}
+
+.terminal-window {
+    width: min(550px, 100%);
+    border: 3px ridge #879777;
+    background: #071007;
+    box-shadow: 0 0 45px rgba(100,160,80,0.15);
+}
+
+.terminal-heading {
+    background: #46543d;
+    color: #e0ead1;
+    padding: 7px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.terminal-heading button {
+    background: #aebba2;
+    border: 2px outset #d5dfcb;
+    color: #111;
+    font-weight: bold;
+}
+
+.terminal-body {
+    padding: 20px;
+    min-height: 250px;
+    color: #b8dba4;
+}
+
+.terminal-body input {
+    width: 100%;
+    background: #030703;
+    color: #c4e8b0;
+    border: 1px solid #6e9361;
+    padding: 10px;
+    font-family: "Courier New", monospace;
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.terminal-body button.submit {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: #263a22;
+    color: #d6edc6;
+    border: 2px outset #66865b;
+}
+
+.terminal-result {
+    margin-top: 15px;
+    color: #d4b68a;
+    min-height: 35px;
+    white-space: pre-wrap;
+}
+
+/* FOOTER */
+
+.site-footer {
+    border-top: 3px double #637159;
+    text-align: center;
+    background: #0b0e0a;
+    padding: 20px;
+    font-size: 10px;
+    color: #849177;
+    letter-spacing: 1px;
+}
+
+.site-footer .strange {
+    display: inline-block;
+    margin-top: 15px;
+    color: #364333;
+    text-decoration: none;
+    font-size: 9px;
+}
+
+.site-footer .strange:hover {
+    color: #c7dfb0;
+    background: transparent;
+}
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .main-column {
+        grid-row: 1;
+    }
+
+    .sidebar {
+        grid-row: 2;
+    }
+
+    .lower-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .logo {
+        letter-spacing: -2px;
+    }
+
+    .masthead .small,
+    .subtitle {
+        letter-spacing: 1px;
+    }
+
+    .monitor-frame {
+        padding: 6px;
+        border-width: 5px;
+    }
+
+    .screen {
+        border-width: 3px;
+    }
+
+    .channel-button {
+        padding: 9px;
+        flex: 1 1 70px;
+    }
+
+    .site-wrap {
+        width: calc(100% - 12px);
+        margin-top: 8px;
+    }
+
+    .layout {
+        padding: 7px;
+        gap: 7px;
+    }
+
+    .forest-message h3 {
+        letter-spacing: 3px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="top-warning">
+    WARNING: EXTERNAL SIGNAL DETECTED // SOURCE UNVERIFIED
+</div>
+
+<div class="site-wrap">
+
+    <!-- HEADER -->
+
+    <header class="masthead">
+
+        <div class="small">
+            INDEPENDENT TRANSMISSION SERVICE
+        </div>
+
+        <h1 class="logo">
+            ZEUSWEUS<span>FILM</span>
+        </h1>
+
+        <div class="subtitle">
+            BROADCASTING BEYOND ESTABLISHED BOUNDARIES
+        </div>
+
+        <div class="connection">
+            <span class="led"></span>
+            EXTERNAL CONNECTION ESTABLISHED
+            &nbsp; // &nbsp;
+            SIGNAL <span id="signalValue">63</span>%
+        </div>
+
+    </header>
+
+    <!-- OLD WEB NAVIGATION -->
+
+    <nav class="old-nav" aria-label="Main navigation">
+
+        <a href="#broadcast">BROADCAST</a>
+        <a href="#archive">PROGRAMMES</a>
+        <a href="#documents">DOCUMENTS</a>
+        <a href="#station">STATION INFO</a>
+        <a href="#" id="terminalNav">SYSTEM ACCESS</a>
+
+    </nav>
+
+    <div class="ticker">
+        <marquee scrollamount="3">
+            *** ZEUSWEUSFILM TRANSMISSION SERVICE ***
+            PLEASE REMAIN CONNECTED ***
+            THE OPERATOR IS CURRENTLY UNAVAILABLE ***
+            REPORT ALL UNUSUAL ACTIVITY TO MANAGEMENT ***
+            DO NOT FOLLOW THE LIGHTS BEYOND THE TREE LINE ***
+            THANK YOU FOR VIEWING ***
+        </marquee>
+    </div>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <section class="box" id="station">
+
+                <div class="box-title">
+                    :: STATION STATUS ::
+                </div>
+
+                <div class="box-content">
+
+                    <div class="status-line">
+                        <span>NETWORK</span>
+                        <strong class="green">ONLINE</strong>
+                    </div>
+
+                    <div class="status-line">
+                        <span>ORIGIN</span>
+                        <strong>IDIR</strong>
+                    </div>
+
+                    <div class="status-line">
+                        <span>FACILITY</span>
+                        <strong class="amber">UNKNOWN</strong>
+                    </div>
+
+                    <div class="status-line">
+                        <span>PERSONNEL</span>
+                        <strong class="red">UNCONFIRMED</strong>
+                    </div>
+
+                    <div class="status-line">
+                        <span>TRANSMITTER</span>
+                        <strong>ACTIVE</strong>
+                    </div>
+
+                    <div class="status-line">
+                        <span>RECEIVER</span>
+                        <strong>YOU</strong>
+                    </div>
+
+                    <p class="tiny" style="margin-top:15px;">
+                        Connection parameters are subject to
+                        change without notification.
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section class="box">
+
+                <div class="box-title">
+                    :: QUICK LINKS ::
+                </div>
+
+                <div class="box-content">
+
+                    <a class="sidebar-link" href="#broadcast">
+                        Live Receiver
+                    </a>
+
+                    <a class="sidebar-link" href="#archive">
+                        Programme Index
+                    </a>
+
+                    <a class="sidebar-link" href="#documents">
+                        Public Notices
+                    </a>
+
+                    <a class="sidebar-link" href="#" id="terminalSidebar">
+                        Restricted Access
+                    </a>
+
+                    <a class="sidebar-link" href="#" id="incidentLink">
+                        Incident 017
+                    </a>
+
+                </div>
+
+            </section>
+
+            <section class="box">
+
+                <div class="box-title">
+                    :: VISITOR REGISTER ::
+                </div>
+
+                <div class="box-content">
+
+                    <div class="center tiny">
+                        CONNECTION NUMBER
+                    </div>
+
+                    <div class="visitor-counter" id="visitorCounter">
+                        000000
+                    </div>
+
+                    <p class="tiny center">
+                        This number is not a reliable
+                        indication of attendance.
+                    </p>
+
+                </div>
+
+            </section>
+
+            <section class="box">
+
+                <div class="box-title">
+                    :: OPERATOR'S MESSAGE ::
+                </div>
+
+                <div class="box-content sidebar-note">
+
+                    Welcome to our website.
+
+                    <br><br>
+
+                    We apologise for the condition
+                    of certain pages.
+
+                    <br><br>
+
+                    Repairs are ongoing.
+
+                    <br><br>
+
+                    Please do not contact the
+                    former administrator.
+
+                    <br><br>
+
+                    <span style="color:#c4cdb4;">
+                        — Management
+                    </span>
+
+                </div>
+
+            </section>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+
+        <main class="main-column">
+
+            <section class="welcome">
+
+                <h2>Welcome, External Visitor.</h2>
+
+                <p>
+                    You have successfully established a connection
+                    to the <strong>ZeusWeusFilm Independent
+                    Broadcasting Service.</strong>
+                </p>
+
+                <p>
+                    This website is maintained using equipment
+                    of uncertain origin and is made available
+                    for the purposes of entertainment,
+                    documentation and public information.
+                </p>
+
+                <p class="notice">
+                    NOTICE: The transmission may contain
+                    materials originating outside your
+                    recognised geographic jurisdiction.
+                    Management does not consider this a fault.
+                </p>
+
+            </section>
+
+            <!-- TELEVISION -->
+
+            <section class="box" id="broadcast">
+
+                <div class="box-title">
+                    :: EXTERNAL BROADCAST RECEIVER // UNIT 04 ::
+                </div>
+
+                <div class="box-content">
+
+                    <div class="monitor-frame">
+
+                        <div class="monitor-label">
+                            <span>ZWF / VIDEO MONITOR</span>
+                            <span>POWER ●</span>
+                        </div>
+
+                        <div class="screen" id="screen">
+
+                            <div class="screen-noise"></div>
+
+                            <div class="screen-overlay" id="channelDisplay">
+                                CH 00
+                            </div>
+
+                            <div class="screen-bottom">
+                                EXT. SIGNAL / IDIR / PAL-?
+                            </div>
+
+                            <!-- CHANNEL ZERO -->
+
+                            <div class="channel forest-channel active"
+                                 data-channel="0">
+
+                                <svg viewBox="0 0 800 500"
+                                     preserveAspectRatio="xMidYMid slice"
+                                     aria-hidden="true">
+
+                                    <defs>
+
+                                        <linearGradient id="sky"
+                                                        x1="0" y1="0"
+                                                        x2="0" y2="1">
+                                            <stop offset="0%"
+                                                  stop-color="#66735f"/>
+                                            <stop offset="60%"
+                                                  stop-color="#26382d"/>
+                                            <stop offset="100%"
+                                                  stop-color="#060d09"/>
+                                        </linearGradient>
+
+                                        <filter id="blur">
+                                            <feGaussianBlur stdDeviation="12"/>
+                                        </filter>
+
+                                    </defs>
+
+                                    <rect width="800" height="500"
+                                          fill="url(#sky)"/>
+
+                                    <!-- DISTANT PALE LIGHT -->
+
+                                    <ellipse cx="390" cy="210"
+                                             rx="175" ry="115"
+                                             fill="#9aaa8d"
+                                             opacity="0.19"
+                                             filter="url(#blur)"/>
+
+                                    <!-- DISTANT TREES -->
+
+                                    <g fill="#1b2a21" opacity="0.75">
+
+                                        <path d="M20 500 L30 70 L40 500 Z"/>
+                                        <path d="M100 500 L125 30 L145 500 Z"/>
+                                        <path d="M210 500 L225 100 L245 500 Z"/>
+                                        <path d="M560 500 L575 80 L595 500 Z"/>
+                                        <path d="M690 500 L710 40 L730 500 Z"/>
+                                        <path d="M760 500 L775 110 L790 500 Z"/>
+
+                                    </g>
+
+                                    <!-- CENTRAL DISTANT STRUCTURE -->
+
+                                    <g opacity="0.65">
+
+                                        <rect x="345" y="275"
+                                              width="110" height="100"
+                                              fill="#101813"/>
+
+                                        <path d="M330 275 L400 230 L470 275 Z"
+                                              fill="#111b14"/>
+
+                                        <rect x="392" y="305"
+                                              width="20" height="30"
+                                              fill="#bdc9a3"
+                                              opacity="0.5"/>
+
+                                        <path d="M399 230 L399 145"
+                                              stroke="#1b241d"
+                                              stroke-width="4"/>
+
+                                        <path d="M399 145 L375 160 M399 145 L423 160"
+                                              stroke="#1b241d"
+                                              stroke-width="3"/>
+
+                                    </g>
+
+                                    <!-- FOREGROUND TREES -->
+
+                                    <g fill="none"
+                                       stroke="#080f0b"
+                                       stroke-linecap="square">
+
+                                        <path d="M65 520 L95 -30"
+                                              stroke-width="34"/>
+                                        <path d="M95 160 L-20 65 M95 215 L200 95"
+                                              stroke-width="15"/>
+
+                                        <path d="M250 520 L230 -40"
+                                              stroke-width="24"/>
+                                        <path d="M235 155 L135 20 M240 220 L325 90"
+                                              stroke-width="11"/>
+
+                                        <path d="M590 520 L615 -40"
+                                              stroke-width="35"/>
+                                        <path d="M605 155 L500 45 M602 235 L730 80"
+                                              stroke-width="16"/>
+
+                                        <path d="M770 520 L745 -40"
+                                              stroke-width="45"/>
+                                        <path d="M755 190 L650 65"
+                                              stroke-width="18"/>
+
+                                    </g>
+
+                                    <!-- GROUND -->
+
+                                    <path d="M0 405 Q160 360 320 400
+                                             Q470 370 610 410
+                                             Q710 385 800 400
+                                             L800 500 L0 500 Z"
+                                          fill="#07100b"/>
+
+                                    <!-- UNKNOWN FIGURE -->
+
+                                    <g fill="#030503" opacity="0.9">
+                                        <ellipse cx="526" cy="344"
+                                                 rx="7" ry="11"/>
+                                        <path d="M521 354 L531 354
+                                                 L536 391 L516 391 Z"/>
+                                    </g>
+
+                                </svg>
+
+                                <div class="forest-message">
+
+                                    <h3>IDIR</h3>
+
+                                    <p>
+                                        TRANSMISSION ORIGIN
+                                    </p>
+
+                                    <p style="margin-top:30px;">
+                                        [ LOCATION UNVERIFIED ]
+                                    </p>
+
+                                </div>
+
+                                <button class="mystery-mark"
+                                        id="forestSecret"
+                                        aria-label="Inspect the distant signal">
+                                    †
+                                </button>
+
+                            </div>
+
+                            <!-- CHANNEL ONE -->
+
+                            <div class="channel programme-channel"
+                                 data-channel="1">
+
+                                <div class="tiny">
+                                    ZWF ARCHIVE // PROGRAMME 001
+                                </div>
+
+                                <h3>HAUNT-A-FILES</h3>
+
+                                <p>
+                                    Investigations into unusual
+                                    and poorly documented phenomena.
+                                </p>
+
+                                <a href="/haunt-a-files/">
+                                    ACCESS PROGRAMME
+                                </a>
+
+                            </div>
+
+                            <!-- CHANNEL TWO -->
+
+                            <div class="channel programme-channel"
+                                 data-channel="2">
+
+                                <div class="tiny">
+                                    ZWF ARCHIVE // PROGRAMME 002
+                                </div>
+
+                                <h3>FRIED OUT</h3>
+
+                                <p>
+                                    Selected comedy transmissions
+                                    approved for external viewing.
+                                </p>
+
+                                <a href="/fried-out/">
+                                    ACCESS PROGRAMME
+                                </a>
+
+                            </div>
+
+                            <!-- CHANNEL THREE -->
+
+                            <div class="channel programme-channel"
+                                 data-channel="3">
+
+                                <div class="tiny">
+                                    ZWF ARCHIVE // PROGRAMME 003
+                                </div>
+
+                                <h3>KNOCK KNOCK</h3>
+
+                                <p>
+                                    Feature presentation.
+                                    Distribution authorised.
+                                </p>
+
+                                <a href="/knock-knock/">
+                                    ACCESS PROGRAMME
+                                </a>
+
+                            </div>
+
+                            <!-- CHANNEL FOUR -->
+
+                            <div class="channel no-signal"
+                                 data-channel="4">
+
+                                <h3>NO SIGNAL</h3>
+
+                                <p style="font-size:11px;">
+                                    CHANNEL NOT ALLOCATED
+                                </p>
+
+                                <p style="font-size:10px;color:#626962;">
+                                    PLEASE DO NOT ATTEMPT TO
+                                    RESTORE THIS FREQUENCY
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        <div class="controls">
+
+                            <button class="channel-button selected"
+                                    data-select="0">
+                                CH 00
+                            </button>
+
+                            <button class="channel-button"
+                                    data-select="1">
+                                CH 01
+                            </button>
+
+                            <button class="channel-button"
+                                    data-select="2">
+                                CH 02
+                            </button>
+
+                            <button class="channel-button"
+                                    data-select="3">
+                                CH 03
+                            </button>
+
+                            <button class="channel-button"
+                                    data-select="4">
+                                CH 04
+                            </button>
+
+                        </div>
+
+                        <div class="monitor-footer">
+                            ZEUSWEUSFILM RECEIVING APPARATUS
+                            <br>
+                            PROPERTY OF MANAGEMENT —
+                            DO NOT ADJUST
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- LOG -->
+
+            <section class="box">
+
+                <div class="box-title">
+                    :: LIVE TRANSMISSION LOG ::
+                </div>
+
+                <div class="box-content">
+
+                    <div class="log"
+                         id="transmissionLog"
+                         aria-live="polite">
+
+                        <div class="log-entry">
+                            <span class="log-time">[--:--:--]</span>
+                            INITIALISING EXTERNAL RECEIVER...
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- LOWER SECTIONS -->
+
+            <div class="lower-grid">
+
+                <section class="box" id="documents">
+
+                    <div class="box-title">
+                        :: PUBLIC NOTICE ::
+                    </div>
+
+                    <div class="box-content">
+
+                        <div class="document">
+
+                            <small>
+                                ZEUSWEUSFILM / INTERNAL CIRCULAR
+                            </small>
+
+                            <h3>NOTICE TO VISITORS</h3>
+
+                            <p>
+                                Members of the public are
+                                reminded that the woodland
+                                surrounding the transmission
+                                facility is not accessible
+                                through this service.
+                            </p>
+
+                            <p>
+                                Reports of individuals
+                                appearing within the received
+                                picture are being investigated.
+                            </p>
+
+                            <p>
+                                Please refrain from attempting
+                                to identify them.
+                            </p>
+
+                            <p>
+                                <strong>BY ORDER OF MANAGEMENT</strong>
+                            </p>
+
+                            <button id="documentButton">
+                                ACKNOWLEDGE
+                            </button>
+
+                            <p id="documentResponse"
+                               style="font-size:12px;"></p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="box" id="archive">
+
+                    <div class="box-title">
+                        :: PROGRAMME ARCHIVE ::
+                    </div>
+
+                    <div class="box-content">
+
+                        <p class="tiny">
+                            THE FOLLOWING MATERIALS HAVE
+                            BEEN CLEARED FOR PUBLIC ACCESS.
+                        </p>
+
+                        <ul class="archive-list">
+
+                            <li>
+                                <a href="/haunt-a-files/">
+                                    [001] HAUNT-A-FILES
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/fried-out/">
+                                    [002] FRIED OUT
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/knock-knock/">
+                                    [003] KNOCK KNOCK
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" id="archive004">
+                                    [004] ██████████
+                                </a>
+                            </li>
+
+                        </ul>
+
+                        <p class="tiny"
+                           style="margin-top:25px;">
+
+                            ARCHIVE LAST VERIFIED:
+                            UNKNOWN
+
+                            <br><br>
+
+                            ADDITIONAL RECORDINGS MAY
+                            BECOME AVAILABLE WITHOUT
+                            PRIOR ANNOUNCEMENT.
+
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <footer class="site-footer">
+
+        <div>
+            ZEUSWEUSFILM INDEPENDENT BROADCASTING SERVICE
+        </div>
+
+        <div style="margin-top:8px;">
+            © ZEUSWEUSFILM —
+            ALL TRANSMISSIONS REMAIN THE PROPERTY
+            OF THEIR RESPECTIVE ORIGINS
+        </div>
+
+        <div style="margin-top:12px;">
+            BEST VIEWED WITH A FUNCTIONING RECEIVER
+        </div>
+
+        <div style="margin-top:12px;color:#56624d;">
+            THIS SERVICE IS NOT AFFILIATED WITH
+            ANY RECOGNISED BROADCASTING AUTHORITY
+        </div>
+
+        <a href="#" class="strange" id="footerSecret">
+            THERE IS NO TRANSMITTER
+        </a>
+
+    </footer>
+
+</div>
+
+<!-- HIDDEN TERMINAL -->
+
+<div class="terminal-cover"
+     id="terminalCover"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="terminalTitle">
+
+    <div class="terminal-window">
+
+        <div class="terminal-heading">
+
+            <strong id="terminalTitle">
+                ZWF INTERNAL ACCESS
+            </strong>
+
+            <button id="closeTerminal"
+                    aria-label="Close terminal">
+                X
+            </button>
+
+        </div>
+
+        <div class="terminal-body">
+
+            <div>
+                ZEUSWEUSFILM INTERNAL NETWORK
+            </div>
+
+            <div style="margin-top:8px;">
+                NODE: IDIR-04
+            </div>
+
+            <div style="margin-top:8px;color:#c98776;">
+                AUTHORISATION REQUIRED
+            </div>
+
+            <p style="margin-top:25px;">
+                ENTER ACCESS PHRASE:
+            </p>
+
+            <form id="terminalForm">
+
+                <input
+                    type="text"
+                    id="terminalInput"
+                    autocomplete="off"
+                    spellcheck="false"
+                    aria-label="Access phrase"
+                    placeholder="_"
+                >
+
+                <button type="submit" class="submit">
+                    TRANSMIT
+                </button>
+
+            </form>
+
+            <div class="terminal-result"
+                 id="terminalResult"
+                 aria-live="polite">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =====================================================
+   ZEUSWEUSFILM EXPERIMENTAL TRANSMISSION SCRIPT
+
+   All interactions are local browser effects.
+   No personal information is collected or sent.
+===================================================== */
+
+(function () {
+
+    "use strict";
+
+    const screen = document.getElementById("screen");
+    const channelDisplay = document.getElementById("channelDisplay");
+    const channels = document.querySelectorAll(".channel");
+    const channelButtons = document.querySelectorAll("[data-select]");
+    const logElement = document.getElementById("transmissionLog");
+
+    const terminalCover = document.getElementById("terminalCover");
+    const terminalInput = document.getElementById("terminalInput");
+    const terminalResult = document.getElementById("terminalResult");
+
+    let currentChannel = 0;
+    let logCount = 0;
+    let terminalTrigger = null;
+
+    /* ---------------------------------------------
+       LOG SYSTEM
+    --------------------------------------------- */
+
+    function timestamp() {
+
+        return new Date().toLocaleTimeString("en-GB", {
+            hour12: false
+        });
+
+    }
+
+    function addLog(message, alert = false) {
+
+        const entry = document.createElement("div");
+        entry.className = "log-entry";
+
+        const time = document.createElement("span");
+        time.className = "log-time";
+        time.textContent = "[" + timestamp() + "] ";
+
+        const content = document.createElement("span");
+
+        if (alert) {
+            content.className = "log-alert";
+        }
+
+        content.textContent = message;
+
+        entry.appendChild(time);
+        entry.appendChild(content);
+
+        logElement.appendChild(entry);
+
+        logElement.scrollTop = logElement.scrollHeight;
+
+        logCount++;
+
+        if (logCount > 60) {
+            const entries = logElement.querySelectorAll(".log-entry");
+
+            if (entries.length > 60) {
+                entries[0].remove();
+            }
+        }
+
+    }
+
+    /* ---------------------------------------------
+       INITIAL CONNECTION
+    --------------------------------------------- */
+
+    addLog("RECEIVER INITIALISED");
+    addLog("SEARCHING FOR AVAILABLE TRANSMISSIONS...");
+    addLog("SIGNAL ACQUIRED: IDIR-04");
+    addLog("EXTERNAL CONNECTION ACCEPTED");
+    addLog("MANAGEMENT HAS BEEN NOTIFIED");
+
+    /* ---------------------------------------------
+       CHANNEL SWITCHING
+    --------------------------------------------- */
+
+    function switchChannel(number) {
+
+        currentChannel = number;
+
+        screen.classList.remove("screen-glitch");
+
+        void screen.offsetWidth;
+
+        screen.classList.add("screen-glitch");
+
+        channels.forEach(function (channel) {
+
+            channel.classList.toggle(
+                "active",
+                Number(channel.dataset.channel) === number
+            );
+
+        });
+
+        channelButtons.forEach(function (button) {
+
+            button.classList.toggle(
+                "selected",
+                Number(button.dataset.select) === number
+            );
+
+        });
+
+        channelDisplay.textContent =
+            "CH " + String(number).padStart(2, "0");
+
+        addLog(
+            "RECEIVER TUNED TO CHANNEL " +
+            String(number).padStart(2, "0")
+        );
+
+        if (number === 4) {
+
+            addLog(
+                "WARNING: UNALLOCATED FREQUENCY SELECTED",
+                true
+            );
+
+        }
+
+        if (number === 0) {
+
+            addLog("TRANSMISSION ORIGIN: IDIR");
+
+        }
+
+    }
+
+    channelButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            switchChannel(Number(button.dataset.select));
+
+        });
+
+    });
+
+    screen.addEventListener("animationend", function () {
+
+        screen.classList.remove("screen-glitch");
+
+    });
+
+    /* ---------------------------------------------
+       SIGNAL INTEGRITY
+    --------------------------------------------- */
+
+    const signalValue = document.getElementById("signalValue");
+
+    setInterval(function () {
+
+        const signal = 57 + Math.floor(Math.random() * 18);
+
+        signalValue.textContent = signal;
+
+        if (signal < 60) {
+
+            addLog("SIGNAL DEGRADATION DETECTED");
+
+        }
+
+    }, 9000);
+
+    /* ---------------------------------------------
+       AMBIENT SYSTEM MESSAGES
+    --------------------------------------------- */
+
+    const ambientMessages = [
+
+        "RECEIVER CONNECTION REMAINS ACTIVE",
+
+        "BACKGROUND FREQUENCY SCAN COMPLETE",
+
+        "UNIDENTIFIED CARRIER DETECTED",
+
+        "OPERATOR RESPONSE PENDING",
+
+        "TRANSMISSION STABILITY WITHIN TOLERANCE",
+
+        "ARCHIVE PROCESS CONTINUES",
+
+        "EXTERNAL VIEWER STILL CONNECTED",
+
+        "AUTOMATED MAINTENANCE FAILED",
+
+        "SIGNAL ORIGIN UNCHANGED"
+
+    ];
+
+    setInterval(function () {
+
+        const index = Math.floor(
+            Math.random() * ambientMessages.length
+        );
+
+        addLog(ambientMessages[index]);
+
+    }, 16000);
+
+    /* ---------------------------------------------
+       FAKE VISITOR REGISTER
+
+       This is deliberately fictional.
+       It is not a real view counter.
+    --------------------------------------------- */
+
+    const visitorCounter = document.getElementById("visitorCounter");
+
+    const fictionalCounter =
+        4182 + Math.floor(Math.random() * 70);
+
+    visitorCounter.textContent =
+        String(fictionalCounter).padStart(6, "0");
+
+    /* ---------------------------------------------
+       TERMINAL WINDOW
+    --------------------------------------------- */
+
+    function openTerminal(trigger) {
+
+        terminalTrigger = trigger || document.activeElement;
+
+        terminalCover.classList.add("open");
+
+        terminalResult.textContent = "";
+
+        terminalInput.value = "";
+
+        setTimeout(function () {
+
+            terminalInput.focus();
+
+        }, 50);
+
+        addLog("INTERNAL ACCESS TERMINAL OPENED");
+
+    }
+
+    function closeTerminal() {
+
+        terminalCover.classList.remove("open");
+
+        if (terminalTrigger && terminalTrigger.focus) {
+            terminalTrigger.focus();
+        }
+
+    }
+
+    document.getElementById("terminalNav")
+        .addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            openTerminal(event.currentTarget);
+
+        });
+
+    document.getElementById("terminalSidebar")
+        .addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            openTerminal(event.currentTarget);
+
+        });
+
+    document.getElementById("closeTerminal")
+        .addEventListener("click", closeTerminal);
+
+    terminalCover.addEventListener("click", function (event) {
+
+        if (event.target === terminalCover) {
+            closeTerminal();
+        }
+
+    });
+
+    document.addEventListener("keydown", function (event) {
+
+        if (
+            event.key === "Escape" &&
+            terminalCover.classList.contains("open")
+        ) {
+
+            closeTerminal();
+
+        }
+
+        if (
+            event.key === "Tab" &&
+            terminalCover.classList.contains("open")
+        ) {
+
+            const focusable = Array.from(
+                terminalCover.querySelectorAll(
+                    "button, input"
+                )
+            );
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+
+                event.preventDefault();
+                last.focus();
+
+            } else if (
+                !event.shiftKey &&
+                document.activeElement === last
+            ) {
+
+                event.preventDefault();
+                first.focus();
+
+            }
+
+        }
+
+    });
+
+    /* ---------------------------------------------
+       ACCESS PHRASES
+    --------------------------------------------- */
+
+    document.getElementById("terminalForm")
+        .addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            const phrase = terminalInput.value
+                .trim()
+                .toUpperCase();
+
+            if (phrase === "IDIR") {
+
+                terminalResult.textContent =
+                    "ACCESS PHRASE RECOGNISED.\n\n" +
+                    "ORIGIN: IDIR\n" +
+                    "DESTINATION: UNRESOLVED\n\n" +
+                    "THE TRANSMISSION IS NOT COMING FROM " +
+                    "WHERE YOU THINK IT IS.";
+
+                addLog(
+                    "RESTRICTED PHRASE ACCEPTED: IDIR",
+                    true
+                );
+
+            } else if (phrase === "017") {
+
+                terminalResult.textContent =
+                    "INCIDENT 017\n\n" +
+                    "RECOVERY STATUS: INCOMPLETE\n\n" +
+                    "THE FIGURE WAS NOT PRESENT " +
+                    "IN THE ORIGINAL RECORDING.\n\n" +
+                    "FURTHER REVIEW HAS BEEN DISCONTINUED.";
+
+                addLog(
+                    "INCIDENT 017 RECORD ACCESSED",
+                    true
+                );
+
+            } else if (phrase === "MANAGEMENT") {
+
+                terminalResult.textContent =
+                    "MANAGEMENT IS CURRENTLY UNAVAILABLE.\n\n" +
+                    "PLEASE LEAVE THE EQUIPMENT RUNNING.";
+
+                addLog("MANAGEMENT QUERY RECEIVED");
+
+            } else if (phrase === "") {
+
+                terminalResult.textContent =
+                    "NO INPUT RECEIVED.";
+
+            } else {
+
+                terminalResult.textContent =
+                    "ACCESS DENIED.\n\n" +
+                    "THE SUBMITTED PHRASE HAS BEEN REJECTED.";
+
+                addLog("ACCESS REQUEST REJECTED");
+
+            }
+
+        });
+
+    /* ---------------------------------------------
+       ARG INTERACTIONS
+    --------------------------------------------- */
+
+    document.getElementById("forestSecret")
+        .addEventListener("click", function (event) {
+
+            addLog(
+                "UNREGISTERED OBJECT DETECTED IN IMAGE",
+                true
+            );
+
+            openTerminal(event.currentTarget);
+
+            terminalResult.textContent =
+                "IMAGE ANOMALY REGISTERED.\n\n" +
+                "REFERENCE: INCIDENT 017\n\n" +
+                "THE OPERATOR RECOMMENDS NO FURTHER ACTION.";
+
+        });
+
+    document.getElementById("incidentLink")
+        .addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            openTerminal(event.currentTarget);
+
+            terminalResult.textContent =
+                "RESTRICTED RECORD.\n\n" +
+                "ENTER THE INCIDENT NUMBER TO CONTINUE.";
+
+        });
+
+    document.getElementById("archive004")
+        .addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            addLog(
+                "ARCHIVE ENTRY 004 IS NOT AVAILABLE",
+                true
+            );
+
+            openTerminal(event.currentTarget);
+
+            terminalResult.textContent =
+                "FILE 004\n\n" +
+                "THIS RECORDING HAS BEEN WITHDRAWN.\n\n" +
+                "REASON: NOT PROVIDED.";
+
+        });
+
+    document.getElementById("footerSecret")
+        .addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            addLog(
+                "TRANSMITTER LOCATION QUERY DETECTED",
+                true
+            );
+
+            openTerminal(event.currentTarget);
+
+            terminalResult.textContent =
+                "TRANSMITTER INVENTORY:\n\n" +
+                "UNIT 01 - MISSING\n" +
+                "UNIT 02 - DISMANTLED\n" +
+                "UNIT 03 - NEVER INSTALLED\n" +
+                "UNIT 04 - CURRENTLY ACTIVE\n\n" +
+                "PLEASE DO NOT ASK HOW.";
+
+        });
+
+    /* ---------------------------------------------
+       MANAGEMENT NOTICE
+    --------------------------------------------- */
+
+    document.getElementById("documentButton")
+        .addEventListener("click", function () {
+
+            document.getElementById("documentResponse")
+                .textContent =
+                    "Acknowledgement received. " +
+                    "Your cooperation has been assumed.";
+
+            addLog("PUBLIC NOTICE ACKNOWLEDGED");
+
+        });
+
+    /* ---------------------------------------------
+       DELAYED TRANSMISSION MESSAGE
+    --------------------------------------------- */
+
+    setTimeout(function () {
+
+        addLog(
+            "NOTICE: EXTERNAL CONNECTION STILL PRESENT",
+            true
+        );
+
+    }, 45000);
+
+    setTimeout(function () {
+
+        addLog(
+            "OPERATOR HAS REQUESTED THAT YOU CONTINUE VIEWING"
+        );
+
+    }, 90000);
+
+})();
+
+</script>
+
+</body>
+</html>
