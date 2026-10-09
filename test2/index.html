@@ -17,25 +17,47 @@
         /* ============================================
            ZEUSWEUSFILM
            SERVER-14 // TEST 2
-           EXPERIMENTAL HYBRID BUILD 002
+           EXPERIMENTAL HYBRID BUILD 003
 
-           DIGITAL TYPOGRAPHY + PROJECT CRT TREATMENT
+           THE VOID MATRIX
 
            MAIN SITE: /
            EXPERIMENT: /test2/
         ============================================ */
 
         :root {
-            --background: #09070d;
-            --panel: #1a1422;
-            --panel-light: #30243c;
-            --border: #76618a;
-            --border-bright: #a38ab6;
+            --background: #030205;
+            --void: #050308;
+            --panel: #0a0610;
+            --panel-light: #1a1026;
+            --border: #654879;
+            --border-bright: #a17bc0;
             --text: #cbb6df;
             --text-bright: #eadbfa;
             --text-muted: #a592b5;
             --purple: #b995df;
             --red: #e34b56;
+
+            /* Digital matrix pattern */
+            --matrix-grid:
+                linear-gradient(
+                    rgba(143, 85, 190, 0.09) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(143, 85, 190, 0.09) 1px,
+                    transparent 1px
+                );
+
+            --matrix-background:
+                radial-gradient(
+                    ellipse at 50% 0%,
+                    rgba(93, 42, 142, 0.17),
+                    transparent 65%
+                ),
+                var(--matrix-grid),
+                #050308;
         }
 
         * {
@@ -96,7 +118,7 @@
             position: fixed;
             inset: 0;
 
-            background: rgba(9, 5, 15, 0.62);
+            background: rgba(4, 2, 8, 0.68);
 
             z-index: 1;
             pointer-events: none;
@@ -107,7 +129,9 @@
             z-index: 2;
         }
 
-        /* Very faint CRT lines */
+        /* ============================================
+           CRT SCANLINES
+        ============================================ */
 
         .scanlines {
             position: fixed;
@@ -133,7 +157,14 @@
         .top-warning {
             width: 100%;
 
-            background: #261329;
+            background:
+                linear-gradient(
+                    90deg,
+                    #08040c,
+                    #25102f,
+                    #08040c
+                );
+
             border-bottom: 2px solid #873f86;
 
             color: #e2b4ed;
@@ -146,7 +177,8 @@
             font-weight: bold;
             letter-spacing: 2px;
 
-            text-shadow: 0 0 7px rgba(197, 129, 241, 0.25);
+            text-shadow:
+                0 0 7px rgba(197, 129, 241, 0.25);
         }
 
         /* ============================================
@@ -158,13 +190,20 @@
 
             margin: 20px auto 60px;
 
-            background: rgba(19, 14, 26, 0.93);
+            background:
+                radial-gradient(
+                    ellipse at 50% 0%,
+                    rgba(86, 40, 126, 0.11),
+                    transparent 60%
+                ),
+                rgba(4, 2, 7, 0.95);
 
             border: 2px ridge #79658c;
 
             box-shadow:
-                0 0 0 5px rgba(8, 5, 12, 0.8),
-                0 0 45px rgba(152, 99, 205, 0.13);
+                0 0 0 5px rgba(0, 0, 0, 0.8),
+                0 0 45px rgba(152, 99, 205, 0.15),
+                inset 0 0 55px rgba(0, 0, 0, 0.7);
         }
 
         /* ============================================
@@ -177,19 +216,30 @@
             text-align: center;
 
             background:
-                repeating-linear-gradient(
-                    90deg,
-                    rgba(255, 255, 255, 0.018) 0px,
-                    rgba(255, 255, 255, 0.018) 1px,
-                    transparent 1px,
-                    transparent 8px
+                linear-gradient(
+                    rgba(145, 87, 190, 0.055) 1px,
+                    transparent 1px
                 ),
                 linear-gradient(
-                    rgba(48, 33, 60, 0.95),
-                    rgba(16, 12, 23, 0.95)
+                    90deg,
+                    rgba(145, 87, 190, 0.055) 1px,
+                    transparent 1px
+                ),
+                radial-gradient(
+                    ellipse at 50% 15%,
+                    #271435,
+                    #09050e 78%
                 );
 
+            background-size:
+                24px 24px,
+                24px 24px,
+                auto;
+
             border-bottom: 3px double #9374a8;
+
+            box-shadow:
+                inset 0 -25px 45px rgba(0, 0, 0, 0.65);
         }
 
         .brand-row {
@@ -313,14 +363,22 @@
 
             border: 1px solid #82669b;
 
-            background: #100b18;
+            background:
+                linear-gradient(
+                    rgba(130, 80, 170, 0.08) 1px,
+                    transparent 1px
+                ),
+                #06030b;
+
+            background-size: 100% 4px;
 
             color: #e0c5ff;
 
             font-size: 11px;
 
             box-shadow:
-                inset 0 0 10px rgba(146, 91, 209, 0.13);
+                inset 0 0 15px rgba(0, 0, 0, 0.7),
+                0 0 12px rgba(146, 91, 209, 0.09);
         }
 
         .led {
@@ -362,7 +420,13 @@
         ============================================ */
 
         .ticker {
-            background: #0c0911;
+            background:
+                linear-gradient(
+                    90deg,
+                    #050308,
+                    #150a20,
+                    #050308
+                );
 
             border-bottom: 1px solid #756087;
 
@@ -376,12 +440,29 @@
         }
 
         /* ============================================
-           CONTENT AREA
+           CONTENT AREA / VOID MATRIX
         ============================================ */
 
         .content {
             padding: 24px 18px 20px;
+
+            background:
+                linear-gradient(
+                    rgba(143, 85, 190, 0.035) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(143, 85, 190, 0.035) 1px,
+                    transparent 1px
+                );
+
+            background-size: 32px 32px;
         }
+
+        /* ============================================
+           SECTION HEADING
+        ============================================ */
 
         .section-heading {
             display: flex;
@@ -395,7 +476,13 @@
 
             margin-bottom: 20px;
 
-            background: #49375a;
+            background:
+                linear-gradient(
+                    90deg,
+                    #100818,
+                    #2b153b,
+                    #100818
+                );
 
             border: 1px solid #9478a9;
 
@@ -405,6 +492,10 @@
             font-weight: bold;
 
             letter-spacing: 1px;
+
+            box-shadow:
+                inset 0 0 14px rgba(0, 0, 0, 0.6),
+                0 0 12px rgba(149, 86, 200, 0.12);
         }
 
         .section-heading .right {
@@ -415,8 +506,7 @@
         }
 
         /* ============================================
-           ORIGINAL PROJECT GALLERY
-           DIGITAL / CRT IMAGE TREATMENT
+           PROJECT GALLERY
         ============================================ */
 
         .projects {
@@ -431,6 +521,10 @@
             gap: 15px;
         }
 
+        /* ============================================
+           PROJECT BOXES / BLACK VOID INTERIORS
+        ============================================ */
+
         .project {
             display: block;
 
@@ -444,34 +538,69 @@
 
             color: inherit;
 
-            background: rgba(25, 18, 34, 0.95);
+            background:
+                radial-gradient(
+                    ellipse at 50% 0%,
+                    rgba(116, 55, 163, 0.17),
+                    transparent 70%
+                ),
+                linear-gradient(
+                    rgba(143, 85, 190, 0.075) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(143, 85, 190, 0.075) 1px,
+                    transparent 1px
+                ),
+                #030205;
 
-            border: 2px outset #8b75a0;
+            background-size:
+                auto,
+                18px 18px,
+                18px 18px,
+                auto;
+
+            border: 2px outset #77578e;
 
             padding: 8px;
 
+            box-shadow:
+                inset 0 0 24px rgba(0, 0, 0, 0.8),
+                0 0 10px rgba(137, 78, 185, 0.12);
+
             transition:
                 background 0.2s ease,
-                border-color 0.2s ease;
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
         .project:hover {
-            background: #352544;
-
             border-style: inset;
             border-color: #c4a4e0;
+
+            box-shadow:
+                inset 0 0 28px rgba(82, 30, 132, 0.35),
+                0 0 17px rgba(166, 99, 222, 0.2);
         }
+
+        /* ============================================
+           DIGITAL PROJECT IMAGES
+        ============================================ */
 
         .project-image {
             position: relative;
 
             overflow: hidden;
 
-            background: #09070d;
+            background: #020104;
 
             border: 1px solid #4b3b59;
 
             isolation: isolate;
+
+            box-shadow:
+                inset 0 0 25px rgba(0, 0, 0, 0.7);
         }
 
         .project img {
@@ -490,8 +619,6 @@
                 opacity 0.3s ease,
                 filter 0.3s ease;
         }
-
-        /* Fine scanlines over each project image */
 
         .project-image::before {
             content: "";
@@ -512,8 +639,6 @@
 
             opacity: 0.6;
         }
-
-        /* Subtle violet CRT colour cast and edge glow */
 
         .project-image::after {
             content: "";
@@ -589,7 +714,7 @@
 
             padding: 3px 6px;
 
-            background: rgba(11, 7, 16, 0.85);
+            background: rgba(3, 1, 7, 0.92);
 
             border: 1px solid #79618c;
 
@@ -600,6 +725,9 @@
             font-size: 10px;
 
             letter-spacing: 1px;
+
+            box-shadow:
+                0 0 8px rgba(130, 80, 180, 0.18);
         }
 
         .project-title {
@@ -657,8 +785,7 @@
         }
 
         /* ============================================
-           MARVIN HEEMEYER QUOTE
-           DIGITAL TYPOGRAPHY
+           MARVIN HEEMEYER QUOTE / VOID PANEL
         ============================================ */
 
         .description-panel {
@@ -666,16 +793,44 @@
 
             border: 1px solid #76618a;
 
-            background: rgba(23, 16, 32, 0.92);
+            background:
+                radial-gradient(
+                    ellipse at 50% 0%,
+                    rgba(104, 43, 156, 0.13),
+                    transparent 75%
+                ),
+                linear-gradient(
+                    rgba(143, 85, 190, 0.07) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(143, 85, 190, 0.07) 1px,
+                    transparent 1px
+                ),
+                #030205;
+
+            background-size:
+                auto,
+                22px 22px,
+                22px 22px,
+                auto;
 
             box-shadow:
-                inset 0 0 18px rgba(0, 0, 0, 0.35);
+                inset 0 0 32px rgba(0, 0, 0, 0.85),
+                0 0 15px rgba(145, 76, 200, 0.1);
         }
 
         .description-heading {
             padding: 6px 10px;
 
-            background: #49375a;
+            background:
+                linear-gradient(
+                    90deg,
+                    #100818,
+                    #2b153b,
+                    #100818
+                );
 
             border-bottom: 1px solid #9478a9;
 
@@ -714,7 +869,7 @@
         }
 
         /* ============================================
-           ORIGINAL FOOTER LINKS
+           EXTERNAL LINKS / VOID PANEL
         ============================================ */
 
         .social-panel {
@@ -722,13 +877,44 @@
 
             border: 1px solid #76618a;
 
-            background: rgba(23, 16, 32, 0.92);
+            background:
+                radial-gradient(
+                    ellipse at 50% 0%,
+                    rgba(104, 43, 156, 0.13),
+                    transparent 75%
+                ),
+                linear-gradient(
+                    rgba(143, 85, 190, 0.07) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(143, 85, 190, 0.07) 1px,
+                    transparent 1px
+                ),
+                #030205;
+
+            background-size:
+                auto,
+                22px 22px,
+                22px 22px,
+                auto;
+
+            box-shadow:
+                inset 0 0 32px rgba(0, 0, 0, 0.85),
+                0 0 15px rgba(145, 76, 200, 0.1);
         }
 
         .social-heading {
             padding: 6px 10px;
 
-            background: #49375a;
+            background:
+                linear-gradient(
+                    90deg,
+                    #100818,
+                    #2b153b,
+                    #100818
+                );
 
             border-bottom: 1px solid #9478a9;
 
@@ -774,21 +960,38 @@
 
             letter-spacing: 1px;
 
-            background: #42344f;
+            background:
+                linear-gradient(
+                    180deg,
+                    #281638,
+                    #0b0612
+                );
 
             border: 2px outset #9b83af;
 
+            box-shadow:
+                inset 0 0 10px rgba(0, 0, 0, 0.5);
+
             transition:
                 background 0.2s ease,
-                color 0.2s ease;
+                color 0.2s ease,
+                box-shadow 0.2s ease;
         }
 
         .social-links a:hover {
-            background: #624c76;
+            background:
+                linear-gradient(
+                    180deg,
+                    #4d2b67,
+                    #160b22
+                );
 
             border-style: inset;
 
             color: white;
+
+            box-shadow:
+                0 0 12px rgba(170, 103, 225, 0.25);
         }
 
         /* ============================================
@@ -802,7 +1005,13 @@
 
             border-top: 3px double #89709a;
 
-            background: #100b16;
+            background:
+                linear-gradient(
+                    90deg,
+                    #050308,
+                    #170b21,
+                    #050308
+                );
 
             color: #aa94bb;
 
@@ -1021,11 +1230,11 @@
 
             </div>
 
-            <!-- Original project gallery -->
+            <!-- ORIGINAL PROJECT GALLERY -->
 
             <div class="projects">
 
-                <!-- Knock Knock -->
+                <!-- KNOCK KNOCK -->
 
                 <a
                     class="project"
@@ -1055,7 +1264,7 @@
 
                 </a>
 
-                <!-- Fried Out -->
+                <!-- FRIED OUT -->
 
                 <a
                     class="project"
@@ -1085,7 +1294,7 @@
 
                 </a>
 
-                <!-- Haunt-A-Files -->
+                <!-- HAUNT-A-FILES -->
 
                 <a
                     class="project"
