@@ -11,22 +11,24 @@
 /* =====================================================
    ZEUSWEUSFILM
    EXTERNAL ACCESS TERMINAL
-   EXPERIMENTAL BUILD 001
+   EXPERIMENTAL BUILD 002
+
+   PURPLE TRANSMISSION REVISION
 
    THIS PAGE IS A FICTIONAL TRANSMISSION.
    NO ACTUAL SYSTEM ACCESS IS PERFORMED.
 ===================================================== */
 
 :root {
-    --black: #050605;
-    --dark: #10140f;
-    --panel: #171b15;
-    --green: #a6b884;
-    --bright: #d4e6a5;
-    --dim: #69785a;
-    --red: #b34236;
-    --amber: #c7a56a;
-    --border: #48523e;
+    --black: #070509;
+    --dark: #140f1a;
+    --panel: #1d1726;
+    --green: #b9a3d4;
+    --bright: #e4d5ff;
+    --dim: #847198;
+    --red: #d2769b;
+    --amber: #c7a4d7;
+    --border: #625373;
 }
 
 * {
@@ -39,7 +41,7 @@ html {
 
 body {
     margin: 0;
-    background: #080a07;
+    background: #09070d;
     color: var(--green);
     font-family: "Courier New", monospace;
     font-size: 13px;
@@ -78,13 +80,13 @@ body::after {
 }
 
 a {
-    color: #b8d2ff;
+    color: #c8b4ff;
     text-decoration: underline;
 }
 
 a:hover {
     color: #fff;
-    background: #493e28;
+    background: #493455;
 }
 
 button {
@@ -100,16 +102,16 @@ input:focus-visible {
 }
 
 ::selection {
-    background: var(--green);
+    background: #bba0e4;
     color: black;
 }
 
 /* HEADER */
 
 .top-warning {
-    background: #26120f;
-    border-bottom: 2px solid #8b3028;
-    color: #df8b77;
+    background: #261329;
+    border-bottom: 2px solid #873f86;
+    color: #df9bd9;
     padding: 7px 12px;
     text-align: center;
     font-size: 11px;
@@ -119,11 +121,11 @@ input:focus-visible {
 .site-wrap {
     width: min(1080px, calc(100% - 24px));
     margin: 20px auto 60px;
-    border: 2px ridge #59644d;
-    background: #10140f;
+    border: 2px ridge #79658c;
+    background: #130f19;
     box-shadow:
-        0 0 0 5px #080a07,
-        0 0 45px rgba(115,140,80,0.1);
+        0 0 0 5px #09070d,
+        0 0 45px rgba(152,99,205,0.13);
 }
 
 .masthead {
@@ -132,41 +134,46 @@ input:focus-visible {
     background:
         repeating-linear-gradient(
             90deg,
-            rgba(255,255,255,0.015) 0px,
-            rgba(255,255,255,0.015) 1px,
+            rgba(255,255,255,0.018) 0px,
+            rgba(255,255,255,0.018) 1px,
             transparent 1px,
             transparent 8px
         ),
-        linear-gradient(#20291b, #0c100b);
-    border-bottom: 3px double #718065;
+        linear-gradient(#30213c, #100c17);
+    border-bottom: 3px double #9374a8;
 }
 
 .masthead .small {
     font-size: 10px;
     letter-spacing: 4px;
-    color: #82916f;
+    color: #a18ab7;
 }
 
+/* DIGITAL MASTHEAD */
+
 .logo {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(34px, 7vw, 76px);
+    font-family:
+        "Lucida Console",
+        "Courier New",
+        monospace;
+    font-size: clamp(29px, 6.2vw, 69px);
     font-weight: 900;
     letter-spacing: -4px;
     line-height: 1.1;
     margin: 15px 0 5px;
-    color: #c2cbb4;
+    color: #dccaff;
     text-shadow:
-        2px 2px 0 #405038,
-        4px 4px 0 #1d291a,
-        0 0 22px rgba(180,200,150,0.2);
+        2px 2px 0 #5e427b,
+        4px 4px 0 #2b1c3b,
+        0 0 24px rgba(187,134,255,0.38);
 }
 
 .logo span {
-    color: #a94337;
+    color: inherit;
 }
 
 .subtitle {
-    color: #9ca98d;
+    color: #b09cc5;
     font-size: 11px;
     letter-spacing: 3px;
     margin-top: 12px;
@@ -176,20 +183,21 @@ input:focus-visible {
     display: inline-block;
     margin-top: 18px;
     padding: 6px 12px;
-    border: 1px solid #647758;
-    background: #0b1109;
-    color: #c0df9a;
+    border: 1px solid #82669b;
+    background: #100b18;
+    color: #e0c5ff;
     font-size: 11px;
+    box-shadow: inset 0 0 10px rgba(146,91,209,0.13);
 }
 
 .led {
     display: inline-block;
     width: 8px;
     height: 8px;
-    background: #a5dc74;
+    background: #d29aff;
     border-radius: 50%;
     margin-right: 7px;
-    box-shadow: 0 0 9px #a5dc74;
+    box-shadow: 0 0 9px #bd75ff;
     animation: blink 2.7s infinite;
 }
 
@@ -203,8 +211,8 @@ input:focus-visible {
 .old-nav {
     padding: 10px;
     text-align: center;
-    background: #232a1f;
-    border-bottom: 2px solid #65705a;
+    background: #30263c;
+    border-bottom: 2px solid #8a73a0;
     font-size: 12px;
 }
 
@@ -212,22 +220,22 @@ input:focus-visible {
     display: inline-block;
     margin: 3px;
     padding: 5px 9px;
-    color: #d1d7bd;
-    background: #313b2b;
-    border: 2px outset #718064;
+    color: #e1d4ee;
+    background: #42344f;
+    border: 2px outset #9b83af;
     text-decoration: none;
 }
 
 .old-nav a:hover {
     border-style: inset;
     color: #fff;
-    background: #45533c;
+    background: #624c76;
 }
 
 .ticker {
-    background: #080b07;
-    border-bottom: 1px solid #536047;
-    color: #c7b58b;
+    background: #0c0911;
+    border-bottom: 1px solid #756087;
+    color: #d5b8e3;
     padding: 5px 0;
     font-size: 11px;
 }
@@ -247,16 +255,16 @@ input:focus-visible {
 }
 
 .box {
-    border: 1px solid #536048;
-    background: #151a13;
+    border: 1px solid #6b567d;
+    background: #1a1422;
     margin-bottom: 12px;
     box-shadow: inset 0 0 15px rgba(0,0,0,0.35);
 }
 
 .box-title {
-    background: #36412f;
-    color: #d8e2c8;
-    border-bottom: 1px solid #66775b;
+    background: #49375a;
+    color: #eadcf8;
+    border-bottom: 1px solid #9478a9;
     padding: 5px 8px;
     font-size: 11px;
     font-weight: bold;
@@ -271,44 +279,44 @@ input:focus-visible {
     display: flex;
     justify-content: space-between;
     gap: 8px;
-    border-bottom: 1px dotted #3d4836;
+    border-bottom: 1px dotted #51405e;
     padding: 6px 0;
     font-size: 11px;
 }
 
 .status-line strong {
-    color: #c2d9a4;
+    color: #ddc4f5;
     text-align: right;
 }
 
 .red {
-    color: #d56c60 !important;
+    color: #e18cae !important;
 }
 
 .amber {
-    color: var(--amber) !important;
+    color: #d4b1e7 !important;
 }
 
 .green {
-    color: #b4d892 !important;
+    color: #d6b5ff !important;
 }
 
 .sidebar-link {
     display: block;
     padding: 7px 3px;
-    border-bottom: 1px dotted #45513c;
+    border-bottom: 1px dotted #594765;
     font-size: 12px;
 }
 
 .sidebar-link::before {
     content: "> ";
-    color: #a3a98a;
+    color: #bd9ed5;
 }
 
 .sidebar-note {
     font-family: Georgia, serif;
     font-style: italic;
-    color: #929a83;
+    color: #aea0b9;
     font-size: 12px;
     line-height: 1.7;
 }
@@ -316,18 +324,18 @@ input:focus-visible {
 .visitor-counter {
     text-align: center;
     padding: 10px 0;
-    background: #080a08;
-    border: 1px inset #6d7763;
+    background: #0c0910;
+    border: 1px inset #8a739e;
     font-family: "Courier New", monospace;
     font-size: 22px;
-    color: #e0a76a;
+    color: #e1b5ff;
     letter-spacing: 4px;
-    text-shadow: 0 0 8px #a76335;
+    text-shadow: 0 0 8px #a15ed0;
 }
 
 .tiny {
     font-size: 10px;
-    color: #87917a;
+    color: #aa98b9;
 }
 
 .center {
@@ -337,15 +345,15 @@ input:focus-visible {
 /* INTRODUCTION */
 
 .welcome {
-    border: 1px solid #57644c;
-    background: #1b2118;
+    border: 1px solid #776188;
+    background: #251b2f;
     padding: 15px;
     margin-bottom: 12px;
 }
 
 .welcome h2 {
     margin: 0 0 10px;
-    color: #d2d8c1;
+    color: #e7d9f0;
     font-family: Georgia, serif;
     font-size: 25px;
     font-weight: normal;
@@ -356,9 +364,9 @@ input:focus-visible {
 }
 
 .notice {
-    color: #c8ae84;
+    color: #d8b6dd;
     font-size: 11px;
-    border-left: 3px solid #9d7b4e;
+    border-left: 3px solid #a16ea9;
     padding-left: 10px;
     margin-top: 15px;
 }
@@ -366,8 +374,8 @@ input:focus-visible {
 /* BROADCAST MONITOR */
 
 .monitor-frame {
-    border: 8px ridge #4b5145;
-    background: #292c26;
+    border: 8px ridge #62536d;
+    background: #332b3a;
     padding: 12px;
     box-shadow:
         inset 0 0 20px black,
@@ -377,7 +385,7 @@ input:focus-visible {
 .monitor-label {
     display: flex;
     justify-content: space-between;
-    color: #a9aa99;
+    color: #c4b4cc;
     font-size: 10px;
     margin-bottom: 8px;
     letter-spacing: 2px;
@@ -387,11 +395,12 @@ input:focus-visible {
     position: relative;
     aspect-ratio: 4 / 3;
     max-height: 390px;
-    background: #060906;
-    border: 5px solid #090b09;
-    outline: 1px solid #65705e;
+    background: #09060e;
+    border: 5px solid #100c14;
+    outline: 1px solid #84718f;
     overflow: hidden;
     isolation: isolate;
+    box-shadow: inset 0 0 25px rgba(116,60,170,0.18);
 }
 
 .screen::before {
@@ -432,7 +441,7 @@ input:focus-visible {
             0deg,
             transparent,
             transparent 2px,
-            #b5c5a1 3px,
+            #d7b5f5 3px,
             transparent 4px
         );
     animation: noiseMove 0.19s steps(3) infinite;
@@ -464,10 +473,10 @@ input:focus-visible {
     background:
         radial-gradient(
             ellipse at 50% 38%,
-            #61715c 0%,
-            #293b31 26%,
-            #0d1915 65%,
-            #030705 100%
+            #766087 0%,
+            #392c48 26%,
+            #191323 65%,
+            #07050a 100%
         );
 }
 
@@ -476,14 +485,14 @@ input:focus-visible {
     inset: 0;
     width: 100%;
     height: 100%;
-    filter: contrast(1.2) saturate(0.5);
+    filter: contrast(1.2) saturate(0.65);
 }
 
 .forest-message {
     position: relative;
     z-index: 3;
     text-align: center;
-    color: #d5e5cc;
+    color: #e8d8ff;
     text-shadow: 0 2px 8px black;
     letter-spacing: 2px;
     padding: 15px;
@@ -508,16 +517,16 @@ input:focus-visible {
     right: 17%;
     bottom: 28%;
     background: transparent;
-    color: rgba(204,230,186,0.2);
+    color: rgba(220,180,255,0.25);
     border: 0;
     font-size: 24px;
-    text-shadow: 0 0 10px #d2f3b3;
+    text-shadow: 0 0 10px #d8b0ff;
     transition: color 0.3s;
 }
 
 .mystery-mark:hover,
 .mystery-mark:focus-visible {
-    color: #d2f3b3;
+    color: #ebd2ff;
 }
 
 /* CHANNEL 01-03 */
@@ -531,38 +540,38 @@ input:focus-visible {
     background:
         repeating-linear-gradient(
             125deg,
-            #111710 0px,
-            #111710 3px,
-            #1d291b 4px,
-            #0a1009 6px
+            #17101e 0px,
+            #17101e 3px,
+            #2c1d3a 4px,
+            #100b16 6px
         );
 }
 
 .programme-channel h3 {
     font-family: Georgia, serif;
-    color: #d4dac9;
+    color: #eadcf4;
     font-size: clamp(25px, 5vw, 42px);
     line-height: 1.1;
     margin: 20px 0 10px;
 }
 
 .programme-channel p {
-    color: #b0bf9d;
+    color: #cbb4dd;
     max-width: 340px;
 }
 
 .programme-channel a {
     display: inline-block;
     padding: 8px 14px;
-    border: 1px solid #a3b68f;
-    background: #111c10;
-    color: #e3efcb;
+    border: 1px solid #b495ce;
+    background: #21152c;
+    color: #f0dfff;
     margin-top: 12px;
     text-decoration: none;
 }
 
 .programme-channel a:hover {
-    background: #42563a;
+    background: #604777;
 }
 
 .no-signal {
@@ -570,8 +579,8 @@ input:focus-visible {
     align-items: center;
     flex-direction: column;
     text-align: center;
-    background: #050505;
-    color: #bd5d52;
+    background: #070509;
+    color: #d985c9;
     letter-spacing: 3px;
 }
 
@@ -591,7 +600,7 @@ input:focus-visible {
     left: 12px;
     top: 10px;
     font-size: 11px;
-    color: #d4e5bd;
+    color: #ead4ff;
     text-shadow: 0 0 5px black;
     pointer-events: none;
 }
@@ -602,7 +611,7 @@ input:focus-visible {
     left: 12px;
     bottom: 9px;
     font-size: 9px;
-    color: #b3c4a3;
+    color: #ccb0df;
     letter-spacing: 2px;
     pointer-events: none;
 }
@@ -612,10 +621,22 @@ input:focus-visible {
 }
 
 @keyframes screenGlitch {
-    0% { filter: brightness(2) contrast(2); transform: translateX(3px); }
-    35% { filter: invert(1); transform: translateX(-4px); }
-    70% { filter: brightness(0.1); transform: translateX(2px); }
-    100% { filter: none; transform: none; }
+    0% {
+        filter: brightness(2) contrast(2);
+        transform: translateX(3px);
+    }
+    35% {
+        filter: invert(1);
+        transform: translateX(-4px);
+    }
+    70% {
+        filter: brightness(0.1);
+        transform: translateX(2px);
+    }
+    100% {
+        filter: none;
+        transform: none;
+    }
 }
 
 .controls {
@@ -627,27 +648,27 @@ input:focus-visible {
 }
 
 .channel-button {
-    background: #333a30;
-    color: #d5ddc8;
-    border: 2px outset #7c8973;
+    background: #44384d;
+    color: #e3d4ed;
+    border: 2px outset #9d88ab;
     padding: 8px 11px;
     font-size: 11px;
 }
 
 .channel-button:hover {
-    background: #526047;
+    background: #695579;
 }
 
 .channel-button.selected {
     border-style: inset;
-    background: #1a2418;
-    color: #c9eaa7;
+    background: #271a33;
+    color: #e8caff;
 }
 
 .monitor-footer {
     text-align: center;
     font-size: 10px;
-    color: #999f90;
+    color: #b6a7c0;
     margin-top: 10px;
 }
 
@@ -657,10 +678,10 @@ input:focus-visible {
     height: 150px;
     overflow-y: auto;
     padding: 10px;
-    background: #070a06;
-    color: #9eb58c;
+    background: #0a0710;
+    color: #c3a8dc;
     font-size: 11px;
-    border: 1px inset #4b5841;
+    border: 1px inset #695577;
 }
 
 .log-entry {
@@ -668,11 +689,11 @@ input:focus-visible {
 }
 
 .log-time {
-    color: #6c8162;
+    color: #8e77a5;
 }
 
 .log-alert {
-    color: #d48170;
+    color: #e1a1cb;
 }
 
 /* BOTTOM CONTENT */
@@ -684,12 +705,12 @@ input:focus-visible {
 }
 
 .document {
-    background: #b8b49d;
-    color: #29291f;
+    background: #bdb0c4;
+    color: #2b2030;
     padding: 16px;
     font-family: "Times New Roman", serif;
     font-size: 15px;
-    box-shadow: inset 0 0 18px rgba(54,48,28,0.25);
+    box-shadow: inset 0 0 18px rgba(54,30,68,0.25);
     transform: rotate(-0.5deg);
 }
 
@@ -705,10 +726,10 @@ input:focus-visible {
 }
 
 .document button {
-    background: #d3ccb3;
-    border: 1px solid #4a493c;
+    background: #d6c6dd;
+    border: 1px solid #514258;
     padding: 5px 8px;
-    color: #29291f;
+    color: #2b2030;
 }
 
 .archive-list {
@@ -719,7 +740,7 @@ input:focus-visible {
 
 .archive-list li {
     padding: 7px 0;
-    border-bottom: 1px dotted #46523f;
+    border-bottom: 1px dotted #66516f;
 }
 
 .archive-list a {
@@ -745,14 +766,14 @@ input:focus-visible {
 
 .terminal-window {
     width: min(550px, 100%);
-    border: 3px ridge #879777;
-    background: #071007;
-    box-shadow: 0 0 45px rgba(100,160,80,0.15);
+    border: 3px ridge #a38ab6;
+    background: #110a19;
+    box-shadow: 0 0 45px rgba(165,99,221,0.2);
 }
 
 .terminal-heading {
-    background: #46543d;
-    color: #e0ead1;
+    background: #614876;
+    color: #f0e0ff;
     padding: 7px 10px;
     display: flex;
     justify-content: space-between;
@@ -760,8 +781,8 @@ input:focus-visible {
 }
 
 .terminal-heading button {
-    background: #aebba2;
-    border: 2px outset #d5dfcb;
+    background: #c4afd5;
+    border: 2px outset #e0d1e9;
     color: #111;
     font-weight: bold;
 }
@@ -769,14 +790,14 @@ input:focus-visible {
 .terminal-body {
     padding: 20px;
     min-height: 250px;
-    color: #b8dba4;
+    color: #d9b8f3;
 }
 
 .terminal-body input {
     width: 100%;
-    background: #030703;
-    color: #c4e8b0;
-    border: 1px solid #6e9361;
+    background: #09050d;
+    color: #ebd1ff;
+    border: 1px solid #9670b2;
     padding: 10px;
     font-family: "Courier New", monospace;
     margin-top: 12px;
@@ -786,14 +807,14 @@ input:focus-visible {
 .terminal-body button.submit {
     margin-top: 10px;
     padding: 8px 15px;
-    background: #263a22;
-    color: #d6edc6;
-    border: 2px outset #66865b;
+    background: #422a55;
+    color: #f0dcff;
+    border: 2px outset #9470ae;
 }
 
 .terminal-result {
     margin-top: 15px;
-    color: #d4b68a;
+    color: #e0b7eb;
     min-height: 35px;
     white-space: pre-wrap;
 }
@@ -801,25 +822,25 @@ input:focus-visible {
 /* FOOTER */
 
 .site-footer {
-    border-top: 3px double #637159;
+    border-top: 3px double #89709a;
     text-align: center;
-    background: #0b0e0a;
+    background: #100b16;
     padding: 20px;
     font-size: 10px;
-    color: #849177;
+    color: #aa94bb;
     letter-spacing: 1px;
 }
 
 .site-footer .strange {
     display: inline-block;
     margin-top: 15px;
-    color: #364333;
+    color: #493653;
     text-decoration: none;
     font-size: 9px;
 }
 
 .site-footer .strange:hover {
-    color: #c7dfb0;
+    color: #e3c5ff;
     background: transparent;
 }
 
@@ -1086,7 +1107,7 @@ input:focus-visible {
 
                     <br><br>
 
-                    <span style="color:#c4cdb4;">
+                    <span style="color:#e1d0ef;">
                         — Management
                     </span>
 
@@ -1170,11 +1191,11 @@ input:focus-visible {
                                                         x1="0" y1="0"
                                                         x2="0" y2="1">
                                             <stop offset="0%"
-                                                  stop-color="#66735f"/>
+                                                  stop-color="#756582"/>
                                             <stop offset="60%"
-                                                  stop-color="#26382d"/>
+                                                  stop-color="#392d48"/>
                                             <stop offset="100%"
-                                                  stop-color="#060d09"/>
+                                                  stop-color="#0c0811"/>
                                         </linearGradient>
 
                                         <filter id="blur">
@@ -1190,13 +1211,13 @@ input:focus-visible {
 
                                     <ellipse cx="390" cy="210"
                                              rx="175" ry="115"
-                                             fill="#9aaa8d"
+                                             fill="#b49bc6"
                                              opacity="0.19"
                                              filter="url(#blur)"/>
 
                                     <!-- DISTANT TREES -->
 
-                                    <g fill="#1b2a21" opacity="0.75">
+                                    <g fill="#30233d" opacity="0.75">
 
                                         <path d="M20 500 L30 70 L40 500 Z"/>
                                         <path d="M100 500 L125 30 L145 500 Z"/>
@@ -1213,22 +1234,22 @@ input:focus-visible {
 
                                         <rect x="345" y="275"
                                               width="110" height="100"
-                                              fill="#101813"/>
+                                              fill="#1a1222"/>
 
                                         <path d="M330 275 L400 230 L470 275 Z"
-                                              fill="#111b14"/>
+                                              fill="#21162b"/>
 
                                         <rect x="392" y="305"
                                               width="20" height="30"
-                                              fill="#bdc9a3"
+                                              fill="#d5b8e8"
                                               opacity="0.5"/>
 
                                         <path d="M399 230 L399 145"
-                                              stroke="#1b241d"
+                                              stroke="#2a1e32"
                                               stroke-width="4"/>
 
                                         <path d="M399 145 L375 160 M399 145 L423 160"
-                                              stroke="#1b241d"
+                                              stroke="#2a1e32"
                                               stroke-width="3"/>
 
                                     </g>
@@ -1236,7 +1257,7 @@ input:focus-visible {
                                     <!-- FOREGROUND TREES -->
 
                                     <g fill="none"
-                                       stroke="#080f0b"
+                                       stroke="#100b17"
                                        stroke-linecap="square">
 
                                         <path d="M65 520 L95 -30"
@@ -1267,11 +1288,11 @@ input:focus-visible {
                                              Q470 370 610 410
                                              Q710 385 800 400
                                              L800 500 L0 500 Z"
-                                          fill="#07100b"/>
+                                          fill="#0d0913"/>
 
                                     <!-- UNKNOWN FIGURE -->
 
-                                    <g fill="#030503" opacity="0.9">
+                                    <g fill="#050307" opacity="0.9">
                                         <ellipse cx="526" cy="344"
                                                  rx="7" ry="11"/>
                                         <path d="M521 354 L531 354
@@ -1379,7 +1400,7 @@ input:focus-visible {
                                     CHANNEL NOT ALLOCATED
                                 </p>
 
-                                <p style="font-size:10px;color:#626962;">
+                                <p style="font-size:10px;color:#85728d;">
                                     PLEASE DO NOT ATTEMPT TO
                                     RESTORE THIS FREQUENCY
                                 </p>
@@ -1594,7 +1615,7 @@ input:focus-visible {
             BEST VIEWED WITH A FUNCTIONING RECEIVER
         </div>
 
-        <div style="margin-top:12px;color:#56624d;">
+        <div style="margin-top:12px;color:#766184;">
             THIS SERVICE IS NOT AFFILIATED WITH
             ANY RECOGNISED BROADCASTING AUTHORITY
         </div>
@@ -1640,7 +1661,7 @@ input:focus-visible {
                 NODE: IDIR-04
             </div>
 
-            <div style="margin-top:8px;color:#c98776;">
+            <div style="margin-top:8px;color:#df9aca;">
                 AUTHORISATION REQUIRED
             </div>
 
