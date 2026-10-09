@@ -1,1 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ZeusWeusFilm // SERVER-14</title>
+
+    <style>
+
+        /* ============================================
+           ZEUSWEUSFILM
+           SERVER-14 // TEST 2
+           EXPERIMENTAL HYBRID BUILD 001
+
+           MAIN SITE: /
+           EXPERIMENT: /test2/
+
+           All original assets are loaded from
+           the main website directory.
+        ============================================ */
+
+        :root {
+            --background: #09070d;
+            --panel: #1a1422;
+            --panel-light: #30243c;
+            --border: #76618a;
+            --border-bright: #a38ab6;
+            --text: #cbb6df;
+            --text-bright: #eadbfa;
+            --text-muted: #a592b5;
+            --purple: #b995df;
+            --red: #e34b56;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background: var(--background);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+
+            background: var(--background);
+            color: var(--text);
+
+            font-family: "Courier New", monospace;
+            font-size: 13px;
+            line-height: 1.5;
+
+            position: relative;
+        }
+
+        /* ============================================
+           ORIGINAL HOMEPAGE BACKGROUND
+
+           Loaded from main folder.
+        ============================================ */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            top: -20px;
+            left: -20px;
+
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+
+            background-image: url("../background.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            filter: blur(5px);
+            opacity: 0.30;
+
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            background: rgba(9, 5, 15, 0.62);
+
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        body > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Very faint CRT lines */
+
+        .scanlines {
+            position: fixed;
+            inset: 0;
+
+            z-index: 50;
+            pointer-events: none;
+
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 3px,
+                rgba(0, 0, 0, 0.12) 4px
+            );
+
+            opacity: 0.45;
+        }
+
+        /* ============================================
+           TOP STATUS BAR
+        ============================================ */
+
+        .top-warning {
+            width: 100%;
+
+            background: #261329;
+            border-bottom: 2px solid #873f86;
+
+            color: #e2b4ed;
+
+            padding: 8px 12px;
+
+            text-align: center;
+
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 2px;
+
+            text-shadow: 0 0 7px rgba(197, 129, 241, 0.25);
+        }
+
+        /* ============================================
+           MAIN WEBSITE CONTAINER
+        ============================================ */
+
+        .site-wrap {
+            width: min(1100px, calc(100% - 24px));
+
+            margin: 20px auto 60px;
+
+            background: rgba(19, 14, 26, 0.93);
+
+            border: 2px ridge #79658c;
+
+            box-shadow:
+                0 0 0 5px rgba(8, 5, 12, 0.8),
+                0 0 45px rgba(152, 99, 205, 0.13);
+        }
+
+        /* ============================================
+           MASTHEAD
+        ============================================ */
+
+        .masthead {
+            padding: 26px 24px 22px;
+
+            text-align: center;
+
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0.018) 0px,
+                    rgba(255, 255, 255, 0.018) 1px,
+                    transparent 1px,
+                    transparent 8px
+                ),
+                linear-gradient(
+                    rgba(48, 33, 60, 0.95),
+                    rgba(16, 12, 23, 0.95)
+                );
+
+            border-bottom: 3px double #9374a8;
+        }
+
+        .brand-row {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 25px;
+
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           ORIGINAL LOGO
+
+           Still links to /idir/
+        ============================================ */
+
+        .logo-link {
+            display: block;
+            flex-shrink: 0;
+
+            width: fit-content;
+
+            position: relative;
+
+            text-decoration: none;
+        }
+
+        .logo {
+            display: block;
+
+            width: 95px;
+            height: auto;
+
+            image-rendering: auto;
+
+            filter:
+                contrast(1.35)
+                saturate(0.75)
+                drop-shadow(0 0 8px rgba(180, 113, 236, 0.35));
+
+            transition:
+                filter 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        /* Subtle digital ghosting */
+
+        .logo-link::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 3px,
+                rgba(179, 117, 226, 0.12) 4px
+            );
+
+            pointer-events: none;
+        }
+
+        .logo-link:hover .logo {
+            transform: scale(1.04);
+
+            filter:
+                contrast(1.55)
+                saturate(0.5)
+                drop-shadow(2px 0 0 rgba(255, 60, 150, 0.45))
+                drop-shadow(-2px 0 0 rgba(135, 100, 255, 0.5));
+        }
+
+        /* ============================================
+           DIGITAL ZEUSWEUSFILM WORDMARK
+        ============================================ */
+
+        .site-title {
+            margin: 0;
+
+            color: #dccaff;
+
+            font-family:
+                "Lucida Console",
+                "Courier New",
+                monospace;
+
+            font-size: clamp(27px, 5.5vw, 66px);
+
+            font-weight: 900;
+
+            letter-spacing: -3px;
+
+            line-height: 1.1;
+
+            text-shadow:
+                2px 2px 0 #5e427b,
+                4px 4px 0 #2b1c3b,
+                0 0 24px rgba(187, 134, 255, 0.38);
+
+            overflow-wrap: anywhere;
+        }
+
+        /* ============================================
+           CONNECTION INDICATOR
+        ============================================ */
+
+        .connection {
+            display: inline-block;
+
+            margin-top: 24px;
+
+            padding: 7px 13px;
+
+            border: 1px solid #82669b;
+
+            background: #100b18;
+
+            color: #e0c5ff;
+
+            font-size: 11px;
+
+            box-shadow:
+                inset 0 0 10px rgba(146, 91, 209, 0.13);
+        }
+
+        /* RED blinking light */
+
+        .led {
+            display: inline-block;
+
+            width: 8px;
+            height: 8px;
+
+            margin-right: 8px;
+
+            border-radius: 50%;
+
+            background: var(--red);
+
+            box-shadow:
+                0 0 5px var(--red),
+                0 0 11px rgba(227, 75, 86, 0.6);
+
+            animation: blink 2.7s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            86%,
+            100% {
+                opacity: 1;
+            }
+
+            87%,
+            93% {
+                opacity: 0.15;
+            }
+
+        }
+
+        /* ============================================
+           SCROLLING TICKER
+        ============================================ */
+
+        .ticker {
+            background: #0c0911;
+
+            border-bottom: 1px solid #756087;
+
+            color: #d5b8e3;
+
+            padding: 7px 0;
+
+            font-size: 11px;
+
+            letter-spacing: 2px;
+        }
+
+        /* ============================================
+           CONTENT AREA
+        ============================================ */
+
+        .content {
+            padding: 24px 18px 20px;
+        }
+
+        .section-heading {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 7px 10px;
+
+            margin-bottom: 20px;
+
+            background: #49375a;
+
+            border: 1px solid #9478a9;
+
+            color: #eadcf8;
+
+            font-size: 11px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .section-heading .right {
+            color: #bfa4d2;
+
+            font-size: 10px;
+            font-weight: normal;
+        }
+
+        /* ============================================
+           ORIGINAL PROJECT GALLERY
+
+           Same images, order, destinations.
+           New 90s purple panel styling.
+        ============================================ */
+
+        .projects {
+            width: 100%;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 15px;
+        }
+
+        .project {
+            display: block;
+
+            position: relative;
+
+            overflow: hidden;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            color: inherit;
+
+            background: rgba(25, 18, 34, 0.95);
+
+            border: 2px outset #8b75a0;
+
+            padding: 8px;
+
+            transition:
+                background 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .project:hover {
+            background: #352544;
+
+            border-style: inset;
+            border-color: #c4a4e0;
+        }
+
+        .project-image {
+            position: relative;
+
+            overflow: hidden;
+
+            background: #09070d;
+
+            border: 1px solid #4b3b59;
+        }
+
+        .project img {
+            width: 100%;
+            height: auto;
+
+            display: block;
+
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease,
+                filter 0.3s ease;
+        }
+
+        .project:hover img {
+            transform: scale(1.03);
+
+            opacity: 0.85;
+
+            filter: contrast(1.12);
+        }
+
+        .project-number {
+            position: absolute;
+
+            top: 7px;
+            left: 7px;
+
+            padding: 3px 6px;
+
+            background: rgba(11, 7, 16, 0.85);
+
+            border: 1px solid #79618c;
+
+            color: #d9c1ee;
+
+            font-family: "Courier New", monospace;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+        }
+
+        .project-title {
+            margin-top: 12px;
+            margin-bottom: 5px;
+
+            text-align: center;
+
+            font-family: Georgia, serif;
+
+            font-size: 18px;
+
+            letter-spacing: 2px;
+
+            color: #eadcf4;
+
+            text-shadow:
+                2px 2px 0 #1a1023,
+                -1px -1px 0 #000,
+                0 0 12px rgba(210, 170, 255, 0.15);
+        }
+
+        .project-subtitle {
+            text-align: center;
+
+            margin: 4px 0 8px;
+
+            color: #a58cb9;
+
+            font-family: "Courier New", monospace;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           DIVIDER
+        ============================================ */
+
+        .separator {
+            width: 80%;
+            max-width: 700px;
+
+            height: 1px;
+
+            margin: 35px auto;
+
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(196, 159, 227, 0.6),
+                transparent
+            );
+        }
+
+        /* ============================================
+           MARVIN HEEMEYER QUOTE
+
+           Exact original wording preserved.
+        ============================================ */
+
+        .description-panel {
+            margin: 0 auto;
+
+            border: 1px solid #76618a;
+
+            background: rgba(23, 16, 32, 0.92);
+
+            box-shadow:
+                inset 0 0 18px rgba(0, 0, 0, 0.35);
+        }
+
+        .description-heading {
+            padding: 6px 10px;
+
+            background: #49375a;
+
+            border-bottom: 1px solid #9478a9;
+
+            color: #eadcf8;
+
+            font-size: 11px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .description {
+            width: 90%;
+            max-width: 950px;
+
+            margin: 35px auto;
+
+            text-align: center;
+
+            font-family: Georgia, serif;
+
+            font-size: 17px;
+
+            line-height: 1.6;
+
+            color: #ded2e8;
+
+            text-shadow:
+                1px 1px 0 #18101e,
+                0 0 8px rgba(255, 255, 255, 0.08);
+        }
+
+        /* ============================================
+           ORIGINAL FOOTER LINKS
+        ============================================ */
+
+        .social-panel {
+            margin-top: 24px;
+
+            border: 1px solid #76618a;
+
+            background: rgba(23, 16, 32, 0.92);
+        }
+
+        .social-heading {
+            padding: 6px 10px;
+
+            background: #49375a;
+
+            border-bottom: 1px solid #9478a9;
+
+            color: #eadcf8;
+
+            font-size: 11px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            gap: 18px;
+
+            flex-wrap: wrap;
+
+            margin: 0 auto;
+
+            padding: 22px 12px;
+        }
+
+        .social-links a {
+            display: inline-block;
+
+            min-width: 110px;
+
+            padding: 8px 14px;
+
+            text-align: center;
+
+            color: #e9d9f7;
+
+            text-decoration: none;
+
+            font-family: "Courier New", monospace;
+
+            font-size: 12px;
+
+            letter-spacing: 1px;
+
+            background: #42344f;
+
+            border: 2px outset #9b83af;
+
+            transition:
+                background 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .social-links a:hover {
+            background: #624c76;
+
+            border-style: inset;
+
+            color: white;
+        }
+
+        /* ============================================
+           BOTTOM STATUS
+        ============================================ */
+
+        .site-footer {
+            padding: 16px 12px;
+
+            text-align: center;
+
+            border-top: 3px double #89709a;
+
+            background: #100b16;
+
+            color: #aa94bb;
+
+            font-family: "Courier New", monospace;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           MOBILE
+        ============================================ */
+
+        @media (max-width: 700px) {
+
+            .site-wrap {
+                width: calc(100% - 12px);
+
+                margin-top: 8px;
+            }
+
+            .masthead {
+                padding: 22px 10px;
+            }
+
+            .brand-row {
+                gap: 10px;
+            }
+
+            .logo {
+                width: 60px;
+            }
+
+            .site-title {
+                font-size: clamp(20px, 5.7vw, 38px);
+
+                letter-spacing: -2px;
+            }
+
+            .connection {
+                font-size: 10px;
+
+                padding: 7px 8px;
+            }
+
+            .content {
+                padding: 14px 10px;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+
+                width: min(390px, 100%);
+
+                gap: 20px;
+            }
+
+            .project-title {
+                font-size: 18px;
+            }
+
+            .section-heading {
+                font-size: 10px;
+            }
+
+            .section-heading .right {
+                font-size: 9px;
+            }
+
+            .description {
+                width: 88%;
+
+                font-size: 15px;
+
+                line-height: 1.5;
+
+                margin: 28px auto;
+            }
+
+            .social-links {
+                gap: 12px;
+            }
+
+            .social-links a {
+                min-width: 90px;
+
+                font-size: 11px;
+            }
+
+        }
+
+        /* ============================================
+           TABLET
+        ============================================ */
+
+        @media (min-width: 701px) and (max-width: 900px) {
+
+            .projects {
+                gap: 10px;
+            }
+
+            .project {
+                padding: 6px;
+            }
+
+            .project-title {
+                font-size: 16px;
+            }
+
+        }
+
+        /* ============================================
+           REDUCED MOTION
+        ============================================ */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="scanlines"></div>
+
+    <!-- ============================================
+         SERVER-14 TOP STATUS
+    ============================================ -->
+
+    <div class="top-warning">
+
+        ZEUSWEUSFILM: SERVER-14 // UPLINK SUCCESSFUL
+
+    </div>
+
+    <div class="site-wrap">
+
+        <!-- ============================================
+             HEADER
+        ============================================ -->
+
+        <header class="masthead">
+
+            <div class="brand-row">
+
+                <!-- Original secret IDIR entrance -->
+
+                <a
+                    class="logo-link"
+                    href="/idir/"
+                    aria-label="Enter Idir"
+                >
+
+                    <img
+                        class="logo"
+                        src="../zwflogo.webp"
+                        alt="ZeusWeusFilm logo"
+                    >
+
+                </a>
+
+                <h1 class="site-title">
+                    ZEUSWEUSFILM
+                </h1>
+
+            </div>
+
+            <!-- Connection indicator -->
+
+            <div class="connection">
+
+                <span class="led"></span>
+
+                EXTERNAL CONNECTION ESTABLISHED
+
+                &nbsp; // &nbsp;
+
+                SIGNAL <span id="signalValue">63</span>%
+
+            </div>
+
+        </header>
+
+        <!-- ============================================
+             SCROLLING UPDATES TICKER
+        ============================================ -->
+
+        <div class="ticker">
+
+            <marquee scrollamount="3">
+
+                *** RECEIVING UPDATES DAILY... ***
+
+            </marquee>
+
+        </div>
+
+        <!-- ============================================
+             MAIN HOMEPAGE CONTENT
+        ============================================ -->
+
+        <main class="content">
+
+            <div class="section-heading">
+
+                <span>
+                    :: AVAILABLE PROGRAMMES ::
+                </span>
+
+                <span class="right">
+                    03 RECORDS FOUND
+                </span>
+
+            </div>
+
+            <!-- Original project gallery -->
+
+            <div class="projects">
+
+                <!-- Knock Knock -->
+
+                <a
+                    class="project"
+                    href="/knock-knock/"
+                >
+
+                    <div class="project-image">
+
+                        <img
+                            src="../knockknocklogo.webp"
+                            alt="Knock Knock"
+                        >
+
+                        <span class="project-number">
+                            CH 01
+                        </span>
+
+                    </div>
+
+                    <div class="project-title">
+                        Knock Knock
+                    </div>
+
+                    <div class="project-subtitle">
+                        [ ACCESS PROGRAMME ]
+                    </div>
+
+                </a>
+
+                <!-- Fried Out -->
+
+                <a
+                    class="project"
+                    href="/fried-out/"
+                >
+
+                    <div class="project-image">
+
+                        <img
+                            src="../friedoutvol1logo.webp"
+                            alt="Fried Out"
+                        >
+
+                        <span class="project-number">
+                            CH 02
+                        </span>
+
+                    </div>
+
+                    <div class="project-title">
+                        Fried Out
+                    </div>
+
+                    <div class="project-subtitle">
+                        [ ACCESS PROGRAMME ]
+                    </div>
+
+                </a>
+
+                <!-- Haunt-A-Files -->
+
+                <a
+                    class="project"
+                    href="/haunt-a-files/"
+                >
+
+                    <div class="project-image">
+
+                        <img
+                            src="../hauntafileslogo.webp"
+                            alt="Haunt-A-Files"
+                        >
+
+                        <span class="project-number">
+                            CH 03
+                        </span>
+
+                    </div>
+
+                    <div class="project-title">
+                        Haunt-A-Files
+                    </div>
+
+                    <div class="project-subtitle">
+                        [ ACCESS PROGRAMME ]
+                    </div>
+
+                </a>
+
+            </div>
+
+            <div class="separator"></div>
+
+            <!-- ============================================
+                 ORIGINAL MARVIN HEEMEYER QUOTE
+            ============================================ -->
+
+            <section class="description-panel">
+
+                <div class="description-heading">
+
+                    :: RECEIVED MESSAGE ::
+
+                </div>
+
+                <div class="description">
+
+                    "You're going to know, how intent I was, on teaching you people that what you're doing is wrong, and maybe that's all that needs to be done to stop you from the greed you have, the hate you have, anger, malice."
+
+                    <span style="white-space: nowrap;">
+                        - Marvin Heemeyer
+                    </span>
+
+                    <br><br>
+
+                    Receiving Updates Daily...
+
+                </div>
+
+            </section>
+
+            <!-- ============================================
+                 ORIGINAL FOOTER LINKS
+            ============================================ -->
+
+            <section class="social-panel">
+
+                <div class="social-heading">
+
+                    :: EXTERNAL LINKS ::
+
+                </div>
+
+                <div class="social-links">
+
+                    <a href="/contact">
+                        Contact
+                    </a>
+
+                    <a href="/physical/">
+                        Physical
+                    </a>
+
+                    <a
+                        href="https://paypal.me/ASmyth115"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        PayPal
+                    </a>
+
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- ============================================
+             FOOTER
+        ============================================ -->
+
+        <footer class="site-footer">
+
+            ZEUSWEUSFILM // SERVER-14
+
+        </footer>
+
+    </div>
+
+    <script>
+
+        /* ============================================
+           SERVER-14 SIGNAL INDICATOR
+
+           Visual effect only.
+           No backend connections.
+        ============================================ */
+
+        (function () {
+
+            "use strict";
+
+            const signalValue =
+                document.getElementById("signalValue");
+
+            if (!signalValue) {
+                return;
+            }
+
+            setInterval(function () {
+
+                const signal =
+                    57 + Math.floor(Math.random() * 18);
+
+                signalValue.textContent = signal;
+
+            }, 9000);
+
+        })();
+
+    </script>
+
+</body>
+
+</html>
