@@ -1,1 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZeusWeusFilm</title>
+
+    <style>
+        /*
+         * ZeusWeusFilm
+         * Test 4 — Build 001
+         *
+         * An experiment based on the original homepage.
+         *
+         * No external fonts.
+         * No JavaScript.
+         * No analytics.
+         * No fictional interface.
+         */
+
+        :root {
+            --background: #090a09;
+            --paper: #d7d3c7;
+            --muted: #a6a397;
+            --line: rgba(215, 211, 199, 0.24);
+            --link: #c2c9af;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            background: var(--background);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            position: relative;
+
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+
+            overflow-x: hidden;
+
+            background: var(--background);
+            color: var(--paper);
+
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        /*
+         * The original background image is retained,
+         * but allowed to sit further behind the page.
+         */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+            inset: -20px;
+
+            background-image: url("../background.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
+            filter: blur(6px) grayscale(30%);
+            opacity: 0.24;
+
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(7, 8, 7, 0.30),
+                    rgba(7, 8, 7, 0.60) 55%,
+                    rgba(7, 8, 7, 0.82)
+                );
+
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .site {
+            position: relative;
+            z-index: 2;
+
+            width: min(100% - 36px, 1120px);
+            margin: 0 auto;
+
+            padding: 28px 0 34px;
+        }
+
+        /*
+         * HEADER
+         *
+         * The logo remains the secret entrance to IDIR.
+         */
+
+        .site-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            padding-top: 12px;
+        }
+
+        .logo-link {
+            display: block;
+            width: fit-content;
+
+            margin: 0 auto 22px;
+        }
+
+        .logo {
+            display: block;
+
+            width: 112px;
+            max-width: 40vw;
+            height: auto;
+
+            filter: brightness(0.94);
+
+            transition:
+                opacity 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .logo-link:hover .logo {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        h1 {
+            margin: 0;
+
+            color: #e2ded3;
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(28px, 4vw, 39px);
+            font-weight: normal;
+            letter-spacing: 1.5px;
+            line-height: 1.2;
+        }
+
+        .header-rule {
+            width: 56px;
+            height: 1px;
+
+            margin: 26px auto 0;
+
+            background: var(--line);
+        }
+
+        /*
+         * PROJECTS
+         *
+         * The artwork is the main event.
+         * No decorative frames or invented labels.
+         */
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 26px;
+
+            width: 100%;
+            margin: 45px auto 0;
+
+            align-items: start;
+        }
+
+        .project {
+            display: block;
+
+            min-width: 0;
+
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .project-image {
+            position: relative;
+
+            width: 100%;
+            overflow: hidden;
+
+            background: rgba(0, 0, 0, 0.18);
+        }
+
+        .project img {
+            display: block;
+
+            width: 100%;
+            height: auto;
+
+            filter: saturate(0.88);
+
+            transition:
+                filter 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .project:hover img,
+        .project:focus-visible img {
+            filter: saturate(1.05) brightness(1.08);
+            transform: scale(1.015);
+        }
+
+        .project-title {
+            display: inline-block;
+
+            margin-top: 15px;
+            padding-bottom: 3px;
+
+            border-bottom: 1px solid rgba(215, 211, 199, 0.40);
+
+            color: #e0ddd3;
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 18px;
+            font-weight: normal;
+            letter-spacing: 0.5px;
+
+            transition:
+                color 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .project:hover .project-title {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        /*
+         * The slight differences in alignment are deliberate.
+         * Not everything needs to feel machine-perfect.
+         */
+
+        .project:nth-child(2) {
+            margin-top: 13px;
+        }
+
+        .project:nth-child(3) {
+            margin-top: 5px;
+        }
+
+        /*
+         * DIVIDER
+         */
+
+        .separator {
+            width: min(72%, 650px);
+            height: 1px;
+
+            margin: 65px auto 0;
+
+            background:
+                linear-gradient(
+                    to right,
+                    transparent,
+                    var(--line) 20%,
+                    var(--line) 80%,
+                    transparent
+                );
+        }
+
+        /*
+         * QUOTE AND UPDATES
+         *
+         * The original text remains unchanged.
+         */
+
+        .description {
+            width: min(100%, 780px);
+
+            margin: 54px auto 0;
+
+            color: #c6c3b9;
+
+            text-align: center;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 17px;
+            font-weight: normal;
+            line-height: 1.85;
+        }
+
+        .quote {
+            margin: 0;
+        }
+
+        .quote-credit {
+            white-space: nowrap;
+        }
+
+        .updates {
+            margin: 42px 0 0;
+
+            color: #9c9d90;
+
+            font-family: "Courier New", Courier, monospace;
+            font-size: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        /*
+         * FOOTER
+         *
+         * Actual links, clearly recognisable as links.
+         */
+
+        .footer {
+            margin-top: 58px;
+            text-align: center;
+        }
+
+        .footer-rule {
+            width: 44px;
+            height: 1px;
+
+            margin: 0 auto 24px;
+
+            background: var(--line);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+
+            gap: 24px;
+
+            padding-bottom: 14px;
+        }
+
+        .social-links a {
+            color: var(--link);
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 15px;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+
+            transition: color 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+        }
+
+        a:focus-visible {
+            outline: 1px solid #e0ddd3;
+            outline-offset: 5px;
+        }
+
+        /*
+         * TABLET
+         */
+
+        @media (min-width: 601px) and (max-width: 900px) {
+            .projects {
+                gap: 15px;
+            }
+
+            .project-title {
+                font-size: 16px;
+            }
+        }
+
+        /*
+         * MOBILE
+         */
+
+        @media (max-width: 600px) {
+            .site {
+                width: min(100% - 38px, 430px);
+                padding-top: 18px;
+            }
+
+            .site-header {
+                padding-top: 4px;
+            }
+
+            .logo-link {
+                margin-bottom: 20px;
+            }
+
+            .logo {
+                width: 100px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .header-rule {
+                margin-top: 23px;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+
+                gap: 36px;
+
+                margin-top: 37px;
+            }
+
+            .project,
+            .project:nth-child(2),
+            .project:nth-child(3) {
+                margin-top: 0;
+            }
+
+            .project-title {
+                margin-top: 12px;
+                font-size: 17px;
+            }
+
+            .separator {
+                width: 82%;
+                margin-top: 53px;
+            }
+
+            .description {
+                margin-top: 42px;
+                font-size: 15px;
+                line-height: 1.75;
+            }
+
+            .updates {
+                margin-top: 35px;
+                font-size: 11px;
+            }
+
+            .footer {
+                margin-top: 50px;
+            }
+
+            .social-links {
+                gap: 19px;
+            }
+
+            .social-links a {
+                font-size: 14px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="site">
+
+        <header class="site-header">
+
+            <!-- Original secret IDIR entrance -->
+            <a
+                class="logo-link"
+                href="../idir/"
+                aria-label="ZeusWeusFilm"
+            >
+                <img
+                    class="logo"
+                    src="../zwflogo.webp"
+                    alt="ZeusWeusFilm logo"
+                >
+            </a>
+
+            <h1>ZeusWeusFilm</h1>
+
+            <div class="header-rule" aria-hidden="true"></div>
+
+        </header>
+
+        <main>
+
+            <!-- Original three projects -->
+
+            <section class="projects" aria-label="Films and projects">
+
+                <!-- Knock Knock -->
+                <a
+                    class="project"
+                    href="../knock-knock/"
+                >
+                    <div class="project-image">
+                        <img
+                            src="../knockknocklogo.webp"
+                            alt="Knock Knock"
+                        >
+                    </div>
+
+                    <div class="project-title">
+                        Knock Knock
+                    </div>
+                </a>
+
+                <!-- Fried Out -->
+                <a
+                    class="project"
+                    href="../fried-out/"
+                >
+                    <div class="project-image">
+                        <img
+                            src="../friedoutvol1logo.webp"
+                            alt="Fried Out"
+                        >
+                    </div>
+
+                    <div class="project-title">
+                        Fried Out
+                    </div>
+                </a>
+
+                <!-- Haunt-A-Files -->
+                <a
+                    class="project"
+                    href="../haunt-a-files/"
+                >
+                    <div class="project-image">
+                        <img
+                            src="../hauntafileslogo.webp"
+                            alt="Haunt-A-Files"
+                        >
+                    </div>
+
+                    <div class="project-title">
+                        Haunt-A-Files
+                    </div>
+                </a>
+
+            </section>
+
+            <div class="separator" aria-hidden="true"></div>
+
+            <!-- Original quotation and update message -->
+
+            <div class="description">
+
+                <p class="quote">
+                    "You're going to know, how intent I was, on teaching you people that what you're doing is wrong, and maybe that's all that needs to be done to stop you from the greed you have, the hate you have, anger, malice."
+                    <span class="quote-credit">- Marvin Heemeyer</span>
+                </p>
+
+                <p class="updates">
+                    Receiving Updates Daily...
+                </p>
+
+            </div>
+
+        </main>
+
+        <footer class="footer">
+
+            <div class="footer-rule" aria-hidden="true"></div>
+
+            <!-- Original footer links -->
+            <nav class="social-links" aria-label="Other links">
+
+                <a href="../contact">
+                    Contact
+                </a>
+
+                <a href="../physical/">
+                    Physical
+                </a>
+
+                <a
+                    href="https://paypal.me/ASmyth115"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    PayPal
+                </a>
+
+            </nav>
+
+        </footer>
+
+    </div>
+
+</body>
+</html>
