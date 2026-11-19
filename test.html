@@ -1,293 +1,602 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ZeusWeusFilm</title>
-
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>ZeusWeusFilm</title>
+
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         html {
-            background-color: #101310;
+            background: #090b09;
         }
 
         body {
-            background-color: #101310;
-            color: #c5c9bb;
-            text-align: center;
-            font-family: Tahoma, Verdana, Arial, sans-serif;
             margin: 0;
-            padding: 0;
             min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
+            color: #b8bcb0;
+            font-family: Tahoma, Verdana, Arial, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            background: #090b09;
         }
 
-        /* Background image */
+        /* Original background image */
+
         body::before {
             content: "";
             position: fixed;
-            top: -20px;
-            left: -20px;
-            width: calc(100% + 40px);
-            height: calc(100% + 40px);
+            inset: -20px;
             background-image: url("background.webp");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            filter: blur(5px) grayscale(65%) sepia(18%);
-            opacity: 0.22;
-            z-index: 0;
+            filter: grayscale(85%) blur(7px) brightness(0.42);
+            opacity: 0.48;
             pointer-events: none;
+            z-index: 0;
         }
 
-        /* Dark overlay */
         body::after {
             content: "";
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             background:
                 repeating-linear-gradient(
-                    to bottom,
-                    rgba(0, 0, 0, 0.025) 0px,
-                    rgba(0, 0, 0, 0.025) 1px,
+                    0deg,
+                    rgba(0, 0, 0, 0.055) 0px,
+                    rgba(0, 0, 0, 0.055) 1px,
                     transparent 1px,
-                    transparent 3px
+                    transparent 4px
                 ),
-                rgba(12, 16, 13, 0.62);
-            z-index: 1;
+                linear-gradient(
+                    to bottom,
+                    rgba(8, 11, 9, 0.60),
+                    rgba(8, 11, 9, 0.82)
+                );
             pointer-events: none;
+            z-index: 1;
         }
 
-        /* Keep content above background */
-        body > * {
+        a {
+            color: #a5b69a;
+        }
+
+        a:hover {
+            color: #e0e7d7;
+        }
+
+        /* Main website container */
+
+        .site {
             position: relative;
             z-index: 2;
+            width: calc(100% - 32px);
+            max-width: 960px;
+            margin: 38px auto 55px;
+            border: 1px solid #4a5046;
+            background: #171b17;
+            box-shadow:
+                0 0 0 1px #050705,
+                0 12px 45px rgba(0, 0, 0, 0.85);
         }
 
-        /* Logo link */
+        /* Header */
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            min-height: 145px;
+            padding: 22px 28px;
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(69, 77, 65, 0.85),
+                    rgba(29, 35, 29, 0.96) 48%,
+                    rgba(18, 22, 19, 1)
+                );
+            border-bottom: 1px solid #080a08;
+            box-shadow:
+                inset 0 1px 0 rgba(220, 230, 210, 0.13);
+        }
+
         .logo-link {
             display: block;
-            width: fit-content;
-            margin: 25px auto 35px;
+            flex-shrink: 0;
+            text-decoration: none;
         }
 
-        /* Logo */
         .logo {
             display: block;
-            width: 120px;
-            max-width: 40vw;
+            width: 108px;
+            max-width: 100%;
             height: auto;
-            margin: 0;
-            filter: brightness(0.88) contrast(1.08);
-            transition: filter 0.2s ease;
+            filter: brightness(0.92) contrast(1.12);
         }
 
         .logo-link:hover .logo {
-            filter: brightness(1.1) contrast(1.08);
+            filter: brightness(1.12) contrast(1.12);
         }
 
-        /* ZeusWeusFilm title */
+        .site-heading {
+            min-width: 0;
+        }
+
         h1 {
-            margin: 0 0 35px;
+            margin: 0;
+            color: #e0e3d9;
             font-family: Tahoma, Verdana, Arial, sans-serif;
-            font-size: 36px;
+            font-size: 31px;
             font-weight: bold;
-            letter-spacing: 1px;
-            color: #c5cbbb;
-            text-shadow:
-                1px 1px 0 #000,
-                0 1px 8px rgba(0, 0, 0, 0.8);
+            letter-spacing: -1px;
+            line-height: 1.2;
+            text-shadow: 1px 2px 2px #000;
         }
 
-        /* Project gallery */
-        .projects {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+        .header-subtitle {
+            margin-top: 8px;
+            color: #8c9887;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        /* Project link */
-        .project {
-            display: block;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            cursor: pointer;
-            color: inherit;
+        /* Old-style navigation */
+
+        .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            min-height: 34px;
             background: linear-gradient(
                 to bottom,
-                rgba(48, 55, 45, 0.88),
-                rgba(19, 23, 20, 0.94)
+                #41493e,
+                #272e27 48%,
+                #1c221d
             );
-            border: 1px solid #434d3d;
+            border-top: 1px solid #596153;
+            border-bottom: 1px solid #080a08;
+        }
+
+        .navigation a {
+            display: flex;
+            align-items: center;
+            padding: 8px 18px;
+            color: #c8d0c1;
+            font-size: 11px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            border-right: 1px solid #151a15;
             box-shadow:
-                inset 1px 1px 0 rgba(190, 200, 170, 0.13),
-                inset -1px -1px 0 rgba(0, 0, 0, 0.75),
-                0 3px 10px rgba(0, 0, 0, 0.55);
+                inset -1px 0 rgba(180, 190, 170, 0.08);
+        }
+
+        .navigation a:hover {
+            color: #fff;
+            background: rgba(160, 180, 140, 0.13);
+        }
+
+        /* Content */
+
+        .content {
+            padding: 27px 28px 32px;
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(27, 32, 27, 0.97),
+                    rgba(17, 21, 18, 0.98)
+                );
+        }
+
+        /* Section headers */
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 14px;
+            color: #aebba6;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .section-heading::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(
+                to right,
+                #465143,
+                transparent
+            );
+        }
+
+        /* Main film feature */
+
+        .featured {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+            gap: 1px;
+            border: 1px solid #424b40;
+            background: #080a08;
+            box-shadow:
+                inset 0 1px rgba(255, 255, 255, 0.04),
+                0 3px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .featured-image {
+            display: block;
+            min-width: 0;
+            background: #101310;
+            overflow: hidden;
+        }
+
+        .featured-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 230px;
+            object-fit: contain;
+            filter: saturate(0.78) brightness(0.87);
+            transition:
+                filter 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .featured-image:hover img {
+            filter: saturate(1) brightness(1);
+            transform: scale(1.015);
+        }
+
+        .featured-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+            padding: 25px 23px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #30382e,
+                    #1c231d 55%,
+                    #151a16
+                );
+            border-left: 1px solid #3a4338;
+        }
+
+        .feature-label {
+            color: #84927d;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .featured-info h2 {
+            margin: 12px 0 10px;
+            color: #e0e4d9;
+            font-size: 25px;
+            line-height: 1.2;
+            font-weight: bold;
+            text-shadow: 1px 2px #080a08;
+        }
+
+        .feature-rule {
+            width: 100%;
+            height: 1px;
+            margin: 5px 0 16px;
+            background: #4b5648;
+            box-shadow: 0 1px #111611;
+        }
+
+        .feature-button {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 8px 14px;
+            color: #d5dfca;
+            font-size: 11px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            border: 1px solid #596b51;
+            background: linear-gradient(
+                to bottom,
+                #465740,
+                #2b392a
+            );
+            box-shadow:
+                inset 1px 1px rgba(220, 235, 210, 0.13),
+                1px 2px 3px rgba(0, 0, 0, 0.4);
+        }
+
+        .feature-button:hover {
+            color: #fff;
+            border-color: #839578;
+            background: linear-gradient(
+                to bottom,
+                #566b4e,
+                #344630
+            );
+        }
+
+        /* Film directory */
+
+        .directory-heading {
+            margin-top: 32px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .project {
+            display: block;
+            min-width: 0;
+            overflow: hidden;
+            color: inherit;
+            text-decoration: none;
+            background: #202620;
+            border: 1px solid #3e493c;
+            box-shadow:
+                inset 1px 1px rgba(200, 210, 190, 0.07),
+                0 2px 5px rgba(0, 0, 0, 0.35);
             transition:
                 border-color 0.2s ease,
                 background 0.2s ease;
         }
 
         .project:hover {
-            border-color: #81906d;
-            background: linear-gradient(
-                to bottom,
-                rgba(59, 70, 53, 0.92),
-                rgba(25, 31, 24, 0.96)
-            );
+            border-color: #819477;
+            background: #2b352a;
         }
 
-        /* Project image */
         .project img {
+            display: block;
             width: 100%;
             height: auto;
-            display: block;
-            filter: saturate(0.85) brightness(0.9);
-            transition:
-                transform 0.3s ease,
-                opacity 0.3s ease,
-                filter 0.3s ease;
+            filter: saturate(0.72) brightness(0.84);
+            transition: filter 0.2s ease;
         }
 
-        /* Hover effect */
         .project:hover img {
-            transform: scale(1.03);
-            opacity: 0.95;
             filter: saturate(1) brightness(1);
         }
 
-        /* Project name */
         .project-title {
-            margin-top: 12px;
-            margin-bottom: 5px;
-            font-family: Tahoma, Verdana, Arial, sans-serif;
-            font-size: 18px;
+            padding: 10px 12px;
+            color: #becbb4;
+            font-size: 12px;
             font-weight: bold;
-            letter-spacing: 1px;
-            color: #b8c5a4;
-            text-shadow:
-                1px 1px 0 #000,
-                0 0 8px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Divider */
-        .separator {
-            width: 70%;
-            max-width: 700px;
-            height: 1px;
-            margin: 35px auto;
+            border-top: 1px solid #343e32;
             background: linear-gradient(
-                to right,
-                transparent,
-                #5d6954,
-                transparent
+                to bottom,
+                #303a2e,
+                #202820
             );
-            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
         }
 
-        /* ZeusWeusFilm description */
+        .project:hover .project-title {
+            color: #f0f4eb;
+        }
+
+        /* Quote */
+
+        .quote-section {
+            margin-top: 33px;
+        }
+
         .description {
-            width: 90%;
-            max-width: 1100px;
-            margin: 55px auto 60px;
-            font-family: Georgia, serif;
-            font-size: 17px;
-            line-height: 1.6;
-            color: #b7bcb0;
-            text-shadow:
-                1px 1px 1px #000,
-                0 0 8px rgba(0, 0, 0, 0.35);
+            padding: 20px 23px;
+            color: #b3b9ad;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 15px;
+            line-height: 1.8;
+            text-align: left;
+            background: rgba(7, 10, 8, 0.45);
+            border: 1px solid #303a30;
+            border-left: 3px solid #56674f;
+            text-shadow: 1px 1px #000;
         }
 
-        /* Footer links */
-        .social-links {
-            margin: 0 auto;
-            padding-bottom: 35px;
+        /* Footer */
+
+        .footer {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            gap: 22px;
             flex-wrap: wrap;
+            gap: 12px;
+            padding: 15px 28px;
+            background: linear-gradient(
+                to bottom,
+                #30382e,
+                #1b211c
+            );
+            border-top: 1px solid #495347;
+            box-shadow:
+                inset 0 1px rgba(220, 230, 210, 0.08);
+        }
+
+        .footer-brand {
+            color: #798875;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .social-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .social-links a {
-            color: #a9bb91;
+            color: #bac7b1;
+            font-size: 11px;
+            font-weight: bold;
             text-decoration: none;
-            font-family: Tahoma, Verdana, Arial, sans-serif;
-            font-size: 15px;
-            letter-spacing: 1px;
-            border-bottom: 1px solid rgba(169, 187, 145, 0.35);
-            transition:
-                color 0.2s ease,
-                border-color 0.2s ease;
         }
 
         .social-links a:hover {
-            color: #e0ebd0;
-            border-color: #e0ebd0;
-        }
-
-        /* Mobile */
-        @media (max-width: 600px) {
-
-            .logo-link {
-                margin: 20px auto 25px;
-            }
-
-            .logo {
-                width: 100px;
-            }
-
-            h1 {
-                font-size: 20px;
-            }
-
-            .projects {
-                width: 85%;
-                grid-template-columns: 1fr;
-                gap: 35px;
-            }
-
-            .project-title {
-                font-size: 16px;
-            }
-
-            .separator {
-                width: 80%;
-                margin: 30px auto;
-            }
-
-            .description {
-                width: 85%;
-                font-size: 15px;
-                line-height: 1.5;
-                margin-top: 45px;
-            }
-
-            .social-links {
-                padding-bottom: 35px;
-                gap: 14px;
-            }
-
-            .social-links a {
-                font-size: 13px;
-                letter-spacing: 1px;
-            }
+            color: #fff;
+            text-decoration: underline;
         }
 
         /* Tablet */
-        @media (min-width: 601px) and (max-width: 900px) {
+
+        @media (max-width: 760px) {
+
+            .site {
+                margin-top: 20px;
+            }
+
+            .header {
+                min-height: 120px;
+                padding: 18px 20px;
+            }
+
+            .logo {
+                width: 90px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .featured {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+            }
+
+            .featured-info {
+                padding: 18px;
+            }
+
+            .featured-info h2 {
+                font-size: 20px;
+            }
+
+            .footer {
+                padding: 15px 20px;
+            }
+        }
+
+        /* Mobile */
+
+        @media (max-width: 540px) {
+
+            .site {
+                width: calc(100% - 16px);
+                margin: 8px auto 24px;
+            }
+
+            .header {
+                gap: 14px;
+                min-height: 95px;
+                padding: 15px;
+            }
+
+            .logo {
+                width: 72px;
+            }
+
+            h1 {
+                font-size: 22px;
+                letter-spacing: -0.5px;
+            }
+
+            .header-subtitle {
+                font-size: 9px;
+                letter-spacing: 1px;
+            }
+
+            .navigation a {
+                flex: 1;
+                justify-content: center;
+                padding: 10px 8px;
+                font-size: 10px;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            .featured {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-image img {
+                min-height: 0;
+                height: auto;
+            }
+
+            .featured-info {
+                border-left: 0;
+                border-top: 1px solid #3a4338;
+                padding: 18px;
+            }
+
+            .featured-info h2 {
+                margin: 8px 0;
+            }
+
+            .feature-rule {
+                margin-bottom: 12px;
+            }
+
+            .directory-heading {
+                margin-top: 25px;
+            }
 
             .projects {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .project-title {
+                padding: 10px 12px;
+            }
+
+            .quote-section {
+                margin-top: 26px;
+            }
+
+            .description {
+                padding: 16px;
+                font-size: 14px;
+                line-height: 1.7;
+            }
+
+            .footer {
+                justify-content: center;
+                text-align: center;
+                padding: 16px 12px;
+            }
+
+            .footer-brand {
+                width: 100%;
+            }
+
+            .social-links {
+                justify-content: center;
+                gap: 18px;
             }
         }
     </style>
@@ -295,96 +604,169 @@
 
 <body>
 
-    <!-- ZeusWeusFilm logo / secret IDIR entrance -->
-    <a
-        class="logo-link"
-        href="idir/">
-        <img
-            class="logo"
-            src="zwflogo.webp"
-            alt="ZeusWeusFilm logo">
-    </a>
+    <div class="site">
 
-    <!-- ZeusWeusFilm title -->
-    <h1>ZeusWeusFilm</h1>
+        <!-- Header -->
+        <header class="header">
 
-    <!-- Projects -->
-    <div class="projects">
+            <!-- ZeusWeusFilm logo / secret IDIR entrance -->
+            <a
+                class="logo-link"
+                href="idir/">
+                <img
+                    class="logo"
+                    src="zwflogo.webp"
+                    alt="ZeusWeusFilm logo">
+            </a>
 
-        <!-- Knock Knock -->
-        <a
-            class="project"
-            href="knock-knock/">
-
-            <img
-                src="knockknocklogo.webp"
-                alt="Knock Knock">
-
-            <div class="project-title">
-                Knock Knock
+            <div class="site-heading">
+                <h1>ZeusWeusFilm</h1>
+                <div class="header-subtitle">
+                    Independent Film
+                </div>
             </div>
 
-        </a>
+        </header>
 
-        <!-- Fried Out -->
-        <a
-            class="project"
-            href="fried-out/">
+        <!-- Navigation -->
+        <nav class="navigation">
+            <a href="knock-knock/">Knock Knock</a>
+            <a href="fried-out/">Fried Out</a>
+            <a href="haunt-a-files/">Haunt-A-Files</a>
+        </nav>
 
-            <img
-                src="friedoutvol1logo.webp"
-                alt="Fried Out">
+        <!-- Main content -->
+        <main class="content">
 
-            <div class="project-title">
-                Fried Out
+            <!-- Featured film -->
+            <div class="section-heading">
+                Featured Film
             </div>
 
-        </a>
+            <section class="featured">
 
-        <!-- Haunt-A-Files -->
-        <a
-            class="project"
-            href="haunt-a-files/">
+                <a
+                    class="featured-image"
+                    href="knock-knock/">
+                    <img
+                        src="knockknocklogo.webp"
+                        alt="Knock Knock">
+                </a>
 
-            <img
-                src="hauntafileslogo.webp"
-                alt="Haunt-A-Files">
+                <div class="featured-info">
+                    <div class="feature-label">
+                        ZeusWeusFilm
+                    </div>
 
-            <div class="project-title">
-                Haunt-A-Files
+                    <h2>Knock Knock</h2>
+
+                    <div class="feature-rule"></div>
+
+                    <a
+                        class="feature-button"
+                        href="knock-knock/">
+                        View Film &raquo;
+                    </a>
+                </div>
+
+            </section>
+
+            <!-- Film directory -->
+            <div class="section-heading directory-heading">
+                Film Directory
             </div>
 
-        </a>
+            <div class="projects">
 
-    </div>
+                <!-- Knock Knock -->
+                <a
+                    class="project"
+                    href="knock-knock/">
 
-    <!-- Divider -->
-    <div class="separator"></div>
+                    <img
+                        src="knockknocklogo.webp"
+                        alt="Knock Knock">
 
-    <!-- ZeusWeusFilm description -->
-    <div class="description">
-        "You're going to know, how intent I was, on teaching you people that what you're doing is wrong, and maybe that's all that needs to be done to stop you from the greed you have, the hate you have, the anger, malice." <span style="white-space: nowrap;">- Marvin Heemeyer</span>
-    </div>
+                    <div class="project-title">
+                        Knock Knock
+                    </div>
 
-    <!-- Footer links -->
-    <div class="social-links">
+                </a>
 
-        <a
-            href="contact">
-            Contact
-        </a>
+                <!-- Fried Out -->
+                <a
+                    class="project"
+                    href="fried-out/">
 
-        <a
-            href="physical/">
-            Physical
-        </a>
+                    <img
+                        src="friedoutvol1logo.webp"
+                        alt="Fried Out">
 
-        <a
-            href="https://paypal.me/ASmyth115"
-            target="_blank"
-            rel="noopener noreferrer">
-            PayPal
-        </a>
+                    <div class="project-title">
+                        Fried Out
+                    </div>
+
+                </a>
+
+                <!-- Haunt-A-Files -->
+                <a
+                    class="project"
+                    href="haunt-a-files/">
+
+                    <img
+                        src="hauntafileslogo.webp"
+                        alt="Haunt-A-Files">
+
+                    <div class="project-title">
+                        Haunt-A-Files
+                    </div>
+
+                </a>
+
+            </div>
+
+            <!-- Quote -->
+            <section class="quote-section">
+
+                <div class="section-heading">
+                    Marvin Heemeyer
+                </div>
+
+                <div class="description">
+                    "You're going to know, how intent I was, on teaching you people that what you're doing is wrong, and maybe that's all that needs to be done to stop you from the greed you have, the hate you have, the anger, malice." <span style="white-space: nowrap;">- Marvin Heemeyer</span>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+
+            <div class="footer-brand">
+                ZeusWeusFilm
+            </div>
+
+            <div class="social-links">
+
+                <a href="contact">
+                    Contact
+                </a>
+
+                <a href="physical/">
+                    Physical
+                </a>
+
+                <a
+                    href="https://paypal.me/ASmyth115"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    PayPal
+                </a>
+
+            </div>
+
+        </footer>
 
     </div>
 
