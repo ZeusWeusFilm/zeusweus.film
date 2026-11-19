@@ -312,11 +312,17 @@
             gap: 15px;
         }
 
+        /*
+            UPDATED:
+            Solid dark-blue buttons for improved readability.
+            No gradients inside the video-selection buttons.
+        */
+
         .video-menu-button {
             min-width: 0;
             min-height: 65px;
             padding: 14px 12px;
-            color: #c7dbea;
+            color: #ffffff;
             font-size: 11px;
             font-weight: 900;
             letter-spacing: 1.5px;
@@ -324,13 +330,7 @@
             text-transform: uppercase;
             cursor: pointer;
             border: 1px solid #164d7c;
-            background:
-                linear-gradient(
-                    135deg,
-                    #082443,
-                    #020c18 65%,
-                    #01050c
-                );
+            background: #071b32;
             box-shadow:
                 0 0 10px rgba(0, 100, 255, 0.06),
                 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -345,7 +345,7 @@
         .video-menu-button:hover {
             color: #ffffff;
             border-color: #168bff;
-            background: #0a3765;
+            background: #0b2b4c;
             box-shadow: 0 0 18px rgba(0, 130, 255, 0.3);
             transform: translateY(-2px);
         }
@@ -353,15 +353,9 @@
         .video-menu-button.active {
             color: #ffffff;
             border-color: #38aaff;
-            background:
-                linear-gradient(
-                    135deg,
-                    #1269b7,
-                    #06365e 60%,
-                    #02192f
-                );
+            background: #10375c;
             box-shadow:
-                0 0 18px rgba(0, 130, 255, 0.25),
+                0 0 18px rgba(0, 130, 255, 0.35),
                 inset 0 1px rgba(255, 255, 255, 0.12);
         }
 
