@@ -1,1 +1,1638 @@
-In a world stripped down to it's bitter core, Mr Everyday has something to say.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZeusWeusFilm - Final Say For Mr Everyday</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: #050000;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: #e5dada;
+    background: #050000;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* BLOOD-RED BACKGROUND */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -20px;
+    background-image: url("../knock-knock/images/background.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter:
+        grayscale(100%)
+        contrast(1.5)
+        brightness(0.3)
+        sepia(100%)
+        saturate(800%)
+        hue-rotate(345deg)
+        blur(5px);
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* CRT SCANLINES */
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(0,0,0,0.12) 0px,
+            rgba(0,0,0,0.12) 1px,
+            transparent 1px,
+            transparent 3px
+        ),
+        radial-gradient(
+            ellipse at 50% 15%,
+            rgba(220,20,20,0.28),
+            transparent 65%
+        ),
+        linear-gradient(
+            to bottom,
+            rgba(25,2,2,0.45),
+            rgba(5,0,0,0.9)
+        );
+    pointer-events: none;
+    z-index: 1;
+}
+
+a {
+    color: #ff3838;
+}
+
+a:hover {
+    color: #ffffff;
+}
+
+button {
+    font-family: inherit;
+}
+
+.site {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* HEADER */
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    min-height: 160px;
+    padding: 25px max(5%, calc((100% - 1320px) / 2));
+    background: linear-gradient(
+        115deg,
+        rgba(85,7,7,0.95),
+        rgba(30,2,2,0.98) 50%,
+        rgba(10,0,0,1)
+    );
+    border-bottom: 1px solid #ff1616;
+    box-shadow:
+        inset 0 -1px 0 rgba(255,28,28,0.2),
+        0 0 35px rgba(255,20,20,0.12);
+}
+
+.logo-link {
+    display: block;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.logo {
+    display: block;
+    width: 115px;
+    max-width: 100%;
+    height: auto;
+    filter:
+        brightness(0.95)
+        contrast(1.2)
+        drop-shadow(0 0 8px rgba(255,26,26,0.25));
+    transition: filter 0.2s ease;
+}
+
+.logo-link:hover .logo {
+    filter:
+        brightness(1.15)
+        contrast(1.2)
+        drop-shadow(0 0 14px rgba(255,30,30,0.65));
+}
+
+.site-heading {
+    min-width: 0;
+}
+
+h1 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    text-shadow:
+        2px 0 rgba(255,26,26,0.7),
+        -1px 0 rgba(100,9,9,0.8),
+        0 0 18px rgba(255,24,24,0.35);
+}
+
+.header-subtitle {
+    margin-top: 8px;
+    color: #ff4444;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* NAVIGATION */
+
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    min-height: 44px;
+    background: rgba(20,1,1,0.96);
+    border-bottom: 1px solid #ff1616;
+    box-shadow: 0 5px 20px rgba(255,20,20,0.08);
+}
+
+.navigation a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 14px 16px;
+    color: #f0caca;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    border-right: 1px solid #520808;
+    border-bottom: 2px solid transparent;
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        text-shadow 0.2s ease;
+}
+
+.navigation a:last-child {
+    border-right: none;
+}
+
+.navigation a:hover {
+    color: #ffffff;
+    background: rgba(255,22,22,0.12);
+    border-bottom-color: #ff2020;
+    text-shadow: 0 0 10px rgba(255,28,28,0.8);
+}
+
+.navigation a.active {
+    color: #ffffff;
+    border-bottom-color: #ff2020;
+    background: rgba(255,22,22,0.12);
+}
+
+/* MAIN CONTENT */
+
+.content {
+    width: calc(100% - 80px);
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 55px 0 75px;
+}
+
+/* SECTION HEADINGS */
+
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 18px;
+    color: #ff2828;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(255,28,28,0.35);
+}
+
+.section-heading::before {
+    content: "";
+    width: 5px;
+    height: 12px;
+    background: #ff1616;
+    box-shadow: 0 0 8px rgba(255,30,30,0.7);
+}
+
+.section-heading::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        #ff1616,
+        transparent
+    );
+}
+
+/* VIDEO PLAYER */
+
+.video-section {
+    width: 100%;
+    margin: 0;
+}
+
+.video-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    background: #000000;
+    border: 1px solid #a90000;
+    box-shadow:
+        0 0 25px rgba(255,22,22,0.16),
+        0 8px 35px rgba(0,0,0,0.7);
+}
+
+#video-player {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000000;
+}
+
+.view-count {
+    margin: 14px 0 0;
+    color: #c18c8c;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* VIDEO BUTTONS */
+
+.video-menu {
+    width: 100%;
+    margin: 22px 0 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.video-menu-button {
+    min-width: 0;
+    min-height: 65px;
+    padding: 14px 12px;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    line-height: 1.4;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid #700000;
+    background: #210505;
+    box-shadow:
+        0 0 10px rgba(255,20,20,0.06),
+        0 4px 10px rgba(0,0,0,0.5);
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.video-menu-button:hover {
+    color: #ffffff;
+    border-color: #ff1616;
+    background: #3d0808;
+    box-shadow: 0 0 18px rgba(255,26,26,0.3);
+    transform: translateY(-2px);
+}
+
+.video-menu-button.active {
+    color: #ffffff;
+    border-color: #ff3838;
+    background: #5b0a0a;
+    box-shadow:
+        0 0 18px rgba(255,26,26,0.25),
+        inset 0 1px rgba(255,255,255,0.12);
+}
+
+/* DESCRIPTION */
+
+.description {
+    margin: 25px 0 0;
+    padding: 28px 32px;
+    color: #e0caca;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.9;
+    text-align: left;
+    background: linear-gradient(
+        115deg,
+        rgba(60,5,5,0.75),
+        rgba(15,1,1,0.92)
+    );
+    border: 1px solid #700000;
+    border-left: 3px solid #ff1616;
+    box-shadow:
+        0 0 15px rgba(255,22,22,0.08),
+        inset 0 0 20px rgba(255,22,22,0.04);
+    text-shadow: 1px 1px #000000;
+    overflow-wrap: anywhere;
+}
+
+/* PHYSICAL RELEASE */
+
+.physical-section {
+    margin-top: 55px;
+}
+
+.dvd-link {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    width: 100%;
+    padding: 24px 30px;
+    color: #ffffff;
+    text-decoration: none;
+    background: linear-gradient(
+        115deg,
+        rgba(80,7,7,0.85),
+        rgba(22,1,1,0.95)
+    );
+    border: 1px solid #700000;
+    border-left: 3px solid #ff1616;
+    box-shadow:
+        0 0 15px rgba(255,22,22,0.08),
+        0 4px 15px rgba(0,0,0,0.5);
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.dvd-link:hover {
+    color: #ffffff;
+    border-color: #ff3838;
+    background: linear-gradient(
+        115deg,
+        rgba(115,11,11,0.9),
+        rgba(30,2,2,0.95)
+    );
+    box-shadow: 0 0 22px rgba(255,26,26,0.2);
+}
+
+.dvd-image {
+    display: block;
+    width: 135px;
+    height: 135px;
+    flex-shrink: 0;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255,28,28,0.2));
+}
+
+.dvd-text {
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(255,26,26,0.25);
+}
+
+.dvd-arrow {
+    margin-left: auto;
+    color: #ff3838;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* BEHIND-THE-SCENES GALLERY */
+
+.gallery-section {
+    margin-top: 55px;
+}
+
+.gallery {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    cursor: pointer;
+    background: #100303;
+    border: 1px solid #700000;
+    box-shadow:
+        0 0 10px rgba(255,22,22,0.07),
+        0 4px 10px rgba(0,0,0,0.5);
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.gallery-item:hover {
+    border-color: #ff1616;
+    box-shadow:
+        0 0 18px rgba(255,26,26,0.3),
+        0 4px 10px rgba(0,0,0,0.5);
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    filter: saturate(0.85) brightness(0.9);
+    transition:
+        transform 0.25s ease,
+        filter 0.25s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.02);
+    filter: saturate(1.1) brightness(1.05);
+}
+
+.gallery-item figcaption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 14px 16px;
+    color: #ffe6e6;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: left;
+    background: rgba(25,2,2,0.9);
+    border-top: 1px solid #700000;
+    opacity: 0;
+    transform: translateY(100%);
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+    pointer-events: none;
+}
+
+.gallery-item:hover figcaption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* PRE-PRODUCTION DOCUMENT */
+
+.document-section {
+    margin-top: 55px;
+}
+
+.document-cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 420px;
+    padding: 38px 25px;
+    cursor: pointer;
+    color: #ffffff;
+    text-align: center;
+    background: linear-gradient(
+        135deg,
+        rgba(90,8,8,0.8),
+        rgba(30,2,2,0.95) 55%,
+        rgba(10,0,0,1)
+    );
+    border: 1px solid #700000;
+    border-left: 3px solid #ff1616;
+    box-shadow:
+        0 0 15px rgba(255,22,22,0.08),
+        0 4px 15px rgba(0,0,0,0.5);
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.document-cover:hover {
+    border-color: #ff3838;
+    background: linear-gradient(
+        135deg,
+        rgba(130,13,13,0.85),
+        rgba(45,4,4,0.95) 55%,
+        rgba(15,1,1,1)
+    );
+    box-shadow: 0 0 25px rgba(255,26,26,0.2);
+}
+
+.document-paper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 285px;
+    padding: 30px 20px;
+    overflow: hidden;
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #e8edf3
+    );
+    border: 1px solid #d4bcbc;
+    box-shadow:
+        8px 10px 0 rgba(0,0,0,0.25),
+        0 0 22px rgba(255,28,28,0.18);
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.document-cover:hover .document-paper {
+    transform: translateY(-4px);
+    box-shadow:
+        8px 14px 0 rgba(0,0,0,0.25),
+        0 0 30px rgba(255,28,28,0.3);
+}
+
+.document-paper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 38px solid #2c0707;
+    border-left: 38px solid #dec5c5;
+    box-shadow: -2px 2px 4px rgba(0,0,0,0.12);
+}
+
+.document-paper-label {
+    margin-bottom: 25px;
+    color: #aa6666;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.document-title {
+    color: #271010;
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.document-subtitle {
+    margin-top: 14px;
+    color: #8c1c1c;
+    font-size: 10px;
+    font-weight: 900;
+    line-height: 1.5;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.document-paper-rule {
+    width: 75%;
+    height: 2px;
+    margin: 22px 0 16px;
+    background: #ff1616;
+}
+
+.document-paper-lines {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.document-paper-lines span {
+    display: block;
+    height: 3px;
+    background: #d2dce5;
+}
+
+.document-paper-lines span:last-child {
+    width: 65%;
+}
+
+.document-open {
+    margin-top: 25px;
+    padding: 12px 22px;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: #5b0a0a;
+    border: 1px solid #ff3838;
+    box-shadow: 0 0 14px rgba(255,26,26,0.2);
+}
+
+.document-cover:hover .document-open {
+    background: #ff1616;
+    box-shadow: 0 0 22px rgba(255,28,28,0.4);
+}
+
+/* FOOTER */
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 24px max(5%, calc((100% - 1320px) / 2));
+    background: rgba(15,1,1,0.95);
+    border-top: 1px solid #a90000;
+}
+
+.footer-brand {
+    color: #ff2828;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.social-links a {
+    color: #cadfea;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.social-links a:hover {
+    color: #ff3838;
+    text-shadow: 0 0 10px rgba(255,28,28,0.6);
+}
+
+/* IMAGE LIGHTBOX */
+
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    padding: 30px;
+    background: rgba(10,0,0,0.97);
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox img {
+    display: block;
+    max-width: 95%;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border: 1px solid #700000;
+    box-shadow: 0 0 35px rgba(255,26,26,0.2);
+}
+
+.lightbox-close {
+    position: fixed;
+    top: 18px;
+    right: 25px;
+    z-index: 1001;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 38px;
+    line-height: 1;
+    cursor: pointer;
+    user-select: none;
+    text-shadow: 0 0 12px rgba(255,28,28,0.8);
+}
+
+/* PDF LIGHTBOX */
+
+.pdf-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    padding: 55px 25px 25px;
+    background: rgba(10,0,0,0.97);
+}
+
+.pdf-lightbox iframe {
+    display: block;
+    width: 100%;
+    max-width: 1100px;
+    height: calc(100vh - 80px);
+    margin: 0 auto;
+    border: 1px solid #ff1616;
+    background: #ffffff;
+    box-shadow: 0 0 35px rgba(255,26,26,0.2);
+}
+
+.pdf-close {
+    position: fixed;
+    top: 12px;
+    right: 25px;
+    z-index: 1101;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 38px;
+    line-height: 1;
+    cursor: pointer;
+    user-select: none;
+    text-shadow: 0 0 12px rgba(255,28,28,0.8);
+}
+
+/* TABLET */
+
+@media (max-width: 760px) {
+    .header {
+        min-height: 125px;
+        padding: 20px 5%;
+    }
+
+    .logo {
+        width: 90px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .content {
+        width: calc(100% - 40px);
+        padding: 35px 0 50px;
+    }
+
+    .video-menu {
+        gap: 10px;
+    }
+
+    .video-menu-button {
+        padding: 12px 8px;
+        font-size: 10px;
+    }
+
+    .gallery {
+        gap: 12px;
+    }
+
+    .footer {
+        padding: 20px 5%;
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 540px) {
+    .header {
+        gap: 14px;
+        min-height: 105px;
+        padding: 18px 15px;
+    }
+
+    .logo {
+        width: 72px;
+    }
+
+    h1 {
+        font-size: 22px;
+        letter-spacing: -0.5px;
+    }
+
+    .header-subtitle {
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+
+    .navigation a {
+        flex: 1 1 50%;
+        justify-content: center;
+        padding: 12px 8px;
+        font-size: 10px;
+    }
+
+    .content {
+        width: calc(100% - 30px);
+        padding: 30px 0 45px;
+    }
+
+    .video-menu {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .video-menu-button {
+        min-height: 62px;
+        padding: 12px 8px;
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    .video-menu-button:hover {
+        transform: none;
+    }
+
+    .view-count {
+        font-size: 10px;
+    }
+
+    .description {
+        margin-top: 20px;
+        padding: 20px;
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .physical-section,
+    .gallery-section,
+    .document-section {
+        margin-top: 40px;
+    }
+
+    .dvd-link {
+        gap: 15px;
+        padding: 18px 15px;
+    }
+
+    .dvd-image {
+        width: 90px;
+        height: 90px;
+    }
+
+    .dvd-text {
+        font-size: 14px;
+        letter-spacing: 0.5px;
+    }
+
+    .dvd-arrow {
+        font-size: 20px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .gallery-item figcaption {
+        opacity: 1;
+        transform: translateY(0);
+        font-size: 11px;
+        padding: 12px 14px;
+    }
+
+    .gallery-item:hover img {
+        transform: none;
+    }
+
+    .document-cover {
+        min-height: 390px;
+        padding: 30px 15px;
+    }
+
+    .document-paper {
+        width: 190px;
+        height: 250px;
+        padding: 25px 15px;
+    }
+
+    .document-title {
+        font-size: 23px;
+    }
+
+    .document-subtitle {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+
+    .document-paper-label {
+        font-size: 8px;
+        margin-bottom: 20px;
+    }
+
+    .footer {
+        justify-content: center;
+        text-align: center;
+        padding: 20px 15px;
+    }
+
+    .footer-brand {
+        width: 100%;
+    }
+
+    .social-links {
+        justify-content: center;
+        gap: 18px;
+    }
+
+    .pdf-lightbox {
+        padding: 50px 10px 10px;
+    }
+
+    .pdf-lightbox iframe {
+        height: calc(100vh - 60px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="site">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a class="logo-link" href="../">
+            <img
+                class="logo"
+                src="../zwflogo.webp"
+                alt="ZeusWeusFilm logo">
+        </a>
+
+        <div class="site-heading">
+
+            <h1>Final Say For Mr Everyday</h1>
+
+            <div class="header-subtitle">
+                https://zeusweus.film
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navigation">
+
+        <a href="../">
+            ZeusWeusFilm
+        </a>
+
+        <a class="active" href="./">
+            Final Say For Mr Everyday
+        </a>
+
+        <a href="../knock-knock/">
+            Knock Knock
+        </a>
+
+        <a href="../fried-out/">
+            Fried Out
+        </a>
+
+        <a href="../haunt-a-files/">
+            Haunt-A-Files
+        </a>
+
+    </nav>
+
+    <!-- MAIN CONTENT -->
+
+    <main class="content">
+
+        <!-- FILM PLAYER -->
+
+        <div class="section-heading">
+            Knock Knock
+        </div>
+
+        <section class="video-section">
+
+            <div class="video-container">
+
+                <video
+                    id="video-player"
+                    controls
+                    controlsList="nodownload"
+                    oncontextmenu="return false;"
+                    preload="metadata"
+                    poster="../knock-knock/images/knock-knock.webp">
+
+                    <source
+                        id="video-source"
+                        src="https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/knock-knock.mp4"
+                        type="video/mp4">
+
+                    Your browser does not support HTML5 video.
+
+                </video>
+
+            </div>
+
+            <div
+                class="view-count"
+                id="view-count"
+                aria-live="polite">
+                0 views
+            </div>
+
+            <!-- VIDEO SELECTION -->
+
+            <div class="video-menu">
+
+                <button
+                    class="video-menu-button active"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/knock-knock.mp4',
+                        '../knock-knock/images/knock-knock.webp',
+                        'Bella has just moved into her first home, in the midst of unpacking she accidentally knocks on the wall prompting a response from her unfamiliar neighbour. Bella however, has no idea who, or what lives next door...',
+                        'knock-knock-film'
+                    )">
+                    FILM
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/trailer-1.mp4',
+                        '../knock-knock/images/trailer-1.webp',
+                        'Knock Knock coming December 15th 2024',
+                        'knock-knock-trailer-1'
+                    )">
+                    TRAILER 1
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/trailer-2.mp4',
+                        '../knock-knock/images/trailer-2.webp',
+                        'It\'s here...',
+                        'knock-knock-trailer-2'
+                    )">
+                    TRAILER 2
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/knock-knock/behind-the-scenes.mp4',
+                        '../knock-knock/images/behind-the-scenes.webp',
+                        'The entire Knock Knock project was a very steep learning curve, here\'s a good look into how the actual shooting days went, it\'s like an odd time capsule to look back on now but I hope you enjoy.',
+                        'knock-knock-behind-the-scenes'
+                    )">
+                    BEHIND THE SCENES
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- VIDEO DESCRIPTION -->
+
+        <div
+            class="description"
+            id="video-description">
+            Bella has just moved into her first home, in the midst of
+            unpacking she accidentally knocks on the wall prompting a
+            response from her unfamiliar neighbour. Bella however, has
+            no idea who, or what lives next door...
+        </div>
+
+        <!-- PHYSICAL RELEASE -->
+
+        <section class="physical-section">
+
+            <div class="section-heading">
+                Physical Release
+            </div>
+
+            <a
+                href="../physical/knock-knock/"
+                class="dvd-link">
+
+                <img
+                    src="../knock-knock/images/disc.webp"
+                    alt="Knock Knock physical release"
+                    class="dvd-image">
+
+                <span class="dvd-text">
+                    Buy a Physical Copy
+                </span>
+
+                <span class="dvd-arrow" aria-hidden="true">
+                    &raquo;
+                </span>
+
+            </a>
+
+        </section>
+
+        <!-- BEHIND-THE-SCENES GALLERY -->
+
+        <section class="gallery-section">
+
+            <div class="section-heading">
+                Behind The Scenes
+            </div>
+
+            <div class="gallery">
+
+                <figure class="gallery-item">
+                    <img
+                        src="../knock-knock/images/bts1.webp"
+                        alt="Moving in."
+                        onclick="openLightbox(this.src)">
+                    <figcaption>Moving in.</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <img
+                        src="../knock-knock/images/bts2.webp"
+                        alt="Ready to go."
+                        onclick="openLightbox(this.src)">
+                    <figcaption>Ready to go.</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <img
+                        src="../knock-knock/images/bts3.webp"
+                        alt="Script changes."
+                        onclick="openLightbox(this.src)">
+                    <figcaption>Script changes.</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <img
+                        src="../knock-knock/images/bts4.webp"
+                        alt="Better see a doctor."
+                        onclick="openLightbox(this.src)">
+                    <figcaption>Better see a doctor.</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <img
+                        src="../knock-knock/images/bts5.webp"
+                        alt="The lure."
+                        onclick="openLightbox(this.src)">
+                    <figcaption>The lure.</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <img
+                        src="../knock-knock/images/bts6.webp"
+                        alt="Blank canvas."
+                        onclick="openLightbox(this.src)">
+                    <figcaption>Blank canvas.</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <img
+                        src="../knock-knock/images/bts7.webp"
+                        alt="Creating the wall effect."
+                        onclick="openLightbox(this.src)">
+                    <figcaption>Creating the wall effect.</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <img
+                        src="../knock-knock/images/bts8.webp"
+                        alt="Special fx shots."
+                        onclick="openLightbox(this.src)">
+                    <figcaption>Special fx shots.</figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <img
+                        src="../knock-knock/images/bts9.webp"
+                        alt="Practical Poster."
+                        onclick="openLightbox(this.src)">
+                    <figcaption>Practical Poster.</figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+        <!-- PRE-PRODUCTION DOCUMENT -->
+
+        <section class="document-section">
+
+            <div class="section-heading">
+                Knock Knock Pre-Production Document
+            </div>
+
+            <div
+                class="document-cover"
+                onclick="openPDF()">
+
+                <div class="document-paper">
+
+                    <div class="document-paper-label">
+                        ZeusWeusFilm
+                    </div>
+
+                    <div class="document-title">
+                        Knock Knock
+                    </div>
+
+                    <div class="document-subtitle">
+                        Pre-Production<br>Document
+                    </div>
+
+                    <div class="document-paper-rule"></div>
+
+                    <div class="document-paper-lines">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                </div>
+
+                <div class="document-open">
+                    Open Document &raquo;
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="footer-brand">
+            ZeusWeusFilm
+        </div>
+
+        <div class="social-links">
+
+            <a href="../contact">
+                Contact
+            </a>
+
+            <a href="../physical/">
+                Physical
+            </a>
+
+            <a
+                href="https://paypal.me/ASmyth115"
+                target="_blank"
+                rel="noopener noreferrer">
+                PayPal
+            </a>
+
+        </div>
+
+    </footer>
+
+</div>
+
+<!-- IMAGE LIGHTBOX -->
+
+<div
+    id="lightbox"
+    class="lightbox"
+    onclick="closeLightbox()">
+
+    <div
+        class="lightbox-close"
+        onclick="closeLightbox()">
+        &times;
+    </div>
+
+    <img
+        id="lightbox-image"
+        src=""
+        alt=""
+        onclick="event.stopPropagation()">
+
+</div>
+
+<!-- PDF LIGHTBOX -->
+
+<div
+    id="pdf-lightbox"
+    class="pdf-lightbox">
+
+    <div
+        class="pdf-close"
+        onclick="closePDF()">
+        &times;
+    </div>
+
+    <iframe
+        id="pdf-viewer"
+        title="Knock Knock Pre-Production Document">
+    </iframe>
+
+</div>
+
+<script>
+
+/* VIEW COUNT SYSTEM */
+
+const VIEW_API_BASE =
+    "https://zeusweusfilm-views.adamjordan11549.workers.dev/views";
+
+const VIEW_COOLDOWN_MS = 30 * 60 * 1000;
+
+let currentVideoId = "knock-knock-film";
+
+function formatViewCount(views) {
+    return views + (views === 1 ? " view" : " views");
+}
+
+async function loadViewCount(videoId) {
+
+    const viewCount =
+        document.getElementById("view-count");
+
+    try {
+
+        const response = await fetch(
+            VIEW_API_BASE + "/" + videoId,
+            {
+                method: "GET",
+                cache: "no-store"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Could not load view count.");
+        }
+
+        const data = await response.json();
+
+        if (videoId === currentVideoId) {
+            viewCount.textContent =
+                formatViewCount(data.views);
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Failed to load view count:",
+            error
+        );
+    }
+}
+
+async function countView(videoId) {
+
+    const storageKey =
+        "zeusweusfilm-view-" + videoId;
+
+    const now = Date.now();
+
+    const lastView =
+        Number(localStorage.getItem(storageKey)) || 0;
+
+    if (now - lastView < VIEW_COOLDOWN_MS) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(
+            VIEW_API_BASE + "/" + videoId,
+            {
+                method: "POST"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Could not count view.");
+        }
+
+        const data = await response.json();
+
+        localStorage.setItem(
+            storageKey,
+            String(now)
+        );
+
+        if (videoId === currentVideoId) {
+
+            const viewCount =
+                document.getElementById("view-count");
+
+            viewCount.textContent =
+                formatViewCount(data.views);
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Failed to count view:",
+            error
+        );
+    }
+}
+
+/* VIDEO SWITCHING SYSTEM */
+
+function selectVideo(
+    button,
+    videoUrl,
+    posterUrl,
+    descriptionText,
+    videoId
+) {
+
+    const player =
+        document.getElementById("video-player");
+
+    const source =
+        document.getElementById("video-source");
+
+    const description =
+        document.getElementById("video-description");
+
+    const buttons =
+        document.querySelectorAll(".video-menu-button");
+
+    const scrollX = window.scrollX;
+    const scrollY = window.scrollY;
+
+    player.pause();
+
+    source.src = videoUrl;
+    player.poster = posterUrl;
+    description.textContent = descriptionText;
+    currentVideoId = videoId;
+
+    loadViewCount(currentVideoId);
+
+    player.load();
+
+    buttons.forEach(function(menuButton) {
+        menuButton.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    requestAnimationFrame(function() {
+
+        window.scrollTo(scrollX, scrollY);
+
+        requestAnimationFrame(function() {
+            window.scrollTo(scrollX, scrollY);
+        });
+
+    });
+}
+
+/* IMAGE LIGHTBOX */
+
+function openLightbox(src) {
+
+    const lightbox =
+        document.getElementById("lightbox");
+
+    const image =
+        document.getElementById("lightbox-image");
+
+    image.src = src;
+
+    lightbox.style.display = "flex";
+
+    document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+
+    const lightbox =
+        document.getElementById("lightbox");
+
+    lightbox.style.display = "none";
+
+    document.body.style.overflow = "";
+}
+
+/* PDF LIGHTBOX */
+
+function openPDF() {
+
+    const pdfLightbox =
+        document.getElementById("pdf-lightbox");
+
+    const pdfViewer =
+        document.getElementById("pdf-viewer");
+
+    pdfViewer.src =
+        "../knock-knock/Knock%20Knock%20Pre-Production%20Document.pdf";
+
+    pdfLightbox.style.display = "block";
+
+    document.body.style.overflow = "hidden";
+}
+
+function closePDF() {
+
+    const pdfLightbox =
+        document.getElementById("pdf-lightbox");
+
+    const pdfViewer =
+        document.getElementById("pdf-viewer");
+
+    pdfLightbox.style.display = "none";
+
+    pdfViewer.src = "";
+
+    document.body.style.overflow = "";
+}
+
+/* VIEW COUNT INITIALISATION */
+
+const videoPlayer =
+    document.getElementById("video-player");
+
+videoPlayer.addEventListener(
+    "play",
+    function() {
+        countView(currentVideoId);
+    }
+);
+
+loadViewCount(currentVideoId);
+
+/* ESCAPE KEY */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Escape") {
+            closeLightbox();
+            closePDF();
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
