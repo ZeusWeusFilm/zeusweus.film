@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeusWeusFilm - Haunt-A-Files Original</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            background: #050505;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #050505;
+            color: #eeeeee;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* RECOVERED VHS BACKGROUND */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -20px;
+            background-image: url("haunt-a-files/the-lost-tapes/images/background.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter:
+                grayscale(100%)
+                contrast(1.5)
+                brightness(0.35)
+                blur(4px);
+            opacity: 0.55;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* CRT SCANLINES AND WHITE INTERFERENCE */
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.18) 0px,
+                    rgba(0, 0, 0, 0.18) 1px,
+                    rgba(255, 255, 255, 0.025) 1px,
+                    rgba(255, 255, 255, 0.025) 2px,
+                    transparent 2px,
+                    transparent 4px
+                ),
+                radial-gradient(
+                    ellipse at 50% 15%,
+                    rgba(255, 255, 255, 0.12),
+                    transparent 65%
+                ),
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, 0.25),
+                    rgba(0, 0, 0, 0.9)
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        a {
+            color: #ffffff;
+        }
+
+        a:hover {
+            color: #ffffff;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .site {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            min-height: 160px;
+            padding: 25px max(5%, calc((100% - 1320px) / 2));
+            background:
+                linear-gradient(
+                    115deg,
+                    rgba(65, 65, 65, 0.95),
+                    rgba(22, 22, 22, 0.98) 50%,
+                    rgba(3, 3, 3, 1)
+                );
+            border-bottom: 1px solid #ffffff;
+            box-shadow:
+                inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+                0 0 35px rgba(255, 255, 255, 0.12);
+        }
+
+        .logo-link {
+            display: block;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .logo {
+            display: block;
+            width: 115px;
+            max-width: 100%;
+            height: auto;
+            filter:
+                grayscale(100%)
+                contrast(1.25)
+                drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+            transition: filter 0.2s ease;
+        }
+
+        .logo-link:hover .logo {
+            filter:
+                grayscale(100%)
+                brightness(1.2)
+                contrast(1.25)
+                drop-shadow(0 0 14px rgba(255, 255, 255, 0.7));
+        }
+
+        .site-heading {
+            min-width: 0;
+        }
+
+        h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            text-shadow:
+                2px 0 rgba(255, 255, 255, 0.45),
+                -2px 0 rgba(100, 100, 100, 0.5),
+                0 0 18px rgba(255, 255, 255, 0.5);
+        }
+
+        .header-subtitle {
+            margin-top: 8px;
+            color: #eeeeee;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* NAVIGATION */
+
+        .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            min-height: 44px;
+            background: rgba(8, 8, 8, 0.97);
+            border-bottom: 1px solid #ffffff;
+            box-shadow: 0 5px 20px rgba(255, 255, 255, 0.08);
+        }
+
+        .navigation a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            padding: 14px 16px;
+            color: #d8d8d8;
+            font-size: 11px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            border-right: 1px solid #444444;
+            border-bottom: 2px solid transparent;
+            transition:
+                color 0.2s ease,
+                background 0.2s ease,
+                border-color 0.2s ease,
+                text-shadow 0.2s ease;
+        }
+
+        .navigation a:last-child {
+            border-right: none;
+        }
+
+        .navigation a:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.12);
+            border-bottom-color: #ffffff;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+        }
+
+        .navigation a.active {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.12);
+            border-bottom-color: #ffffff;
+        }
+
+        /* MAIN CONTENT */
+
+        .content {
+            flex: 1;
+            width: calc(100% - 80px);
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 55px 0 75px;
+        }
+
+        /* SECTION HEADINGS */
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 18px;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+        }
+
+        .section-heading::before {
+            content: "";
+            width: 5px;
+            height: 12px;
+            background: #ffffff;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+        }
+
+        .section-heading::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(
+                to right,
+                #ffffff,
+                transparent
+            );
+        }
+
+        /* VIDEO PLAYER */
+
+        .video-section {
+            width: 100%;
+            margin: 0;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #000000;
+            border: 1px solid #dddddd;
+            box-shadow:
+                0 0 25px rgba(255, 255, 255, 0.15),
+                0 8px 35px rgba(0, 0, 0, 0.7);
+        }
+
+        #video-player {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000000;
+        }
+
+        .view-count {
+            margin: 14px 0 0;
+            color: #bbbbbb;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* VIDEO BUTTONS */
+
+        .video-menu {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+            width: 100%;
+            margin: 22px 0 0;
+        }
+
+        .video-menu-button {
+            appearance: none;
+            -webkit-appearance: none;
+            min-width: 0;
+            min-height: 70px;
+            padding: 14px 12px;
+            color: #e4e4e4;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1.3px;
+            line-height: 1.4;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid #666666;
+            background:
+                linear-gradient(
+                    135deg,
+                    #333333,
+                    #151515 65%,
+                    #080808
+                );
+            box-shadow:
+                0 0 10px rgba(255, 255, 255, 0.06),
+                0 4px 10px rgba(0, 0, 0, 0.5);
+            transition:
+                color 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .video-menu-button:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+            background: #555555;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .video-menu-button.active {
+            color: #000000;
+            border-color: #ffffff;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #dddddd 60%,
+                    #aaaaaa
+                );
+            box-shadow:
+                0 0 22px rgba(255, 255, 255, 0.45),
+                inset 0 1px rgba(255, 255, 255, 0.8);
+        }
+
+        .trailer-button {
+            grid-column: 1 / -1;
+            width: calc(50% - 7.5px);
+            justify-self: center;
+        }
+
+        /* DESCRIPTIONS */
+
+        .video-description,
+        .series-description {
+            margin: 25px 0 0;
+            padding: 28px 32px;
+            color: #eeeeee;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 17px;
+            line-height: 1.9;
+            text-align: left;
+            background:
+                linear-gradient(
+                    115deg,
+                    rgba(45, 45, 45, 0.8),
+                    rgba(8, 8, 8, 0.94)
+                );
+            border: 1px solid #666666;
+            border-left: 3px solid #ffffff;
+            box-shadow:
+                0 0 15px rgba(255, 255, 255, 0.08),
+                inset 0 0 20px rgba(255, 255, 255, 0.04);
+            text-shadow: 1px 1px #000000;
+            overflow-wrap: anywhere;
+        }
+
+        .series-description {
+            margin-top: 18px;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 24px max(5%, calc((100% - 1320px) / 2));
+            background: rgba(8, 8, 8, 0.96);
+            border-top: 1px solid #ffffff;
+        }
+
+        .footer-brand {
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
+        }
+
+        .social-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #d8d8d8;
+            font-size: 11px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+        }
+
+        /* TABLET */
+
+        @media (max-width: 760px) {
+
+            .header {
+                min-height: 125px;
+                padding: 20px 5%;
+            }
+
+            .logo {
+                width: 90px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .content {
+                width: calc(100% - 40px);
+                padding: 35px 0 50px;
+            }
+
+            .video-menu {
+                gap: 10px;
+            }
+
+            .trailer-button {
+                width: calc(50% - 5px);
+            }
+
+            .video-menu-button {
+                padding: 12px 8px;
+                font-size: 10px;
+            }
+
+            .footer {
+                padding: 20px 5%;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 540px) {
+
+            .header {
+                gap: 14px;
+                min-height: 105px;
+                padding: 18px 15px;
+            }
+
+            .logo {
+                width: 72px;
+            }
+
+            h1 {
+                font-size: 22px;
+                letter-spacing: -0.5px;
+            }
+
+            .header-subtitle {
+                font-size: 9px;
+                letter-spacing: 1px;
+            }
+
+            .navigation a {
+                flex: 1 1 50%;
+                justify-content: center;
+                padding: 12px 8px;
+                font-size: 10px;
+            }
+
+            .content {
+                width: calc(100% - 30px);
+                padding: 30px 0 45px;
+            }
+
+            .video-menu {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .video-menu-button {
+                min-height: 68px;
+                padding: 12px 8px;
+                font-size: 10px;
+                letter-spacing: 0.7px;
+            }
+
+            .video-menu-button:hover {
+                transform: none;
+            }
+
+            .trailer-button {
+                grid-column: 1 / -1;
+                width: calc(50% - 5px);
+            }
+
+            .view-count {
+                font-size: 10px;
+            }
+
+            .video-description,
+            .series-description {
+                margin-top: 20px;
+                padding: 20px;
+                font-size: 15px;
+                line-height: 1.8;
+            }
+
+            .series-description {
+                margin-top: 15px;
+            }
+
+            .footer {
+                justify-content: center;
+                text-align: center;
+                padding: 20px 15px;
+            }
+
+            .footer-brand {
+                width: 100%;
+            }
+
+            .social-links {
+                justify-content: center;
+                gap: 18px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="site">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a
+            class="logo-link"
+            href="./"
+            aria-label="Return to ZeusWeusFilm homepage">
+
+            <img
+                class="logo"
+                src="zwflogo.webp"
+                alt="ZeusWeusFilm">
+
+        </a>
+
+        <div class="site-heading">
+
+            <h1>Haunt-A-Files Original</h1>
+
+            <div class="header-subtitle">
+                https://zeusweus.film
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navigation">
+
+        <a href="./">
+            ZeusWeusFilm
+        </a>
+
+        <a href="final-say-for-mr-everyday/">
+            Final Say For Mr Everyday
+        </a>
+
+        <a href="knock-knock/">
+            Knock Knock
+        </a>
+
+        <a href="fried-out/">
+            Fried Out
+        </a>
+
+        <a
+            class="active"
+            href="haunt-a-files/">
+            Haunt-A-Files
+        </a>
+
+    </nav>
+
+    <!-- MAIN CONTENT -->
+
+    <main class="content">
+
+        <div class="section-heading">
+            The Lost Tapes - Original 2022 Broadcast
+        </div>
+
+        <section class="video-section">
+
+            <!-- VIDEO PLAYER -->
+
+            <div class="video-wrapper">
+
+                <video
+                    id="video-player"
+                    controls
+                    controlsList="nodownload"
+                    oncontextmenu="return false;"
+                    preload="metadata"
+                    poster="haunt-a-files/the-lost-tapes/images/original-1-the-bushmills-beast.webp">
+
+                    <source
+                        id="video-source"
+                        src="https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-1-the-bushmills-beast.mp4"
+                        type="video/mp4">
+
+                    Your browser does not support the video tag.
+
+                </video>
+
+            </div>
+
+            <!-- VIEW COUNT -->
+
+            <div
+                class="view-count"
+                id="view-count"
+                aria-live="polite">
+                0 views
+            </div>
+
+            <!-- ORIGINAL EPISODES -->
+
+            <div class="video-menu">
+
+                <button
+                    class="video-menu-button active"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-1-the-bushmills-beast.mp4',
+                        'haunt-a-files/the-lost-tapes/images/original-1-the-bushmills-beast.webp',
+                        'In the terrifying debut episode of Haunt-A-Files our crew investigate the rumoured &quot;Beast of Ballybogey&quot;.',
+                        'haunt-original-1'
+                    )">
+                    1. The Bushmills Beast
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-2-hunting-the-beast.mp4',
+                        'haunt-a-files/the-lost-tapes/images/original-2-hunting-the-beast.webp',
+                        'When the crew return to the forest of the beast, an unlikely ally appears, together will they defeat the beast? Or are things about to get even worse...',
+                        'haunt-original-2'
+                    )">
+                    2. Hunting The Beast
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-3-the-ghosts-of-the-driscoll-brothers.mp4',
+                        'haunt-a-files/the-lost-tapes/images/original-3-the-ghosts-of-the-driscoll-brothers.webp',
+                        'What began as a look into the abandoned Driscoll manor, became too much for the crew to handle...',
+                        'haunt-original-3'
+                    )">
+                    3. The Ghosts Of The Driscoll Brothers
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-4-the-possession-of-michael.mp4',
+                        'haunt-a-files/the-lost-tapes/images/original-4-the-possession-of-michael.webp',
+                        'Will the crew make it through the Driscoll manor another time? Or will they succumb to the horrors from within...',
+                        'haunt-original-4'
+                    )">
+                    4. The Possession Of Michael
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-5-the-driscoll-manor-massacre.mp4',
+                        'haunt-a-files/the-lost-tapes/images/original-5-the-driscoll-manor-massacre.webp',
+                        'After exploring the Driscoll manor, the crew were left in disarray. Will Technical T be able to save his friends? Or is it too late.',
+                        'haunt-original-5'
+                    )">
+                    5. The Driscoll Manor Massacre
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-6-a-threat-from-above.mp4',
+                        'haunt-a-files/the-lost-tapes/images/original-6-a-threat-from-above.webp',
+                        'After being mysteriously summoned back to the site of the beast by a voice on the radio, the crew venture back to where it all began...',
+                        'haunt-original-6'
+                    )">
+                    6. A Threat From Above
+                </button>
+
+                <button
+                    class="video-menu-button trailer-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/original-7-complete-series-trailer.mp4',
+                        'haunt-a-files/the-lost-tapes/images/original-7-complete-series-trailer.webp',
+                        'A look at the horrors so far.',
+                        'haunt-original-trailer'
+                    )">
+                    Complete Series Trailer
+                </button>
+
+            </div>
+
+            <!-- SELECTED VIDEO DESCRIPTION -->
+
+            <p
+                class="video-description"
+                id="video-description">
+                In the terrifying debut episode of Haunt-A-Files our crew investigate the rumoured "Beast of Ballybogey".
+            </p>
+
+            <!-- ORIGINAL SERIES DESCRIPTION -->
+
+            <p class="series-description">
+                See Haunt-A-Files as it originally aired in 2022
+            </p>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="footer-brand">
+            ZeusWeusFilm
+        </div>
+
+        <div class="social-links">
+
+            <a href="contact">
+                Contact
+            </a>
+
+            <a href="physical/">
+                Physical
+            </a>
+
+            <a
+                href="https://paypal.me/ASmyth115"
+                target="_blank"
+                rel="noopener noreferrer">
+                PayPal
+            </a>
+
+        </div>
+
+    </footer>
+
+</div>
+
+<script>
+
+    /*
+        ORIGINAL VIEW COUNT SYSTEM
+    */
+
+    const VIEW_API_BASE =
+        "https://zeusweusfilm-views.adamjordan11549.workers.dev/views";
+
+    const VIEW_COOLDOWN_MS = 30 * 60 * 1000;
+
+    let currentVideoId = "haunt-original-1";
+
+    function formatViewCount(views) {
+        return views + (views === 1 ? " view" : " views");
+    }
+
+    async function loadViewCount(videoId) {
+
+        const viewCount =
+            document.getElementById("view-count");
+
+        try {
+
+            const response = await fetch(
+                VIEW_API_BASE + "/" + videoId,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Could not load view count.");
+            }
+
+            const data = await response.json();
+
+            if (videoId === currentVideoId) {
+                viewCount.textContent =
+                    formatViewCount(data.views);
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Failed to load view count:",
+                error
+            );
+        }
+    }
+
+    async function countView(videoId) {
+
+        const storageKey =
+            "zeusweusfilm-view-" + videoId;
+
+        const now = Date.now();
+
+        const lastView =
+            Number(localStorage.getItem(storageKey)) || 0;
+
+        if (now - lastView < VIEW_COOLDOWN_MS) {
+            return;
+        }
+
+        try {
+
+            const response = await fetch(
+                VIEW_API_BASE + "/" + videoId,
+                {
+                    method: "POST"
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Could not count view.");
+            }
+
+            const data = await response.json();
+
+            localStorage.setItem(
+                storageKey,
+                String(now)
+            );
+
+            if (videoId === currentVideoId) {
+
+                const viewCount =
+                    document.getElementById("view-count");
+
+                viewCount.textContent =
+                    formatViewCount(data.views);
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Failed to count view:",
+                error
+            );
+        }
+    }
+
+    /*
+        ORIGINAL VIDEO SWITCHING SYSTEM
+    */
+
+    function selectVideo(
+        button,
+        videoUrl,
+        posterUrl,
+        descriptionText,
+        videoId
+    ) {
+
+        const player =
+            document.getElementById("video-player");
+
+        const source =
+            document.getElementById("video-source");
+
+        const description =
+            document.getElementById("video-description");
+
+        const buttons =
+            document.querySelectorAll(".video-menu-button");
+
+        /*
+            Remember the visitor's scroll position.
+        */
+
+        const scrollX = window.scrollX;
+        const scrollY = window.scrollY;
+
+        player.pause();
+
+        source.src = videoUrl;
+        player.poster = posterUrl;
+        description.textContent = descriptionText;
+        currentVideoId = videoId;
+
+        loadViewCount(currentVideoId);
+
+        /*
+            Load selected video without autoplay.
+        */
+
+        player.load();
+
+        /*
+            Update active video button.
+        */
+
+        buttons.forEach(function(menuButton) {
+            menuButton.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        /*
+            Restore scroll position.
+        */
+
+        requestAnimationFrame(function() {
+
+            window.scrollTo(scrollX, scrollY);
+
+            requestAnimationFrame(function() {
+                window.scrollTo(scrollX, scrollY);
+            });
+
+        });
+    }
+
+    /*
+        ORIGINAL VIEW COUNT INITIALISATION
+    */
+
+    const videoPlayer =
+        document.getElementById("video-player");
+
+    videoPlayer.addEventListener(
+        "play",
+        function() {
+            countView(currentVideoId);
+        }
+    );
+
+    loadViewCount(currentVideoId);
+
+</script>
+
+</body>
+</html>
