@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ZeusWeusFilm</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        html {
+            background-color: #101310;
+        }
+
+        body {
+            background-color: #101310;
+            color: #c5c9bb;
+            text-align: center;
+            font-family: Tahoma, Verdana, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background image */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            background-image: url("background.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(5px) grayscale(65%) sepia(18%);
+            opacity: 0.22;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Dark overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, 0.025) 0px,
+                    rgba(0, 0, 0, 0.025) 1px,
+                    transparent 1px,
+                    transparent 3px
+                ),
+                rgba(12, 16, 13, 0.62);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Keep content above background */
+        body > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Logo link */
+        .logo-link {
+            display: block;
+            width: fit-content;
+            margin: 25px auto 35px;
+        }
+
+        /* Logo */
+        .logo {
+            display: block;
+            width: 120px;
+            max-width: 40vw;
+            height: auto;
+            margin: 0;
+            filter: brightness(0.88) contrast(1.08);
+            transition: filter 0.2s ease;
+        }
+
+        .logo-link:hover .logo {
+            filter: brightness(1.1) contrast(1.08);
+        }
+
+        /* ZeusWeusFilm title */
+        h1 {
+            margin: 0 0 35px;
+            font-family: Tahoma, Verdana, Arial, sans-serif;
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #c5cbbb;
+            text-shadow:
+                1px 1px 0 #000,
+                0 1px 8px rgba(0, 0, 0, 0.8);
+        }
+
+        /* Project gallery */
+        .projects {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        /* Project link */
+        .project {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            cursor: pointer;
+            color: inherit;
+            background: linear-gradient(
+                to bottom,
+                rgba(48, 55, 45, 0.88),
+                rgba(19, 23, 20, 0.94)
+            );
+            border: 1px solid #434d3d;
+            box-shadow:
+                inset 1px 1px 0 rgba(190, 200, 170, 0.13),
+                inset -1px -1px 0 rgba(0, 0, 0, 0.75),
+                0 3px 10px rgba(0, 0, 0, 0.55);
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .project:hover {
+            border-color: #81906d;
+            background: linear-gradient(
+                to bottom,
+                rgba(59, 70, 53, 0.92),
+                rgba(25, 31, 24, 0.96)
+            );
+        }
+
+        /* Project image */
+        .project img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: saturate(0.85) brightness(0.9);
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease,
+                filter 0.3s ease;
+        }
+
+        /* Hover effect */
+        .project:hover img {
+            transform: scale(1.03);
+            opacity: 0.95;
+            filter: saturate(1) brightness(1);
+        }
+
+        /* Project name */
+        .project-title {
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-family: Tahoma, Verdana, Arial, sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #b8c5a4;
+            text-shadow:
+                1px 1px 0 #000,
+                0 0 8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Divider */
+        .separator {
+            width: 70%;
+            max-width: 700px;
+            height: 1px;
+            margin: 35px auto;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #5d6954,
+                transparent
+            );
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        /* ZeusWeusFilm description */
+        .description {
+            width: 90%;
+            max-width: 1100px;
+            margin: 55px auto 60px;
+            font-family: Georgia, serif;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #b7bcb0;
+            text-shadow:
+                1px 1px 1px #000,
+                0 0 8px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Footer links */
+        .social-links {
+            margin: 0 auto;
+            padding-bottom: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: #a9bb91;
+            text-decoration: none;
+            font-family: Tahoma, Verdana, Arial, sans-serif;
+            font-size: 15px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(169, 187, 145, 0.35);
+            transition:
+                color 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .social-links a:hover {
+            color: #e0ebd0;
+            border-color: #e0ebd0;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            .logo-link {
+                margin: 20px auto 25px;
+            }
+
+            .logo {
+                width: 100px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .projects {
+                width: 85%;
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .project-title {
+                font-size: 16px;
+            }
+
+            .separator {
+                width: 80%;
+                margin: 30px auto;
+            }
+
+            .description {
+                width: 85%;
+                font-size: 15px;
+                line-height: 1.5;
+                margin-top: 45px;
+            }
+
+            .social-links {
+                padding-bottom: 35px;
+                gap: 14px;
+            }
+
+            .social-links a {
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+        }
+
+        /* Tablet */
+        @media (min-width: 601px) and (max-width: 900px) {
+
+            .projects {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ZeusWeusFilm logo / secret IDIR entrance -->
+    <a
+        class="logo-link"
+        href="idir/">
+        <img
+            class="logo"
+            src="zwflogo.webp"
+            alt="ZeusWeusFilm logo">
+    </a>
+
+    <!-- ZeusWeusFilm title -->
+    <h1>ZeusWeusFilm</h1>
+
+    <!-- Projects -->
+    <div class="projects">
+
+        <!-- Knock Knock -->
+        <a
+            class="project"
+            href="knock-knock/">
+
+            <img
+                src="knockknocklogo.webp"
+                alt="Knock Knock">
+
+            <div class="project-title">
+                Knock Knock
+            </div>
+
+        </a>
+
+        <!-- Fried Out -->
+        <a
+            class="project"
+            href="fried-out/">
+
+            <img
+                src="friedoutvol1logo.webp"
+                alt="Fried Out">
+
+            <div class="project-title">
+                Fried Out
+            </div>
+
+        </a>
+
+        <!-- Haunt-A-Files -->
+        <a
+            class="project"
+            href="haunt-a-files/">
+
+            <img
+                src="hauntafileslogo.webp"
+                alt="Haunt-A-Files">
+
+            <div class="project-title">
+                Haunt-A-Files
+            </div>
+
+        </a>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="separator"></div>
+
+    <!-- ZeusWeusFilm description -->
+    <div class="description">
+        "You're going to know, how intent I was, on teaching you people that what you're doing is wrong, and maybe that's all that needs to be done to stop you from the greed you have, the hate you have, the anger, malice." <span style="white-space: nowrap;">- Marvin Heemeyer</span>
+    </div>
+
+    <!-- Footer links -->
+    <div class="social-links">
+
+        <a
+            href="contact">
+            Contact
+        </a>
+
+        <a
+            href="physical/">
+            Physical
+        </a>
+
+        <a
+            href="https://paypal.me/ASmyth115"
+            target="_blank"
+            rel="noopener noreferrer">
+            PayPal
+        </a>
+
+    </div>
+
+</body>
+</html>
