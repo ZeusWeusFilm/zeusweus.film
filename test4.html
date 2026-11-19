@@ -324,7 +324,7 @@
             min-width: 0;
             min-height: 70px;
             padding: 14px 12px;
-            color: #d0ebd0;
+            color: #ffffff;
             font-size: 11px;
             font-weight: 900;
             letter-spacing: 1.3px;
@@ -332,13 +332,7 @@
             text-transform: uppercase;
             cursor: pointer;
             border: 1px solid #326d39;
-            background:
-                linear-gradient(
-                    135deg,
-                    #103b16,
-                    #061b09 65%,
-                    #020b04
-                );
+            background: #09230f;
             box-shadow:
                 0 0 10px rgba(50, 255, 70, 0.06),
                 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -361,13 +355,7 @@
         .video-menu-button.active {
             color: #ffffff;
             border-color: #a4ffad;
-            background:
-                linear-gradient(
-                    135deg,
-                    #259c36,
-                    #176b25 60%,
-                    #0b3914
-                );
+            background: #145020;
             box-shadow:
                 0 0 18px rgba(70, 255, 90, 0.3),
                 inset 0 1px rgba(255, 255, 255, 0.12);
@@ -375,8 +363,7 @@
 
         /* DESCRIPTIONS */
 
-        .video-description,
-        .series-description {
+        .description-box {
             margin: 25px 0 0;
             padding: 28px 32px;
             color: #dcebdc;
@@ -399,8 +386,15 @@
             overflow-wrap: anywhere;
         }
 
+        .video-description,
         .series-description {
-            margin-top: 18px;
+            margin: 0;
+        }
+
+        .series-description {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(100, 255, 120, 0.25);
         }
 
         .series-description a {
@@ -699,8 +693,7 @@
                 font-size: 10px;
             }
 
-            .video-description,
-            .series-description {
+            .description-box {
                 margin-top: 20px;
                 padding: 20px;
                 font-size: 15px;
@@ -709,6 +702,7 @@
 
             .series-description {
                 margin-top: 15px;
+                padding-top: 15px;
             }
 
             .specials-section,
@@ -968,6 +962,8 @@
 
             </div>
 
+            <div class="description-box">
+
             <!-- SELECTED VIDEO DESCRIPTION -->
 
             <p
@@ -981,6 +977,8 @@
             <p class="series-description">
                 Join Big Zeus, Spontaneous Mike and Technical T in the terrifying paranormal investigation show "Haunt-A-Files" as they document the scariest phenomena unknown to man. See more terrifying footage with "Exhumed" the remaster so scary, it had to be buried first... Or see it as it originally aired <a href="haunt-a-files/the-lost-tapes/">HERE</a>
             </p>
+
+            </div>
 
         </section>
 
