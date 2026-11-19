@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeusWeusFilm - Haunt-A-Files</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            background: #020702;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: #d6e8d2;
+            background: #020702;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* NIGHT-VISION BACKGROUND */
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -20px;
+            background-image: url("haunt-a-files/images/background.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter:
+                grayscale(100%)
+                sepia(100%)
+                saturate(650%)
+                hue-rotate(65deg)
+                contrast(1.5)
+                brightness(0.38)
+                blur(4px);
+            opacity: 0.55;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* SCANLINES AND PARANORMAL INTERFERENCE */
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0, 0, 0, 0.14) 0px,
+                    rgba(0, 0, 0, 0.14) 1px,
+                    transparent 1px,
+                    transparent 3px
+                ),
+                radial-gradient(
+                    ellipse at 50% 15%,
+                    rgba(40, 255, 65, 0.16),
+                    transparent 65%
+                ),
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 20, 3, 0.35),
+                    rgba(0, 5, 1, 0.92)
+                );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        a {
+            color: #7dff80;
+        }
+
+        a:hover {
+            color: #ffffff;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .site {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            min-height: 160px;
+            padding: 25px max(5%, calc((100% - 1320px) / 2));
+            background:
+                linear-gradient(
+                    115deg,
+                    rgba(14, 65, 18, 0.95),
+                    rgba(4, 25, 7, 0.98) 50%,
+                    rgba(0, 8, 2, 1)
+                );
+            border-bottom: 1px solid #54ff65;
+            box-shadow:
+                inset 0 -1px 0 rgba(100, 255, 120, 0.2),
+                0 0 35px rgba(60, 255, 80, 0.12);
+        }
+
+        .logo-link {
+            display: block;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .logo {
+            display: block;
+            width: 115px;
+            max-width: 100%;
+            height: auto;
+            filter:
+                brightness(0.95)
+                contrast(1.2)
+                drop-shadow(0 0 8px rgba(80, 255, 100, 0.3));
+            transition: filter 0.2s ease;
+        }
+
+        .logo-link:hover .logo {
+            filter:
+                brightness(1.15)
+                contrast(1.2)
+                drop-shadow(0 0 14px rgba(80, 255, 100, 0.65));
+        }
+
+        .site-heading {
+            min-width: 0;
+        }
+
+        h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 38px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            text-transform: uppercase;
+            text-shadow:
+                2px 0 rgba(50, 255, 70, 0.7),
+                -1px 0 rgba(0, 90, 15, 0.8),
+                0 0 18px rgba(75, 255, 90, 0.4);
+        }
+
+        .header-subtitle {
+            margin-top: 8px;
+            color: #82ff8d;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        /* NAVIGATION */
+
+        .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            min-height: 44px;
+            background: rgba(2, 15, 4, 0.97);
+            border-bottom: 1px solid #4ae65a;
+            box-shadow: 0 5px 20px rgba(40, 255, 60, 0.08);
+        }
+
+        .navigation a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            padding: 14px 16px;
+            color: #c3e3c5;
+            font-size: 11px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            border-right: 1px solid #205a28;
+            border-bottom: 2px solid transparent;
+            transition:
+                color 0.2s ease,
+                background 0.2s ease,
+                border-color 0.2s ease,
+                text-shadow 0.2s ease;
+        }
+
+        .navigation a:last-child {
+            border-right: none;
+        }
+
+        .navigation a:hover {
+            color: #ffffff;
+            background: rgba(65, 255, 85, 0.12);
+            border-bottom-color: #6aff79;
+            text-shadow: 0 0 10px rgba(80, 255, 100, 0.8);
+        }
+
+        .navigation a.active {
+            color: #ffffff;
+            border-bottom-color: #6aff79;
+            background: rgba(65, 255, 85, 0.12);
+        }
+
+        /* MAIN CONTENT */
+
+        .content {
+            width: calc(100% - 80px);
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 55px 0 75px;
+        }
+
+        /* SECTION HEADINGS */
+
+        .section-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 0 18px;
+            color: #78ff82;
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(70, 255, 90, 0.4);
+        }
+
+        .section-heading::before {
+            content: "";
+            width: 5px;
+            height: 12px;
+            background: #60ff70;
+            box-shadow: 0 0 8px rgba(80, 255, 100, 0.8);
+        }
+
+        .section-heading::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(
+                to right,
+                #55e765,
+                transparent
+            );
+        }
+
+        /* VIDEO PLAYER */
+
+        .video-section {
+            width: 100%;
+            margin: 0;
+        }
+
+        .video-wrapper {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            position: relative;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid #4ad45a;
+            box-shadow:
+                0 0 25px rgba(60, 255, 80, 0.16),
+                0 8px 35px rgba(0, 0, 0, 0.7);
+        }
+
+        #video-player {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #000;
+        }
+
+        .view-count {
+            margin: 14px 0 0;
+            color: #8bbd90;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* VIDEO BUTTONS */
+
+        .video-menu {
+            width: 100%;
+            margin: 22px 0 0;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .exhumed-menu {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .exhumed-menu .trailer-button {
+            grid-column: 1 / -1;
+            width: calc(50% - 7.5px);
+            justify-self: center;
+        }
+
+        .video-menu-button {
+            appearance: none;
+            -webkit-appearance: none;
+            min-width: 0;
+            min-height: 70px;
+            padding: 14px 12px;
+            color: #d0ebd0;
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 1.3px;
+            line-height: 1.4;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 1px solid #326d39;
+            background:
+                linear-gradient(
+                    135deg,
+                    #103b16,
+                    #061b09 65%,
+                    #020b04
+                );
+            box-shadow:
+                0 0 10px rgba(50, 255, 70, 0.06),
+                0 4px 10px rgba(0, 0, 0, 0.5);
+            transition:
+                color 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease,
+                box-shadow 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .video-menu-button:hover {
+            color: #ffffff;
+            border-color: #68ff77;
+            background: #185d22;
+            box-shadow: 0 0 18px rgba(70, 255, 90, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .video-menu-button.active {
+            color: #ffffff;
+            border-color: #a4ffad;
+            background:
+                linear-gradient(
+                    135deg,
+                    #259c36,
+                    #176b25 60%,
+                    #0b3914
+                );
+            box-shadow:
+                0 0 18px rgba(70, 255, 90, 0.3),
+                inset 0 1px rgba(255, 255, 255, 0.12);
+        }
+
+        /* DESCRIPTIONS */
+
+        .video-description,
+        .series-description {
+            margin: 25px 0 0;
+            padding: 28px 32px;
+            color: #dcebdc;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 17px;
+            line-height: 1.9;
+            text-align: left;
+            background:
+                linear-gradient(
+                    115deg,
+                    rgba(10, 45, 15, 0.8),
+                    rgba(2, 12, 4, 0.94)
+                );
+            border: 1px solid #326d39;
+            border-left: 3px solid #62ff73;
+            box-shadow:
+                0 0 15px rgba(50, 255, 70, 0.08),
+                inset 0 0 20px rgba(50, 255, 70, 0.04);
+            text-shadow: 1px 1px #000;
+            overflow-wrap: anywhere;
+        }
+
+        .series-description {
+            margin-top: 18px;
+        }
+
+        .series-description a {
+            color: #91ff9b;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .series-description a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px #65ff75;
+        }
+
+        /* ADDITIONAL VIDEO SECTIONS */
+
+        .specials-section,
+        .behind-a-haunt-section,
+        .gallery-section {
+            margin-top: 55px;
+        }
+
+        .behind-a-haunt-section .video-menu {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        /* BTS GALLERY */
+
+        .gallery {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            min-width: 0;
+            margin: 0;
+            overflow: hidden;
+            cursor: pointer;
+            background: #031006;
+            border: 1px solid #326d39;
+            box-shadow:
+                0 0 10px rgba(50, 255, 70, 0.07),
+                0 4px 10px rgba(0, 0, 0, 0.5);
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .gallery-item:hover {
+            border-color: #6aff79;
+            box-shadow:
+                0 0 18px rgba(70, 255, 90, 0.3),
+                0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .gallery-item img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            filter: saturate(0.8) brightness(0.9);
+            transition:
+                transform 0.25s ease,
+                filter 0.25s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.02);
+            filter: saturate(1.05) brightness(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 14px 16px;
+            color: #e5ffe5;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: left;
+            background: rgba(2, 20, 5, 0.92);
+            border-top: 1px solid #326d39;
+            opacity: 0;
+            transform: translateY(100%);
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease;
+            pointer-events: none;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* LIGHTBOX */
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            padding: 30px;
+            background: rgba(0, 9, 2, 0.97);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            display: block;
+            max-width: 95%;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            cursor: default;
+            border: 1px solid #326d39;
+            box-shadow: 0 0 35px rgba(70, 255, 90, 0.2);
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 18px;
+            right: 25px;
+            z-index: 1001;
+            border: 0;
+            background: transparent;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-size: 38px;
+            line-height: 1;
+            cursor: pointer;
+            user-select: none;
+            text-shadow: 0 0 12px rgba(80, 255, 100, 0.8);
+        }
+
+        /* FOOTER */
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 24px max(5%, calc((100% - 1320px) / 2));
+            background: rgba(2, 12, 4, 0.96);
+            border-top: 1px solid #4ad45a;
+        }
+
+        .footer-brand {
+            color: #7dff87;
+            font-size: 10px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .social-links {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #c3e3c5;
+            font-size: 11px;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(80, 255, 100, 0.7);
+        }
+
+        /* TABLET */
+
+        @media (max-width: 760px) {
+
+            .header {
+                min-height: 125px;
+                padding: 20px 5%;
+            }
+
+            .logo {
+                width: 90px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .content {
+                width: calc(100% - 40px);
+                padding: 35px 0 50px;
+            }
+
+            .video-menu {
+                gap: 10px;
+            }
+
+            .exhumed-menu .trailer-button {
+                width: calc(50% - 5px);
+            }
+
+            .video-menu-button {
+                padding: 12px 8px;
+                font-size: 10px;
+            }
+
+            .gallery {
+                gap: 12px;
+            }
+
+            .footer {
+                padding: 20px 5%;
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 540px) {
+
+            .header {
+                gap: 14px;
+                min-height: 105px;
+                padding: 18px 15px;
+            }
+
+            .logo {
+                width: 72px;
+            }
+
+            h1 {
+                font-size: 22px;
+                letter-spacing: -0.5px;
+            }
+
+            .header-subtitle {
+                font-size: 9px;
+                letter-spacing: 1px;
+            }
+
+            .navigation a {
+                flex: 1 1 50%;
+                justify-content: center;
+                padding: 12px 8px;
+                font-size: 10px;
+            }
+
+            .content {
+                width: calc(100% - 30px);
+                padding: 30px 0 45px;
+            }
+
+            .video-menu {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .exhumed-menu .trailer-button {
+                grid-column: 1 / -1;
+                width: calc(50% - 5px);
+            }
+
+            .video-menu-button {
+                min-height: 68px;
+                padding: 12px 8px;
+                font-size: 10px;
+                letter-spacing: 0.7px;
+            }
+
+            .video-menu-button:hover {
+                transform: none;
+            }
+
+            .view-count {
+                font-size: 10px;
+            }
+
+            .video-description,
+            .series-description {
+                margin-top: 20px;
+                padding: 20px;
+                font-size: 15px;
+                line-height: 1.8;
+            }
+
+            .series-description {
+                margin-top: 15px;
+            }
+
+            .specials-section,
+            .behind-a-haunt-section,
+            .gallery-section {
+                margin-top: 40px;
+            }
+
+            .behind-a-haunt-section .video-menu {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .gallery-caption {
+                opacity: 1;
+                transform: translateY(0);
+                font-size: 11px;
+                padding: 12px 14px;
+            }
+
+            .gallery-item:hover img {
+                transform: none;
+            }
+
+            .footer {
+                justify-content: center;
+                text-align: center;
+                padding: 20px 15px;
+            }
+
+            .footer-brand {
+                width: 100%;
+            }
+
+            .social-links {
+                justify-content: center;
+                gap: 18px;
+            }
+
+            .lightbox {
+                padding: 20px;
+            }
+
+            .lightbox-close {
+                top: 10px;
+                right: 12px;
+                font-size: 34px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="site">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <a
+            class="logo-link"
+            href="./"
+            aria-label="Return to ZeusWeusFilm homepage">
+
+            <img
+                class="logo"
+                src="zwflogo.webp"
+                alt="ZeusWeusFilm">
+
+        </a>
+
+        <div class="site-heading">
+
+            <h1>Haunt-A-Files</h1>
+
+            <div class="header-subtitle">
+                https://zeusweus.film
+            </div>
+
+        </div>
+
+    </header>
+
+    <!-- NAVIGATION -->
+
+    <nav class="navigation">
+
+        <a href="./">
+            ZeusWeusFilm
+        </a>
+
+        <a href="final-say-for-mr-everyday/">
+            Final Say For Mr Everyday
+        </a>
+
+        <a href="knock-knock/">
+            Knock Knock
+        </a>
+
+        <a href="fried-out/">
+            Fried Out
+        </a>
+
+        <a
+            class="active"
+            href="haunt-a-files/">
+            Haunt-A-Files
+        </a>
+
+    </nav>
+
+    <!-- MAIN CONTENT -->
+
+    <main class="content">
+
+        <!-- EXHUMED -->
+
+        <div class="section-heading">
+            Haunt-A-Files - Exhumed
+        </div>
+
+        <section class="video-section">
+
+            <div class="video-wrapper">
+
+                <video
+                    id="video-player"
+                    controls
+                    controlsList="nodownload"
+                    oncontextmenu="return false;"
+                    preload="metadata"
+                    poster="haunt-a-files/images/exhumed-1-the-bushmills-beast.webp">
+
+                    <source
+                        id="video-source"
+                        src="https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/exhumed-1-the-bushmills-beast.mp4"
+                        type="video/mp4">
+
+                    Your browser does not support the video tag.
+
+                </video>
+
+            </div>
+
+            <div
+                class="view-count"
+                id="view-count"
+                aria-live="polite">
+                0 views
+            </div>
+
+            <div class="video-menu exhumed-menu">
+
+                <button
+                    class="video-menu-button active"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/exhumed-1-the-bushmills-beast.mp4',
+                        'haunt-a-files/images/exhumed-1-the-bushmills-beast.webp',
+                        'In the terrifying debut episode of Haunt-A-Files our crew investigate the rumoured &quot;Beast of Ballybogey&quot;.',
+                        'haunt-exhumed-1'
+                    )">
+                    1. The Bushmills Beast
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/exhumed-2-hunting-the-beast.mp4',
+                        'haunt-a-files/images/exhumed-2-hunting-the-beast.webp',
+                        'When the crew return to the forest of the beast, an unlikely ally appears, together will they defeat the beast? Or are things about to get even worse...',
+                        'haunt-exhumed-2'
+                    )">
+                    2. Hunting The Beast
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/exhumed-3-the-ghosts-of-the-driscoll-brothers.mp4',
+                        'haunt-a-files/images/exhumed-3-the-ghosts-of-the-driscoll-brothers.webp',
+                        'What began as a look into the abandoned Driscoll manor, became too much for the crew to handle...',
+                        'haunt-exhumed-3'
+                    )">
+                    3. The Ghosts Of The Driscoll Brothers
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/exhumed-4-the-possession-of-michael.mp4',
+                        'haunt-a-files/images/exhumed-4-the-possession-of-michael.webp',
+                        'Will the crew make it through the Driscoll manor another time? Or will they succumb to the horrors from within...',
+                        'haunt-exhumed-4'
+                    )">
+                    4. The Possession Of Michael
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/exhumed-5-the-driscoll-manor-massacre.mp4',
+                        'haunt-a-files/images/exhumed-5-the-driscoll-manor-massacre.webp',
+                        'After exploring the Driscoll manor, the crew were left in disarray. Will Technical T be able to save his friends? Or is it too late.',
+                        'haunt-exhumed-5'
+                    )">
+                    5. The Driscoll Manor Massacre
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/exhumed-6-a-threat-from-above.mp4',
+                        'haunt-a-files/images/exhumed-6-a-threat-from-above.webp',
+                        'After being mysteriously summoned back to the site of the beast by a voice on the radio, the crew venture back to where it all began...',
+                        'haunt-exhumed-6'
+                    )">
+                    6. A Threat From Above
+                </button>
+
+                <button
+                    class="video-menu-button trailer-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/exhumed-10-trailer.mp4',
+                        'haunt-a-files/images/exhumed-10-trailer.webp',
+                        'The remaster so scary... it had to be buried first.',
+                        'haunt-exhumed-trailer'
+                    )">
+                    Exhumed Trailer
+                </button>
+
+            </div>
+
+            <!-- SELECTED VIDEO DESCRIPTION -->
+
+            <p
+                class="video-description"
+                id="video-description">
+                In the terrifying debut episode of Haunt-A-Files our crew investigate the rumoured "Beast of Ballybogey".
+            </p>
+
+            <!-- SERIES DESCRIPTION -->
+
+            <p class="series-description">
+                Join Big Zeus, Spontaneous Mike and Technical T in the terrifying paranormal investigation show "Haunt-A-Files" as they document the scariest phenomena unknown to man. See more terrifying footage with "Exhumed" the remaster so scary, it had to be buried first... Or see it as it originally aired <a href="haunt-a-files/the-lost-tapes/">HERE</a>
+            </p>
+
+        </section>
+
+        <!-- SPECIAL EPISODES -->
+
+        <section class="specials-section">
+
+            <div class="section-heading">
+                Special Episodes
+            </div>
+
+            <div class="video-menu">
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/7-kristmas-krampus.mp4',
+                        'haunt-a-files/images/7-kristmas-krampus.webp',
+                        'You mean you don\'t know the story of Krampus?',
+                        'haunt-kristmas-krampus'
+                    )">
+                    Kristmas Krampus
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/8-big-chungus-stole-easter.mp4',
+                        'haunt-a-files/images/8-big-chungus-stole-easter.webp',
+                        'The crew take a break from the horror to have a nice wee easter egg hunt. However, disaster strikes when Big Chungus decides he wants all the eggs, will they survive, or are they about to get cracked!',
+                        'haunt-big-chungus-stole-easter'
+                    )">
+                    Big Chungus Stole Easter
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/9-epilogue.mp4',
+                        'haunt-a-files/images/9-epilogue.webp',
+                        'Find out what happened to the crew after their mysterious disappearance...',
+                        'haunt-epilogue'
+                    )">
+                    Epilogue
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- BEHIND-A-HAUNT -->
+
+        <section class="behind-a-haunt-section">
+
+            <div class="section-heading">
+                Behind-A-Haunt
+            </div>
+
+            <div class="video-menu">
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/bah-1-the-bushmills-beast.mp4',
+                        'haunt-a-files/images/bah-1-the-bushmills-beast.webp',
+                        'Genuinely what are we doing here?',
+                        'behind-a-haunt-1'
+                    )">
+                    1. The Bushmills Beast
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/bah-2-hunting-the-beast.mp4',
+                        'haunt-a-files/images/bah-2-hunting-the-beast.webp',
+                        'Going back to the forest... at night?!... Naw.',
+                        'behind-a-haunt-2'
+                    )">
+                    2. Hunting The Beast
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/bah-3-the-ghosts-of-the-driscoll-brothers.mp4',
+                        'haunt-a-files/images/bah-3-the-ghosts-of-the-driscoll-brothers.webp',
+                        'The episode we weren\'t prepared for...',
+                        'behind-a-haunt-3'
+                    )">
+                    3. The Ghosts Of The Driscoll Brothers
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/bah-4-the-possession-of-michael.mp4',
+                        'haunt-a-files/images/bah-4-the-possession-of-michael.webp',
+                        'Michael in the sheets...',
+                        'behind-a-haunt-4'
+                    )">
+                    4. The Possession Of Michael
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/bah-5-the-driscoll-manor-massacre.mp4',
+                        'haunt-a-files/images/bah-5-the-driscoll-manor-massacre.webp',
+                        'Possessions, killer clowns and fake hands? Damn.',
+                        'behind-a-haunt-5'
+                    )">
+                    5. The Driscoll Manor Massacre
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/bah-6-a-threat-from-above.mp4',
+                        'haunt-a-files/images/bah-6-a-threat-from-above.webp',
+                        'It\'s probin time.',
+                        'behind-a-haunt-6'
+                    )">
+                    6. A Threat From Above
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/bah-7-kristmas-krampus.mp4',
+                        'haunt-a-files/images/bah-7-kristmas-krampus.webp',
+                        'The first (and if anyone asks, only) Haunt-A-Files Special.',
+                        'behind-a-haunt-7'
+                    )">
+                    7. Kristmas Krampus
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/bah-8-big-chungus-stole-easter.mp4',
+                        'haunt-a-files/images/bah-8-big-chungus-stole-easter.webp',
+                        'This was my 13th reason.',
+                        'behind-a-haunt-8'
+                    )">
+                    8. Big Chungus Stole Easter
+                </button>
+
+                <button
+                    class="video-menu-button"
+                    type="button"
+                    onclick="selectVideo(
+                        this,
+                        'https://pub-3fd7348f4bee4ecc9fb461938eeed551.r2.dev/haunt-a-files/bah-9-epilogue.mp4',
+                        'haunt-a-files/images/bah-9-epilogue.webp',
+                        'So much had to be cut from the episode, so much.',
+                        'behind-a-haunt-9'
+                    )">
+                    9. Epilogue
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- BEHIND-THE-SCENES GALLERY -->
+
+        <section class="gallery-section">
+
+            <div class="section-heading">
+                Behind The Scenes
+            </div>
+
+            <div class="gallery">
+
+                <div
+                    class="gallery-item"
+                    onclick="openLightbox('haunt-a-files/images/bts1.webp')">
+
+                    <img
+                        src="haunt-a-files/images/bts1.webp"
+                        alt="Haunt-A-Files behind the scenes"
+                        loading="lazy">
+
+                    <div class="gallery-caption">
+                        Nah
+                    </div>
+
+                </div>
+
+                <div
+                    class="gallery-item"
+                    onclick="openLightbox('haunt-a-files/images/bts2.webp')">
+
+                    <img
+                        src="haunt-a-files/images/bts2.webp"
+                        alt="Haunt-A-Files behind the scenes"
+                        loading="lazy">
+
+                    <div class="gallery-caption">
+                        I see you
+                    </div>
+
+                </div>
+
+                <div
+                    class="gallery-item"
+                    onclick="openLightbox('haunt-a-files/images/bts3.webp')">
+
+                    <img
+                        src="haunt-a-files/images/bts3.webp"
+                        alt="Haunt-A-Files behind the scenes"
+                        loading="lazy">
+
+                    <div class="gallery-caption">
+                        What you mean "alien"?
+                    </div>
+
+                </div>
+
+                <div
+                    class="gallery-item"
+                    onclick="openLightbox('haunt-a-files/images/bts4.webp')">
+
+                    <img
+                        src="haunt-a-files/images/bts4.webp"
+                        alt="Haunt-A-Files behind the scenes"
+                        loading="lazy">
+
+                    <div class="gallery-caption">
+                        Merry Christmas
+                    </div>
+
+                </div>
+
+                <div
+                    class="gallery-item"
+                    onclick="openLightbox('haunt-a-files/images/bts5.webp')">
+
+                    <img
+                        src="haunt-a-files/images/bts5.webp"
+                        alt="Haunt-A-Files behind the scenes"
+                        loading="lazy">
+
+                    <div class="gallery-caption">
+                        All tucked up
+                    </div>
+
+                </div>
+
+                <div
+                    class="gallery-item"
+                    onclick="openLightbox('haunt-a-files/images/bts6.webp')">
+
+                    <img
+                        src="haunt-a-files/images/bts6.webp"
+                        alt="Haunt-A-Files behind the scenes"
+                        loading="lazy">
+
+                    <div class="gallery-caption">
+                        The green boyos
+                    </div>
+
+                </div>
+
+                <div
+                    class="gallery-item"
+                    onclick="openLightbox('haunt-a-files/images/bts7.webp')">
+
+                    <img
+                        src="haunt-a-files/images/bts7.webp"
+                        alt="Haunt-A-Files behind the scenes"
+                        loading="lazy">
+
+                    <div class="gallery-caption">
+                        Budget of £0.67
+                    </div>
+
+                </div>
+
+                <div
+                    class="gallery-item"
+                    onclick="openLightbox('haunt-a-files/images/bts8.webp')">
+
+                    <img
+                        src="haunt-a-files/images/bts8.webp"
+                        alt="Haunt-A-Files behind the scenes"
+                        loading="lazy">
+
+                    <div class="gallery-caption">
+                        Detained
+                    </div>
+
+                </div>
+
+                <div
+                    class="gallery-item"
+                    onclick="openLightbox('haunt-a-files/images/bts9.webp')">
+
+                    <img
+                        src="haunt-a-files/images/bts9.webp"
+                        alt="Haunt-A-Files behind the scenes"
+                        loading="lazy">
+
+                    <div class="gallery-caption">
+                        Shooting the intro
+                    </div>
+
+                </div>
+
+                <div
+                    class="gallery-item"
+                    onclick="openLightbox('haunt-a-files/images/bts10.webp')">
+
+                    <img
+                        src="haunt-a-files/images/bts10.webp"
+                        alt="Haunt-A-Files behind the scenes"
+                        loading="lazy">
+
+                    <div class="gallery-caption">
+                        Big Z
+                    </div>
+
+                </div>
+
+                <div
+                    class="gallery-item"
+                    onclick="openLightbox('haunt-a-files/images/bts11.webp')">
+
+                    <img
+                        src="haunt-a-files/images/bts11.webp"
+                        alt="Haunt-A-Files behind the scenes"
+                        loading="lazy">
+
+                    <div class="gallery-caption">
+                        Spontaneous Mike
+                    </div>
+
+                </div>
+
+                <div
+                    class="gallery-item"
+                    onclick="openLightbox('haunt-a-files/images/bts12.webp')">
+
+                    <img
+                        src="haunt-a-files/images/bts12.webp"
+                        alt="Haunt-A-Files behind the scenes"
+                        loading="lazy">
+
+                    <div class="gallery-caption">
+                        Technical T
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="footer-brand">
+            ZeusWeusFilm
+        </div>
+
+        <div class="social-links">
+
+            <a href="contact">
+                Contact
+            </a>
+
+            <a href="physical/">
+                Physical
+            </a>
+
+            <a
+                href="https://paypal.me/ASmyth115"
+                target="_blank"
+                rel="noopener noreferrer">
+                PayPal
+            </a>
+
+        </div>
+
+    </footer>
+
+</div>
+
+<!-- IMAGE LIGHTBOX -->
+
+<div
+    class="lightbox"
+    id="lightbox"
+    onclick="closeLightbox()">
+
+    <button
+        class="lightbox-close"
+        type="button"
+        aria-label="Close image"
+        onclick="closeLightbox()">
+        &times;
+    </button>
+
+    <img
+        id="lightbox-image"
+        src=""
+        alt="Haunt-A-Files behind the scenes"
+        onclick="event.stopPropagation()">
+
+</div>
+
+<script>
+
+    /*
+        ORIGINAL VIEW COUNT SYSTEM
+    */
+
+    const VIEW_API_BASE =
+        "https://zeusweusfilm-views.adamjordan11549.workers.dev/views";
+
+    const VIEW_COOLDOWN_MS = 30 * 60 * 1000;
+
+    let currentVideoId = "haunt-exhumed-1";
+
+    function formatViewCount(views) {
+        return views + (views === 1 ? " view" : " views");
+    }
+
+    async function loadViewCount(videoId) {
+
+        const viewCount =
+            document.getElementById("view-count");
+
+        try {
+
+            const response = await fetch(
+                VIEW_API_BASE + "/" + videoId,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Could not load view count.");
+            }
+
+            const data = await response.json();
+
+            if (videoId === currentVideoId) {
+                viewCount.textContent =
+                    formatViewCount(data.views);
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Failed to load view count:",
+                error
+            );
+        }
+    }
+
+    async function countView(videoId) {
+
+        const storageKey =
+            "zeusweusfilm-view-" + videoId;
+
+        const now = Date.now();
+
+        const lastView =
+            Number(localStorage.getItem(storageKey)) || 0;
+
+        if (now - lastView < VIEW_COOLDOWN_MS) {
+            return;
+        }
+
+        try {
+
+            const response = await fetch(
+                VIEW_API_BASE + "/" + videoId,
+                {
+                    method: "POST"
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Could not count view.");
+            }
+
+            const data = await response.json();
+
+            localStorage.setItem(
+                storageKey,
+                String(now)
+            );
+
+            if (videoId === currentVideoId) {
+
+                const viewCount =
+                    document.getElementById("view-count");
+
+                viewCount.textContent =
+                    formatViewCount(data.views);
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Failed to count view:",
+                error
+            );
+        }
+    }
+
+    /*
+        ORIGINAL VIDEO SWITCHING SYSTEM
+    */
+
+    function selectVideo(
+        button,
+        videoUrl,
+        posterUrl,
+        descriptionText,
+        videoId
+    ) {
+
+        const player =
+            document.getElementById("video-player");
+
+        const source =
+            document.getElementById("video-source");
+
+        const description =
+            document.getElementById("video-description");
+
+        const buttons =
+            document.querySelectorAll(".video-menu-button");
+
+        /*
+            Remember the visitor's scroll position.
+        */
+
+        const scrollX = window.scrollX;
+        const scrollY = window.scrollY;
+
+        player.pause();
+
+        source.src = videoUrl;
+        player.poster = posterUrl;
+        description.textContent = descriptionText;
+        currentVideoId = videoId;
+
+        loadViewCount(currentVideoId);
+
+        /*
+            Load the selected video without autoplay.
+        */
+
+        player.load();
+
+        /*
+            Update active selection across all video menus.
+        */
+
+        buttons.forEach(function(menuButton) {
+            menuButton.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        /*
+            Restore the original scroll position.
+        */
+
+        requestAnimationFrame(function() {
+
+            window.scrollTo(scrollX, scrollY);
+
+            requestAnimationFrame(function() {
+                window.scrollTo(scrollX, scrollY);
+            });
+
+        });
+    }
+
+    /*
+        ORIGINAL IMAGE LIGHTBOX
+    */
+
+    function openLightbox(imageUrl) {
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        const lightboxImage =
+            document.getElementById("lightbox-image");
+
+        lightboxImage.src = imageUrl;
+
+        lightbox.classList.add("open");
+
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        const lightboxImage =
+            document.getElementById("lightbox-image");
+
+        lightbox.classList.remove("open");
+
+        lightboxImage.src = "";
+
+        document.body.style.overflow = "";
+    }
+
+    /*
+        ORIGINAL VIEW COUNT INITIALISATION
+    */
+
+    const videoPlayer =
+        document.getElementById("video-player");
+
+    videoPlayer.addEventListener(
+        "play",
+        function() {
+            countView(currentVideoId);
+        }
+    );
+
+    loadViewCount(currentVideoId);
+
+    /*
+        ORIGINAL ESCAPE KEY BEHAVIOUR
+    */
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Escape") {
+                closeLightbox();
+            }
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
