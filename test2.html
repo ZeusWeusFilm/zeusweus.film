@@ -548,8 +548,8 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            min-height: 250px;
-            padding: 35px;
+            min-height: 420px;
+            padding: 38px 25px;
             cursor: pointer;
             color: #ffffff;
             text-align: center;
@@ -583,29 +583,109 @@
             box-shadow: 0 0 25px rgba(0, 130, 255, 0.2);
         }
 
-        .document-title {
-            color: #ffffff;
-            font-size: 28px;
+        /* Paper preview */
+
+        .document-paper {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 220px;
+            height: 285px;
+            padding: 30px 20px;
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff,
+                    #e8edf3
+                );
+            border: 1px solid #c7d4df;
+            box-shadow:
+                8px 10px 0 rgba(0, 0, 0, 0.25),
+                0 0 22px rgba(0, 140, 255, 0.18);
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .document-cover:hover .document-paper {
+            transform: translateY(-4px);
+            box-shadow:
+                8px 14px 0 rgba(0, 0, 0, 0.25),
+                0 0 30px rgba(0, 140, 255, 0.3);
+        }
+
+        /* Folded paper corner */
+
+        .document-paper::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-top: 38px solid #071a2c;
+            border-left: 38px solid #c5d1de;
+            box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.12);
+        }
+
+        .document-paper-label {
+            margin-bottom: 25px;
+            color: #356180;
+            font-size: 9px;
             font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .document-title {
+            color: #101b27;
+            font-size: 26px;
+            font-weight: 900;
+            line-height: 1.15;
             letter-spacing: 1px;
             text-transform: uppercase;
-            text-shadow:
-                1px 0 #168bff,
-                0 0 16px rgba(0, 130, 255, 0.25);
         }
 
         .document-subtitle {
-            margin-top: 12px;
-            color: #38aaff;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 4px;
+            margin-top: 14px;
+            color: #1c5c8c;
+            font-size: 10px;
+            font-weight: 900;
+            line-height: 1.5;
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
+        .document-paper-rule {
+            width: 75%;
+            height: 2px;
+            margin: 22px 0 16px;
+            background: #168bff;
+        }
+
+        .document-paper-lines {
+            width: 75%;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .document-paper-lines span {
+            display: block;
+            height: 3px;
+            background: #d2dce5;
+        }
+
+        .document-paper-lines span:last-child {
+            width: 65%;
+        }
+
         .document-open {
-            margin-top: 35px;
-            padding: 10px 18px;
+            margin-top: 25px;
+            padding: 12px 22px;
             color: #ffffff;
             font-size: 11px;
             font-weight: 900;
@@ -618,6 +698,7 @@
 
         .document-cover:hover .document-open {
             background: #168bff;
+            box-shadow: 0 0 22px rgba(0, 140, 255, 0.4);
         }
 
         /* Full-width footer */
@@ -886,7 +967,13 @@
             }
 
             .document-cover {
-                min-height: 230px;
+                min-height: 390px;
+                padding: 30px 15px;
+            }
+
+            .document-paper {
+                width: 190px;
+                height: 250px;
                 padding: 25px 15px;
             }
 
@@ -895,8 +982,13 @@
             }
 
             .document-subtitle {
-                font-size: 10px;
-                letter-spacing: 2px;
+                font-size: 9px;
+                letter-spacing: 1.5px;
+            }
+
+            .document-paper-label {
+                font-size: 8px;
+                margin-bottom: 20px;
             }
 
             .footer {
@@ -1202,16 +1294,33 @@
                     class="document-cover"
                     onclick="openPDF()">
 
-                    <div class="document-title">
-                        Knock Knock
-                    </div>
+                    <!-- Paper document preview -->
+                    <div class="document-paper">
 
-                    <div class="document-subtitle">
-                        PRE-PRODUCTION
+                        <div class="document-paper-label">
+                            ZeusWeusFilm
+                        </div>
+
+                        <div class="document-title">
+                            Knock Knock
+                        </div>
+
+                        <div class="document-subtitle">
+                            Pre-Production<br>Document
+                        </div>
+
+                        <div class="document-paper-rule"></div>
+
+                        <div class="document-paper-lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
                     </div>
 
                     <div class="document-open">
-                        Click to Open &raquo;
+                        Open Document &raquo;
                     </div>
 
                 </div>
