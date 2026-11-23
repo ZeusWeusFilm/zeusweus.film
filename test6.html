@@ -4,14 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fried Out Vol.1 - Official Website</title>
+<title>!!! FRIED OUT OFFICIAL WEB ZONE !!!</title>
 
 <style>
 
 /* =========================================================
-   FRIED OUT VOL.1
-   OFFICIAL WEBSITE
-   LAST UPDATED: UNKNOWN
+   FRIED OUT - THE OFFICIAL WORLD WIDE WEB EXPERIENCE
+   BEST VIEWED ON YOUR MUM'S COMPUTER
    ========================================================= */
 
 * {
@@ -19,379 +18,441 @@
 }
 
 html {
-    background: #77766d;
+    background: #ffff00;
 }
 
 body {
     margin: 0;
     padding: 0;
-
     min-height: 100vh;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: #000080;
 
-    background: #77766d;
-    color: #242820;
+    background-color: #ffff00;
 
-    font-family: Verdana, Arial, sans-serif;
-    font-size: 13px;
+    background-image:
+        repeating-conic-gradient(
+            from 45deg,
+            rgba(255, 0, 255, 0.16) 0% 25%,
+            rgba(0, 255, 0, 0.15) 0% 50%
+        );
+
+    background-size: 48px 48px;
 
     overflow-x: hidden;
 }
 
-/* Old monitor-style background texture */
-
-body::before {
-    content: "";
-
-    position: fixed;
-    inset: 0;
-
-    background:
-        repeating-linear-gradient(
-            0deg,
-            rgba(0, 0, 0, 0.035) 0px,
-            rgba(0, 0, 0, 0.035) 1px,
-            transparent 1px,
-            transparent 4px
-        );
-
-    pointer-events: none;
-    z-index: 20;
-}
-
-/* Original background asset retained */
+/* THE BACKGROUND IMAGE IS STILL HERE */
 
 .background {
     position: fixed;
     inset: 0;
 
     background-image: url("fried-out/images/background.webp");
-    background-size: cover;
     background-position: center;
+    background-size: cover;
 
-    filter: grayscale(100%) sepia(35%);
-    opacity: 0.055;
+    opacity: 0.075;
 
     pointer-events: none;
+    z-index: 0;
 }
 
-/* Main website */
+/* THE ENTIRE INTERNET */
 
 .page-content {
     position: relative;
+    z-index: 1;
 
-    width: calc(100% - 30px);
-    max-width: 1040px;
+    width: 100%;
+    max-width: 1250px;
 
-    margin: 22px auto;
-
-    padding: 0;
-
-    background: #bcbcaf;
-
-    border-top: 3px solid #e4e4d8;
-    border-left: 3px solid #e4e4d8;
-    border-right: 3px solid #4d4d46;
-    border-bottom: 3px solid #4d4d46;
-
-    box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.3);
-}
-
-/* Header */
-
-.website-header {
-    padding: 20px 20px 14px;
-
-    background: #a4a69a;
-
-    border-bottom: 2px solid #565a50;
+    margin: 0 auto;
+    padding: 10px 12px 40px;
 
     text-align: center;
 }
 
+/* REALLY IMPORTANT INTERNET ANNOUNCEMENT */
+
+.top-warning {
+    padding: 7px;
+
+    background: #ff0000;
+    color: #ffff00;
+
+    border-bottom: 6px ridge #ffffff;
+
+    font-family: "Comic Sans MS", cursive;
+    font-size: 13px;
+    font-weight: bold;
+
+    text-align: center;
+}
+
+.top-warning span {
+    animation: blink 0.7s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        visibility: hidden;
+    }
+}
+
+/* THE HEADER OF THE CENTURY */
+
+.website-header {
+    padding: 20px 12px;
+
+    background: linear-gradient(
+        90deg,
+        #00ffff,
+        #ff00ff,
+        #ffff00,
+        #00ff00,
+        #00ffff
+    );
+
+    border: 10px ridge #ff0000;
+
+    box-shadow:
+        8px 8px 0 #000080,
+        0 0 25px #ff00ff;
+}
+
 .logo-link {
     display: inline-block;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
 
 .logo {
     display: block;
 
-    width: 100px;
+    width: 115px;
     max-width: 35vw;
     height: auto;
 
-    filter: grayscale(65%) contrast(115%);
+    filter: drop-shadow(5px 5px 0 #ffff00);
+
+    transition: transform 0.2s;
+}
+
+.logo-link:hover .logo {
+    transform: rotate(-12deg) scale(1.1);
 }
 
 .website-header h1 {
-    margin: 4px 0 8px;
+    margin: 5px 0;
 
-    color: #39452c;
+    font-family: "Comic Sans MS", cursive;
+    font-size: clamp(28px, 6vw, 68px);
+    font-weight: 900;
 
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: clamp(29px, 5vw, 47px);
-    font-weight: bold;
-
+    line-height: 1.1;
     letter-spacing: -2px;
 
-    text-shadow: 2px 2px #d4d5c5;
+    color: #ffff00;
+
+    text-shadow:
+        4px 4px #ff0000,
+        -4px -4px #0000ff,
+        7px 7px #000000;
+
+    transform: rotate(-2deg);
 }
 
 .header-subtitle {
-    color: #44473c;
+    margin: 12px auto;
 
-    font-family: "Times New Roman", serif;
-    font-size: 16px;
+    color: #000000;
+    font-size: 17px;
+    font-weight: bold;
 
-    letter-spacing: 2px;
+    background: #ffff00;
+
+    display: inline-block;
+    padding: 5px 15px;
+
+    border: 4px dashed #ff0000;
 }
 
-.header-note {
-    margin-top: 12px;
+.rainbow-text {
+    font-size: 18px;
+    font-weight: bold;
 
-    color: #66685d;
-
-    font-family: "Times New Roman", serif;
-    font-size: 11px;
+    animation: rainbow 1.4s linear infinite;
 }
 
-/* Old scrolling notice */
+@keyframes rainbow {
+    0%   { color: #ff0000; }
+    20%  { color: #0000ff; }
+    40%  { color: #00aa00; }
+    60%  { color: #ff00ff; }
+    80%  { color: #ff6600; }
+    100% { color: #ff0000; }
+}
+
+/* SCROLLING TEXT BECAUSE IT IS THE FUTURE */
 
 .marquee-container {
-    padding: 6px 0;
+    margin: 20px 0;
 
-    color: #c8c9a7;
-    background: #41483b;
+    padding: 8px 0;
 
-    border-top: 1px solid #222820;
-    border-bottom: 1px solid #222820;
+    background: #000080;
+    color: #ffff00;
 
-    font-family: "Courier New", monospace;
-    font-size: 12px;
+    border: 5px groove #00ffff;
+
+    font-size: 18px;
+    font-weight: bold;
 }
 
-/* Navigation */
+.marquee-container marquee {
+    display: block;
+}
+
+/* HORRIBLE NAVIGATION */
 
 .navigation {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
 
-    gap: 0;
+    gap: 8px;
 
-    padding: 10px;
-
-    background: #c5c5b9;
-
-    border-bottom: 1px solid #8b8d81;
+    margin: 20px 0;
 }
 
 .navigation a {
-    padding: 5px 12px;
+    display: inline-block;
 
-    color: #183d7b;
+    padding: 12px 17px;
 
-    font-family: "Times New Roman", serif;
+    color: #000080;
+    background: #c0c0c0;
+
+    font-family: "Comic Sans MS", cursive;
     font-size: 14px;
+    font-weight: bold;
 
     text-decoration: underline;
+
+    border-top: 5px solid #ffffff;
+    border-left: 5px solid #ffffff;
+    border-right: 5px solid #555555;
+    border-bottom: 5px solid #555555;
+
+    box-shadow: 3px 3px 0 #000000;
 }
 
 .navigation a:hover {
-    color: #7c271e;
-    background: #dadace;
+    color: #ff0000;
+    background: #00ff00;
 }
 
-/* Welcome */
-
-.welcome {
-    padding: 19px 20px 6px;
-
-    text-align: center;
-
-    font-family: "Times New Roman", serif;
+.navigation a:active {
+    border-top-color: #555555;
+    border-left-color: #555555;
+    border-right-color: #ffffff;
+    border-bottom-color: #ffffff;
 }
 
-.welcome h2 {
-    margin: 0 0 8px;
+/* AN IMPORTANT MESSAGE FROM THE WEBMASTER */
 
-    color: #3e4735;
+.webmaster-notice {
+    margin: 22px auto;
+    padding: 15px;
 
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 18px;
+    max-width: 950px;
+
+    background: #00ff00;
+
+    border: 7px dotted #ff0000;
+
+    color: #000080;
+    font-size: 17px;
+    font-weight: bold;
+
+    box-shadow: 7px 7px 0 #ff00ff;
 }
 
-.welcome p {
-    margin: 6px 0;
-
-    color: #56594f;
-    font-size: 13px;
+.webmaster-notice strong {
+    color: #ff0000;
+    font-size: 21px;
 }
 
-/* Layout */
+/* CLASSIC TWO-COLUMN WEB PAGE */
 
 .website-layout {
     display: grid;
-    grid-template-columns: 175px minmax(0, 1fr);
 
-    gap: 20px;
+    grid-template-columns: 215px minmax(0, 1fr);
 
-    padding: 20px;
+    gap: 18px;
+
+    align-items: start;
+    margin-top: 30px;
 }
 
-/* Sidebar */
+/* SIDEBAR */
 
 .sidebar {
     min-width: 0;
 
     padding: 10px;
 
-    background: #aeb0a2;
+    background: #00ffff;
 
-    border-top: 2px solid #e1e1d5;
-    border-left: 2px solid #e1e1d5;
-    border-right: 2px solid #5c6055;
-    border-bottom: 2px solid #5c6055;
+    border: 8px ridge #0000ff;
 
-    align-self: start;
+    box-shadow: 6px 6px 0 #ff00ff;
 }
 
 .sidebar-title {
-    margin: 0 0 12px;
-    padding: 6px 4px;
+    margin: 0 0 15px;
 
-    color: #dedfce;
-    background: #4b5644;
+    padding: 8px 4px;
 
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 14px;
+    color: #ffff00;
+    background: #ff0000;
 
-    text-align: center;
+    font-size: 19px;
+    font-weight: bold;
+
+    border: 4px dashed #ffffff;
 }
 
 .sidebar-box {
-    margin-bottom: 13px;
-    padding: 8px 5px;
+    margin: 12px 0;
+    padding: 12px 7px;
 
-    background: #c5c6b9;
+    background: #ffff00;
 
-    border: 1px solid #888b7e;
+    border: 4px groove #ff00ff;
 
-    font-family: "Times New Roman", serif;
-    font-size: 12px;
-    line-height: 1.5;
-
-    text-align: center;
-}
-
-.sidebar-box h3 {
-    margin: 0 0 8px;
-
-    color: #4c4935;
-
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 12px;
-}
-
-.sidebar-box a {
-    color: #183d7b;
-    text-decoration: underline;
-}
-
-.sidebar-box p {
-    margin: 5px 0;
-}
-
-.visitor-counter {
-    display: inline-block;
-
-    margin: 5px 0;
-    padding: 5px 8px;
-
-    color: #a7c28c;
-    background: #1c241a;
-
-    border: 3px inset #898b80;
-
-    font-family: "Courier New", monospace;
-    font-size: 17px;
-    letter-spacing: 2px;
-}
-
-.small-print {
-    color: #66685d;
-    font-size: 10px;
-}
-
-.new-label {
-    display: inline-block;
-
-    color: #7b1f1f;
-
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 12px;
+    color: #000080;
+    font-size: 13px;
     font-weight: bold;
 
-    transform: rotate(-7deg);
+    overflow-wrap: anywhere;
 }
 
-.sidebar-divider {
-    width: 80%;
-    height: 1px;
-
-    margin: 15px auto;
-
-    background: #818477;
+.sidebar-box:nth-of-type(even) {
+    background: #ff99ff;
 }
 
-/* Main content */
+.sidebar-star {
+    display: block;
+
+    margin: 12px 0;
+
+    color: #ff0000;
+    font-size: 40px;
+
+    animation: spin 5s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.fake-counter {
+    display: inline-block;
+
+    margin: 8px auto;
+    padding: 7px 12px;
+
+    background: #000000;
+    color: #00ff00;
+
+    border: 5px inset #888888;
+
+    font-family: "Courier New", monospace;
+    font-size: 24px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+}
+
+.counter-label {
+    color: #ff0000;
+    font-size: 12px;
+}
+
+.email-sticker {
+    display: block;
+
+    padding: 10px 5px;
+    margin: 15px 0;
+
+    color: #ffff00;
+    background: #000080;
+
+    border: 4px dotted #ff0000;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    transform: rotate(4deg);
+}
+
+/* MAIN VIDEO AREA */
 
 .main-column {
     min-width: 0;
 }
 
-.section-heading {
-    margin: 0 0 15px;
-    padding: 8px 10px;
-
-    color: #d5d7c6;
-    background: #4b5644;
-
-    border-bottom: 3px solid #333b2e;
-
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 17px;
-    font-weight: normal;
-
-    text-align: left;
-}
-
 .video-section {
     width: 100%;
+    margin: 0 auto;
 }
 
 .video-panel {
-    padding: 12px;
+    padding: 15px;
 
-    background: #c8c9bd;
+    background: #ff99ff;
 
-    border-top: 2px solid #e8e8dc;
-    border-left: 2px solid #e8e8dc;
-    border-right: 2px solid #77796f;
-    border-bottom: 2px solid #77796f;
+    border: 10px ridge #ff0000;
+
+    box-shadow: 8px 8px 0 #0000ff;
+}
+
+.video-panel h2 {
+    margin: 0 0 15px;
+
+    padding: 10px;
+
+    color: #ffff00;
+    background: #0000ff;
+
+    border: 5px dashed #00ff00;
+
+    font-family: "Comic Sans MS", cursive;
+    font-size: clamp(22px, 4vw, 35px);
+    font-weight: bold;
+
+    text-shadow: 3px 3px #ff0000;
 }
 
 .video-player-wrapper {
-    position: relative;
-
     width: 100%;
+
     aspect-ratio: 16 / 9;
 
+    position: relative;
     overflow: hidden;
 
-    background: #000;
+    background: #000000;
 
-    border: 5px ridge #8e9185;
+    border: 10px ridge #00ff00;
+
+    box-shadow:
+        6px 6px 0 #ff0000,
+        0 0 25px #ffff00;
 }
 
 #video-player {
@@ -401,218 +462,281 @@ body::before {
     height: 100%;
 
     object-fit: contain;
-
-    background: #000;
+    background: #000000;
 }
 
-.player-note {
-    margin: 9px 0;
-
-    color: #676a5e;
-
-    font-family: "Times New Roman", serif;
-    font-size: 11px;
-
-    text-align: center;
-}
-
-/* Real view count */
+/* REAL VIEW COUNT - DO NOT BREAK */
 
 .view-count {
-    margin: 12px 0;
+    display: inline-block;
 
-    color: #4e5944;
+    margin: 20px auto 12px;
+    padding: 8px 16px;
+
+    color: #00ff00;
+    background: #000000;
+
+    border: 5px inset #c0c0c0;
 
     font-family: "Courier New", monospace;
-    font-size: 12px;
+    font-size: 17px;
+    font-weight: bold;
 
-    text-align: center;
+    text-transform: uppercase;
 }
 
-/* Buttons */
+.view-count::before {
+    content: "REAL VIDEO COUNTER: ";
+    color: #ffff00;
+}
+
+/* VIDEO BUTTONS */
 
 .video-menu {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
 
-    gap: 8px;
+    gap: 12px;
 
-    margin-top: 12px;
+    margin: 15px auto;
 }
 
 .video-menu-button {
     appearance: none;
     -webkit-appearance: none;
 
-    padding: 9px 13px;
+    min-width: 140px;
+    padding: 13px 15px;
 
-    min-width: 125px;
+    color: #000080;
+    background: #c0c0c0;
 
-    color: #252923;
-    background: #b8b9ad;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 14px;
+    font-weight: bold;
 
-    border-top: 3px solid #eeeeea;
-    border-left: 3px solid #eeeeea;
-    border-right: 3px solid #5f6158;
-    border-bottom: 3px solid #5f6158;
-
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 12px;
     line-height: 1.4;
 
     cursor: pointer;
+
+    border-top: 6px solid #ffffff;
+    border-left: 6px solid #ffffff;
+    border-right: 6px solid #555555;
+    border-bottom: 6px solid #555555;
+
+    box-shadow: 4px 4px 0 #000000;
 }
 
 .video-menu-button:hover {
-    background: #d0d1c2;
+    color: #ff0000;
+    background: #ffff00;
+
+    transform: rotate(-2deg);
 }
 
 .video-menu-button.active {
-    color: #d8dacb;
-    background: #59634f;
+    color: #ffffff;
+    background: #ff0000;
 
-    border-top-color: #363d32;
-    border-left-color: #363d32;
-    border-right-color: #a1a99a;
-    border-bottom-color: #a1a99a;
+    border-top-color: #880000;
+    border-left-color: #880000;
+    border-right-color: #ff9999;
+    border-bottom-color: #ff9999;
+
+    box-shadow: 2px 2px 0 #000000;
 }
 
-/* Description */
+/* VIDEO DESCRIPTION */
 
 .description {
-    margin: 18px 0 0;
-    padding: 15px;
+    width: 100%;
 
-    color: #34382f;
-    background: #c4c5b8;
+    margin: 28px auto;
+    padding: 20px;
 
-    border: 1px solid #888b7f;
+    color: #000080;
+    background: #00ff00;
 
-    font-family: "Times New Roman", serif;
-    font-size: 16px;
-    line-height: 1.6;
+    border: 8px dashed #ff00ff;
+
+    font-family: "Comic Sans MS", cursive;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.7;
 
     overflow-wrap: anywhere;
+
+    box-shadow: 7px 7px 0 #ff0000;
 }
 
 .description::before {
-    content: "Description:";
+    content: "!!! OFFICIAL VIDEO DESCRIPTION !!!";
     display: block;
 
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
 
-    color: #525c48;
+    color: #ff0000;
 
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 15px;
+    text-decoration: underline;
+
+    border-bottom: 4px dotted #0000ff;
 }
 
-/* Separators */
+/* SEPARATORS */
 
 .separator {
-    height: 2px;
+    width: 100%;
+    height: 20px;
 
-    margin: 27px 0;
+    margin: 35px auto;
 
-    background: #898b7e;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #ff0000 0 20px,
+            #ffff00 20px 40px,
+            #00ff00 40px 60px,
+            #0000ff 60px 80px,
+            #ff00ff 80px 100px
+        );
 
-    border-bottom: 1px solid #e0e0d3;
+    border-top: 4px ridge #ffffff;
+    border-bottom: 4px ridge #ffffff;
 }
 
-/* Extra videos */
+/* XTRA FRIED */
 
 .xtra-fried {
-    padding: 12px;
+    width: 100%;
 
-    background: #c4c5b8;
+    margin: 0 auto;
+    padding: 20px;
 
-    border: 1px solid #898b7f;
+    background: #ffff00;
+
+    border: 9px groove #ff00ff;
+
+    box-shadow: 8px 8px 0 #00ffff;
 }
 
 .xtra-fried h2 {
-    margin: 0 0 8px;
+    margin: 0 0 15px;
 
-    color: #424b3b;
+    padding: 12px;
 
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 18px;
-    font-weight: normal;
+    color: #ffff00;
+    background: #ff0000;
+
+    border: 6px dotted #0000ff;
+
+    font-family: "Comic Sans MS", cursive;
+    font-size: clamp(20px, 4vw, 30px);
+    font-weight: bold;
+
+    text-shadow: 3px 3px #000000;
 }
 
-.xtra-intro {
-    margin: 0 0 16px;
+.xtra-warning {
+    margin: 10px 0 20px;
 
-    color: #6c6e63;
+    color: #0000ff;
 
-    font-family: "Times New Roman", serif;
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: bold;
+
+    text-decoration: underline;
 }
 
 .xtra-menu {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
 
-    gap: 10px;
+    gap: 15px;
+
+    width: 100%;
 }
 
 .xtra-menu .video-menu-button {
     width: 100%;
     min-width: 0;
 
-    text-align: left;
-
-    font-family: Verdana, Arial, sans-serif;
-    font-size: 11px;
+    background: #00ffff;
+    color: #000080;
 }
 
-/* Gallery */
+.xtra-menu .video-menu-button:nth-child(even) {
+    background: #ff99ff;
+}
+
+.xtra-menu .video-menu-button:hover {
+    background: #ffff00;
+    color: #ff0000;
+}
+
+.xtra-menu .video-menu-button.active {
+    background: #ff0000;
+    color: #ffffff;
+}
+
+/* BEHIND THE SCENES */
 
 .gallery-section {
-    padding: 0 20px 20px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-.gallery-heading {
-    margin: 0 0 8px;
+.gallery-title {
+    margin: 0 0 20px;
+    padding: 15px;
 
-    color: #424b3b;
+    color: #ffff00;
+    background: #0000ff;
 
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 19px;
-    font-weight: normal;
-}
+    font-size: clamp(20px, 4vw, 32px);
+    font-weight: bold;
 
-.gallery-intro {
-    margin: 0 0 18px;
+    border: 8px dotted #ff0000;
 
-    color: #66695d;
-
-    font-family: "Times New Roman", serif;
-    font-size: 12px;
+    text-shadow: 3px 3px #ff0000;
 }
 
 .gallery {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    gap: 18px;
+    gap: 20px;
+
+    width: 100%;
+    margin: 0 auto;
 }
 
 .gallery-item {
-    margin: 0;
-    padding: 7px;
+    position: relative;
 
     min-width: 0;
+    margin: 0;
+    padding: 10px;
 
-    background: #c9cabe;
+    background: #00ffff;
 
-    border-top: 2px solid #e5e5d9;
-    border-left: 2px solid #e5e5d9;
-    border-right: 2px solid #77796d;
-    border-bottom: 2px solid #77796d;
+    border: 8px ridge #ff00ff;
+
+    box-shadow: 6px 6px 0 #0000ff;
 
     cursor: pointer;
+}
+
+.gallery-item:nth-child(2) {
+    background: #ff99ff;
+    border-color: #00ff00;
+}
+
+.gallery-item:nth-child(3) {
+    background: #ffff00;
+    border-color: #ff0000;
 }
 
 .gallery-item img {
@@ -623,112 +747,34 @@ body::before {
 
     object-fit: cover;
 
-    filter: saturate(75%) contrast(95%);
+    border: 4px solid #000000;
 
-    border: 1px solid #77796d;
+    transition: transform 0.2s;
 }
 
 .gallery-item:hover img {
-    filter: none;
+    transform: scale(1.05) rotate(2deg);
 }
 
 .gallery-item figcaption {
-    margin-top: 7px;
+    display: block;
 
-    color: #4b4e44;
+    margin-top: 10px;
+    padding: 8px;
 
-    font-family: "Times New Roman", serif;
-    font-size: 12px;
+    color: #ffff00;
+    background: #000080;
 
-    text-align: center;
-}
-
-/* Old-fashioned bottom section */
-
-.bottom-section {
-    margin: 0 20px;
-    padding: 20px 10px;
-
-    border-top: 1px solid #85887b;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 15px;
+    font-weight: bold;
 
     text-align: center;
+
+    border: 3px dashed #ff0000;
 }
 
-.construction {
-    display: inline-block;
-
-    margin: 8px 0 15px;
-    padding: 8px 15px;
-
-    color: #34342d;
-    background: #c9bd82;
-
-    border: 2px dashed #777047;
-
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 13px;
-}
-
-.bottom-section p {
-    color: #65675b;
-
-    font-family: "Times New Roman", serif;
-    font-size: 12px;
-}
-
-.guestbook {
-    margin: 20px auto 10px;
-
-    font-family: "Times New Roman", serif;
-    font-size: 13px;
-}
-
-.guestbook a {
-    color: #183d7b;
-}
-
-/* Footer */
-
-.social-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-
-    gap: 20px;
-
-    padding: 16px;
-
-    background: #a5a79a;
-
-    border-top: 1px solid #777a6f;
-}
-
-.social-links a {
-    color: #183d7b;
-
-    font-family: "Times New Roman", serif;
-    font-size: 13px;
-
-    text-decoration: underline;
-}
-
-.social-links a:hover {
-    color: #7c271e;
-}
-
-.copyright {
-    padding: 8px 15px 15px;
-
-    color: #62655a;
-    background: #a5a79a;
-
-    font-family: "Times New Roman", serif;
-    font-size: 10px;
-
-    text-align: center;
-}
-
-/* Lightbox */
+/* LIGHTBOX - STILL WORKS */
 
 .lightbox {
     position: fixed;
@@ -742,7 +788,7 @@ body::before {
 
     padding: 30px;
 
-    background: rgba(0, 0, 0, 0.93);
+    background: rgba(0, 0, 0, 0.94);
 }
 
 .lightbox.open {
@@ -760,7 +806,9 @@ body::before {
 
     object-fit: contain;
 
-    border: 5px ridge #9d9f90;
+    border: 8px ridge #ff00ff;
+
+    box-shadow: 0 0 30px #00ffff;
 }
 
 .lightbox-close {
@@ -771,80 +819,213 @@ body::before {
 
     padding: 5px 12px;
 
-    color: #222;
-    background: #bfc0b3;
+    color: #ffff00;
+    background: #ff0000;
 
-    border: 3px outset #eee;
+    border: 5px outset #ffffff;
 
-    font-family: Arial, sans-serif;
-    font-size: 27px;
+    font-family: "Comic Sans MS", cursive;
+    font-size: 32px;
+    font-weight: bold;
 
     cursor: pointer;
 }
 
-/* Mobile */
+/* THE VERY BOTTOM OF THE INTERNET */
 
-@media (max-width: 750px) {
+.bottom-chaos {
+    margin: 40px auto 20px;
+    padding: 20px;
 
-    .page-content {
-        width: calc(100% - 16px);
-        margin: 8px auto;
+    background: #ff00ff;
+
+    border: 10px ridge #00ff00;
+
+    color: #ffff00;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    box-shadow: 8px 8px 0 #000080;
+}
+
+.construction {
+    display: inline-block;
+
+    margin: 15px 0;
+    padding: 12px 20px;
+
+    background: repeating-linear-gradient(
+        45deg,
+        #ffff00 0 15px,
+        #000000 15px 30px
+    );
+
+    border: 6px ridge #ff0000;
+}
+
+.construction span {
+    display: inline-block;
+
+    padding: 10px;
+
+    background: #ffff00;
+    color: #ff0000;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    animation: wobble 1.5s ease-in-out infinite;
+}
+
+@keyframes wobble {
+    0%, 100% {
+        transform: rotate(-3deg);
     }
+
+    50% {
+        transform: rotate(3deg);
+    }
+}
+
+/* FOOTER LINKS */
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 15px;
+
+    margin: 25px auto;
+    padding: 20px;
+
+    background: #000080;
+
+    border: 8px ridge #ffff00;
+}
+
+.social-links a {
+    display: inline-block;
+
+    padding: 10px 15px;
+
+    color: #000080;
+    background: #00ff00;
+
+    font-family: "Comic Sans MS", cursive;
+    font-size: 15px;
+    font-weight: bold;
+
+    text-decoration: underline;
+
+    border: 5px outset #ffffff;
+}
+
+.social-links a:hover {
+    color: #ffff00;
+    background: #ff0000;
+}
+
+/* FAKE COPYRIGHT */
+
+.copyright {
+    margin: 20px 0;
+
+    color: #ff0000;
+    font-size: 12px;
+    font-weight: bold;
+
+    text-shadow: 1px 1px #ffff00;
+}
+
+/* MOBILE - EVEN THE 90S NEEDS MOBILE SUPPORT */
+
+@media (max-width: 900px) {
 
     .website-layout {
         grid-template-columns: 1fr;
-        padding: 12px;
     }
 
     .sidebar {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
 
-        gap: 8px;
+        gap: 10px;
+
+        align-items: center;
     }
 
     .sidebar-title {
         grid-column: 1 / -1;
     }
 
-    .sidebar-box {
-        margin: 0;
+    .sidebar-star {
+        margin: 5px auto;
     }
 
-    .sidebar-divider {
-        display: none;
-    }
-
-    .gallery {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .email-sticker {
+        margin: 5px;
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+
+    .page-content {
+        padding: 8px 8px 30px;
+    }
 
     .website-header {
         padding: 15px 8px;
+        border-width: 6px;
     }
 
     .website-header h1 {
         letter-spacing: -1px;
     }
 
-    .navigation a {
-        padding: 6px 8px;
+    .header-subtitle {
         font-size: 12px;
     }
 
-    .welcome {
-        padding: 15px 10px 0;
+    .rainbow-text {
+        font-size: 14px;
+    }
+
+    .marquee-container {
+        font-size: 14px;
+    }
+
+    .navigation {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .navigation a {
+        padding: 10px 6px;
+        font-size: 12px;
+    }
+
+    .webmaster-notice {
+        font-size: 14px;
+    }
+
+    .webmaster-notice strong {
+        font-size: 17px;
+    }
+
+    .sidebar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .video-panel {
-        padding: 7px;
+        padding: 8px;
+        border-width: 6px;
     }
 
     .video-player-wrapper {
-        border-width: 3px;
+        border-width: 5px;
     }
 
     .video-menu {
@@ -853,36 +1034,65 @@ body::before {
     }
 
     .video-menu-button {
-        width: 100%;
         min-width: 0;
-        padding: 8px 5px;
-        font-size: 11px;
+        width: 100%;
+
+        padding: 10px 7px;
+
+        font-size: 12px;
+    }
+
+    .view-count {
+        font-size: 12px;
+    }
+
+    .description {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .xtra-fried {
+        padding: 10px;
+        border-width: 6px;
     }
 
     .xtra-menu {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
     }
 
     .gallery {
         grid-template-columns: 1fr;
+        gap: 25px;
     }
 
     .gallery-item {
-        max-width: 350px;
+        max-width: 400px;
         width: 100%;
+
         margin: 0 auto;
     }
 
-    .gallery-section {
-        padding: 0 12px 15px;
+    .social-links a {
+        font-size: 12px;
     }
 
-    .description {
-        font-size: 15px;
+    .bottom-chaos {
+        font-size: 14px;
     }
 
-    .sidebar {
-        padding: 7px;
+    .construction span {
+        font-size: 16px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
     }
 }
 
@@ -890,6 +1100,14 @@ body::before {
 </head>
 
 <body>
+
+<!-- VERY SERIOUS WEBSITE WARNING -->
+
+<div class="top-warning">
+    <span>
+        !!! WARNING !!! THIS WEBSITE IS EXTREMELY FRIED !!! WARNING !!!
+    </span>
+</div>
 
 <div class="background"></div>
 
@@ -911,31 +1129,42 @@ body::before {
 
         </a>
 
-        <h1>Fried Out Vol.1</h1>
+        <h1>!!! FRIED OUT !!!</h1>
 
         <div class="header-subtitle">
-            THE PILOT
+            VOL.1 - THE PILOT
         </div>
 
-        <div class="header-note">
-            The official Fried Out web page.
+        <div class="rainbow-text">
+            ~*~ THE OFFICIAL WORLD WIDE WEB EXPERIENCE ~*~
         </div>
+
+        <p style="
+            color: #000080;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 0;
+        ">
+            BEST VIEWED WITH INTERNET EXPLORER 5.0
+            AT 800 x 600 RESOLUTION!!!
+        </p>
 
     </header>
 
-    <!-- OLD SCROLLING MESSAGE -->
+    <!-- MARQUEE -->
 
     <div class="marquee-container">
 
         <marquee
             behavior="scroll"
             direction="left"
-            scrollamount="2">
+            scrollamount="6">
 
-            Welcome to the Fried Out website...
-            Thank you for visiting...
-            Please bookmark this page...
-            More updates coming soon...
+            ★★★ WELCOME TO THE OFFICIAL FRIED OUT WEB ZONE!!! ★★★
+            WATCH THE PILOT!!! ★★★
+            CHECK OUT THE XTRA FRIED CONTENT!!! ★★★
+            PLEASE DO NOT STEAL OUR HTML!!! ★★★
+            THIS SITE IS 100% CERTIFIED FRIED!!! ★★★
 
         </marquee>
 
@@ -945,161 +1174,198 @@ body::before {
 
     <nav class="navigation">
 
-        <a href="./">Home</a>
+        <a href="./">
+            🏠 HOME PAGE
+        </a>
 
-        <a href="knock-knock/">Knock Knock</a>
+        <a href="knock-knock/">
+            👻 KNOCK KNOCK
+        </a>
 
-        <a href="fried-out/">Fried Out</a>
+        <a href="fried-out/">
+            🍟 FRIED OUT
+        </a>
 
-        <a href="haunt-a-files/">Haunt-A-Files</a>
+        <a href="haunt-a-files/">
+            👽 HAUNT-A-FILES
+        </a>
 
     </nav>
 
-    <!-- WELCOME -->
+    <!-- WEBMASTER NOTICE -->
 
-    <div class="welcome">
+    <div class="webmaster-notice">
 
-        <h2>Welcome to the Fried Out Website!</h2>
+        <strong>!!! HELLO INTERNET USER !!!</strong>
 
-        <p>
-            This is the official home of Fried Out Vol.1.
-        </p>
+        <br><br>
 
-        <p>
-            Please use the links below to watch the videos
-            and view behind-the-scenes photographs.
-        </p>
+        YOU HAVE SUCCESSFULLY ENTERED THE
+        FRIED OUT OFFICIAL WEBSITE!!!
+
+        <br>
+
+        PLEASE ENJOY THE MOVING PICTURES BELOW!!!
+
+        <br><br>
+
+        <span class="rainbow-text">
+            THANK YOU FOR VISITING OUR WEB PAGE!!!
+        </span>
 
     </div>
 
-    <!-- MAIN LAYOUT -->
+    <!-- TWO-COLUMN LAYOUT -->
 
     <div class="website-layout">
 
-        <!-- SIDEBAR -->
+        <!-- LEFT SIDEBAR -->
 
         <aside class="sidebar">
 
             <div class="sidebar-title">
-                Site Information
+                !!! COOL STUFF !!!
             </div>
 
             <div class="sidebar-box">
 
-                <h3>Latest News</h3>
-
-                <span class="new-label">
-                    NEW!
+                <span style="
+                    color: #ff0000;
+                    font-size: 20px;
+                ">
+                    ★ HOT NEWS ★
                 </span>
 
-                <p>
-                    Fried Out Vol.1
-                    is available to watch.
-                </p>
+                <br><br>
 
-                <p class="small-print">
-                    Please check back for updates.
-                </p>
+                FRIED OUT VOL.1
+                IS AVAILABLE TO WATCH!!!
+
+                <br><br>
+
+                <span class="rainbow-text">
+                    WOW!!!
+                </span>
 
             </div>
 
-            <div class="sidebar-divider"></div>
+            <div class="sidebar-star">
+                ★
+            </div>
 
             <div class="sidebar-box">
 
-                <h3>Visitors</h3>
+                <span style="
+                    color: #ff0000;
+                    text-decoration: underline;
+                ">
+                    VISITOR COUNTER
+                </span>
+
+                <br>
 
                 <div
-                    class="visitor-counter"
-                    title="Decorative retro visitor counter">
+                    class="fake-counter"
+                    title="Decorative retro counter">
                     000666
                 </div>
 
-                <p class="small-print">
-                    Decorative visitor counter
-                </p>
+                <br>
+
+                <span class="counter-label">
+                    DECORATIVE 1998-STYLE COUNTER
+                </span>
 
             </div>
 
-            <div class="sidebar-divider"></div>
-
             <div class="sidebar-box">
 
-                <h3>Useful Links</h3>
+                <span style="
+                    color: #ff0000;
+                    font-size: 17px;
+                ">
+                    100% COOL
+                </span>
 
-                <p>
-                    <a href="./">
-                        Main Website
-                    </a>
-                </p>
+                <br><br>
 
-                <p>
-                    <a href="contact">
-                        Contact
-                    </a>
-                </p>
+                THIS WEBSITE HAS BEEN
+                APPROVED BY THE WEBMASTER!!!
 
-                <p>
-                    <a href="physical/">
-                        Physical
-                    </a>
-                </p>
+                <br><br>
+
+                👍 👍 👍
 
             </div>
 
-            <div class="sidebar-divider"></div>
+            <div class="email-sticker">
+                YOU'VE GOT MAIL!!!
+            </div>
 
             <div class="sidebar-box">
 
-                <h3>Webmaster's Note</h3>
+                <span style="
+                    font-size: 25px;
+                ">
+                    💾
+                </span>
 
-                <p>
-                    Thank you for taking the time
-                    to visit this website.
-                </p>
+                <br>
 
-                <p>
-                    Some sections may be incomplete.
-                </p>
+                DON'T FORGET TO
+                BOOKMARK THIS PAGE!!!
+
+                <br><br>
+
+                CTRL + D!!!
 
             </div>
 
-            <div class="sidebar-divider"></div>
+            <div class="sidebar-star">
+                ★
+            </div>
 
             <div class="sidebar-box">
 
-                <h3>Recommended</h3>
+                <span class="rainbow-text">
+                    AWARD WINNING WEBSITE!!!
+                </span>
 
-                <p>
-                    Best viewed at
-                    800 × 600 resolution.
-                </p>
+                <br><br>
 
-                <p class="small-print">
-                    Internet Explorer compatible.*
-                </p>
+                🏆
 
-                <p class="small-print">
-                    *Probably.
-                </p>
+                <br><br>
+
+                AWARDED BY:
+                <br>
+                THE WEBMASTER
 
             </div>
 
         </aside>
 
-        <!-- MAIN CONTENT -->
+        <!-- MAIN COLUMN -->
 
         <main class="main-column">
 
-            <!-- VIDEO SECTION -->
+            <!-- VIDEO PLAYER -->
 
             <section class="video-section">
 
-                <h2 class="section-heading">
-                    Fried Out Vol.1 - The Pilot
-                </h2>
-
                 <div class="video-panel">
+
+                    <h2>
+                        !!! WATCH FRIED OUT HERE !!!
+                    </h2>
+
+                    <p style="
+                        color: #ff0000;
+                        font-size: 14px;
+                        font-weight: bold;
+                    ">
+                        ↓↓↓ CLICK PLAY TO WATCH THE MOVIE ↓↓↓
+                    </p>
 
                     <div class="video-player-wrapper">
 
@@ -1122,11 +1388,7 @@ body::before {
 
                     </div>
 
-                    <div class="player-note">
-                        Select a video below to begin playback.
-                    </div>
-
-                    <!-- REAL VIEW COUNT -->
+                    <!-- REAL VIEW COUNTER -->
 
                     <div
                         class="view-count"
@@ -1134,6 +1396,14 @@ body::before {
                         aria-live="polite">
                         0 views
                     </div>
+
+                    <p style="
+                        color: #000080;
+                        font-size: 15px;
+                        font-weight: bold;
+                    ">
+                        !!! CHOOSE YOUR VIDEO !!!
+                    </p>
 
                     <!-- ORIGINAL VIDEO BUTTONS -->
 
@@ -1179,6 +1449,8 @@ body::before {
                 It's just a fantasy, even if these sketches leave your brain all fried out.
             </div>
 
+            <!-- RAINBOW DIVIDER -->
+
             <div class="separator"></div>
 
             <!-- XTRA FRIED -->
@@ -1186,11 +1458,13 @@ body::before {
             <section class="xtra-fried">
 
                 <h2>
-                    Xtra Fried - Behind The Scenes
+                    ★ XTRA FRIED ★
+                    <br>
+                    BEHIND THE SCENES!!!
                 </h2>
 
-                <p class="xtra-intro">
-                    Additional material and other recordings.
+                <p class="xtra-warning">
+                    !!! EXCLUSIVE BONUS MOVING PICTURES !!!
                 </p>
 
                 <div class="xtra-menu">
@@ -1275,23 +1549,40 @@ body::before {
 
                 </div>
 
+                <p style="
+                    margin-top: 20px;
+                    color: #ff0000;
+                    font-size: 13px;
+                    font-weight: bold;
+                ">
+                    ★★★ ALL VIDEOS ARE 100% REAL MOVING PICTURES ★★★
+                </p>
+
             </section>
 
         </main>
 
     </div>
 
-    <!-- PHOTO GALLERY -->
+    <!-- END OF TWO-COLUMN LAYOUT -->
+
+    <div class="separator"></div>
+
+    <!-- BEHIND-THE-SCENES GALLERY -->
 
     <section class="gallery-section">
 
-        <h2 class="gallery-heading">
-            Behind The Scenes Photographs
+        <h2 class="gallery-title">
+            !!! OFFICIAL FRIED OUT PHOTO GALLERY !!!
         </h2>
 
-        <p class="gallery-intro">
-            A small collection of photographs.
-            Click an image to enlarge it.
+        <p style="
+            color: #ff0000;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: underline;
+        ">
+            CLICK ON THE PHOTOGRAPHS TO MAKE THEM BIGGER!!!
         </p>
 
         <div class="gallery">
@@ -1342,35 +1633,59 @@ body::before {
 
     </section>
 
-    <!-- ABANDONED WEBSITE FOOTER -->
+    <!-- COMPLETELY UNNECESSARY BOTTOM SECTION -->
 
-    <div class="bottom-section">
+    <div class="bottom-chaos">
 
-        <div class="construction">
-            🚧 UNDER CONSTRUCTION 🚧
+        <div class="rainbow-text">
+            ★★★ CONGRATULATIONS!!! ★★★
         </div>
 
         <p>
-            Certain parts of this website are still being worked on.
+            YOU HAVE REACHED THE BOTTOM OF THE FRIED OUT WEBSITE!!!
         </p>
 
-        <p>
-            Please excuse any inconvenience.
+        <p style="
+            color: #00ffff;
+            font-size: 22px;
+        ">
+            THANK YOU FOR SURFING THE WORLD WIDE WEB!!!
         </p>
 
-        <div class="guestbook">
-            <a href="contact">
-                Contact the Webmaster
-            </a>
+        <div class="construction">
+            <span>
+                🚧 UNDER CONSTRUCTION 🚧
+            </span>
         </div>
 
         <p style="
-            margin-top: 22px;
-            color: #77796d;
-            font-size: 11px;
+            color: #ffff00;
+            font-size: 13px;
         ">
-            Thank you for visiting.
+            THIS WEBSITE IS ALWAYS UNDER CONSTRUCTION
+            BECAUSE WE DO NOT KNOW WHAT WE ARE DOING!!!
         </p>
+
+        <div style="
+            font-size: 30px;
+            margin: 15px 0;
+        ">
+            💾 💻 📼 🍟 💾 💻 📼 🍟
+        </div>
+
+        <marquee
+            behavior="alternate"
+            scrollamount="4"
+            style="
+                color: #00ff00;
+                background: #000080;
+                padding: 8px;
+                font-size: 15px;
+            ">
+
+            !!! PLEASE COME BACK SOON !!!
+
+        </marquee>
 
     </div>
 
@@ -1379,39 +1694,39 @@ body::before {
     <div class="social-links">
 
         <a href="contact">
-            Contact
+            CONTACT THE WEBMASTER!!!
         </a>
 
         <a href="physical/">
-            Physical
+            PHYSICAL STUFF!!!
         </a>
 
         <a
             href="https://paypal.me/ASmyth115"
             target="_blank"
             rel="noopener noreferrer">
-            PayPal
+            PAYPAL!!!
         </a>
 
     </div>
 
     <div class="copyright">
 
-        © ZeusWeusFilm
-
-        <br><br>
-
-        This website was designed for viewing on a personal computer.
+        © ZEUSWEUSFILM
 
         <br>
 
-        Please do not reproduce without permission.
+        THIS WEB PAGE IS BEST VIEWED WITH YOUR EYES OPEN.
+
+        <br><br>
+
+        ★ YOU ARE VISITOR NUMBER 000666 ★
 
     </div>
 
 </div>
 
-<!-- ORIGINAL LIGHTBOX -->
+<!-- ORIGINAL IMAGE LIGHTBOX -->
 
 <div
     class="lightbox"
@@ -1437,7 +1752,8 @@ body::before {
 <script>
 
 /* =========================================================
-   ORIGINAL VIEW COUNT SYSTEM
+   ORIGINAL FRIED OUT VIEW COUNT SYSTEM
+   PRESERVED
    ========================================================= */
 
 const VIEW_API_BASE =
@@ -1529,7 +1845,8 @@ async function countView(videoId) {
 }
 
 /* =========================================================
-   ORIGINAL VIDEO SWITCHING
+   ORIGINAL VIDEO SWITCHING SYSTEM
+   PRESERVED
    ========================================================= */
 
 function selectVideo(
@@ -1551,6 +1868,11 @@ function selectVideo(
 
     const buttons =
         document.querySelectorAll(".video-menu-button");
+
+    /*
+        Remember exactly where the visitor is on the page
+        before the native video player reloads.
+    */
 
     const scrollX = window.scrollX;
     const scrollY = window.scrollY;
@@ -1574,6 +1896,12 @@ function selectVideo(
 
     button.classList.add("active");
 
+    /*
+        Some browsers reposition the page when a video source
+        is reloaded. Restore the visitor's exact position after
+        the browser has processed the change.
+    */
+
     requestAnimationFrame(function() {
 
         window.scrollTo(scrollX, scrollY);
@@ -1587,6 +1915,7 @@ function selectVideo(
 
 /* =========================================================
    ORIGINAL IMAGE LIGHTBOX
+   PRESERVED
    ========================================================= */
 
 function openLightbox(imageUrl) {
@@ -1640,7 +1969,8 @@ function closeLightboxButton(event) {
 }
 
 /* =========================================================
-   ORIGINAL VIEW INITIALISATION
+   ORIGINAL VIDEO VIEW INITIALISATION
+   PRESERVED
    ========================================================= */
 
 const videoPlayer =
@@ -1653,7 +1983,8 @@ videoPlayer.addEventListener("play", function() {
 loadViewCount(currentVideoId);
 
 /* =========================================================
-   ESCAPE KEY SUPPORT
+   ORIGINAL ESCAPE KEY SUPPORT
+   PRESERVED
    ========================================================= */
 
 document.addEventListener("keydown", function(event) {
