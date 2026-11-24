@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ZeusWeusFilm</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        html {
+            background-color: #080a0b;
+        }
+
+        body {
+            background-color: #080a0b;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background image */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 40px);
+            height: calc(100% + 40px);
+            background-image: url("background.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: blur(5px);
+            opacity: 0.30;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Dark overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(8, 10, 11, 0.55);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Keep content above background */
+        body > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Logo link */
+        .logo-link {
+            display: block;
+            width: fit-content;
+            margin: 25px auto 35px;
+        }
+
+        /* Logo */
+        .logo {
+            display: block;
+            width: 120px;
+            max-width: 40vw;
+            height: auto;
+            margin: 0;
+        }
+
+        /* ZeusWeusFilm title */
+        h1 {
+            margin: 0 0 35px;
+            font-family: Georgia, serif;
+            font-size: 36px;
+            font-weight: normal;
+            letter-spacing: 2px;
+            color: #e8e8e8;
+        }
+
+        /* Project gallery */
+        .projects {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        /* Project link */
+        .project {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            cursor: pointer;
+            color: inherit;
+        }
+
+        /* Project image */
+        .project img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease;
+        }
+
+        /* Hover effect */
+        .project:hover img {
+            transform: scale(1.03);
+            opacity: 0.85;
+        }
+
+        /* Project name */
+        .project-title {
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-family: Georgia, serif;
+            font-size: 18px;
+            letter-spacing: 2px;
+            color: #e8e8e8;
+            text-shadow:
+                2px 2px 0 #222,
+                -1px -1px 0 #000,
+                0 0 12px rgba(255, 255, 255, 0.15);
+        }
+
+        /* Featured Final Say for Mr Everyday tile */
+        .project-featured {
+            grid-column: 1 / -1;
+        }
+
+        /*
+           Keep the featured artwork wide on desktop.
+           The image fills the width of all three project tiles.
+        */
+        .project-featured img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Divider */
+        .separator {
+            width: 70%;
+            max-width: 700px;
+            height: 1px;
+            margin: 35px auto;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255, 255, 255, 0.45),
+                transparent
+            );
+        }
+
+        /* ZeusWeusFilm description */
+        .description {
+            width: 90%;
+            max-width: 1100px;
+            margin: 55px auto 60px;
+            font-family: Georgia, serif;
+            font-size: 17px;
+            line-height: 1.6;
+            color: #d6d6d6;
+            text-shadow:
+                1px 1px 0 #222,
+                0 0 8px rgba(255, 255, 255, 0.08);
+        }
+
+        /* Footer links */
+        .social-links {
+            margin: 0 auto;
+            padding-bottom: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: #e8e8e8;
+            text-decoration: none;
+            font-family: Georgia, serif;
+            font-size: 15px;
+            letter-spacing: 1px;
+            transition: opacity 0.2s ease;
+        }
+
+        .social-links a:hover {
+            opacity: 0.65;
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+
+            .logo-link {
+                margin: 20px auto 25px;
+            }
+
+            .logo {
+                width: 100px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .projects {
+                width: 85%;
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            /* Featured tile becomes a normal tile on mobile */
+            .project-featured {
+                grid-column: auto;
+            }
+
+            .project-title {
+                font-size: 16px;
+            }
+
+            .separator {
+                width: 80%;
+                margin: 30px auto;
+            }
+
+            .description {
+                width: 85%;
+                font-size: 15px;
+                line-height: 1.5;
+                margin-top: 45px;
+            }
+
+            .social-links {
+                padding-bottom: 35px;
+                gap: 14px;
+            }
+
+            .social-links a {
+                font-size: 13px;
+                letter-spacing: 1px;
+            }
+        }
+
+        /* Tablet */
+        @media (min-width: 601px) and (max-width: 900px) {
+
+            .projects {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ZeusWeusFilm logo / secret IDIR entrance -->
+    <a
+        class="logo-link"
+        href="idir/">
+        <img
+            class="logo"
+            src="zwflogo.webp"
+            alt="ZeusWeusFilm logo">
+    </a>
+
+    <!-- ZeusWeusFilm title -->
+    <h1>ZeusWeusFilm</h1>
+
+    <!-- Projects -->
+    <div class="projects">
+
+        <!-- FEATURED: Final Say for Mr Everyday -->
+        <a
+            class="project project-featured"
+            href="final-say-for-mr-everyday/">
+
+            <img
+                src="finalsayformreverydaylogo.webp"
+                alt="Final Say for Mr Everyday">
+
+            <div class="project-title">
+                Final Say for Mr Everyday
+            </div>
+
+        </a>
+
+        <!-- Knock Knock -->
+        <a
+            class="project"
+            href="knock-knock/">
+
+            <img
+                src="knockknocklogo.webp"
+                alt="Knock Knock">
+
+            <div class="project-title">
+                Knock Knock
+            </div>
+
+        </a>
+
+        <!-- Fried Out -->
+        <a
+            class="project"
+            href="fried-out/">
+
+            <img
+                src="friedoutvol1logo.webp"
+                alt="Fried Out">
+
+            <div class="project-title">
+                Fried Out
+            </div>
+
+        </a>
+
+        <!-- Haunt-A-Files -->
+        <a
+            class="project"
+            href="haunt-a-files/">
+
+            <img
+                src="hauntafileslogo.webp"
+                alt="Haunt-A-Files">
+
+            <div class="project-title">
+                Haunt-A-Files
+            </div>
+
+        </a>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="separator"></div>
+
+    <!-- ZeusWeusFilm description -->
+    <div class="description">
+        "You're going to know, how intent I was, on teaching you people that what you're doing is wrong, and maybe that's all that needs to be done to stop you from the greed you have, the hate you have, the anger, malice." <span style="white-space: nowrap;">- Marvin Heemeyer</span>
+    </div>
+
+    <!-- Footer links -->
+    <div class="social-links">
+
+        <a
+            href="contact">
+            Contact
+        </a>
+
+        <a
+            href="physical/">
+            Physical
+        </a>
+
+        <a
+            href="https://paypal.me/ASmyth115"
+            target="_blank"
+            rel="noopener noreferrer">
+            PayPal
+        </a>
+
+    </div>
+
+</body>
+</html>
