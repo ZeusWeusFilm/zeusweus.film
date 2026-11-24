@@ -103,7 +103,13 @@ body {
 /* THE HEADER OF THE CENTURY */
 
 .website-header {
-    padding: 20px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 28px;
+
+    padding: 12px 22px;
 
     background: linear-gradient(
         90deg,
@@ -123,14 +129,14 @@ body {
 
 .logo-link {
     display: inline-block;
-    margin-bottom: 5px;
+    flex-shrink: 0;
 }
 
 .logo {
     display: block;
 
     width: 115px;
-    max-width: 35vw;
+    max-width: 25vw;
     height: auto;
 
     filter: drop-shadow(5px 5px 0 #ffff00);
@@ -142,8 +148,15 @@ body {
     transform: rotate(-12deg) scale(1.1);
 }
 
+.header-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .website-header h1 {
-    margin: 5px 0;
+    margin: 0;
 
     font-family: "Comic Sans MS", cursive;
     font-size: clamp(28px, 6vw, 68px);
@@ -163,7 +176,7 @@ body {
 }
 
 .header-subtitle {
-    margin: 12px auto;
+    margin: 8px auto 0;
 
     color: #000000;
     font-size: 17px;
@@ -193,126 +206,16 @@ body {
     100% { color: #ff0000; }
 }
 
-/* CLASSIC TWO-COLUMN WEB PAGE */
+/* FULL-WIDTH VIDEO LAYOUT */
 
 .website-layout {
-    display: grid;
-
-    grid-template-columns: 215px minmax(0, 1fr);
-
-    gap: 18px;
-
-    align-items: start;
     margin-top: 30px;
-}
-
-/* SIDEBAR */
-
-.sidebar {
-    min-width: 0;
-
-    padding: 10px;
-
-    background: #00ffff;
-
-    border: 8px ridge #0000ff;
-
-    box-shadow: 6px 6px 0 #ff00ff;
-}
-
-.sidebar-title {
-    margin: 0 0 15px;
-
-    padding: 8px 4px;
-
-    color: #ffff00;
-    background: #ff0000;
-
-    font-size: 19px;
-    font-weight: bold;
-
-    border: 4px dashed #ffffff;
-}
-
-.sidebar-box {
-    margin: 12px 0;
-    padding: 12px 7px;
-
-    background: #ffff00;
-
-    border: 4px groove #ff00ff;
-
-    color: #000080;
-    font-size: 13px;
-    font-weight: bold;
-
-    overflow-wrap: anywhere;
-}
-
-.sidebar-box:nth-of-type(even) {
-    background: #ff99ff;
-}
-
-.sidebar-star {
-    display: block;
-
-    margin: 12px 0;
-
-    color: #ff0000;
-    font-size: 40px;
-
-    animation: spin 5s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.fake-counter {
-    display: inline-block;
-
-    margin: 8px auto;
-    padding: 7px 12px;
-
-    background: #000000;
-    color: #00ff00;
-
-    border: 5px inset #888888;
-
-    font-family: "Courier New", monospace;
-    font-size: 24px;
-    font-weight: bold;
-
-    letter-spacing: 3px;
-}
-
-.counter-label {
-    color: #ff0000;
-    font-size: 12px;
-}
-
-.email-sticker {
-    display: block;
-
-    padding: 10px 5px;
-    margin: 15px 0;
-
-    color: #ffff00;
-    background: #000080;
-
-    border: 4px dotted #ff0000;
-
-    font-size: 15px;
-    font-weight: bold;
-
-    transform: rotate(4deg);
 }
 
 /* MAIN VIDEO AREA */
 
 .main-column {
+    width: 100%;
     min-width: 0;
 }
 
@@ -549,17 +452,6 @@ body {
     text-shadow: 3px 3px #000000;
 }
 
-.xtra-warning {
-    margin: 10px 0 20px;
-
-    color: #0000ff;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    text-decoration: underline;
-}
-
 .xtra-menu {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -741,63 +633,6 @@ body {
     cursor: pointer;
 }
 
-/* THE VERY BOTTOM OF THE INTERNET */
-
-.bottom-chaos {
-    margin: 40px auto 20px;
-    padding: 20px;
-
-    background: #ff00ff;
-
-    border: 10px ridge #00ff00;
-
-    color: #ffff00;
-
-    font-size: 17px;
-    font-weight: bold;
-
-    box-shadow: 8px 8px 0 #000080;
-}
-
-.construction {
-    display: inline-block;
-
-    margin: 15px 0;
-    padding: 12px 20px;
-
-    background: repeating-linear-gradient(
-        45deg,
-        #ffff00 0 15px,
-        #000000 15px 30px
-    );
-
-    border: 6px ridge #ff0000;
-}
-
-.construction span {
-    display: inline-block;
-
-    padding: 10px;
-
-    background: #ffff00;
-    color: #ff0000;
-
-    font-size: 22px;
-    font-weight: bold;
-
-    animation: wobble 1.5s ease-in-out infinite;
-}
-
-@keyframes wobble {
-    0%, 100% {
-        transform: rotate(-3deg);
-    }
-
-    50% {
-        transform: rotate(3deg);
-    }
-}
-
 /* FOOTER LINKS */
 
 .social-links {
@@ -855,28 +690,7 @@ body {
 @media (max-width: 900px) {
 
     .website-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .sidebar {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-
-        gap: 10px;
-
-        align-items: center;
-    }
-
-    .sidebar-title {
-        grid-column: 1 / -1;
-    }
-
-    .sidebar-star {
-        margin: 5px auto;
-    }
-
-    .email-sticker {
-        margin: 5px;
+        width: 100%;
     }
 }
 
@@ -887,24 +701,29 @@ body {
     }
 
     .website-header {
-        padding: 15px 8px;
+        gap: 10px;
+        padding: 10px 8px;
         border-width: 6px;
     }
 
+    .logo {
+        width: 75px;
+        max-width: 20vw;
+    }
+
     .website-header h1 {
+        font-size: clamp(23px, 6vw, 42px);
         letter-spacing: -1px;
     }
 
     .header-subtitle {
         font-size: 12px;
+        padding: 4px 8px;
+        border-width: 3px;
     }
 
     .rainbow-text {
         font-size: 14px;
-    }
-
-    .sidebar {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .video-panel {
@@ -964,14 +783,6 @@ body {
     .social-links a {
         font-size: 12px;
     }
-
-    .bottom-chaos {
-        font-size: 14px;
-    }
-
-    .construction span {
-        font-size: 16px;
-    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1001,7 +812,7 @@ body {
 
 <div class="page-content">
 
-    <!-- HEADER -->
+    <!-- SLIMMER SIDE-BY-SIDE HEADER -->
 
     <header class="website-header">
 
@@ -1017,145 +828,21 @@ body {
 
         </a>
 
-        <h1>!!! FRIED OUT !!!</h1>
+        <div class="header-text">
 
-        <div class="header-subtitle">
-            VOL.1 - THE PILOT
+            <h1>!!! FRIED OUT !!!</h1>
+
+            <div class="header-subtitle">
+                VOL.1 - THE PILOT
+            </div>
+
         </div>
 
     </header>
 
-    <!-- TWO-COLUMN LAYOUT -->
+    <!-- FULL-WIDTH MAIN CONTENT -->
 
     <div class="website-layout">
-
-        <!-- LEFT SIDEBAR -->
-
-        <aside class="sidebar">
-
-            <div class="sidebar-title">
-                !!! COOL STUFF !!!
-            </div>
-
-            <div class="sidebar-box">
-
-                <span style="
-                    color: #ff0000;
-                    font-size: 20px;
-                ">
-                    ★ HOT NEWS ★
-                </span>
-
-                <br><br>
-
-                FRIED OUT VOL.1
-                IS AVAILABLE TO WATCH!!!
-
-                <br><br>
-
-                <span class="rainbow-text">
-                    WOW!!!
-                </span>
-
-            </div>
-
-            <div class="sidebar-star">
-                ★
-            </div>
-
-            <div class="sidebar-box">
-
-                <span style="
-                    color: #ff0000;
-                    text-decoration: underline;
-                ">
-                    VISITOR COUNTER
-                </span>
-
-                <br>
-
-                <div
-                    class="fake-counter"
-                    title="Decorative retro counter">
-                    000666
-                </div>
-
-                <br>
-
-                <span class="counter-label">
-                    DECORATIVE 1998-STYLE COUNTER
-                </span>
-
-            </div>
-
-            <div class="sidebar-box">
-
-                <span style="
-                    color: #ff0000;
-                    font-size: 17px;
-                ">
-                    100% COOL
-                </span>
-
-                <br><br>
-
-                THIS WEBSITE HAS BEEN
-                APPROVED BY THE WEBMASTER!!!
-
-                <br><br>
-
-                👍 👍 👍
-
-            </div>
-
-            <div class="email-sticker">
-                YOU'VE GOT MAIL!!!
-            </div>
-
-            <div class="sidebar-box">
-
-                <span style="
-                    font-size: 25px;
-                ">
-                    💾
-                </span>
-
-                <br>
-
-                DON'T FORGET TO
-                BOOKMARK THIS PAGE!!!
-
-                <br><br>
-
-                CTRL + D!!!
-
-            </div>
-
-            <div class="sidebar-star">
-                ★
-            </div>
-
-            <div class="sidebar-box">
-
-                <span class="rainbow-text">
-                    AWARD WINNING WEBSITE!!!
-                </span>
-
-                <br><br>
-
-                🏆
-
-                <br><br>
-
-                AWARDED BY:
-                <br>
-                THE WEBMASTER
-
-            </div>
-
-        </aside>
-
-        <!-- MAIN COLUMN -->
 
         <main class="main-column">
 
@@ -1273,10 +960,6 @@ body {
                     BEHIND THE SCENES!!!
                 </h2>
 
-                <p class="xtra-warning">
-                    !!! EXCLUSIVE BONUS MOVING PICTURES !!!
-                </p>
-
                 <div class="xtra-menu">
 
                     <button
@@ -1374,7 +1057,7 @@ body {
 
     </div>
 
-    <!-- END OF TWO-COLUMN LAYOUT -->
+    <!-- RAINBOW DIVIDER -->
 
     <div class="separator"></div>
 
@@ -1442,62 +1125,6 @@ body {
         </div>
 
     </section>
-
-    <!-- COMPLETELY UNNECESSARY BOTTOM SECTION -->
-
-    <div class="bottom-chaos">
-
-        <div class="rainbow-text">
-            ★★★ CONGRATULATIONS!!! ★★★
-        </div>
-
-        <p>
-            YOU HAVE REACHED THE BOTTOM OF THE FRIED OUT WEBSITE!!!
-        </p>
-
-        <p style="
-            color: #00ffff;
-            font-size: 22px;
-        ">
-            THANK YOU FOR SURFING THE WORLD WIDE WEB!!!
-        </p>
-
-        <div class="construction">
-            <span>
-                🚧 UNDER CONSTRUCTION 🚧
-            </span>
-        </div>
-
-        <p style="
-            color: #ffff00;
-            font-size: 13px;
-        ">
-            THIS WEBSITE IS ALWAYS UNDER CONSTRUCTION
-            BECAUSE WE DO NOT KNOW WHAT WE ARE DOING!!!
-        </p>
-
-        <div style="
-            font-size: 30px;
-            margin: 15px 0;
-        ">
-            💾 💻 📼 🍟 💾 💻 📼 🍟
-        </div>
-
-        <marquee
-            behavior="alternate"
-            scrollamount="4"
-            style="
-                color: #00ff00;
-                background: #000080;
-                padding: 8px;
-                font-size: 15px;
-            ">
-
-            !!! PLEASE COME BACK SOON !!!
-
-        </marquee>
-
-    </div>
 
     <!-- ORIGINAL FOOTER LINKS -->
 
