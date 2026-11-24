@@ -91,7 +91,7 @@
             max-width: 1100px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 15px;
         }
 
@@ -135,19 +135,39 @@
                 0 0 12px rgba(255, 255, 255, 0.15);
         }
 
-        /* Featured Final Say for Mr Everyday tile */
+        /* Featured Final Say tile */
         .project-featured {
             grid-column: 1 / -1;
         }
 
+        /* Title above featured image */
+        .project-featured .project-title {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
         /*
-           Keep the featured artwork wide on desktop.
-           The image fills the width of all three project tiles.
+           Desktop featured image:
+           Same height as each of the three project images below.
+
+           The existing project images are square, so the
+           featured image height matches one grid column.
         */
-        .project-featured img {
+        .featured-image {
             width: 100%;
-            height: auto;
+            aspect-ratio: 3 / 1;
+            overflow: hidden;
+        }
+
+        .featured-image picture,
+        .featured-image img {
             display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .featured-image img {
+            object-fit: cover;
         }
 
         /* Divider */
@@ -223,9 +243,13 @@
                 gap: 35px;
             }
 
-            /* Featured tile becomes a normal tile on mobile */
+            /* Featured tile becomes square on mobile */
             .project-featured {
                 grid-column: auto;
+            }
+
+            .featured-image {
+                aspect-ratio: 1 / 1;
             }
 
             .project-title {
@@ -259,7 +283,7 @@
         @media (min-width: 601px) and (max-width: 900px) {
 
             .projects {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(3, minmax(0, 1fr));
                 gap: 10px;
             }
         }
@@ -289,12 +313,20 @@
             class="project project-featured"
             href="final-say-for-mr-everyday/">
 
-            <img
-                src="finalsayformreverydaylogo.webp"
-                alt="Final Say for Mr Everyday">
-
             <div class="project-title">
                 Final Say for Mr Everyday
+            </div>
+
+            <div class="featured-image">
+                <picture>
+                    <source
+                        media="(max-width: 600px)"
+                        srcset="finalsayformreverydaylogo.webp">
+
+                    <img
+                        src="finalsayletterbox.webp"
+                        alt="Final Say for Mr Everyday">
+                </picture>
             </div>
 
         </a>
